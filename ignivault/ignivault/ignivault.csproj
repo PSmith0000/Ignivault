@@ -1,0 +1,58 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.BlazorWebAssembly">
+
+  <PropertyGroup>
+    <TargetFramework>net9.0</TargetFramework>
+        <BlazorWebAssemblyLoadAllGlobalizationData>true</BlazorWebAssemblyLoadAllGlobalizationData>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly" Version="9.0.0" />
+    <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly.DevServer" Version="9.0.0" PrivateAssets="all" />
+	    <PackageReference Include="Syncfusion.Blazor.Grid" Version="30.2.7" />
+    <PackageReference Include="Syncfusion.Blazor.Spreadsheet" Version="30.2.7" />
+    <PackageReference Include="Syncfusion.Blazor.RangeNavigator" Version="30.2.7" />
+    <PackageReference Include="Syncfusion.Blazor.BarcodeGenerator" Version="30.2.7" />
+    <PackageReference Include="Syncfusion.Blazor.ProgressBar" Version="30.2.7" />
+    <PackageReference Include="Syncfusion.Blazor.ImageEditor" Version="30.2.7" />
+    <PackageReference Include="Syncfusion.Blazor.SfPdfViewer" Version="30.2.7" />
+    <PackageReference Include="Syncfusion.Blazor.RichTextEditor" Version="30.2.7" />
+    <PackageReference Include="Syncfusion.Blazor.InPlaceEditor" Version="30.2.7" />
+    <PackageReference Include="Syncfusion.Blazor.Calendars" Version="30.2.7" />
+    <PackageReference Include="Syncfusion.Blazor.WordProcessor" Version="30.2.7" />
+    <PackageReference Include="Syncfusion.Blazor.Schedule" Version="30.2.7" />
+    <PackageReference Include="Syncfusion.Blazor.DropDowns" Version="30.2.7" />
+    <PackageReference Include="Syncfusion.Blazor.Navigations" Version="30.2.7" />
+    <PackageReference Include="Syncfusion.Blazor.Lists" Version="30.2.7" />
+    <PackageReference Include="Syncfusion.Blazor.Popups" Version="30.2.7" />
+    <PackageReference Include="Syncfusion.Blazor.Layouts" Version="30.2.7" />
+    <PackageReference Include="Syncfusion.Blazor.Cards" Version="30.2.7" />
+    <PackageReference Include="Syncfusion.Blazor.Inputs" Version="30.2.7" />
+    <PackageReference Include="Syncfusion.Blazor.Buttons" Version="30.2.7" />
+    <PackageReference Include="Syncfusion.Blazor.FileManager" Version="30.2.7" />
+    <PackageReference Include="Syncfusion.Blazor.Notifications" Version="30.2.7" />
+    <PackageReference Include="Syncfusion.Pdf.Net.Core" Version="30.2.7" />
+    <PackageReference Include="Syncfusion.XlsIO.Net.Core" Version="30.2.7" />
+    <PackageReference Include="Syncfusion.Blazor.DataForm" Version="30.2.7" />
+    <PackageReference Include="Syncfusion.DocIO.Net.Core" Version="30.2.7" />
+    <PackageReference Include="Syncfusion.Presentation.Net.Core" Version="30.2.7" />
+    <PackageReference Include="Syncfusion.Blazor.Themes" Version="30.2.7" />
+  </ItemGroup>
+  
+  <ItemGroup>
+    <Compile Update="Resources\SfResources.Designer.cs">
+      <DesignTime>True</DesignTime >
+      <AutoGen>True</AutoGen >
+      <DependentUpon>SfResources.resx</DependentUpon>
+    </Compile>
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Update ="Resources\SfResources.resx">
+       <Generator>PublicResXFileCodeGenerator</Generator>
+       <LastGenOutput>SfResources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+  </ItemGroup>
+  
+</Project>
