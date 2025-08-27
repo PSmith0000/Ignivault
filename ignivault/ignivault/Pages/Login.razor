@@ -1,0 +1,76 @@
+﻿@page "/login"
+@using Syncfusion.Blazor.Inputs
+@using Syncfusion.Blazor.Buttons
+@using Syncfusion.Blazor.Calendars
+@using Microsoft.AspNetCore.Components.Forms
+@using System.ComponentModel.DataAnnotations
+
+<div class="flex items-center justify-center min-h-screen bg-gradient-to-br from-blue-50 to-blue-100">
+    <div class="bg-white shadow-2xl rounded-2xl p-10 w-full max-w-md">
+        <h2 class="text-3xl font-bold text-center text-gray-800 mb-2">Ignivault Login</h2>
+        <p class="text-center text-gray-500 mb-8">Please login to continue</p>
+
+        <!-- Login Form -->
+        <EditForm Model="@login_data" OnValidSubmit="@HandleValidSubmit">
+            <DataAnnotationsValidator />
+            <div class="mb-5">
+                <label class="block text-gray-700 font-medium mb-1">Username</label>
+                <SfTextBox Value="@login_data.Username"></SfTextBox>
+                <ValidationMessage For="@(() => login_data.Username)" class="text-sm text-red-500 mt-1" />
+            </div>
+          
+            <div class="mb-5">
+                <label class="block text-gray-700 font-medium mb-1">Password</label>
+                <SfTextBox Value="@login_data.Password" Type=InputType.Password></SfTextBox>
+                <ValidationMessage For="@(() => login_data.Password)" class="text-sm text-red-500 mt-1" />
+            </div>
+
+            <div class="flex justify-between items-center mb-6">
+                <SfCheckBox @bind-Checked="@login_data.RememberMe" Label="Remember me" />
+                <a href="" @onclick:preventDefault onclick="@ToggleForgotPasswordDialog">Forgot Password?</a>
+            </div>
+
+            <SfButton>
+                Login
+            </SfButton>
+        </EditForm>
+
+        @if(ForgotPasswordDialogVisible)
+        {
+            <ForgotLoginDialog/>
+        }
+
+        <!-- Sign Up -->
+        <p class="text-center text-gray-600 text-sm mt-6">
+            Don’t have an account?
+            
+        </p>
+    </div>
+</div>
+
+@code {
+    private LoginData login_data = new();
+    private bool ForgotPasswordDialogVisible { get; set; } = false;
+
+    private void ToggleForgotPasswordDialog()
+    {
+        ForgotPasswordDialogVisible = !ForgotPasswordDialogVisible;
+    }
+
+
+    private void HandleValidSubmit(EditContext context)
+    {
+        
+    }
+
+    public class LoginData
+    {
+        [Required, EmailAddress]
+        public string Username { get; set; } = string.Empty;
+
+        [Required, MinLength(6, ErrorMessage = "Password must be at least 6 characters")]
+        public string Password { get; set; } = string.Empty;
+
+        public bool RememberMe { get; set; }
+    }
+}
