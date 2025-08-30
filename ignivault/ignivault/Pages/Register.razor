@@ -1,0 +1,39 @@
+﻿@page "/signup"
+@using ignivault.Data.Models.Auth
+
+
+<div class="flex items-center justify-center min-h-screen bg-gradient-to-br from-blue-50 to-blue-100">
+    <div class="bg-white shadow-2xl rounded-2xl p-10 w-full max-w-md">
+        <h2 class="text-3xl font-bold text-center text-gray-800 mb-2">Ignivault Signup</h2>
+        <p class="text-center text-gray-500 mb-8">Sign-Up to be able to login.</p>
+
+<SfDataForm ID="forgot-form" Model="@registration" OnValidSubmit="@HandleValidSubmit">
+            <FormValidator>
+                <DataAnnotationsValidator></DataAnnotationsValidator>
+            </FormValidator>
+            <FormItems>
+                <FormAutoGenerateItems></FormAutoGenerateItems>
+            </FormItems>
+            <FormButtons>
+                <SfButton type="submit" CssClass="e-primary">
+                    Sign-Up
+                </SfButton>
+            </FormButtons>
+</SfDataForm>
+
+
+</div>
+</div>
+
+
+
+@code { 
+    private RegistrationModel registration = new RegistrationModel();
+
+
+
+    private void HandleValidSubmit(EditContext context)
+    {
+
+    }
+}

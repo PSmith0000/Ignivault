@@ -1,11 +1,20 @@
-﻿<div class="col-lg-12 control-section" id="target">
+﻿@using ignivault.Data.Models.Auth
+
+<div class="col-lg-12 control-section" id="target">
     <div>
     </div>
     <SfDialog Target="#target" Width="500px" ShowCloseIcon="true" @bind-Visible="Visibility">
         <DialogTemplates>
             <Header> Ignivault: Password Reset </Header>
             <Content>
-                
+                <SfDataForm ID="forgot-form" Model="@account">
+                    <FormValidator>
+                        <DataAnnotationsValidator></DataAnnotationsValidator>
+                    </FormValidator>
+                    <FormItems>
+                        <FormAutoGenerateItems></FormAutoGenerateItems>
+                    </FormItems>
+                </SfDataForm>
             </Content>
         </DialogTemplates>
         <DialogEvents OnOpen="@DialogOpen" Closed="@DialogClose"></DialogEvents>
@@ -45,6 +54,8 @@
     }
 </style>
 @code {
+    private ForgotPasswordModel account = new ForgotPasswordModel();
+
     private bool Visibility { get; set; } = true;
     private bool ShowButton { get; set; } = false;
     private void DialogOpen(Object args)

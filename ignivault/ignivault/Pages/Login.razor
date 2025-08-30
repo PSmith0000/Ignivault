@@ -11,39 +11,31 @@
         <p class="text-center text-gray-500 mb-8">Please login to continue</p>
 
         <!-- Login Form -->
-        <EditForm Model="@login_data" OnValidSubmit="@HandleValidSubmit">
-            <DataAnnotationsValidator />
-            <div class="mb-5">
-                <label class="block text-gray-700 font-medium mb-1">Username</label>
-                <SfTextBox Value="@login_data.Username"></SfTextBox>
-                <ValidationMessage For="@(() => login_data.Username)" class="text-sm text-red-500 mt-1" />
-            </div>
-          
-            <div class="mb-5">
-                <label class="block text-gray-700 font-medium mb-1">Password</label>
-                <SfTextBox Value="@login_data.Password" Type=InputType.Password></SfTextBox>
-                <ValidationMessage For="@(() => login_data.Password)" class="text-sm text-red-500 mt-1" />
-            </div>
+        <SfDataForm ID="forgot-form" Model="@login_data" OnValidSubmit="@HandleValidSubmit">
+            <FormValidator>
+                <DataAnnotationsValidator></DataAnnotationsValidator>
+            </FormValidator>
+            <FormItems>
+                <FormAutoGenerateItems></FormAutoGenerateItems>
+            </FormItems>
+            <FormButtons>
+                <SfButton type="submit" CssClass="e-primary">
+                    Sign In
+                </SfButton>
+                <SfButton type="button" CssClass="e-secondary" OnClick="@ToggleForgotPasswordDialog">
+                    Reset
+                </SfButton>
+            </FormButtons>
+        </SfDataForm>
 
-            <div class="flex justify-between items-center mb-6">
-                <SfCheckBox @bind-Checked="@login_data.RememberMe" Label="Remember me" />
-                <a href="" @onclick:preventDefault onclick="@ToggleForgotPasswordDialog">Forgot Password?</a>
-            </div>
-
-            <SfButton>
-                Login
-            </SfButton>
-        </EditForm>
-
-        @if(ForgotPasswordDialogVisible)
+        @if (ForgotPasswordDialogVisible)
         {
-            <ForgotLoginDialog/>
+            <ForgotLoginDialog />
         }
 
         <!-- Sign Up -->
         <p class="text-center text-gray-600 text-sm mt-6">
-            Don’t have an account?
-            
+            <a href="">Don’t have an account?</a>
         </p>
     </div>
 </div>
@@ -60,7 +52,7 @@
 
     private void HandleValidSubmit(EditContext context)
     {
-        
+
     }
 
     public class LoginData
