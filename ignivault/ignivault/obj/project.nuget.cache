@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "+F3oYgzzRJA=",
+  "dgSpecHash": "GWjK+0B5laQ=",
   "success": true,
   "projectFilePath": "C:\\Users\\prest\\Desktop\\GitHub\\Ignivault\\ignivault\\ignivault\\ignivault.csproj",
   "expectedPackageFiles": [
@@ -15,6 +15,10 @@
     "C:\\Users\\prest\\.nuget\\packages\\microsoft.aspnetcore.components.web\\9.0.4\\microsoft.aspnetcore.components.web.9.0.4.nupkg.sha512",
     "C:\\Users\\prest\\.nuget\\packages\\microsoft.aspnetcore.components.webassembly\\9.0.0\\microsoft.aspnetcore.components.webassembly.9.0.0.nupkg.sha512",
     "C:\\Users\\prest\\.nuget\\packages\\microsoft.aspnetcore.components.webassembly.devserver\\9.0.0\\microsoft.aspnetcore.components.webassembly.devserver.9.0.0.nupkg.sha512",
+    "C:\\Users\\prest\\.nuget\\packages\\microsoft.aspnetcore.cors\\2.3.0\\microsoft.aspnetcore.cors.2.3.0.nupkg.sha512",
+    "C:\\Users\\prest\\.nuget\\packages\\microsoft.aspnetcore.http.abstractions\\2.3.0\\microsoft.aspnetcore.http.abstractions.2.3.0.nupkg.sha512",
+    "C:\\Users\\prest\\.nuget\\packages\\microsoft.aspnetcore.http.extensions\\2.3.0\\microsoft.aspnetcore.http.extensions.2.3.0.nupkg.sha512",
+    "C:\\Users\\prest\\.nuget\\packages\\microsoft.aspnetcore.http.features\\2.3.0\\microsoft.aspnetcore.http.features.2.3.0.nupkg.sha512",
     "C:\\Users\\prest\\.nuget\\packages\\microsoft.aspnetcore.metadata\\9.0.4\\microsoft.aspnetcore.metadata.9.0.4.nupkg.sha512",
     "C:\\Users\\prest\\.nuget\\packages\\microsoft.extensions.caching.abstractions\\9.0.4\\microsoft.extensions.caching.abstractions.9.0.4.nupkg.sha512",
     "C:\\Users\\prest\\.nuget\\packages\\microsoft.extensions.caching.memory\\9.0.4\\microsoft.extensions.caching.memory.9.0.4.nupkg.sha512",
@@ -34,6 +38,7 @@
     "C:\\Users\\prest\\.nuget\\packages\\microsoft.extensions.primitives\\9.0.4\\microsoft.extensions.primitives.9.0.4.nupkg.sha512",
     "C:\\Users\\prest\\.nuget\\packages\\microsoft.jsinterop\\9.0.4\\microsoft.jsinterop.9.0.4.nupkg.sha512",
     "C:\\Users\\prest\\.nuget\\packages\\microsoft.jsinterop.webassembly\\9.0.0\\microsoft.jsinterop.webassembly.9.0.0.nupkg.sha512",
+    "C:\\Users\\prest\\.nuget\\packages\\microsoft.net.http.headers\\2.3.0\\microsoft.net.http.headers.2.3.0.nupkg.sha512",
     "C:\\Users\\prest\\.nuget\\packages\\microsoft.net.illink.tasks\\9.0.8\\microsoft.net.illink.tasks.9.0.8.nupkg.sha512",
     "C:\\Users\\prest\\.nuget\\packages\\microsoft.net.sdk.webassembly.pack\\9.0.8\\microsoft.net.sdk.webassembly.pack.9.0.8.nupkg.sha512",
     "C:\\Users\\prest\\.nuget\\packages\\microsoft.netcore.platforms\\2.0.0\\microsoft.netcore.platforms.2.0.0.nupkg.sha512",
@@ -87,7 +92,9 @@
     "C:\\Users\\prest\\.nuget\\packages\\syncfusion.skiasharphelper.net.core\\30.2.7\\syncfusion.skiasharphelper.net.core.30.2.7.nupkg.sha512",
     "C:\\Users\\prest\\.nuget\\packages\\syncfusion.wordprocessor.aspnet.core\\30.2.7\\syncfusion.wordprocessor.aspnet.core.30.2.7.nupkg.sha512",
     "C:\\Users\\prest\\.nuget\\packages\\syncfusion.xlsio.net.core\\30.2.7\\syncfusion.xlsio.net.core.30.2.7.nupkg.sha512",
+    "C:\\Users\\prest\\.nuget\\packages\\system.buffers\\4.6.0\\system.buffers.4.6.0.nupkg.sha512",
     "C:\\Users\\prest\\.nuget\\packages\\system.text.encoding.codepages\\4.4.0\\system.text.encoding.codepages.4.4.0.nupkg.sha512",
+    "C:\\Users\\prest\\.nuget\\packages\\system.text.encodings.web\\8.0.0\\system.text.encodings.web.8.0.0.nupkg.sha512",
     "C:\\Users\\prest\\.nuget\\packages\\system.text.json\\9.0.4\\system.text.json.9.0.4.nupkg.sha512"
   ],
   "logs": []

@@ -10,6 +10,7 @@
   <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly" Version="9.0.0" />
     <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly.DevServer" Version="9.0.0" PrivateAssets="all" />
+    <PackageReference Include="Microsoft.AspNetCore.Cors" Version="2.3.0" />
 	    <PackageReference Include="Syncfusion.Blazor.Grid" Version="30.2.7" />
     <PackageReference Include="Syncfusion.Blazor.Spreadsheet" Version="30.2.7" />
     <PackageReference Include="Syncfusion.Blazor.RangeNavigator" Version="30.2.7" />

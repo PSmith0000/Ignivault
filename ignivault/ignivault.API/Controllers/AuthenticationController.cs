@@ -1,4 +1,5 @@
 ﻿using ignivault.API.Models;
+using ignivault.API.Security;
 using ignivault.API.Security.Auth;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
@@ -35,14 +36,26 @@ namespace ignivault.API.Controllers
 
             var user = new LoginUser
             {
-                UserName = model.Email,
-                Email = model.Email
+                UserName = model.Username,
+                Email = model.Email,
             };
+
+            var master_key = Crypt.GenerateRandomKey();
+            var salt = Crypt.GenerateSalt();
+            var KHK = Crypt.DeriveKey(model.Password, salt);
+            var (encrypted_master_key, iv) = Crypt.Encrypt(master_key, KHK);
+
+            user.EncryptedMasterKey = encrypted_master_key;
+            user.KeySalt = salt;
 
             var result = await _userManager.CreateAsync(user, model.Password);
 
             if (!result.Succeeded)
-                return BadRequest(result.Errors);
+            {
+                string errors = string.Join(", ", result.Errors.Select(e => e.Description));
+
+                return BadRequest(errors);
+            }
 
             return Ok(new { Message = "User registered successfully!" });
         }

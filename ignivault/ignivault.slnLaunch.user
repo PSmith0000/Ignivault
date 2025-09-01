@@ -1,0 +1,15 @@
+[
+  {
+    "Name": "New Profile",
+    "Projects": [
+      {
+        "Path": "ignivault\\ignivault.csproj",
+        "Action": "Start"
+      },
+      {
+        "Path": "ignivault.API\\ignivault.API.csproj",
+        "Action": "Start"
+      }
+    ]
+  }
+]

@@ -1,7 +1,7 @@
 {
   "mainAssemblyName": "ignivault",
   "resources": {
-    "hash": "sha256-Xky9h14VJ9PjM4dRgEKhcwwHGPaLgmie16jFAaJl3Ag=",
+    "hash": "sha256-IBBX9a5D2FXQJYxqOmJKAsCVZTSZm/ZNsxT9tnJjsbE=",
     "fingerprinting": {
       "BitMiracle.LibTiff.NET.k3fftbjbr6.wasm": "BitMiracle.LibTiff.NET.wasm",
       "HarfBuzzSharp.t6awo9e50y.wasm": "HarfBuzzSharp.wasm",
@@ -10,6 +10,10 @@
       "Microsoft.AspNetCore.Components.Forms.n0ihslit6r.wasm": "Microsoft.AspNetCore.Components.Forms.wasm",
       "Microsoft.AspNetCore.Components.Web.76kzmc18wd.wasm": "Microsoft.AspNetCore.Components.Web.wasm",
       "Microsoft.AspNetCore.Components.WebAssembly.5cygu8f0zf.wasm": "Microsoft.AspNetCore.Components.WebAssembly.wasm",
+      "Microsoft.AspNetCore.Cors.mbtknqx744.wasm": "Microsoft.AspNetCore.Cors.wasm",
+      "Microsoft.AspNetCore.Http.Abstractions.5jy9omvvsv.wasm": "Microsoft.AspNetCore.Http.Abstractions.wasm",
+      "Microsoft.AspNetCore.Http.Extensions.57zig84vjd.wasm": "Microsoft.AspNetCore.Http.Extensions.wasm",
+      "Microsoft.AspNetCore.Http.Features.pqxjsc5k5q.wasm": "Microsoft.AspNetCore.Http.Features.wasm",
       "Microsoft.AspNetCore.Metadata.ru07a9pbbl.wasm": "Microsoft.AspNetCore.Metadata.wasm",
       "Microsoft.Extensions.Caching.Abstractions.pvdzb3a5kr.wasm": "Microsoft.Extensions.Caching.Abstractions.wasm",
       "Microsoft.Extensions.Caching.Memory.cgyczwm7er.wasm": "Microsoft.Extensions.Caching.Memory.wasm",
@@ -29,6 +33,7 @@
       "Microsoft.Extensions.Primitives.hkjc7m6x3e.wasm": "Microsoft.Extensions.Primitives.wasm",
       "Microsoft.JSInterop.uxfxoah9jv.wasm": "Microsoft.JSInterop.wasm",
       "Microsoft.JSInterop.WebAssembly.fkdz83fr0b.wasm": "Microsoft.JSInterop.WebAssembly.wasm",
+      "Microsoft.Net.Http.Headers.vhfw8f9f40.wasm": "Microsoft.Net.Http.Headers.wasm",
       "Newtonsoft.Json.qkbufwhni2.wasm": "Newtonsoft.Json.wasm",
       "SkiaSharp.7acgrequ74.wasm": "SkiaSharp.wasm",
       "SkiaSharp.HarfBuzz.j1hu7m4te6.wasm": "SkiaSharp.HarfBuzz.wasm",
@@ -250,13 +255,13 @@
       "dotnet.native.pk43x8e436.wasm": "dotnet.native.wasm",
       "dotnet.runtime.ew19f13umk.js": "dotnet.runtime.js",
       "icudt.oh1zvcfom8.dat": "icudt.dat",
-      "ignivault.drd5eu4s98.wasm": "ignivault.wasm",
-      "ignivault.91ijax3hd5.pdb": "ignivault.pdb",
-      "ignivault.resources.90avafjdq8.wasm": "ignivault.resources.wasm",
-      "ignivault.resources.sufy2k7w42.wasm": "ignivault.resources.wasm",
-      "ignivault.resources.oloobbzdow.wasm": "ignivault.resources.wasm",
-      "ignivault.resources.lf9ormu9nc.wasm": "ignivault.resources.wasm",
-      "ignivault.resources.357vmzetk3.wasm": "ignivault.resources.wasm"
+      "ignivault.mdfoxyqons.wasm": "ignivault.wasm",
+      "ignivault.s56612sams.pdb": "ignivault.pdb",
+      "ignivault.resources.baotp2fygc.wasm": "ignivault.resources.wasm",
+      "ignivault.resources.ki7k3fmwfg.wasm": "ignivault.resources.wasm",
+      "ignivault.resources.r0uhknfopm.wasm": "ignivault.resources.wasm",
+      "ignivault.resources.ta8ttok98v.wasm": "ignivault.resources.wasm",
+      "ignivault.resources.sgzo9rr9g9.wasm": "ignivault.resources.wasm"
     },
     "jsModuleNative": {
       "dotnet.native.50iqa8w3ys.js": "sha256-pQdXuxfVeqYHOwd5HUM2ERd7OnXirj9JTF37b6OdTAc="
@@ -282,6 +287,10 @@
       "Microsoft.AspNetCore.Components.Forms.n0ihslit6r.wasm": "sha256-iRpIK6WbESudNMb4Gn8EobxIwBTS9CaF2sk8Lf6gpxo=",
       "Microsoft.AspNetCore.Components.Web.76kzmc18wd.wasm": "sha256-IRk+L9wTVGOzFRwpwwhlLur5WHJtJijw6DkitrbVWP8=",
       "Microsoft.AspNetCore.Components.WebAssembly.5cygu8f0zf.wasm": "sha256-KwD9Lhu5DlaqdB2ceYX2LavpwSIAS5H07ZPT2jVbiu4=",
+      "Microsoft.AspNetCore.Cors.mbtknqx744.wasm": "sha256-jj/29EezJA7fbtpJ5QS3w7Hhu6VT5B7bRNYLkCKm3mI=",
+      "Microsoft.AspNetCore.Http.Abstractions.5jy9omvvsv.wasm": "sha256-7wgz1ZHwXmXV8y00xn+jT4BGeuCQQbVYGQl+PNvBfnQ=",
+      "Microsoft.AspNetCore.Http.Extensions.57zig84vjd.wasm": "sha256-sbIJEHnGL6std1HkIJ83mfNTk5yznrGRZbaacPDI5w4=",
+      "Microsoft.AspNetCore.Http.Features.pqxjsc5k5q.wasm": "sha256-bzIPAVp+XhD63CRn9cVTB4tJRU+oDEAuwFYoHytMhUk=",
       "Microsoft.AspNetCore.Metadata.ru07a9pbbl.wasm": "sha256-7aF2mNWJfo77SuzVCYtFmsKVOD4FWb1IN11+LHFnZJQ=",
       "Microsoft.Extensions.Caching.Abstractions.pvdzb3a5kr.wasm": "sha256-+xfvLpMUeR6teEdMxXXJTtRNOVWRtzmXImBVIC/WSvk=",
       "Microsoft.Extensions.Caching.Memory.cgyczwm7er.wasm": "sha256-bNxXVGhVFh5P4WYWzHKVb6D3R2TY6n9yi0JN9ATyTas=",
@@ -301,6 +310,7 @@
       "Microsoft.Extensions.Primitives.hkjc7m6x3e.wasm": "sha256-EQ2SeJgaUjRLYUVamIO8veqo0ULa8a/smS1fHkPruaY=",
       "Microsoft.JSInterop.uxfxoah9jv.wasm": "sha256-DmHnC9ymHQnTh0MVm4HX6gjjWpxkDYwTq2KqksxY+ZA=",
       "Microsoft.JSInterop.WebAssembly.fkdz83fr0b.wasm": "sha256-kSwbIGuYmzrEilFXnLY8mKBXXFQtVXKAF/Qa323+Fnk=",
+      "Microsoft.Net.Http.Headers.vhfw8f9f40.wasm": "sha256-jfXK+cfJd/PteHB+5Bay/NDY9b9VLvVw6G/Bm262Lpo=",
       "Newtonsoft.Json.qkbufwhni2.wasm": "sha256-GlXMWKvDs45M2pACoR3Y4Qh8mcrOZGljqmvJY+6JZ5s=",
       "SkiaSharp.7acgrequ74.wasm": "sha256-L7WuDEupk0hUQMNxwjatpCryLuSPECXaI3Y+wZ+LzM4=",
       "SkiaSharp.HarfBuzz.j1hu7m4te6.wasm": "sha256-x7CC3/T8C4kVfJVjzfoJXfOFQu1PYw51wu1EkLunFZ0=",
@@ -515,26 +525,26 @@
       "WindowsBase.361km0836k.wasm": "sha256-FacUCEIJYTnbOWgX/R9QP2QnurqRZwRIkDAH0N9z69s=",
       "mscorlib.qiu3j3msqk.wasm": "sha256-QvztpxTOEw4aMIl7zP3QtsPLNv/IWaK5wq22J4ReGrA=",
       "netstandard.lp03u0xxi4.wasm": "sha256-WVQsxULiAiEbyXLKolS7txnWVT82SsvsuMe4jJ+SqqI=",
-      "ignivault.drd5eu4s98.wasm": "sha256-6RquVGTFSz1Qo5+svi6jPNsY55I3gfLzxjTTR4YaLAg="
+      "ignivault.mdfoxyqons.wasm": "sha256-2oxtl8TJMvpmL73G4vbiCtb1VwGMjY3arjCUadaeleY="
     },
     "pdb": {
-      "ignivault.91ijax3hd5.pdb": "sha256-8z/ypfHRBqDKnIcLTMfjKNv8pPcpjbR0FchoEWqOoi0="
+      "ignivault.s56612sams.pdb": "sha256-sI095GiMTI9j93OodD9y5nJ0y54ZgGMCdfNXWwvMvJQ="
     },
     "satelliteResources": {
       "ar": {
-        "ignivault.resources.90avafjdq8.wasm": "sha256-aZonwOtVtG4lmrb3Wnmt2aRScdj64sCfz6nCnhMupx8="
+        "ignivault.resources.baotp2fygc.wasm": "sha256-M5HxGXLt4rkUnV9zqlV5zXYpgkikLJCnnCNRc+Qhe4E="
       },
       "de": {
-        "ignivault.resources.sufy2k7w42.wasm": "sha256-PPkh5yzXMTygGx+n/HRA2ll2W1/pNLnER5QqsI2Rkzk="
+        "ignivault.resources.ki7k3fmwfg.wasm": "sha256-9L0igVSCUdj+ltHKzDcNV+IPOcMVlxYYqWnIfX9Otxg="
       },
       "en-US": {
-        "ignivault.resources.oloobbzdow.wasm": "sha256-dAYPDrxxaqK7lvvjtEEqa0254tkRN/4JPuD5fv15mS4="
+        "ignivault.resources.r0uhknfopm.wasm": "sha256-O/KaAiF3iKArgPH3Uv92ntW5UX2wBhl16hdy4WHnDT8="
       },
       "fr": {
-        "ignivault.resources.lf9ormu9nc.wasm": "sha256-P4f1fzjZmhi6RC/J0q59qypvxfdWvPI0s8+jWuHrnDo="
+        "ignivault.resources.ta8ttok98v.wasm": "sha256-Rez84VMhgSQlQGE6t6VbudDZ0pQgjjypBLBZg54D0jM="
       },
       "zh": {
-        "ignivault.resources.357vmzetk3.wasm": "sha256-GWhhIp1kxl7XRCmciDK02DTbfXUdyOXwfRCL9ql6eH4="
+        "ignivault.resources.sgzo9rr9g9.wasm": "sha256-dFHti8mtn8+1x2ovBL/m1qhAHHGECseZiVonDjseoBg="
       }
     }
   },
