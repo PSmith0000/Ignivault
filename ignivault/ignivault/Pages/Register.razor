@@ -1,6 +1,6 @@
 ﻿@page "/signup"
 @using ignivault.Data.Models.Auth
-
+@inject HttpClient Http
 
 <div class="flex items-center justify-center min-h-screen bg-gradient-to-br from-blue-50 to-blue-100">
     <div class="bg-white shadow-2xl rounded-2xl p-10 w-full max-w-md">
@@ -15,25 +15,60 @@
                 <FormAutoGenerateItems></FormAutoGenerateItems>
             </FormItems>
             <FormButtons>
-                <SfButton type="submit" CssClass="e-primary">
+                <SfButton type="submit" CssClass="e-primary" OnClick="@show">
                     Sign-Up
                 </SfButton>
             </FormButtons>
 </SfDataForm>
 
 
+        @if (showMessage && registrationStatus)
+        {
+            <SfMessage Severity="MessageSeverity.Success" ShowCloseIcon="true" ShowIcon="true">@RegistrationStatusMessage</SfMessage>      
+        }
+        else if (showMessage)
+        {
+            <SfMessage Severity="MessageSeverity.Error" ShowCloseIcon="true" ShowIcon="true">@RegistrationStatusMessage</SfMessage>
+        }
+
 </div>
 </div>
 
 
 
-@code { 
+@code {
     private RegistrationModel registration = new RegistrationModel();
 
+    private bool registrationStatus = false;
+    private bool showMessage = false;
+    public string RegistrationStatusMessage { get; set; } = string.Empty;
 
+    
 
-    private void HandleValidSubmit(EditContext context)
+    public void show()
     {
+        showMessage = true;
+    }
 
+    private async void HandleValidSubmit(EditContext context)
+    {
+        try
+        {
+            var response = await Http.PostAsJsonAsync("https://localhost:7158/api/Authentication/register", registration);
+
+            if (response.IsSuccessStatusCode)
+            {
+                RegistrationStatusMessage = "Registration successful! You can now log in.";
+                registrationStatus = true;
+            }
+            else
+            {
+                RegistrationStatusMessage = $"Registration failed!";
+            }
+        }
+        catch (Exception ex)
+        {
+            
+        }
     }
 }

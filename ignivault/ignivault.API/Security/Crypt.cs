@@ -9,7 +9,7 @@ namespace ignivault.API.Security
         private const int Iterations = 100_000;
 
         // Generate a new random key per user (for encrypting vault items)
-        public byte[] GenerateRandomKey()
+        public static byte[] GenerateRandomKey()
         {
             byte[] key = new byte[KeySize];
             using var rng = RandomNumberGenerator.Create();
@@ -18,7 +18,7 @@ namespace ignivault.API.Security
         }
 
         // Generate salt for PBKDF2
-        public byte[] GenerateSalt()
+        public static byte[] GenerateSalt()
         {
             byte[] salt = new byte[SaltSize];
             using var rng = RandomNumberGenerator.Create();
@@ -27,14 +27,14 @@ namespace ignivault.API.Security
         }
 
         // Derive key from password + salt
-        public byte[] DeriveKey(string password, byte[] salt)
+        public static byte[] DeriveKey(string password, byte[] salt)
         {
             using var deriveBytes = new Rfc2898DeriveBytes(password, salt, Iterations, HashAlgorithmName.SHA256);
             return deriveBytes.GetBytes(KeySize);
         }
 
         // Encrypt data with AES256 (returns ciphertext + IV)
-        public (byte[] Ciphertext, byte[] IV) Encrypt(byte[] plaintext, byte[] key)
+        public static (byte[] Ciphertext, byte[] IV) Encrypt(byte[] plaintext, byte[] key)
         {
             using var aes = Aes.Create();
             aes.KeySize = 256;
@@ -50,7 +50,7 @@ namespace ignivault.API.Security
         }
 
         // Decrypt data with AES256
-        public byte[] Decrypt(byte[] ciphertext, byte[] key, byte[] iv)
+        public static byte[] Decrypt(byte[] ciphertext, byte[] key, byte[] iv)
         {
             using var aes = Aes.Create();
             aes.KeySize = 256;
@@ -64,14 +64,14 @@ namespace ignivault.API.Security
         }
 
         // Encrypt the master key with a password-derived key
-        public (byte[] EncryptedMasterKey, byte[] IV) EncryptMasterKey(byte[] masterKey, string password, byte[] salt)
+        public static (byte[] EncryptedMasterKey, byte[] IV) EncryptMasterKey(byte[] masterKey, string password, byte[] salt)
         {
             byte[] passwordKey = DeriveKey(password, salt);
             return Encrypt(masterKey, passwordKey);
         }
 
         // Decrypt the master key
-        public byte[] DecryptMasterKey(byte[] encryptedMasterKey, string password, byte[] salt, byte[] iv)
+        public static byte[] DecryptMasterKey(byte[] encryptedMasterKey, string password, byte[] salt, byte[] iv)
         {
             byte[] passwordKey = DeriveKey(password, salt);
             return Decrypt(encryptedMasterKey, passwordKey, iv);

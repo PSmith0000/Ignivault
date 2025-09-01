@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("ignivault.API")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+3ad412470a05f29fc25ddd6cc4b3e466a5568714")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+7d5017ecc1b92cb1c99c4ab6d129669d21a25209")]
 [assembly: System.Reflection.AssemblyProductAttribute("ignivault.API")]
 [assembly: System.Reflection.AssemblyTitleAttribute("ignivault.API")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
