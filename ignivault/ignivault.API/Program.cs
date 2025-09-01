@@ -22,8 +22,8 @@ namespace ignivault.API
             builder.Services.AddSwaggerGen();
 
             //SQL Server Settings
-            builder.Services.AddDbContext<DbContext>(options =>
-            options.UseSqlServer(builder.Configuration.GetConnectionString("igniDB")));
+            builder.Services.AddDbContext<AppDbContext>(options =>
+            options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
 
             builder.Services.AddIdentity<LoginUser, IdentityRole>()
             .AddEntityFrameworkStores<AppDbContext>()
