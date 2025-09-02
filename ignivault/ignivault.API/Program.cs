@@ -59,7 +59,6 @@ namespace ignivault.API
 
             //security stuff
 
-
             //General stuff
             var app = builder.Build();
 
@@ -73,6 +72,7 @@ namespace ignivault.API
                 app.UseSwagger();
                 app.UseSwaggerUI();
             }
+
             app.UseHttpsRedirection();
             app.UseRouting();
 

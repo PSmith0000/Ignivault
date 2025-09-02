@@ -8,6 +8,7 @@ using Syncfusion.Blazor;
 using Syncfusion.XlsIO.Implementation;
 using System.Globalization;
 using Microsoft.AspNetCore.Cors.Infrastructure;
+using ignivault.Services;
 
 //Register Syncfusion license https://help.syncfusion.com/common/essential-studio/licensing/how-to-generate
 Syncfusion.Licensing.SyncfusionLicenseProvider.RegisterLicense("Ngo9BigBOggjHTQxAR8/V1JEaF5cXmRCf1FpRmJGdld5fUVHYVZUTXxaS00DNHVRdkdmWXdcdXZURmVdUUV0X0VWYEk=");
@@ -35,7 +36,7 @@ builder.Services.AddSyncfusionBlazor();
                         }
 
 builder.Services.AddScoped(sp => new HttpClient { BaseAddress = new Uri(builder.HostEnvironment.BaseAddress) });
-
+builder.Services.AddSingleton<VaultService>();
 var app = builder.Build();
 
 await app.RunAsync();

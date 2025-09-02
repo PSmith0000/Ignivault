@@ -9,6 +9,8 @@ namespace ignivault.API.Security.Auth
 
         public byte[] KeySalt { get; set; }
 
+        public byte[] MasterIV { get; set; }
+
         public ICollection<VaultItem> VaultItems { get; set; } = new List<VaultItem>();
 
         public DateTime? LastPasswordChange { get; set; }
