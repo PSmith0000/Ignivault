@@ -4,10 +4,16 @@
 @using Syncfusion.Blazor.Calendars
 @using Microsoft.AspNetCore.Components.Forms
 @using System.ComponentModel.DataAnnotations
+@using ignivault.Data
 @using ignivault.Data.Models.Auth
+@using ignivault.Services
 @inject HttpClient Http
 @inject IJSRuntime JS
+@inject VaultService VaultService
 
+<head>
+    <script src="js/Crypt.js"></script>
+</head>
 <div class="flex items-center justify-center min-h-screen bg-gradient-to-br from-blue-50 to-blue-100">
     <div class="bg-white shadow-2xl rounded-2xl p-10 w-full max-w-md">
         <h2 class="text-3xl font-bold text-center text-gray-800 mb-2">Ignivault Login</h2>
@@ -63,12 +69,20 @@
             var response = await Http.PostAsJsonAsync("https://localhost:7158/api/Authentication/login", login_data);
             if (response.IsSuccessStatusCode)
             {
-                var result = await response.Content.ReadFromJsonAsync<LoginTokenResponse>();
+                var result = await response.Content.ReadFromJsonAsync<LoginResponse>();
                 var token = result.Token;
+
+                var encMasterKey = (result.MasterKey);
+                var keySalt = (result.keySalt);
+                var masterKeyIV = (result.MasterIV);
+
                 await JS.InvokeVoidAsync("localStorage.setItem", "authToken", token);
 
+                string b64_masterkey = await JS.InvokeAsync<string>("Crypt.decryptMasterKeyBase64", encMasterKey, login_data.Password, keySalt, masterKeyIV);
+                byte[] masterKey = Convert.FromBase64String(b64_masterkey);
+                
+                VaultService.SetMasterKey(masterKey);
                 //UI
-                Console.WriteLine("Login successful: " + token);
             }
             else
             {

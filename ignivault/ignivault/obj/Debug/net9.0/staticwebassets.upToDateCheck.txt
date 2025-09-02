@@ -84,6 +84,7 @@ wwwroot\margaret.png
 wwwroot\PDFViewer2\Blazor_Succinctly.pdf
 wwwroot\RTE-Overview.png
 wwwroot\sample-data\weather.json
+wwwroot\js\Crypt.js
 C:\Users\prest\Desktop\GitHub\Ignivault\ignivault\ignivault\wwwroot\css\app.css
 C:\Users\prest\Desktop\GitHub\Ignivault\ignivault\ignivault\wwwroot\css\fonts\syncfusion\icons.svg
 C:\Users\prest\Desktop\GitHub\Ignivault\ignivault\ignivault\wwwroot\css\open-iconic\font\css\open-iconic-bootstrap.min.css
@@ -137,3 +138,4 @@ C:\Users\prest\Desktop\GitHub\Ignivault\ignivault\ignivault\wwwroot\lib\bootstra
 C:\Users\prest\Desktop\GitHub\Ignivault\ignivault\ignivault\wwwroot\lib\bootstrap\dist\js\bootstrap.min.js
 C:\Users\prest\Desktop\GitHub\Ignivault\ignivault\ignivault\wwwroot\lib\bootstrap\dist\js\bootstrap.min.js.map
 C:\Users\prest\Desktop\GitHub\Ignivault\ignivault\ignivault\wwwroot\sample-data\weather.json
+C:\Users\prest\Desktop\GitHub\Ignivault\ignivault\ignivault\wwwroot\js\Crypt.js

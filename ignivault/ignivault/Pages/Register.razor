@@ -15,7 +15,7 @@
                 <FormAutoGenerateItems></FormAutoGenerateItems>
             </FormItems>
             <FormButtons>
-                <SfButton type="submit" CssClass="e-primary" OnClick="@show">
+                <SfButton type="submit" CssClass="e-primary">
                     Sign-Up
                 </SfButton>
             </FormButtons>
@@ -61,10 +61,12 @@
                 RegistrationStatusMessage = "Registration successful! You can now log in.";
                 registrationStatus = true;
             }
-            else
+            else if (!response.IsSuccessStatusCode)
             {
                 RegistrationStatusMessage = $"Registration failed!";
             }
+
+            show();
         }
         catch (Exception ex)
         {
