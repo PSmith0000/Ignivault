@@ -10,6 +10,7 @@
 @inject HttpClient Http
 @inject IJSRuntime JS
 @inject VaultService VaultService
+@inject NavigationManager NavManager
 
 <head>
     <script src="js/Crypt.js"></script>
@@ -39,13 +40,23 @@
 
         @if (ForgotPasswordDialogVisible)
         {
-            <ForgotLoginDialog />
+            <ForgotLoginDialog/>
         }
 
         <!-- Sign Up -->
         <p class="text-center text-gray-600 text-sm mt-6">
             <a href="">Don’t have an account?</a>
         </p>
+
+        @if(showSuccess)
+        {
+            <SfMessage Severity=MessageSeverity.Success ShowCloseIcon="true">Registration Successful! Please login.</SfMessage>
+        }
+        else if (loginFailed)
+        {
+            <SfMessage Severity=MessageSeverity.Error ShowCloseIcon="true">Login failed. Please check your credentials and try again.</SfMessage>
+        }
+
     </div>
 </div>
 
@@ -59,13 +70,23 @@
         ForgotPasswordDialogVisible = !ForgotPasswordDialogVisible;
     }
 
+    private bool showSuccess;
+
+    protected override void OnInitialized()
+    {
+        var uri = NavManager.ToAbsoluteUri(NavManager.Uri);
+        var query = System.Web.HttpUtility.ParseQueryString(uri.Query);
+
+        if (query["signedup"] == "true")
+        {
+            showSuccess = true;
+        }
+    }
 
     private async void HandleValidSubmit(EditContext context)
     {
         try
         {
-            loginFailed = false;
-
             var response = await Http.PostAsJsonAsync("https://localhost:7158/api/Authentication/login", login_data);
             if (response.IsSuccessStatusCode)
             {
@@ -80,7 +101,7 @@
 
                 string b64_masterkey = await JS.InvokeAsync<string>("Crypt.decryptMasterKeyBase64", encMasterKey, login_data.Password, keySalt, masterKeyIV);
                 byte[] masterKey = Convert.FromBase64String(b64_masterkey);
-                
+
                 VaultService.SetMasterKey(masterKey);
                 //UI
             }
@@ -91,7 +112,7 @@
         }
         catch (Exception ex)
         {
-            Console.WriteLine(ex.Message);
+           
         }
     }
 }
