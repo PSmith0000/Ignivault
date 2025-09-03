@@ -49,12 +49,34 @@ namespace ignivault.API.Controllers
             return Ok();
         }
 
+        [HttpDelete("delete")]
+        public async Task<IActionResult> DeleteVaultItem([FromQuery] int itemId)
+        {
+            var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+            if (userId == null) return Unauthorized();
+            var item = await _db.VaultItems.FirstOrDefaultAsync(v => v.Id == itemId && v.UserId == userId);
+            if (item == null) return NotFound();
+            _db.VaultItems.Remove(item);
+            await _db.SaveChangesAsync();
+            return Ok();
+        }
 
+        [HttpPut("update")]
+        public async Task<IActionResult> UpdateVaultItem([FromBody] VaultItemDto model)
+        {
+            var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+            if (userId == null) return Unauthorized();
+            //var item = await _db.VaultItems.FirstOrDefaultAsync(v => v.Id ==  && v.UserId == userId);
+            //if (item == null) return NotFound();
+            // Update item properties here
+            await _db.SaveChangesAsync();
+            return Ok();
+        }
 
         #region DTOs
         public class VaultItemDto
         {
-           
+           public int UserId { get; set; }
         }
         #endregion
     }
