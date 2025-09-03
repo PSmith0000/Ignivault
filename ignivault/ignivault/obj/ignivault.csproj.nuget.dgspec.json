@@ -94,6 +94,10 @@
               "target": "Package",
               "version": "[30.2.7, )"
             },
+            "Syncfusion.Blazor.Charts": {
+              "target": "Package",
+              "version": "[30.2.7, )"
+            },
             "Syncfusion.Blazor.DataForm": {
               "target": "Package",
               "version": "[30.2.7, )"

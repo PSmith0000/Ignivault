@@ -1,0 +1,132 @@
+﻿@page "/dashboard"
+
+
+
+<SfDashboardLayout AllowResizing="@allowResize" AllowFloating="@allowFloating" CellSpacing="@CellSpacing" Columns="@ColumnCount" >
+   <DashboardLayoutPanels>
+
+        <!-- Vault Item Display -->
+        <DashboardLayoutPanel Id="1" Row="0" Column="0" SizeX="3" SizeY="1">
+            <HeaderTemplate><div class="e-header-text">Storage</div></HeaderTemplate>
+            <ContentTemplate>
+                <SfGrid ID = "StorageGrid" AutoFit="true" DataSource="@vaultItems" Toolbar="@ToolBarButtons" AllowPaging="true" AllowSorting="true" AllowFiltering="true">
+                    <GridPageSettings PageSize="5" ></GridPageSettings>
+                    
+                    <GridEditSettings AllowAdding="true" AllowDeleting="true" AllowEditing="true" Mode="EditMode.Dialog" ></GridEditSettings>
+                    
+                    <GridColumns> 
+                        <GridColumn AllowEditing="false" Field=@nameof(VaultItem.Id) HeaderText="Record ID" IsPrimaryKey="true" ValidationRules="@(new ValidationRules { Required = true, Number = true })" TextAlign="TextAlign.Right" Width="140"></GridColumn>
+                        <GridColumn EditType = "EditType.DefaultEdit" AllowEditing="true" Field=@nameof(VaultItem.Name) HeaderText="Pet Name" ValidationRules="@(new ValidationRules { Required = true })" TextAlign="TextAlign.Right" Width="140"></GridColumn>
+                    </GridColumns>
+                </SfGrid>
+            </ContentTemplate>
+        </DashboardLayoutPanel>
+        <!------------------------->
+
+        <!--Record Stats Display-->
+        <DashboardLayoutPanel Id="2" SizeX="1" SizeY="1" Row="3" Column="0">
+            <HeaderTemplate><div class="e-header-text">Record Statistics</div></HeaderTemplate>
+        <ContentTemplate>
+              <SfAccumulationChart Height="300px">
+                  <AccumulationChartSeriesCollection>
+                      <AccumulationChartSeries DataSource="@pieData" XName="Type" YName="Count" Type="AccumulationType.Pie"  DataLabel="@PieChartSettings" >
+                      </AccumulationChartSeries>
+                  </AccumulationChartSeriesCollection>
+              </SfAccumulationChart>
+        </ContentTemplate>
+    </DashboardLayoutPanel>
+        <!------------------------->
+
+        <!-- Recent Activity -->
+        <DashboardLayoutPanel Id="recentActivity" SizeX="1" SizeY="1" Row="1" Column="2">
+            <ContentTemplate>
+                <div class="h-full p-4 bg-white shadow rounded-2xl">
+                    <h3 class="text-lg font-medium mb-2">Recent Activity</h3>
+                    <ul class="list-disc pl-5">
+                        @foreach (var log in RecentActivity)
+                        {
+                            <li>@log</li>
+                        }
+                    </ul>
+                </div>
+            </ContentTemplate>
+        </DashboardLayoutPanel>
+        <!--------------------->
+
+        <!-- Data Groups -->
+        <DashboardLayoutPanel Id="dataGroups" SizeX="1" SizeY="1" Row="1" Column="1">
+            <ContentTemplate>
+                <div class="h-full p-4 bg-white shadow rounded-2xl">
+                    <h3 class="text-lg font-medium mb-2">Data Groups</h3>
+                    <SfListView DataSource="@Groups" ShowCheckBox="false"></SfListView>
+                </div>
+            </ContentTemplate>
+        </DashboardLayoutPanel>
+        <!--------------------->
+
+   </DashboardLayoutPanels>
+</SfDashboardLayout>
+
+
+@code {
+    private double[] CellSpacing = { 10, 10 };
+    private int ColumnCount = 3;
+    private bool allowResize = true;
+    private bool allowFloating = true;
+
+    private List<string> ToolBarButtons = new List<string>() { "Add", "Edit", "Delete", "Update", "Cancel" };
+
+    private AccumulationDataLabelSettings PieChartSettings = new AccumulationDataLabelSettings { Visible = true };
+
+    private List<VaultItem> vaultItems { get; set; }
+    private List<PieData> pieData { get; set; }
+
+    private List<string> RecentActivity = new List<string> { "Logged in", "Added Item 1", "Deleted Item 2" };
+    private List<string> Groups = new List<string> { "Personal", "Work" };
+
+    private void OnCellSaved(CellSaveArgs<VaultItem> args)
+    {
+        // This runs after a cell is edited
+        var editedItem = args.Data;
+        Console.WriteLine($"Edited VaultItem ID: {editedItem.Id}, Name: {editedItem.Name}");
+
+        // Call your API to update the database here
+        // await Http.PutAsJsonAsync("api/vaultitems", editedItem);
+    }
+
+    protected override void OnInitialized()
+    {
+        vaultItems = new()
+        {
+            new() {Id = 1, Name = "Fred", Type = "Dog" },
+            new() {Id = 2, Name = "Tony", Type = "Dog" },
+            new() {Id = 3, Name = "Jeff", Type = "Dog" },
+            new() {Id = 4, Name = "Mary", Type = "Cat" },
+            new() {Id = 5, Name = "Jess", Type = "Cat" },
+            new() {Id = 6, Name = "Justin", Type = "Cat" },
+            new() {Id = 7, Name = "Gok", Type = "Fish" },
+        };
+
+        pieData = vaultItems
+            .GroupBy(v => v.Type)
+            .Select(g => new PieData { Type = g.Key, Count = g.Count() })
+            .ToList();
+
+        base.OnInitialized();
+    }
+
+    private class PieData()
+    {
+        public string Type { get; set; }
+        public int Count { get; set; }
+    }
+
+    private class VaultItem()
+    {
+        public int Id { get; set; }
+
+        public string Name { get; set; }
+
+        public string Type {get; set;}
+    }
+}
