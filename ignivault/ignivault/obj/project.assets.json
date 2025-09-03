@@ -6148,6 +6148,7 @@
       "Syncfusion.Blazor.Buttons >= 30.2.7",
       "Syncfusion.Blazor.Calendars >= 30.2.7",
       "Syncfusion.Blazor.Cards >= 30.2.7",
+      "Syncfusion.Blazor.Charts >= 30.2.7",
       "Syncfusion.Blazor.DataForm >= 30.2.7",
       "Syncfusion.Blazor.DropDowns >= 30.2.7",
       "Syncfusion.Blazor.FileManager >= 30.2.7",
@@ -6266,6 +6267,10 @@
             "version": "[30.2.7, )"
           },
           "Syncfusion.Blazor.Cards": {
+            "target": "Package",
+            "version": "[30.2.7, )"
+          },
+          "Syncfusion.Blazor.Charts": {
             "target": "Package",
             "version": "[30.2.7, )"
           },
