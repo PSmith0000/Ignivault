@@ -9,9 +9,9 @@
         <DashboardLayoutPanel Id="1" Row="0" Column="0" SizeX="3" SizeY="1">
             <HeaderTemplate><div class="e-header-text">Storage</div></HeaderTemplate>
             <ContentTemplate>
-                <SfGrid ID = "StorageGrid" AutoFit="true" DataSource="@vaultItems" Toolbar="@ToolBarButtons" AllowPaging="true" AllowSorting="true" AllowFiltering="true">
+                <SfGrid ID="StorageGrid" AutoFit="true" DataSource="@vaultItems" Toolbar="@ToolBarButtons" AllowPaging="true" AllowSorting="true" AllowFiltering="true">
+                    <GridEvents TValue="VaultItem" OnActionComplete="ActionEndHandler"></GridEvents>
                     <GridPageSettings PageSize="5" ></GridPageSettings>
-                    
                     <GridEditSettings AllowAdding="true" AllowDeleting="true" AllowEditing="true" Mode="EditMode.Dialog" ></GridEditSettings>
                     
                     <GridColumns> 
@@ -69,6 +69,8 @@
 
 
 @code {
+    private Type VaultType = typeof(VaultItem);
+
     private double[] CellSpacing = { 10, 10 };
     private int ColumnCount = 3;
     private bool allowResize = true;
@@ -84,14 +86,9 @@
     private List<string> RecentActivity = new List<string> { "Logged in", "Added Item 1", "Deleted Item 2" };
     private List<string> Groups = new List<string> { "Personal", "Work" };
 
-    private void OnCellSaved(CellSaveArgs<VaultItem> args)
+    public void ActionEndHandler(ActionEventArgs<VaultItem> args)
     {
-        // This runs after a cell is edited
-        var editedItem = args.Data;
-        Console.WriteLine($"Edited VaultItem ID: {editedItem.Id}, Name: {editedItem.Name}");
-
-        // Call your API to update the database here
-        // await Http.PutAsJsonAsync("api/vaultitems", editedItem);
+        
     }
 
     protected override void OnInitialized()
@@ -121,7 +118,7 @@
         public int Count { get; set; }
     }
 
-    private class VaultItem()
+    public class VaultItem()
     {
         public int Id { get; set; }
 
