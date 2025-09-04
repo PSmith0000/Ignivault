@@ -1,17 +1,10 @@
 ﻿@page "/login"
-@using Syncfusion.Blazor.Inputs
-@using Syncfusion.Blazor.Buttons
-@using Syncfusion.Blazor.Calendars
-@using Microsoft.AspNetCore.Components.Forms
-@using System.ComponentModel.DataAnnotations
-@using ignivault.Data
-@using ignivault.Data.Models.Auth
-@using ignivault.Services
 @inject HttpClient Http
 @inject IJSRuntime JS
 @inject VaultService VaultService
 @inject NavigationManager NavManager
-
+@inject Blazored.LocalStorage.ILocalStorageService localStorage
+@inject AuthService AuthService
 <head>
     <script src="js/Crypt.js"></script>
 </head>
@@ -97,12 +90,13 @@
                 var keySalt = (result.keySalt);
                 var masterKeyIV = (result.MasterIV);
 
-                await JS.InvokeVoidAsync("localStorage.setItem", "authToken", token);
-
                 string b64_masterkey = await JS.InvokeAsync<string>("Crypt.decryptMasterKeyBase64", encMasterKey, login_data.Password, keySalt, masterKeyIV);
                 byte[] masterKey = Convert.FromBase64String(b64_masterkey);
 
                 VaultService.SetMasterKey(masterKey);
+
+                await AuthService.LoginAsync(token);
+
                 //UI
             }
             else
