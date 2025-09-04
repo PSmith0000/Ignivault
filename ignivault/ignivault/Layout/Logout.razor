@@ -1,0 +1,17 @@
+﻿@inject NavigationManager Navigation
+@inject AuthenticationStateProvider AuthStateProvider
+
+<button class="btn btn-danger" @onclick="userLogout">Logout</button>
+
+@code {
+    private async Task userLogout()
+    {
+        if (AuthStateProvider is not null)
+        {
+            ((JwtAuthenticationStateProvider)AuthStateProvider).NotifyUserLogout();
+        }
+
+        StateHasChanged();
+        Navigation.NavigateTo("/login", true);
+    }
+}

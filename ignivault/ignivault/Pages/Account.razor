@@ -1,1 +1,93 @@
 ﻿@page "/account"
+@attribute [Authorize]
+@inject NavigationManager Navigation
+
+<div class="min-h-screen flex items-center justify-center bg-gray-100">
+    <div class="bg-white shadow-lg rounded-2xl p-8 w-full max-w-2xl">
+        <h2 class="text-2xl font-semibold text-center text-gray-700 mb-6">My Account</h2>
+
+        <EditForm Model="@AccountData" OnValidSubmit="UpdateAccount">
+            <DataAnnotationsValidator />
+            <ValidationSummary />
+
+            <!-- Profile Info -->
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div>
+                    <label class="block text-gray-600 mb-1">First Name</label>
+                    <SfTextBox Placeholder="First Name" @bind-Value="@AccountData.FirstName"></SfTextBox>
+                </div>
+
+                <div>
+                    <label class="block text-gray-600 mb-1">Last Name</label>
+                    <SfTextBox Placeholder="Last Name" @bind-Value="@AccountData.LastName"></SfTextBox>
+                </div>
+
+                <div class="md:col-span-2">
+                    <label class="block text-gray-600 mb-1">Email</label>
+                    <SfTextBox Placeholder="Email" @bind-Value="@AccountData.Email"></SfTextBox>
+                </div>
+            </div>
+
+            <!-- Password Update -->
+            <div class="mt-8">
+                <h3 class="text-lg font-medium mb-4">Change Password</h3>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div>
+                        <label class="block text-gray-600 mb-1">Current Password</label>
+                        <SfTextBox Type="InputType.Password" Placeholder="Current Password" @bind-Value="@PasswordData.CurrentPassword"></SfTextBox>
+                    </div>
+                    <div>
+                        <label class="block text-gray-600 mb-1">New Password</label>
+                        <SfTextBox Type="InputType.Password" Placeholder="New Password" @bind-Value="@PasswordData.NewPassword"></SfTextBox>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Buttons -->
+            <div class="flex justify-end gap-4 mt-8">
+                <SfButton CssClass="e-outline">Cancel</SfButton>
+                <SfButton IsPrimary="true" Type="Submit">Save Changes</SfButton>
+            </div>
+        </EditForm>
+    </div>
+</div>
+
+@code {
+    public void RedirectToLogin()
+    {
+        Navigation.NavigateTo("/login");
+    }
+
+    private AccountModel AccountData = new AccountModel
+    {
+        FirstName = "John",
+        LastName = "Doe",
+        Email = "john.doe@email.com"
+    };
+
+    private PasswordModel PasswordData = new PasswordModel();
+
+    private void UpdateAccount()
+    {
+        // Here you can call your API to update user info
+        Console.WriteLine($"Updating account: {AccountData.FirstName} {AccountData.LastName}, Email: {AccountData.Email}");
+
+        if (!string.IsNullOrWhiteSpace(PasswordData.NewPassword))
+        {
+            Console.WriteLine($"Password change requested from {PasswordData.CurrentPassword} to {PasswordData.NewPassword}");
+        }
+    }
+
+    public class AccountModel
+    {
+        public string FirstName { get; set; }
+        public string LastName { get; set; }
+        public string Email { get; set; }
+    }
+
+    public class PasswordModel
+    {
+        public string CurrentPassword { get; set; }
+        public string NewPassword { get; set; }
+    }
+}

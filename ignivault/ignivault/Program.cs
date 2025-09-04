@@ -1,14 +1,16 @@
-﻿using ignivault;
+﻿using Blazored.LocalStorage;
+using ignivault;
 using ignivault.Data;
 using ignivault.Layout;
+using ignivault.Services;
+using Microsoft.AspNetCore.Components.Authorization;
 using Microsoft.AspNetCore.Components.Web;
 using Microsoft.AspNetCore.Components.WebAssembly.Hosting;
+using Microsoft.AspNetCore.Cors.Infrastructure;
 using Microsoft.JSInterop;
 using Syncfusion.Blazor;
 using Syncfusion.XlsIO.Implementation;
 using System.Globalization;
-using Microsoft.AspNetCore.Cors.Infrastructure;
-using ignivault.Services;
 
 //Register Syncfusion license https://help.syncfusion.com/common/essential-studio/licensing/how-to-generate
 Syncfusion.Licensing.SyncfusionLicenseProvider.RegisterLicense("Ngo9BigBOggjHTQxAR8/V1JEaF5cXmRCf1FpRmJGdld5fUVHYVZUTXxaS00DNHVRdkdmWXdcdXZURmVdUUV0X0VWYEk=");
@@ -37,6 +39,11 @@ builder.Services.AddSyncfusionBlazor();
 
 builder.Services.AddScoped(sp => new HttpClient { BaseAddress = new Uri(builder.HostEnvironment.BaseAddress) });
 builder.Services.AddSingleton<VaultService>();
+builder.Services.AddBlazoredLocalStorage();
+builder.Services.AddScoped<AuthenticationStateProvider, JwtAuthenticationStateProvider>();
+builder.Services.AddScoped<AuthService>();
+builder.Services.AddAuthorizationCore();
+
 var app = builder.Build();
 
 await app.RunAsync();

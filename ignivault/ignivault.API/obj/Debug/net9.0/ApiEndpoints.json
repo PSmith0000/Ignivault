@@ -49,12 +49,44 @@
   },
   {
     "ContainingType": "ignivault.API.Controllers.VaultController",
+    "Method": "DeleteVaultItem",
+    "RelativePath": "api/Vault/delete",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "itemId",
+        "Type": "System.Int32",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "ignivault.API.Controllers.VaultController",
     "Method": "GetVaultData",
     "RelativePath": "api/Vault/myvault",
     "HttpMethod": "GET",
     "IsController": true,
     "Order": 0,
     "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "ignivault.API.Controllers.VaultController",
+    "Method": "UpdateVaultItem",
+    "RelativePath": "api/Vault/update",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "model",
+        "Type": "ignivault.API.Controllers.VaultController\u002BVaultItemDto",
+        "IsRequired": true
+      }
+    ],
     "ReturnTypes": []
   }
 ]
