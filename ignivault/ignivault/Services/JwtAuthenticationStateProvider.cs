@@ -40,7 +40,6 @@ namespace ignivault.Services
 
         public void NotifyUserLogout()
         {
-            _localStorage.RemoveItemAsync("authToken");
             var anonymous = new ClaimsPrincipal(new ClaimsIdentity());
             var authState = Task.FromResult(new AuthenticationState(anonymous));
             NotifyAuthenticationStateChanged(authState);

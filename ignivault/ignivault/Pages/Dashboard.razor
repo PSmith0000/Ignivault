@@ -1,7 +1,11 @@
 ﻿@page "/dashboard"
 @using Microsoft.AspNetCore.Authorization
 @using Microsoft.AspNetCore.Components.Authorization
+@using System.Collections.ObjectModel
+@using ignivault.Core.Interface
+@using ignivault.Data.Models.Data
 @inject NavigationManager Navigation
+@inject IHttpService Http
 @attribute [Authorize]
 
 <SfDashboardLayout AllowResizing="@allowResize" AllowFloating="@allowFloating" CellSpacing="@CellSpacing" Columns="@ColumnCount">
@@ -11,13 +15,21 @@
             <HeaderTemplate><div class="e-header-text">Storage</div></HeaderTemplate>
             <ContentTemplate>
                 <SfGrid ID="StorageGrid" AutoFit="true" DataSource="@vaultItems" Toolbar="@ToolBarButtons" AllowPaging="true" AllowSorting="true" AllowFiltering="true">
-                    <GridEvents TValue="VaultItem" OnActionComplete="ActionEndHandler"></GridEvents>
+                    
                     <GridPageSettings PageSize="5"></GridPageSettings>
                     <GridEditSettings AllowAdding="true" AllowDeleting="true" AllowEditing="true" Mode="EditMode.Dialog"></GridEditSettings>
-
+                            <GridColumns>
+                                <GridColumn Field="Id" HeaderText="ID" IsPrimaryKey="true" TextAlign="TextAlign.Center" Width="100" Visible="false"></GridColumn>
+                                <GridColumn Field="Name" HeaderText="Name" Width="150" TextAlign="TextAlign.Left"></GridColumn>
+                                <GridColumn Field="Type" HeaderText="Type" Width="120" TextAlign="TextAlign.Left" EditType="EditType.DropDownEdit" ForeignKeyValue="TypeName" ForeignKeyField="TypeId"></GridColumn>
+                                <GridColumn Field="Username" HeaderText="Username" Width="150" TextAlign="TextAlign.Left"></GridColumn>
+                                <GridColumn Field="URL" HeaderText="URL" Width="200" TextAlign="TextAlign.Left"></GridColumn>
+                                <GridColumn Field="Notes" HeaderText="Notes" Width="200" TextAlign="TextAlign.Left"></GridColumn>
+                                <GridColumn Field="CreatedAt" HeaderText="Created At" Format="d/M/yyyy h:mm tt" Width="180" TextAlign="TextAlign.Center" Type="ColumnType.DateTime" EditType="EditType.DateTimePickerEdit"></GridColumn>
+                                <GridColumn Field="UpdatedAt" HeaderText="Updated At" Format="d/M/yyyy h:mm tt" Width="180" TextAlign="TextAlign.Center" Type="ColumnType.DateTime" EditType="EditType.DateTimePickerEdit"></GridColumn>
+                            </GridColumns>
                     <GridColumns>
-                        <GridColumn AllowEditing="false" Field=@nameof(VaultItem.Id) HeaderText="Record ID" IsPrimaryKey="true" ValidationRules="@(new ValidationRules { Required = true, Number = true })" TextAlign="TextAlign.Right" Width="140"></GridColumn>
-                        <GridColumn EditType="EditType.DefaultEdit" AllowEditing="true" Field=@nameof(VaultItem.Name) HeaderText="Pet Name" ValidationRules="@(new ValidationRules { Required = true })" TextAlign="TextAlign.Right" Width="140"></GridColumn>
+                       
                     </GridColumns>
                 </SfGrid>
             </ContentTemplate>
@@ -29,7 +41,7 @@
             <ContentTemplate>
                 <SfAccumulationChart Height="300px">
                     <AccumulationChartSeriesCollection>
-                        <AccumulationChartSeries DataSource="@pieData" XName="Type" YName="Count" Type="AccumulationType.Pie" DataLabel="@PieChartSettings">
+                        <AccumulationChartSeries  XName="Type" YName="Count" Type="AccumulationType.Pie" DataLabel="@PieChartSettings">
                         </AccumulationChartSeries>
                     </AccumulationChartSeriesCollection>
                 </SfAccumulationChart>
@@ -42,10 +54,10 @@
                 <div class="h-full p-4 bg-white shadow rounded-2xl">
                     <h3 class="text-lg font-medium mb-2">Recent Activity</h3>
                     <ul class="list-disc pl-5">
-                        @foreach (var log in RecentActivity)
+                        @* @foreach (var log in RecentActivity)
                         {
                             <li>@log</li>
-                        }
+                        } *@
                     </ul>
                 </div>
             </ContentTemplate>
@@ -56,12 +68,11 @@
             <ContentTemplate>
                 <div class="h-full p-4 bg-white shadow rounded-2xl">
                     <h3 class="text-lg font-medium mb-2">Data Groups</h3>
-                    <SfListView DataSource="@Groups" ShowCheckBox="false"></SfListView>
+                    @* <SfListView DataSource="@Groups" ShowCheckBox="false"></SfListView> *@
                 </div>
             </ContentTemplate>
         </DashboardLayoutPanel>
         <!--------------------->
-
     </DashboardLayoutPanels>
 </SfDashboardLayout>
 
@@ -75,11 +86,7 @@
 
     private AccumulationDataLabelSettings PieChartSettings = new AccumulationDataLabelSettings { Visible = true };
 
-    private List<VaultItem> vaultItems { get; set; }
-    private List<PieData> pieData { get; set; }
-
-    private List<string> RecentActivity = new List<string> { "Logged in", "Added Item 1", "Deleted Item 2" };
-    private List<string> Groups = new List<string> { "Personal", "Work" };
+    public ObservableCollection<VaultItem> vaultItems = new();
 
 
     public void NotAuthorizedRedirect()
@@ -89,42 +96,16 @@
 
     public void ActionEndHandler(ActionEventArgs<VaultItem> args)
     {
-        
+
     }
 
-    protected override void OnInitialized()
+    protected override async Task OnInitializedAsync()
     {
-        vaultItems = new()
+        var requestVaultItems = await Http.GetVaultItemsAsync();
+
+        if (requestVaultItems != null && requestVaultItems.Any())
         {
-            new() {Id = 1, Name = "Fred", Type = "Dog" },
-            new() {Id = 2, Name = "Tony", Type = "Dog" },
-            new() {Id = 3, Name = "Jeff", Type = "Dog" },
-            new() {Id = 4, Name = "Mary", Type = "Cat" },
-            new() {Id = 5, Name = "Jess", Type = "Cat" },
-            new() {Id = 6, Name = "Justin", Type = "Cat" },
-            new() {Id = 7, Name = "Gok", Type = "Fish" },
-        };
-
-        pieData = vaultItems
-            .GroupBy(v => v.Type)
-            .Select(g => new PieData { Type = g.Key, Count = g.Count() })
-            .ToList();
-
-        base.OnInitialized();
-    }
-
-    private class PieData()
-    {
-        public string Type { get; set; }
-        public int Count { get; set; }
-    }
-
-    public class VaultItem()
-    {
-        public int Id { get; set; }
-
-        public string Name { get; set; }
-
-        public string Type {get; set;}
+            this.vaultItems = new ObservableCollection<VaultItem>(requestVaultItems);
+        }
     }
 }

@@ -1,5 +1,6 @@
 ﻿using Blazored.LocalStorage;
 using ignivault;
+using ignivault.Core.Interface;
 using ignivault.Data;
 using ignivault.Layout;
 using ignivault.Services;
@@ -42,6 +43,7 @@ builder.Services.AddSingleton<VaultService>();
 builder.Services.AddBlazoredLocalStorage();
 builder.Services.AddScoped<AuthenticationStateProvider, JwtAuthenticationStateProvider>();
 builder.Services.AddScoped<AuthService>();
+builder.Services.AddScoped<IHttpService, HttpService>();
 builder.Services.AddAuthorizationCore();
 
 var app = builder.Build();

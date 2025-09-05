@@ -1,7 +1,26 @@
 ﻿@page "/"
+@inject NavigationManager Navigation
+@inject AuthenticationStateProvider AuthenticationStateProvider
 
-<PageTitle>Index</PageTitle>
+<PageTitle>IgniVault</PageTitle>
 
+
+@code {
+    protected override async Task OnInitializedAsync()
+    {
+        var authState = await AuthenticationStateProvider.GetAuthenticationStateAsync();
+        var user = authState.User;
+
+        if (user.Identity is not null && user.Identity.IsAuthenticated)
+        {
+            Navigation.NavigateTo("/dashboard");
+        }
+        else
+        {
+            Navigation.NavigateTo("/login");
+        }
+    }
+}
 
 
 <style>

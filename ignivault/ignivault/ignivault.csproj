@@ -59,9 +59,5 @@
        <LastGenOutput>SfResources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
   </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="Data\Models\Data\" />
-  </ItemGroup>
   
 </Project>

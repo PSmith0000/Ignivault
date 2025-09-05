@@ -88,17 +88,17 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/VaultItemDto"
+                "$ref": "#/components/schemas/VaultItem"
               }
             },
             "text/json": {
               "schema": {
-                "$ref": "#/components/schemas/VaultItemDto"
+                "$ref": "#/components/schemas/VaultItem"
               }
             },
             "application/*+json": {
               "schema": {
-                "$ref": "#/components/schemas/VaultItemDto"
+                "$ref": "#/components/schemas/VaultItem"
               }
             }
           }
@@ -141,17 +141,17 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/VaultItemDto"
+                "$ref": "#/components/schemas/VaultItem"
               }
             },
             "text/json": {
               "schema": {
-                "$ref": "#/components/schemas/VaultItemDto"
+                "$ref": "#/components/schemas/VaultItem"
               }
             },
             "application/*+json": {
               "schema": {
-                "$ref": "#/components/schemas/VaultItemDto"
+                "$ref": "#/components/schemas/VaultItem"
               }
             }
           }
@@ -185,6 +185,96 @@
         },
         "additionalProperties": false
       },
+      "LoginUser": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "nullable": true
+          },
+          "userName": {
+            "type": "string",
+            "nullable": true
+          },
+          "normalizedUserName": {
+            "type": "string",
+            "nullable": true
+          },
+          "email": {
+            "type": "string",
+            "nullable": true
+          },
+          "normalizedEmail": {
+            "type": "string",
+            "nullable": true
+          },
+          "emailConfirmed": {
+            "type": "boolean"
+          },
+          "passwordHash": {
+            "type": "string",
+            "nullable": true
+          },
+          "securityStamp": {
+            "type": "string",
+            "nullable": true
+          },
+          "concurrencyStamp": {
+            "type": "string",
+            "nullable": true
+          },
+          "phoneNumber": {
+            "type": "string",
+            "nullable": true
+          },
+          "phoneNumberConfirmed": {
+            "type": "boolean"
+          },
+          "twoFactorEnabled": {
+            "type": "boolean"
+          },
+          "lockoutEnd": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "lockoutEnabled": {
+            "type": "boolean"
+          },
+          "accessFailedCount": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "encryptedMasterKey": {
+            "type": "string",
+            "format": "byte",
+            "nullable": true
+          },
+          "keySalt": {
+            "type": "string",
+            "format": "byte",
+            "nullable": true
+          },
+          "masterIV": {
+            "type": "string",
+            "format": "byte",
+            "nullable": true
+          },
+          "vaultItems": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/VaultItem"
+            },
+            "nullable": true
+          },
+          "lastPasswordChange": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
       "RegisterModel": {
         "required": [
           "confirmPassword",
@@ -214,12 +304,51 @@
         },
         "additionalProperties": false
       },
-      "VaultItemDto": {
+      "VaultItem": {
+        "required": [
+          "encryptedData",
+          "iv",
+          "name",
+          "type",
+          "userId"
+        ],
         "type": "object",
         "properties": {
-          "userId": {
+          "id": {
             "type": "integer",
             "format": "int32"
+          },
+          "userId": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "user": {
+            "$ref": "#/components/schemas/LoginUser"
+          },
+          "type": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "name": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "encryptedData": {
+            "type": "string",
+            "format": "byte"
+          },
+          "iv": {
+            "type": "string",
+            "format": "byte"
+          },
+          "createdAt": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "updatedAt": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
           }
         },
         "additionalProperties": false

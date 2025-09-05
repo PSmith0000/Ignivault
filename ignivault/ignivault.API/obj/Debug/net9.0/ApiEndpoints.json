@@ -41,7 +41,7 @@
     "Parameters": [
       {
         "Name": "model",
-        "Type": "ignivault.API.Controllers.VaultController\u002BVaultItemDto",
+        "Type": "ignivault.API.Models.Records.VaultItem",
         "IsRequired": true
       }
     ],
@@ -83,7 +83,7 @@
     "Parameters": [
       {
         "Name": "model",
-        "Type": "ignivault.API.Controllers.VaultController\u002BVaultItemDto",
+        "Type": "ignivault.API.Models.Records.VaultItem",
         "IsRequired": true
       }
     ],

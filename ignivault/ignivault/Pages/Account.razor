@@ -69,9 +69,6 @@
 
     private void UpdateAccount()
     {
-        // Here you can call your API to update user info
-        Console.WriteLine($"Updating account: {AccountData.FirstName} {AccountData.LastName}, Email: {AccountData.Email}");
-
         if (!string.IsNullOrWhiteSpace(PasswordData.NewPassword))
         {
             Console.WriteLine($"Password change requested from {PasswordData.CurrentPassword} to {PasswordData.NewPassword}");
