@@ -1,10 +1,12 @@
 ﻿@page "/login"
+@using ignivault.Core.Interface
 @inject HttpClient Http
 @inject IJSRuntime JS
 @inject VaultService VaultService
 @inject NavigationManager NavManager
 @inject Blazored.LocalStorage.ILocalStorageService localStorage
 @inject AuthService AuthService
+@inject IHttpService HttpService
 <head>
     <script src="js/Crypt.js"></script>
 </head>
@@ -19,7 +21,9 @@
                 <DataAnnotationsValidator></DataAnnotationsValidator>
             </FormValidator>
             <FormItems>
-                <FormAutoGenerateItems></FormAutoGenerateItems>
+                <FormItem Field="@nameof(LoginUserModel.Email)" LabelText="Email" EditorType="FormEditorType.TextBox"></FormItem>
+                <FormItem Field="@nameof(LoginUserModel.Password)" LabelText="Password" EditorType="FormEditorType.Password"></FormItem>
+                <FormItem Field="@nameof(LoginUserModel.RememberMe)" LabelText="Remember me?" EditorType="FormEditorType.Checkbox"></FormItem>
             </FormItems>
             <FormButtons>
                 <SfButton type="submit" CssClass="e-primary">
@@ -31,15 +35,15 @@
             </FormButtons>
         </SfDataForm>
 
+        <!-- Sign Up -->
+        <p class="text-center text-gray-600 text-sm mt-6">
+            <a href="/signup">Don’t have an account?</a>
+        </p>
+
         @if (ForgotPasswordDialogVisible)
         {
             <ForgotLoginDialog/>
         }
-
-        <!-- Sign Up -->
-        <p class="text-center text-gray-600 text-sm mt-6">
-            <a href="">Don’t have an account?</a>
-        </p>
 
         @if(showSuccess)
         {
@@ -80,24 +84,13 @@
     {
         try
         {
-            var response = await Http.PostAsJsonAsync("https://localhost:7158/api/Authentication/login", login_data);
-            if (response.IsSuccessStatusCode)
+            var response = await HttpService.LoginAsync(login_data.Email, login_data.Password);
+            if (response.Success)
             {
-                var result = await response.Content.ReadFromJsonAsync<LoginResponse>();
-                var token = result.Token;
+                bool ValidMasterKey = await VaultService.DecryptMasterKey(response.Response, login_data.Password);
+                await AuthService.LoginAsync(response.Response.Token);
 
-                var encMasterKey = (result.MasterKey);
-                var keySalt = (result.keySalt);
-                var masterKeyIV = (result.MasterIV);
-
-                string b64_masterkey = await JS.InvokeAsync<string>("Crypt.decryptMasterKeyBase64", encMasterKey, login_data.Password, keySalt, masterKeyIV);
-                byte[] masterKey = Convert.FromBase64String(b64_masterkey);
-
-                VaultService.SetMasterKey(masterKey);
-
-                await AuthService.LoginAsync(token);
-
-                //UI
+                NavManager.NavigateTo("/dashboard");
             }
             else
             {

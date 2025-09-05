@@ -1,7 +1,8 @@
 ﻿@page "/signup"
+@using ignivault.Core.Interface
 @inject HttpClient Http
 @inject NavigationManager NavManager
-
+@inject IHttpService HttpService
 <div class="flex items-center justify-center min-h-screen bg-gradient-to-br from-blue-50 to-blue-100">
     <div class="bg-white shadow-2xl rounded-2xl p-10 w-full max-w-md">
         <h2 class="text-3xl font-bold text-center text-gray-800 mb-2">Ignivault Signup</h2>
@@ -59,16 +60,15 @@
     {
         try
         {
-            var response = await Http.PostAsJsonAsync("https://localhost:7158/api/Authentication/register", registration);
+            var response = await HttpService.RegisterAsync(registration); //Http.PostAsJsonAsync("https://localhost:7158/api/Authentication/register", registration);
 
-            if (response.IsSuccessStatusCode)
+            if (response.Success)
             {
                 NavManager.NavigateTo("/login?signedup=true");
             }
-            else if (!response.IsSuccessStatusCode)
+            else 
             {
-                var error = await response.Content.ReadAsStringAsync();
-                RegistrationStatusMessage = $"Registration failed: {error}";
+                RegistrationStatusMessage = $"Registration failed: {response.Message}";
             }
             
             await ShowMessage();

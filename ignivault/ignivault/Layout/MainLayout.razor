@@ -14,7 +14,9 @@
 </SfSidebar>
 <div class="main">
    <div class="top-row px-4" style="z-index:1111;padding-top:0px">
-       <Logout/>
+        <AuthorizeView><Authorized>
+            <Logout />
+        </Authorized></AuthorizeView>
         <CultureSwitcher/>
     </div>
 

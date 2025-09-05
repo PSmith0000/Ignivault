@@ -34,7 +34,7 @@ namespace ignivault.API.Controllers
 
 
         [HttpPost("add")]
-        public async Task<IActionResult> AddVaultItem([FromBody] VaultItemDto model)
+        public async Task<IActionResult> AddVaultItem([FromBody] VaultItem model)
         {
             var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
             if (userId == null) return Unauthorized();
@@ -42,10 +42,10 @@ namespace ignivault.API.Controllers
             var user = await _userManager.FindByIdAsync(userId);
             if (user == null) return Unauthorized();
 
-   
+            await _db.AddAsync<VaultItem>(model);
+
             await _db.SaveChangesAsync();
 
-            //return item id
             return Ok();
         }
 
@@ -62,7 +62,7 @@ namespace ignivault.API.Controllers
         }
 
         [HttpPut("update")]
-        public async Task<IActionResult> UpdateVaultItem([FromBody] VaultItemDto model)
+        public async Task<IActionResult> UpdateVaultItem([FromBody] VaultItem model)
         {
             var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
             if (userId == null) return Unauthorized();
@@ -74,10 +74,6 @@ namespace ignivault.API.Controllers
         }
 
         #region DTOs
-        public class VaultItemDto
-        {
-           public int UserId { get; set; }
-        }
         #endregion
     }
 }
