@@ -1,0 +1,87 @@
+﻿
+@using System.Collections.ObjectModel
+@using ignivault.Data.Models.Data
+
+@inject VaultService VaultService
+
+<SfDialog @ref="dialog" Width="400px" ShowCloseIcon="true">
+    <DialogTemplates>
+        <Content>
+            <label class="text-lg font-bold mb-4">Add New Login Record</label>
+            <SfDataForm ID="AddLoginItemForm" Model="item" ColumnSpacing="20px">
+                <FormValidator>
+                    <DataAnnotationsValidator></DataAnnotationsValidator>
+                </FormValidator>
+              
+                <FormItems>
+                    <FormItem LabelText="URL" Field="@nameof(item.Name)" EditorType="FormEditorType.TextBox"></FormItem>
+                    <FormItem LabelText="Username" Field="@nameof(item.Username)" EditorType="FormEditorType.TextBox"></FormItem>
+                    <FormItem LabelText="Password" Field="@nameof(item.Password)" EditorType="FormEditorType.Password"></FormItem>
+                </FormItems>
+                <FormButtons>
+                    <SfButton CssClass="e-outline" OnClick="Cancel">Cancel</SfButton>
+                    <SfButton IsPrimary="true" OnClick="SaveItem">Save Entry</SfButton>
+                </FormButtons>
+            </SfDataForm>
+        </Content>
+    </DialogTemplates>
+</SfDialog>
+
+
+
+
+@code {
+    private SfDialog dialog;
+    private record Item(string Name, string URL, string Username, string Password);
+
+
+    private VaultItem NewItem { get; set; } = new();
+    private Item item = new Item("", "", "", "");
+
+    protected override void OnAfterRender(bool firstRender)
+    {
+        if (firstRender)
+        {
+            dialog.Visible = false;
+            dialog.AllowDragging = true;
+        }
+        base.OnAfterRender(firstRender);
+    }
+
+
+    public async Task ShowAsync()
+    {
+        ResetForm();
+        await dialog.ShowAsync();
+    }
+
+    public async Task HideAsync()
+    {
+        await dialog.HideAsync();
+    }
+
+    private void ResetForm()
+    {
+        NewItem = new VaultItem
+        {
+            CreatedAt = DateTime.UtcNow,
+            Type = "Login"
+        };
+    }
+
+    private async Task SaveItem()
+    {
+        string combo = Convert.ToBase64String(System.Text.Encoding.UTF8.GetBytes(item.Username + ":" + item.Password));
+        var result  = await VaultService.EncryptBase64(combo, VaultService.GetMasterKeyBase64());
+        NewItem.EncryptedData = Convert.FromBase64String(result.Ciphertext);
+        NewItem.IV = Convert.FromBase64String(result.IV);
+        NewItem.Name = item.URL;
+
+        await HideAsync();
+    }
+
+    private async Task Cancel()
+    {
+        await HideAsync();
+    }
+}

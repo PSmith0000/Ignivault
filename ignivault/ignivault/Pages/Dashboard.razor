@@ -4,6 +4,7 @@
 @using System.Collections.ObjectModel
 @using ignivault.Core.Interface
 @using ignivault.Data.Models.Data
+@using ignivault.Layout.Dialogs
 @inject NavigationManager Navigation
 @inject IHttpService Http
 @attribute [Authorize]
@@ -14,24 +15,62 @@
         <DashboardLayoutPanel Id="1" Row="0" Column="0" SizeX="3" SizeY="1">
             <HeaderTemplate><div class="e-header-text">Storage</div></HeaderTemplate>
             <ContentTemplate>
-                <SfGrid ID="StorageGrid" AutoFit="true" DataSource="@vaultItems" Toolbar="@ToolBarButtons" AllowPaging="true" AllowSorting="true" AllowFiltering="true">
-                    
-                    <GridPageSettings PageSize="5"></GridPageSettings>
-                    <GridEditSettings AllowAdding="true" AllowDeleting="true" AllowEditing="true" Mode="EditMode.Dialog"></GridEditSettings>
-                            <GridColumns>
-                                <GridColumn Field="Id" HeaderText="ID" IsPrimaryKey="true" TextAlign="TextAlign.Center" Width="100" Visible="false"></GridColumn>
-                                <GridColumn Field="Name" HeaderText="Name" Width="150" TextAlign="TextAlign.Left"></GridColumn>
-                                <GridColumn Field="Type" HeaderText="Type" Width="120" TextAlign="TextAlign.Left" EditType="EditType.DropDownEdit" ForeignKeyValue="TypeName" ForeignKeyField="TypeId"></GridColumn>
-                                <GridColumn Field="Username" HeaderText="Username" Width="150" TextAlign="TextAlign.Left"></GridColumn>
-                                <GridColumn Field="URL" HeaderText="URL" Width="200" TextAlign="TextAlign.Left"></GridColumn>
-                                <GridColumn Field="Notes" HeaderText="Notes" Width="200" TextAlign="TextAlign.Left"></GridColumn>
-                                <GridColumn Field="CreatedAt" HeaderText="Created At" Format="d/M/yyyy h:mm tt" Width="180" TextAlign="TextAlign.Center" Type="ColumnType.DateTime" EditType="EditType.DateTimePickerEdit"></GridColumn>
-                                <GridColumn Field="UpdatedAt" HeaderText="Updated At" Format="d/M/yyyy h:mm tt" Width="180" TextAlign="TextAlign.Center" Type="ColumnType.DateTime" EditType="EditType.DateTimePickerEdit"></GridColumn>
-                            </GridColumns>
-                    <GridColumns>
-                       
-                    </GridColumns>
-                </SfGrid>
+                <SfTab>
+                    <TabItems>
+                        <TabItem Header="LoginHeader">
+                            <ContentTemplate>
+                                <SfGrid TValue="VaultItem" DataSource="@vaultItems" AllowSelection="true" AllowPaging="true" AllowSorting="true">
+                                    <GridPageSettings PageSize="5"></GridPageSettings>
+                                    <GridEvents TValue="VaultItem" OnActionComplete="ActionEndHandler"></GridEvents>
+                                    <GridEditSettings AllowAdding="true" AllowEditing="true" AllowDeleting="true" Mode="EditMode.Dialog">
+                                    <SfToolbar>
+                                            <ToolbarItems>
+                                                <ToolbarItem OnClick="OnAddLogin" Text="Add Vault Item" PrefixIcon="e-add" Id="AddCustom"></ToolbarItem>
+                                            </ToolbarItems>
+                                    </SfToolbar>
+                                       
+                                    </GridEditSettings>
+                                    <GridColumns>
+                                        <GridColumn AllowEditing="false" Field="Id" HeaderText="ID" Width="80" IsPrimaryKey="true"></GridColumn>
+                                        <GridColumn Field="Name" HeaderText="Account Name" Width="200"></GridColumn>
+                                        <GridColumn Field="UserId" HeaderText="Username / Email" Width="200"></GridColumn>
+                                    </GridColumns>
+                                    <AddLogin @ref="addLoginDialog"></AddLogin>
+                                </SfGrid>
+                            </ContentTemplate>
+                        </TabItem>
+
+                        <TabItem Header="FileHeader">
+                            <ContentTemplate>
+                                <SfGrid TValue="VaultItem" DataSource="@vaultItems" AllowPaging="true" AllowSorting="true">
+                                    <GridPageSettings PageSize="5"></GridPageSettings>
+                                    <GridEvents TValue="VaultItem" OnActionComplete="ActionEndHandler"></GridEvents>
+                                    <GridEditSettings AllowAdding="true" AllowEditing="true" AllowDeleting="true" Mode="EditMode.Dialog"></GridEditSettings>
+                                    <GridColumns>
+                                        <GridColumn AllowEditing="false" Field="Id" HeaderText="ID" Width="80" IsPrimaryKey="true"></GridColumn>
+                                        <GridColumn Field="Name" HeaderText="File Name" Width="200"></GridColumn>
+                                        <GridColumn Field="EncryptedData" HeaderText="Encrypted Size (bytes)" Width="180"></GridColumn>
+                                    </GridColumns>
+                                </SfGrid>
+                            </ContentTemplate>
+                        </TabItem>
+
+                        <TabItem Header="TextHeader">
+                            <ContentTemplate>
+                                <SfGrid TValue="VaultItem" DataSource="@vaultItems" AllowPaging="true" AllowSorting="true">
+                                    <GridPageSettings PageSize="5"></GridPageSettings>
+                                    <GridEvents  TValue="VaultItem" OnActionComplete="ActionEndHandler"></GridEvents>
+                                    <GridEditSettings AllowAdding="true" AllowEditing="true" AllowDeleting="true" Mode="EditMode.Dialog"></GridEditSettings>
+                                    <GridColumns>
+                                        <GridColumn AllowEditing="false" Field="Id" HeaderText="ID" Width="80" IsPrimaryKey="true"></GridColumn>
+                                        <GridColumn Field="Name" HeaderText="Note Title" Width="200"></GridColumn>
+                                    </GridColumns>
+                                </SfGrid>
+                            </ContentTemplate>
+                        </TabItem>
+                    </TabItems>
+                </SfTab>
+
             </ContentTemplate>
         </DashboardLayoutPanel>
         <!------------------------->
@@ -75,12 +114,13 @@
         <!--------------------->
     </DashboardLayoutPanels>
 </SfDashboardLayout>
-
 @code {
     private double[] CellSpacing = { 10, 10 };
     private int ColumnCount = 3;
     private bool allowResize = true;
     private bool allowFloating = true;
+
+    private bool IsAdding = false;
 
     private List<string> ToolBarButtons = new List<string>() { "Add", "Edit", "Delete", "Update", "Cancel" };
 
@@ -88,19 +128,35 @@
 
     public ObservableCollection<VaultItem> vaultItems = new();
 
+    private AddLogin addLoginDialog;
+
 
     public void NotAuthorizedRedirect()
     {
         Navigation.NavigateTo("/login");
     }
 
+    public async void OnAddLogin(ClickEventArgs args)
+    {
+        if(addLoginDialog != null)
+        {
+            await addLoginDialog.ShowAsync();
+        }
+    }
+
     public void ActionEndHandler(ActionEventArgs<VaultItem> args)
     {
+        
+    }
 
+    public void ActionBeginHandler(ActionEventArgs<VaultItem> args)
+    {
+       
     }
 
     protected override async Task OnInitializedAsync()
     {
+       
         var requestVaultItems = await Http.GetVaultItemsAsync();
 
         if (requestVaultItems != null && requestVaultItems.Any())
@@ -108,4 +164,22 @@
             this.vaultItems = new ObservableCollection<VaultItem>(requestVaultItems);
         }
     }
+
+    
+    TabHeader LoginHeader = new TabHeader() { Text = "Logins" };
+    TabHeader TextHeader = new TabHeader { Text = "Text" };
+    TabHeader FileHeader = new TabHeader { Text = "Files" };
+    public IEditorSettings DataTypeEditParams = new DropDownEditCellParams()
+    {
+        Params = new DropDownListModel<object, object>()
+        {
+            DataSource = new List<string>()
+                {
+                    "Text",
+                    "Login",
+                    "File"
+                },
+            PopupWidth = "100%"
+        }
+    };
 }
