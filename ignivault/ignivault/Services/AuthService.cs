@@ -17,6 +17,9 @@ namespace ignivault.Services
         public async Task LoginAsync(string token)
         {
             await _localStorage.SetItemAsync("authToken", token);
+
+            
+
             _authProvider.NotifyUserAuthentication(token);
         }
 
