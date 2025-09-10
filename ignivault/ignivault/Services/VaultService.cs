@@ -45,12 +45,31 @@ namespace ignivault.Services
 
         public bool IsMasterKeySet() => _masterKey != null;
 
-        public async Task<bool> DecryptMasterKey(LoginResponse login, string password)
+
+        public async Task<T?> DecryptRecordType<T>(VaultItem item)
+        {
+            if (!IsMasterKeySet())
+                throw new InvalidOperationException("Master key not set.");
+
+
+            string keyBase64 = GetMasterKeyBase64();
+
+            string decryptedJson_b64 = await DecryptBase64(item.EncryptedData, keyBase64, item.IV);
+            string decryptedJson = System.Text.Encoding.UTF8.GetString(Convert.FromBase64String(decryptedJson_b64));
+
+
+            T? record = System.Text.Json.JsonSerializer.Deserialize<T>(decryptedJson);
+
+            return record;
+        }
+
+
+        public async Task<bool> DecryptMasterKey(LoginUser login, string password)
         {
             try
             {
-                var encMasterKey = (login.MasterKey);
-                var keySalt = (login.keySalt);
+                var encMasterKey = (login.EncryptedMasterKey);
+                var keySalt = (login.KeySalt);
                 var masterKeyIV = (login.MasterIV);
                 string b64_masterkey = await JS.InvokeAsync<string>("Crypt.decryptMasterKeyBase64", encMasterKey, password, keySalt, masterKeyIV);
                 byte[] masterKey = Convert.FromBase64String(b64_masterkey);

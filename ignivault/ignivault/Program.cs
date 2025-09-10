@@ -16,6 +16,7 @@ using System.Globalization;
 //Register Syncfusion license https://help.syncfusion.com/common/essential-studio/licensing/how-to-generate
 Syncfusion.Licensing.SyncfusionLicenseProvider.RegisterLicense("Ngo9BigBOggjHTQxAR8/V1JEaF5cXmRCf1FpRmJGdld5fUVHYVZUTXxaS00DNHVRdkdmWXdcdXZURmVdUUV0X0VWYEk=");
 var builder = WebAssemblyHostBuilder.CreateDefault(args);
+
 builder.Services.AddMemoryCache();
 builder.RootComponents.Add<App>("#app");
 builder.RootComponents.Add<HeadOutlet>("head::after");
@@ -38,12 +39,14 @@ builder.Services.AddSyncfusionBlazor();
                             CultureInfo.DefaultThreadCurrentUICulture = culture;
                         }
 
-builder.Services.AddScoped(sp => new HttpClient { BaseAddress = new Uri(builder.HostEnvironment.BaseAddress) });
+builder.Services.AddScoped(sp =>
+    new HttpClient { BaseAddress = new Uri("https://localhost:7158/") });
 builder.Services.AddSingleton<VaultService>();
 builder.Services.AddBlazoredLocalStorage();
 builder.Services.AddScoped<AuthenticationStateProvider, JwtAuthenticationStateProvider>();
 builder.Services.AddScoped<AuthService>();
 builder.Services.AddScoped<IHttpService, HttpService>();
+builder.Services.AddSingleton<AccountService>();
 builder.Services.AddAuthorizationCore();
 
 var app = builder.Build();

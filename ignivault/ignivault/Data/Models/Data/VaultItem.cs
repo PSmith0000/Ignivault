@@ -17,8 +17,8 @@ namespace ignivault.Data.Models.Data
         private string _userId;
         private string _type;
         private string _name;
-        private byte[] _encryptedData;
-        private byte[] _iv;
+        private string _encryptedData;
+        private string _iv;
         private DateTime _createdAt = DateTime.UtcNow;
         private DateTime? _updatedAt;
 
@@ -46,13 +46,13 @@ namespace ignivault.Data.Models.Data
             set => SetProperty(ref _name, value);
         }
 
-        public byte[] EncryptedData
+        public string EncryptedData
         {
             get => _encryptedData;
             set => SetProperty(ref _encryptedData, value);
         }
 
-        public byte[] IV
+        public string IV
         {
             get => _iv;
             set => SetProperty(ref _iv, value);

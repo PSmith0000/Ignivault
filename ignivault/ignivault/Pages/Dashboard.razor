@@ -19,23 +19,24 @@
                     <TabItems>
                         <TabItem Header="LoginHeader">
                             <ContentTemplate>
-                                <SfGrid TValue="VaultItem" DataSource="@vaultItems" AllowSelection="true" AllowPaging="true" AllowSorting="true">
+                                <SfGrid @ref="LoginDataGrid" TValue="VaultItem" DataSource="@vaultItems" AllowSelection="true" AllowPaging="true" AllowSorting="true">
                                     <GridPageSettings PageSize="5"></GridPageSettings>
-                                    <GridEvents TValue="VaultItem" OnActionComplete="ActionEndHandler"></GridEvents>
+                                    <GridEvents TValue="VaultItem"></GridEvents>
+                                    <GridSelectionSettings EnableSimpleMultiRowSelection="false"></GridSelectionSettings>
                                     <GridEditSettings AllowAdding="true" AllowEditing="true" AllowDeleting="true" Mode="EditMode.Dialog">
                                     <SfToolbar>
                                             <ToolbarItems>
-                                                <ToolbarItem OnClick="OnAddLogin" Text="Add Vault Item" PrefixIcon="e-add" Id="AddCustom"></ToolbarItem>
+                                                <ToolbarItem OnClick="OnAddLogin" Text="Add Vault Item" PrefixIcon="e-add" Id="AddLogin"></ToolbarItem>
+                                                <ToolbarItem OnClick="OnViewEditLogin" Text="View\Edit Login" PrefixIcon="e-add" Id="ViewEditLogin"></ToolbarItem>
+                                                <ToolbarItem OnClick="OnViewEditLogin" Text="Delete Login" PrefixIcon="e-add" Id="DeleteLogin"></ToolbarItem>
                                             </ToolbarItems>
                                     </SfToolbar>
-                                       
                                     </GridEditSettings>
                                     <GridColumns>
                                         <GridColumn AllowEditing="false" Field="Id" HeaderText="ID" Width="80" IsPrimaryKey="true"></GridColumn>
-                                        <GridColumn Field="Name" HeaderText="Account Name" Width="200"></GridColumn>
-                                        <GridColumn Field="UserId" HeaderText="Username / Email" Width="200"></GridColumn>
+                                        <GridColumn Field="Name" HeaderText="Account Name" Width="200"></GridColumn>                                      
                                     </GridColumns>
-                                    <AddLogin @ref="addLoginDialog"></AddLogin>
+                                    
                                 </SfGrid>
                             </ContentTemplate>
                         </TabItem>
@@ -44,7 +45,7 @@
                             <ContentTemplate>
                                 <SfGrid TValue="VaultItem" DataSource="@vaultItems" AllowPaging="true" AllowSorting="true">
                                     <GridPageSettings PageSize="5"></GridPageSettings>
-                                    <GridEvents TValue="VaultItem" OnActionComplete="ActionEndHandler"></GridEvents>
+                                    <GridEvents TValue="VaultItem"></GridEvents>
                                     <GridEditSettings AllowAdding="true" AllowEditing="true" AllowDeleting="true" Mode="EditMode.Dialog"></GridEditSettings>
                                     <GridColumns>
                                         <GridColumn AllowEditing="false" Field="Id" HeaderText="ID" Width="80" IsPrimaryKey="true"></GridColumn>
@@ -59,7 +60,7 @@
                             <ContentTemplate>
                                 <SfGrid TValue="VaultItem" DataSource="@vaultItems" AllowPaging="true" AllowSorting="true">
                                     <GridPageSettings PageSize="5"></GridPageSettings>
-                                    <GridEvents  TValue="VaultItem" OnActionComplete="ActionEndHandler"></GridEvents>
+                                    <GridEvents  TValue="VaultItem"></GridEvents>
                                     <GridEditSettings AllowAdding="true" AllowEditing="true" AllowDeleting="true" Mode="EditMode.Dialog"></GridEditSettings>
                                     <GridColumns>
                                         <GridColumn AllowEditing="false" Field="Id" HeaderText="ID" Width="80" IsPrimaryKey="true"></GridColumn>
@@ -112,6 +113,10 @@
             </ContentTemplate>
         </DashboardLayoutPanel>
         <!--------------------->
+
+        <AddLogin ItemAdded="OnLoginAdded" @ref="addLoginDialog"></AddLogin>
+        <ViewEditLogin @ref="viewEditLoginDialog"></ViewEditLogin>
+
     </DashboardLayoutPanels>
 </SfDashboardLayout>
 @code {
@@ -128,7 +133,9 @@
 
     public ObservableCollection<VaultItem> vaultItems = new();
 
+    private SfGrid<VaultItem> LoginDataGrid;
     private AddLogin addLoginDialog;
+    private ViewEditLogin viewEditLoginDialog;
 
 
     public void NotAuthorizedRedirect()
@@ -144,24 +151,46 @@
         }
     }
 
-    public void ActionEndHandler(ActionEventArgs<VaultItem> args)
+    public async void OnViewEditLogin(ClickEventArgs args)
     {
-        
-    }
-
-    public void ActionBeginHandler(ActionEventArgs<VaultItem> args)
-    {
-       
+        if(LoginDataGrid != null)
+        {
+            var vaultItem = LoginDataGrid.SelectedRecords.FirstOrDefault();
+            if(vaultItem != null)
+            {
+                await viewEditLoginDialog.SetVaultItem(vaultItem);
+                await viewEditLoginDialog.ShowAsync();
+            }
+        }
     }
 
     protected override async Task OnInitializedAsync()
-    {
-       
-        var requestVaultItems = await Http.GetVaultItemsAsync();
+    {      
+        await RefreshVaultItemsAsync();
+    }
 
+
+    public async Task RefreshVaultItemsAsync()
+    {
+        var requestVaultItems = await Http.GetVaultItemsAsync();
         if (requestVaultItems != null && requestVaultItems.Any())
         {
             this.vaultItems = new ObservableCollection<VaultItem>(requestVaultItems);
+        }
+    }
+
+
+    public async void OnLoginAdded(VaultItem args)
+    {
+        bool status = await Http.AddVaultItemAsync(args);
+        if(status)
+        {
+            await RefreshVaultItemsAsync();
+            StateHasChanged();
+        }
+        else
+        {
+            Console.WriteLine("Failed to add vault item.");
         }
     }
 

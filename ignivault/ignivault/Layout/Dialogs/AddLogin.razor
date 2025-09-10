@@ -3,8 +3,9 @@
 @using ignivault.Data.Models.Data
 
 @inject VaultService VaultService
+@inject AccountService AccountService
 
-<SfDialog @ref="dialog" Width="400px" ShowCloseIcon="true">
+<SfDialog Visible="false" AllowDragging="true" @ref="dialog" Width="400px" ShowCloseIcon="true">
     <DialogTemplates>
         <Content>
             <label class="text-lg font-bold mb-4">Add New Login Record</label>
@@ -14,9 +15,7 @@
                 </FormValidator>
               
                 <FormItems>
-                    <FormItem LabelText="URL" Field="@nameof(item.Name)" EditorType="FormEditorType.TextBox"></FormItem>
-                    <FormItem LabelText="Username" Field="@nameof(item.Username)" EditorType="FormEditorType.TextBox"></FormItem>
-                    <FormItem LabelText="Password" Field="@nameof(item.Password)" EditorType="FormEditorType.Password"></FormItem>
+                   <FormAutoGenerateItems></FormAutoGenerateItems>
                 </FormItems>
                 <FormButtons>
                     <SfButton CssClass="e-outline" OnClick="Cancel">Cancel</SfButton>
@@ -32,22 +31,29 @@
 
 @code {
     private SfDialog dialog;
-    private record Item(string Name, string URL, string Username, string Password);
 
+    [Parameter] 
+    public EventCallback<VaultItem> ItemAdded { get; set; }
 
     private VaultItem NewItem { get; set; } = new();
-    private Item item = new Item("", "", "", "");
+    private RecordTypes.LoginDetail item = new("", "", "", "");
 
     protected override void OnAfterRender(bool firstRender)
     {
         if (firstRender)
         {
-            dialog.Visible = false;
-            dialog.AllowDragging = true;
+            
         }
         base.OnAfterRender(firstRender);
     }
 
+    private async Task OnItemAdded(VaultItem args)
+    {
+        if(args != null)
+        {
+            await ItemAdded.InvokeAsync(args);
+        }
+    }
 
     public async Task ShowAsync()
     {
@@ -71,12 +77,18 @@
 
     private async Task SaveItem()
     {
-        string combo = Convert.ToBase64String(System.Text.Encoding.UTF8.GetBytes(item.Username + ":" + item.Password));
-        var result  = await VaultService.EncryptBase64(combo, VaultService.GetMasterKeyBase64());
-        NewItem.EncryptedData = Convert.FromBase64String(result.Ciphertext);
-        NewItem.IV = Convert.FromBase64String(result.IV);
-        NewItem.Name = item.URL;
-
+        string data = System.Text.Json.JsonSerializer.Serialize(item);
+        string json = Convert.ToBase64String(System.Text.Encoding.UTF8.GetBytes(data));
+        var result  = await VaultService.EncryptBase64(json, VaultService.GetMasterKeyBase64());
+        NewItem.EncryptedData = (result.Ciphertext);
+        NewItem.IV = (result.IV);
+        NewItem.Name = item.Name;
+        NewItem.Id = 0;
+        NewItem.UserId = AccountService.LoginUser.Id;
+        NewItem.UpdatedAt = DateTime.Now;
+        NewItem.CreatedAt = DateTime.Now;
+        Console.WriteLine(System.Text.Json.JsonSerializer.Serialize(NewItem));
+        await OnItemAdded(NewItem);
         await HideAsync();
     }
 

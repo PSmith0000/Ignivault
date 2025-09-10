@@ -7,6 +7,7 @@
 @inject Blazored.LocalStorage.ILocalStorageService localStorage
 @inject AuthService AuthService
 @inject IHttpService HttpService
+@inject AccountService AccountService
 <head>
     <script src="js/Crypt.js"></script>
 </head>
@@ -23,7 +24,6 @@
             <FormItems>
                 <FormItem Field="@nameof(LoginUserModel.Email)" LabelText="Email" EditorType="FormEditorType.TextBox"></FormItem>
                 <FormItem Field="@nameof(LoginUserModel.Password)" LabelText="Password" EditorType="FormEditorType.Password"></FormItem>
-                <FormItem Field="@nameof(LoginUserModel.RememberMe)" LabelText="Remember me?" EditorType="FormEditorType.Checkbox"></FormItem>
             </FormItems>
             <FormButtons>
                 <SfButton type="submit" CssClass="e-primary">
@@ -58,7 +58,7 @@
 </div>
 
 @code {
-    private LoginUserModel login_data = new();
+    private LoginUserModel login_data;
     private bool ForgotPasswordDialogVisible { get; set; } = false;
     private bool loginFailed = false;
 
@@ -71,6 +71,8 @@
 
     protected override void OnInitialized()
     {
+        login_data = new LoginUserModel();
+
         var uri = NavManager.ToAbsoluteUri(NavManager.Uri);
         var query = System.Web.HttpUtility.ParseQueryString(uri.Query);
 
@@ -87,8 +89,23 @@
             var response = await HttpService.LoginAsync(login_data.Email, login_data.Password);
             if (response.Success)
             {
+
+                var t = response.Response;
+
+                Console.WriteLine($"{t.Username}, {t.Id}, {t.MasterIV}");
+
+
                 bool ValidMasterKey = await VaultService.DecryptMasterKey(response.Response, login_data.Password);
                 await AuthService.LoginAsync(response.Response.Token);
+
+
+                AccountService.SetAccount(response.Response);
+
+                if (DataUtils.IsTokenExpired(response.Response.Token))
+                {
+                    Console.WriteLine("Token is expired.");
+                }
+
 
                 NavManager.NavigateTo("/dashboard");
             }
@@ -99,7 +116,7 @@
         }
         catch (Exception ex)
         {
-           
+            Console.WriteLine("SUBMIT");
         }
     }
 }

@@ -1,6 +1,7 @@
 ﻿using ignivault.API.Models;
 using ignivault.API.Security;
 using ignivault.API.Security.Auth;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
@@ -45,9 +46,9 @@ namespace ignivault.API.Controllers
             var KHK = Crypt.DeriveKey(model.Password, salt);
             var (encrypted_master_key, iv) = Crypt.Encrypt(master_key, KHK);
 
-            user.EncryptedMasterKey = encrypted_master_key;
-            user.KeySalt = salt;
-            user.MasterIV = iv;
+            user.EncryptedMasterKey = Convert.ToBase64String(encrypted_master_key);
+            user.KeySalt = Convert.ToBase64String(salt);
+            user.MasterIV = Convert.ToBase64String(iv);
 
             var result = await _userManager.CreateAsync(user, model.Password);
 
@@ -73,11 +74,11 @@ namespace ignivault.API.Controllers
             if (!result.Succeeded)
                 return Unauthorized("Invalid credentials");
 
-            string b64_master_key = Convert.ToBase64String(user.EncryptedMasterKey);
-            string b64_salt = Convert.ToBase64String(user.KeySalt);
-            string b64_iv = Convert.ToBase64String(user.MasterIV);
             var token = GenerateJwtToken(user);
-            return Ok(new { Token = token, MasterKey = b64_master_key, keySalt = b64_salt, MasterIV = b64_iv});
+            LoginUserDto LoginUser = new LoginUserDto(user, token);
+
+            Console.WriteLine("Login Data Sent: " + System.Text.Json.JsonSerializer.Serialize(LoginUser));
+            return Ok(new {LoginUser});
         }
 
 
@@ -89,10 +90,10 @@ namespace ignivault.API.Controllers
         /// <returns></returns>
         private string GenerateJwtToken(LoginUser user)
         {
-            var claims = new[]
+            var claims = new List<Claim>
             {
-                new Claim(JwtRegisteredClaimNames.Sub, user.Email),
                 new Claim(ClaimTypes.NameIdentifier, user.Id),
+                new Claim(JwtRegisteredClaimNames.Sub, user.Email),
                 new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString())
             };
 
@@ -103,10 +104,15 @@ namespace ignivault.API.Controllers
                 issuer: _configuration["Jwt:Issuer"],
                 audience: _configuration["Jwt:Audience"],
                 claims: claims,
-                expires: DateTime.Now.AddHours(1),
-                signingCredentials: creds);
+                expires: DateTime.UtcNow.AddHours(2),
+                signingCredentials: creds
+            );
 
             return new JwtSecurityTokenHandler().WriteToken(token);
         }
+
+
+
+
     }
 }

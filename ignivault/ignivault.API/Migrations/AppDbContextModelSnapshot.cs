@@ -166,13 +166,16 @@ namespace ignivault.API.Migrations
                     b.Property<DateTime>("CreatedAt")
                         .HasColumnType("datetime2");
 
-                    b.Property<byte[]>("EncryptedData")
+                    b.Property<string>("EncryptedData")
                         .IsRequired()
-                        .HasColumnType("varbinary(max)");
+                        .HasColumnType("nvarchar(max)");
 
-                    b.Property<byte[]>("IV")
+                    b.Property<string>("IV")
                         .IsRequired()
-                        .HasColumnType("varbinary(max)");
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("LoginUserId")
+                        .HasColumnType("nvarchar(450)");
 
                     b.Property<string>("Name")
                         .IsRequired()
@@ -187,11 +190,11 @@ namespace ignivault.API.Migrations
 
                     b.Property<string>("UserId")
                         .IsRequired()
-                        .HasColumnType("nvarchar(450)");
+                        .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("UserId");
+                    b.HasIndex("LoginUserId");
 
                     b.ToTable("VaultItems");
                 });
@@ -215,13 +218,13 @@ namespace ignivault.API.Migrations
                     b.Property<bool>("EmailConfirmed")
                         .HasColumnType("bit");
 
-                    b.Property<byte[]>("EncryptedMasterKey")
+                    b.Property<string>("EncryptedMasterKey")
                         .IsRequired()
-                        .HasColumnType("varbinary(max)");
+                        .HasColumnType("nvarchar(max)");
 
-                    b.Property<byte[]>("KeySalt")
+                    b.Property<string>("KeySalt")
                         .IsRequired()
-                        .HasColumnType("varbinary(max)");
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<DateTime?>("LastPasswordChange")
                         .HasColumnType("datetime2");
@@ -232,9 +235,9 @@ namespace ignivault.API.Migrations
                     b.Property<DateTimeOffset?>("LockoutEnd")
                         .HasColumnType("datetimeoffset");
 
-                    b.Property<byte[]>("MasterIV")
+                    b.Property<string>("MasterIV")
                         .IsRequired()
-                        .HasColumnType("varbinary(max)");
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("NormalizedEmail")
                         .HasMaxLength(256)
@@ -329,13 +332,9 @@ namespace ignivault.API.Migrations
 
             modelBuilder.Entity("ignivault.API.Models.Records.VaultItem", b =>
                 {
-                    b.HasOne("ignivault.API.Security.Auth.LoginUser", "User")
+                    b.HasOne("ignivault.API.Security.Auth.LoginUser", null)
                         .WithMany("VaultItems")
-                        .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("User");
+                        .HasForeignKey("LoginUserId");
                 });
 
             modelBuilder.Entity("ignivault.API.Security.Auth.LoginUser", b =>
