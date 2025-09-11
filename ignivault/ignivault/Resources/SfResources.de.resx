@@ -1,17 +1,17 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <root>
-  <!--
-    Microsoft ResX Schema
-
+  <!-- 
+    Microsoft ResX Schema 
+    
     Version 2.0
-
-    The primary goals of this format is to allow a simple XML format
-    that is mostly human readable. The generation and parsing of the
-    various data types are done through the TypeConverter classes
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
     associated with the data types.
-
+    
     Example:
-
+    
     ... ado.net/XML headers & schema ...
     <resheader name="resmimetype">text/microsoft-resx</resheader>
     <resheader name="version">2.0</resheader>
@@ -26,36 +26,36 @@
         <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
         <comment>This is a comment</comment>
     </data>
-
-    There are any number of "resheader" rows that contain simple
+                
+    There are any number of "resheader" rows that contain simple 
     name/value pairs.
-
-    Each data row contains a name, and value. The row also contains a
-    type or mimetype. Type corresponds to a .NET class that support
-    text/value conversion through the TypeConverter architecture.
-    Classes that don't support this are serialized and stored with the
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
     mimetype set.
-
-    The mimetype is used for serialized objects, and tells the
-    ResXResourceReader how to depersist the object. This is currently not
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
     extensible. For a given mimetype the value must be set accordingly:
-
-    Note - application/x-microsoft.net.object.binary.base64 is the format
-    that the ResXResourceWriter will generate, however the reader can
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
     read any of the formats listed below.
-
+    
     mimetype: application/x-microsoft.net.object.binary.base64
-    value   : The object must be serialized with
+    value   : The object must be serialized with 
             : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
             : and then encoded with base64 encoding.
-
+    
     mimetype: application/x-microsoft.net.object.soap.base64
-    value   : The object must be serialized with
+    value   : The object must be serialized with 
             : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
             : and then encoded with base64 encoding.
 
     mimetype: application/x-microsoft.net.object.bytearray.base64
-    value   : The object must be serialized into a byte array
+    value   : The object must be serialized into a byte array 
             : using a System.ComponentModel.TypeConverter
             : and then encoded with base64 encoding.
     -->
@@ -769,16 +769,16 @@
     <value>Zoomen</value>
   </data>
   <data name="Maps_ZoomIn" xml:space="preserve">
-      <value>Hineinzoomen</value>
+    <value>Hineinzoomen</value>
   </data>
   <data name="Maps_ZoomOut" xml:space="preserve">
-      <value>Rauszoomen</value>
+    <value>Rauszoomen</value>
   </data>
   <data name="Maps_Reset" xml:space="preserve">
-      <value>Zurücksetzen</value>
+    <value>Zurücksetzen</value>
   </data>
   <data name="Maps_Pan" xml:space="preserve">
-      <value>Schwenken</value>
+    <value>Schwenken</value>
   </data>
   <data name="Gantt_EmptyRecord" xml:space="preserve">
     <value>Keine Datensätze zum Anzeigen</value>
@@ -5704,203 +5704,203 @@
     <value>Weiter so</value>
   </data>
   <data name="DocumentEditor_ScreenTip" xml:space="preserve">
-       <value>QuickInfo-Text</value>
-</data>
+    <value>QuickInfo-Text</value>
+  </data>
   <data name="DocumentEditor_KeepSource" xml:space="preserve">
-       <value>Quellformatierung beibehalten</value>
-</data>
+    <value>Quellformatierung beibehalten</value>
+  </data>
   <data name="DocumentEditor_DestinationFormat" xml:space="preserve">
-       <value>Zielformatierung anpassen</value>
-</data>
+    <value>Zielformatierung anpassen</value>
+  </data>
   <data name="DocumentEditor_CommentsOnly" xml:space="preserve">
-       <value>Sie können nur Kommentare in diesen Bereich einfügen.</value>
-</data>
+    <value>Sie können nur Kommentare in diesen Bereich einfügen.</value>
+  </data>
   <data name="DocumentEditor_RowRange" xml:space="preserve">
-       <value>Die Anzahl der Zeilen muss zwischen 1 und 32767 liegen</value>
-</data>
+    <value>Die Anzahl der Zeilen muss zwischen 1 und 32767 liegen</value>
+  </data>
   <data name="DocumentEditor_ColumnRange" xml:space="preserve">
-       <value>Die Anzahl der Spalten muss zwischen 1 und 63 liegen</value>
-</data>
+    <value>Die Anzahl der Spalten muss zwischen 1 und 63 liegen</value>
+  </data>
   <data name="DocumentEditor_Information" xml:space="preserve">
-       <value>Information</value>
-</data>
+    <value>Information</value>
+  </data>
   <data name="DocumentEditor_Dot" xml:space="preserve">
-       <value>Punkt</value>
-</data>
+    <value>Punkt</value>
+  </data>
   <data name="DocumentEditor_DashSmallGap" xml:space="preserve">
-       <value>Strich kleine Lücke</value>
-</data>
+    <value>Strich kleine Lücke</value>
+  </data>
   <data name="DocumentEditor_DashDot" xml:space="preserve">
-       <value>Strich Punkt</value>
-</data>
+    <value>Strich Punkt</value>
+  </data>
   <data name="DocumentEditor_ThinThickSmallGap" xml:space="preserve">
-       <value>Dünne dicke kleine Lücke</value>
-</data>
+    <value>Dünne dicke kleine Lücke</value>
+  </data>
   <data name="DocumentEditor_ThickThinSmallGap" xml:space="preserve">
-       <value>Dicke dünne kleine Lücke</value>
-</data>
+    <value>Dicke dünne kleine Lücke</value>
+  </data>
   <data name="DocumentEditor_ThickThinMediumGap" xml:space="preserve">
-       <value>Dicke dünne mittlere Lücke</value>
-</data>
+    <value>Dicke dünne mittlere Lücke</value>
+  </data>
   <data name="DocumentEditor_ThickThinLargeGap" xml:space="preserve">
-       <value>Dicke dünne große Lücke</value>
-</data>
+    <value>Dicke dünne große Lücke</value>
+  </data>
   <data name="DocumentEditor_SingleWavy" xml:space="preserve">
-       <value>Einfach gewellt</value>
-</data>
+    <value>Einfach gewellt</value>
+  </data>
   <data name="DocumentEditor_DoubleWavy" xml:space="preserve">
-       <value>Doppelt wellig</value>
-</data>
+    <value>Doppelt wellig</value>
+  </data>
   <data name="DocumentEditor_Inset" xml:space="preserve">
-       <value>Einsatz</value>
-</data>
+    <value>Einsatz</value>
+  </data>
   <data name="DocumentEditor_DashLargeGap" xml:space="preserve">
-       <value>Strich große Lücke</value>
-</data>
+    <value>Strich große Lücke</value>
+  </data>
   <data name="DocumentEditor_DashDotDot" xml:space="preserve">
-       <value>Strich Punkt Punkt</value>
-</data>
+    <value>Strich Punkt Punkt</value>
+  </data>
   <data name="DocumentEditor_Triple" xml:space="preserve">
-       <value>Verdreifachen</value>
-</data>
+    <value>Verdreifachen</value>
+  </data>
   <data name="DocumentEditor_ThinThickThinSmallGap" xml:space="preserve">
-       <value>Dünn dick dünn kleine Lücke</value>
-</data>
+    <value>Dünn dick dünn kleine Lücke</value>
+  </data>
   <data name="DocumentEditor_ThinThickThinMediumGap" xml:space="preserve">
-       <value>Dünn dick dünn mittel Lücke</value>
-</data>
+    <value>Dünn dick dünn mittel Lücke</value>
+  </data>
   <data name="DocumentEditor_ThinThickThinLargeGap" xml:space="preserve">
-       <value>Dünn dick dünn große Lücke</value>
-</data>
+    <value>Dünn dick dünn große Lücke</value>
+  </data>
   <data name="DocumentEditor_DashDotStroked" xml:space="preserve">
-       <value>Strichpunkt gestrichen</value>
-</data>
+    <value>Strichpunkt gestrichen</value>
+  </data>
   <data name="DocumentEditor_Engrave3D" xml:space="preserve">
-       <value>Gravieren3D</value>
-</data>
+    <value>Gravieren3D</value>
+  </data>
   <data name="DocumentEditor_Thick" xml:space="preserve">
-       <value>Dick</value>
-</data>
+    <value>Dick</value>
+  </data>
   <data name="DocumentEditor_Outset" xml:space="preserve">
-       <value>Anfang</value>
-</data>
+    <value>Anfang</value>
+  </data>
   <data name="DocumentEditor_Emboss3D" xml:space="preserve">
-       <value>Emboss3D</value>
-</data>
+    <value>Emboss3D</value>
+  </data>
   <data name="DocumentEditor_ThinThickLargeGap" xml:space="preserve">
-       <value>Dünne dicke große Lücke</value>
-</data>
+    <value>Dünne dicke große Lücke</value>
+  </data>
   <data name="DocumentEditor_ThinThickMediumGap" xml:space="preserve">
-       <value>Dünne dicke mittlere Lücke</value>
-</data>
+    <value>Dünne dicke mittlere Lücke</value>
+  </data>
   <data name="DocumentEditor_RegularText" xml:space="preserve">
-       <value>Normaler Text</value>
-</data>
+    <value>Normaler Text</value>
+  </data>
   <data name="DocumentEditor_Date" xml:space="preserve">
-       <value>Datum</value>
-</data>
+    <value>Datum</value>
+  </data>
   <data name="DocumentEditor_Uppercase" xml:space="preserve">
-  <value>Großbuchstaben</value>
+    <value>Großbuchstaben</value>
   </data>
   <data name="DocumentEditor_Lowercase" xml:space="preserve">
-   <value>Kleinbuchstaben</value>
-</data>
+    <value>Kleinbuchstaben</value>
+  </data>
   <data name="DocumentEditorContainer_Changecase" xml:space="preserve">
-  <value>Fall ändern</value>
-</data>
+    <value>Fall ändern</value>
+  </data>
   <data name="DocumentEditorContainer_Uppercase" xml:space="preserve">
-  <value>Großbuchstaben</value>
-</data>
+    <value>Großbuchstaben</value>
+  </data>
   <data name="DocumentEditorContainer_Lowercase" xml:space="preserve">
-  <value>Kleinbuchstaben</value>
-</data>
+    <value>Kleinbuchstaben</value>
+  </data>
   <data name="DocumentEditorContainer_SentenceCase" xml:space="preserve">
-  <value>Satzfall</value>
-</data>
+    <value>Satzfall</value>
+  </data>
   <data name="DocumentEditorContainer_CapitalizeEachWord" xml:space="preserve">
-  <value>Schreiben Sie jedes Wort groß</value>
-</data>
+    <value>Schreiben Sie jedes Wort groß</value>
+  </data>
   <data name="DocumentEditorContainer_ToggleCase" xml:space="preserve">
-  <value>Gehäuse umschalten</value>
-</data>
+    <value>Gehäuse umschalten</value>
+  </data>
   <data name="DocumentEditor_FirstCapital" xml:space="preserve">
-       <value>FirstCapital</value>
-</data>
+    <value>FirstCapital</value>
+  </data>
   <data name="DocumentEditor_Titlecase" xml:space="preserve">
-       <value>Titelkoffer</value>
-</data>
+    <value>Titelkoffer</value>
+  </data>
   <data name="DocumentEditor_MoveFrom" xml:space="preserve">
-       <value>Bewegen von</value>
-</data>
+    <value>Bewegen von</value>
+  </data>
   <data name="DocumentEditor_MoveTo" xml:space="preserve">
-       <value>Ziehen nach</value>
-</data>
+    <value>Ziehen nach</value>
+  </data>
   <data name="DocumentEditor_Px" xml:space="preserve">
-       <value>px</value>
-</data>
+    <value>px</value>
+  </data>
   <data name="DocumentEditor_ReadOnlyProtection" xml:space="preserve">
-       <value>Sie können in dieser Region bearbeiten.</value>
-</data>
+    <value>Sie können in dieser Region bearbeiten.</value>
+  </data>
   <data name="DocumentEditor_SectionBreakNextPage" xml:space="preserve">
-<value>Abschnittsumbruch (nächste Seite)</value>
-</data>
+    <value>Abschnittsumbruch (nächste Seite)</value>
+  </data>
   <data name="DocumentEditor_PageBreak" xml:space="preserve">
-<value>Seitenumbruch</value>
-</data>
+    <value>Seitenumbruch</value>
+  </data>
   <data name="DocumentEditor_ColumnBreak" xml:space="preserve">
-<value>Spaltenumbruch</value>
-</data>
+    <value>Spaltenumbruch</value>
+  </data>
   <data name="DocumentEditor_One" xml:space="preserve">
-<value>Einer</value>
-</data>
+    <value>Einer</value>
+  </data>
   <data name="DocumentEditor_Two" xml:space="preserve">
-<value>Zwei</value>
-</data>
+    <value>Zwei</value>
+  </data>
   <data name="DocumentEditor_Three" xml:space="preserve">
-<value>Drei</value>
-</data>
+    <value>Drei</value>
+  </data>
   <data name="DocumentEditor_Presets" xml:space="preserve">
-<value>Voreinstellungen</value>
-</data>
+    <value>Voreinstellungen</value>
+  </data>
   <data name="DocumentEditor_Columns" xml:space="preserve">
-<value>Säulen</value>
-</data>
+    <value>Säulen</value>
+  </data>
   <data name="DocumentEditor_SplitToColumns" xml:space="preserve">
-<value>Teilen Sie Ihren Text in zwei oder mehr Spalten auf</value>
-</data>
+    <value>Teilen Sie Ihren Text in zwei oder mehr Spalten auf</value>
+  </data>
   <data name="DocumentEditor_LineBetweenColumn" xml:space="preserve">
-<value>Linie zwischen Spalte</value>
-</data>
+    <value>Linie zwischen Spalte</value>
+  </data>
   <data name="DocumentEditor_WidthAndSpacing" xml:space="preserve">
-<value>Breite und Abstand</value>
-</data>
+    <value>Breite und Abstand</value>
+  </data>
   <data name="DocumentEditor_EqualColumnWidth" xml:space="preserve">
-<value>Gleiche Spaltenbreite</value>
-</data>
+    <value>Gleiche Spaltenbreite</value>
+  </data>
   <data name="DocumentEditor_Column" xml:space="preserve">
-<value>Spalte</value>
-</data>
+    <value>Spalte</value>
+  </data>
   <data name="DocumentEditor_SectionBreakContinuous" xml:space="preserve">
-<value>Abschnittsumbruch (fortlaufend)</value>
-</data>
+    <value>Abschnittsumbruch (fortlaufend)</value>
+  </data>
   <data name="DocumentEditor_PasteContentDialog" xml:space="preserve">
-  <value>Aufgrund der Sicherheitsrichtlinie des Browsers ist das Einfügen aus der Zwischenablage des Systems eingeschränkt. Alternativ verwenden Sie die Tastenkombination</value>
-</data>
+    <value>Aufgrund der Sicherheitsrichtlinie des Browsers ist das Einfügen aus der Zwischenablage des Systems eingeschränkt. Alternativ verwenden Sie die Tastenkombination</value>
+  </data>
   <data name="DocumentEditor_PasteCheckBoxContentDialog" xml:space="preserve">
-  <value>Nicht mehr anzeigen</value>
-</data>
+    <value>Nicht mehr anzeigen</value>
+  </data>
   <data name="DocumentEditorContainer_Columns" xml:space="preserve">
-<value>Säulen</value>
-</data>
+    <value>Säulen</value>
+  </data>
   <data name="DocumentEditorContainer_ShowHiddenMarks" xml:space="preserve">
-<value>Zeigen Sie die ausgeblendeten Zeichen wie Leerzeichen, Tabulatoren, Absatzmarken und Umbrüche an. (Strg + *)</value>
-</data>
+    <value>Zeigen Sie die ausgeblendeten Zeichen wie Leerzeichen, Tabulatoren, Absatzmarken und Umbrüche an. (Strg + *)</value>
+  </data>
   <data name="DocumentEditorContainer_RegularTooltip" xml:space="preserve">
-       <value>Regulär</value>
-</data>
+    <value>Regulär</value>
+  </data>
   <data name="DocumentEditorContainer_BoldItalicTooltip" xml:space="preserve">
-       <value>Fett Kursiv</value>
-</data>
+    <value>Fett Kursiv</value>
+  </data>
   <data name="DocumentEditorContainer_New" xml:space="preserve">
     <value>Neu</value>
   </data>
@@ -6029,7 +6029,7 @@
   </data>
   <data name="DocumentEditorContainer_AlternateText" xml:space="preserve">
     <value>Alternativer Text</value>
-</data>
+  </data>
   <data name="DocumentEditorContainer_Paragraph" xml:space="preserve">
     <value>Absatz</value>
   </data>
@@ -6385,7 +6385,7 @@
     <value>Sie können in dieser Region Änderungen vornehmen, aber alle Änderungen werden nachverfolgt</value>
   </data>
   <data name="DocumentEditor_UnsupportedFormat" xml:space="preserve">
-  	<value>Das ausgewählte Dateiformat wird nicht unterstützt. Bitte wählen Sie ein gültiges Format.</value>
+    <value>Das ausgewählte Dateiformat wird nicht unterstützt. Bitte wählen Sie ein gültiges Format.</value>
   </data>
   <data name="DocumentEditor_InvalidFile" xml:space="preserve">
     <value>Beim Öffnen dieses Dokuments ist ein Problem aufgetreten</value>
@@ -6505,11 +6505,11 @@
     <value>Gehen Sie zur letzten Seite</value>
   </data>
   <data name="PivotView_GoToNextPage" xml:space="preserve">
-  <value>Gehen Sie zur nächsten Seite</value>
-</data>
+    <value>Gehen Sie zur nächsten Seite</value>
+  </data>
   <data name="PivotView_GoToPreviousPage" xml:space="preserve">
-  <value>Zurück zur letzten Seite</value>
-</data>
+    <value>Zurück zur letzten Seite</value>
+  </data>
   <data name="Grid_ChooseTime" xml:space="preserve">
     <value>Zeit auswählen</value>
   </data>
@@ -6523,22 +6523,22 @@
     <value>Abschnitt</value>
   </data>
   <data name="DocumentEditor_OddPageHeader" xml:space="preserve">
-  <value>Ungerade Seitenkopfzeile</value>
+    <value>Ungerade Seitenkopfzeile</value>
   </data>
   <data name="DocumentEditor_OddPageFooter" xml:space="preserve">
-  <value>Ungerade Seitenfußzeile</value>
+    <value>Ungerade Seitenfußzeile</value>
   </data>
   <data name="DocumentEditor_EvenPageHeader" xml:space="preserve">
-  <value>Gerader Seitenkopf</value>
+    <value>Gerader Seitenkopf</value>
   </data>
   <data name="DocumentEditor_EvenPageFooter" xml:space="preserve">
-  <value>Gleichmäßige Fußzeile</value>
+    <value>Gleichmäßige Fußzeile</value>
   </data>
   <data name="DocumentEditor_FirstPageHeader" xml:space="preserve">
-  <value>Kopfzeile der ersten Seite</value>
+    <value>Kopfzeile der ersten Seite</value>
   </data>
   <data name="DocumentEditor_FirstPageFooter" xml:space="preserve">
-  <value>Fußzeile der ersten Seite</value>
+    <value>Fußzeile der ersten Seite</value>
   </data>
   <data name="DocumentEditor_And" xml:space="preserve">
     <value>und</value>
@@ -6568,83 +6568,83 @@
     <value>Legen Sie Ihr Bild hier ab oder</value>
   </data>
   <data name="DocumentEditorContainer_TabStopPosition" xml:space="preserve">
-<value>Tab-Stopp-Position</value>
-</data>
+    <value>Tab-Stopp-Position</value>
+  </data>
   <data name="DocumentEditorContainer_DefaultTabStops" xml:space="preserve">
-<value>Standard-Tabstopps</value>
-</data>
+    <value>Standard-Tabstopps</value>
+  </data>
   <data name="DocumentEditorContainer_TabStopsCleared" xml:space="preserve">
-<value>Zu löschende Tabstopps</value>
-</data>
+    <value>Zu löschende Tabstopps</value>
+  </data>
   <data name="DocumentEditorContainer_Tabs" xml:space="preserve">
-<value>Tabs</value>
-</data>
+    <value>Tabs</value>
+  </data>
   <data name="DocumentEditor_Set" xml:space="preserve">
-<value>Satz</value>
-</data>
+    <value>Satz</value>
+  </data>
   <data name="DocumentEditor_Clear" xml:space="preserve">
-<value>Löschen</value>
-</data>
+    <value>Löschen</value>
+  </data>
   <data name="DocumentEditor_ClearAll" xml:space="preserve">
-<value>Alles löschen</value>
-</data>
+    <value>Alles löschen</value>
+  </data>
   <data name="DocumentEditor_Decimal" xml:space="preserve">
-<value>Dezimal</value>
-</data>
+    <value>Dezimal</value>
+  </data>
   <data name="DocumentEditor_Bar" xml:space="preserve">
-<value>Bar</value>
-</data>
+    <value>Bar</value>
+  </data>
   <data name="DocumentEditorContainer_Alignment" xml:space="preserve">
-<value>Ausrichtung</value>
-</data>
+    <value>Ausrichtung</value>
+  </data>
   <data name="DocumentEditorContainer_Leader" xml:space="preserve">
-<value>Führer</value>
-</data>
+    <value>Führer</value>
+  </data>
   <data name="DocumentEditorContainer_All" xml:space="preserve">
-<value>Alle</value>
-</data>
+    <value>Alle</value>
+  </data>
   <data name="DocumentEditor_BottomMargin" xml:space="preserve">
-<value>Unterer Rand</value>
-</data>
+    <value>Unterer Rand</value>
+  </data>
   <data name="DocumentEditor_FirstLineIndent" xml:space="preserve">
-<value>Erster Zeileneinzug</value>
-</data>
+    <value>Erster Zeileneinzug</value>
+  </data>
   <data name="DocumentEditor_HangingIndent" xml:space="preserve">
-<value>Hängender Einzug</value>
-</data>
+    <value>Hängender Einzug</value>
+  </data>
   <data name="DocumentEditor_LeftIndent" xml:space="preserve">
-<value>Linker Einzug</value>
-</data>
+    <value>Linker Einzug</value>
+  </data>
   <data name="DocumentEditor_LeftMargin" xml:space="preserve">
-<value>Linker Rand</value>
-</data>
+    <value>Linker Rand</value>
+  </data>
   <data name="DocumentEditor_MoveTableColumn" xml:space="preserve">
-<value>Tabellenspalte verschieben</value>
-</data>
+    <value>Tabellenspalte verschieben</value>
+  </data>
   <data name="DocumentEditor_RightIndent" xml:space="preserve">
-<value>Rechter Einzug</value>
-</data>
+    <value>Rechter Einzug</value>
+  </data>
   <data name="DocumentEditor_RightMargin" xml:space="preserve">
-<value>Rechter Rand</value>
-</data>
+    <value>Rechter Rand</value>
+  </data>
   <data name="DocumentEditor_TopMargin" xml:space="preserve">
-<value>Oberer Rand</value>
-</data>
+    <value>Oberer Rand</value>
+  </data>
   <data name="DocumentEditor_LeftTab" xml:space="preserve">
-<value>Linke Registerkarte</value>
-</data>
+    <value>Linke Registerkarte</value>
+  </data>
   <data name="DocumentEditor_CenterTab" xml:space="preserve">
-<value>Mittlere Registerkarte</value>
-</data>
+    <value>Mittlere Registerkarte</value>
+  </data>
   <data name="DocumentEditor_RightTab" xml:space="preserve">
-<value>Rechte Registerkarte</value>
-</data>
+    <value>Rechte Registerkarte</value>
+  </data>
   <data name="DocumentEditor_DecimalTab" xml:space="preserve">
-<value>Dezimaltabelle</value>
-</data>
+    <value>Dezimaltabelle</value>
+  </data>
   <data name="DocumentEditor_BarTab" xml:space="preserve">
-<value>Bar-Registerkarte</value>
-</data>
+    <value>Bar-Registerkarte</value>
+  </data>
   <data name="ImageEditor_Annotation" xml:space="preserve">
     <value>Anmerkung</value>
   </data>
@@ -6858,7 +6858,7 @@
   <data name="Spreadsheet_ANDFormula" xml:space="preserve">
     <value>Gibt WAHR zurück, wenn alle seine Argumente WAHR sind</value>
   </data>
-    <data name="Spreadsheet_AREAS" xml:space="preserve">
+  <data name="Spreadsheet_AREAS" xml:space="preserve">
     <value>Gibt die Anzahl der Bereiche in einem Bezug zurück</value>
   </data>
   <data name="Spreadsheet_ARRAYTOTEXT" xml:space="preserve">
@@ -7488,7 +7488,7 @@
   <data name="Spreadsheet_POISSON" xml:space="preserve">
     <value>Gibt die Poisson-Verteilung zurück</value>
   </data>
-    <data name="Spreadsheet_POWER" xml:space="preserve">
+  <data name="Spreadsheet_POWER" xml:space="preserve">
     <value>Gibt das Ergebnis einer Zahl zurück, die mit einer Potenz multipliziert wurde</value>
   </data>
   <data name="Spreadsheet_PPMT" xml:space="preserve">
@@ -7801,10 +7801,10 @@
     <value>Arbeitsmappe berechnen</value>
   </data>
   <data name="Spreadsheet_Description" xml:space="preserve">
-      <value>Beschreibung</value>
+    <value>Beschreibung</value>
   </data>
   <data name="Spreadsheet_PickCategory" xml:space="preserve">
-      <value>Wählen Sie eine Kategorie</value>
+    <value>Wählen Sie eine Kategorie</value>
   </data>
   <data name="Spreadsheet_AllUsers" xml:space="preserve">
     <value>Allen Benutzern dieses Arbeitsblatts erlauben zu</value>
@@ -8258,91 +8258,91 @@
   </data>
   <data name="RichTextEditor_SlashMenuHeading1" xml:space="preserve">
     <value>Überschrift 1</value>
-</data>
-<data name="RichTextEditor_SlashMenuHeading2" xml:space="preserve">
+  </data>
+  <data name="RichTextEditor_SlashMenuHeading2" xml:space="preserve">
     <value>Überschrift 2</value>
-</data>
-<data name="RichTextEditor_SlashMenuHeading3" xml:space="preserve">
+  </data>
+  <data name="RichTextEditor_SlashMenuHeading3" xml:space="preserve">
     <value>Überschrift 3</value>
-</data>
-<data name="RichTextEditor_SlashMenuHeading4" xml:space="preserve">
+  </data>
+  <data name="RichTextEditor_SlashMenuHeading4" xml:space="preserve">
     <value>Überschrift 4</value>
-</data>
-<data name="RichTextEditor_SlashMenuParagraph" xml:space="preserve">
+  </data>
+  <data name="RichTextEditor_SlashMenuParagraph" xml:space="preserve">
     <value>Absatz</value>
-</data>
-<data name="RichTextEditor_SlashMenuBlockQuote" xml:space="preserve">
+  </data>
+  <data name="RichTextEditor_SlashMenuBlockQuote" xml:space="preserve">
     <value>Blockquote</value>
-</data>
-<data name="RichTextEditor_SlashMenuOrderedList" xml:space="preserve">
+  </data>
+  <data name="RichTextEditor_SlashMenuOrderedList" xml:space="preserve">
     <value>Geordnete Liste</value>
-</data>
-<data name="RichTextEditor_SlashMenuUnorderedList" xml:space="preserve">
+  </data>
+  <data name="RichTextEditor_SlashMenuUnorderedList" xml:space="preserve">
     <value>Ungeordnete Liste</value>
-</data>
-<data name="RichTextEditor_SlashMenuCodeBlock" xml:space="preserve">
+  </data>
+  <data name="RichTextEditor_SlashMenuCodeBlock" xml:space="preserve">
     <value>CodeBlock</value>
-</data>
-<data name="RichTextEditor_SlashMenuTable" xml:space="preserve">
+  </data>
+  <data name="RichTextEditor_SlashMenuTable" xml:space="preserve">
     <value>Tisch</value>
-</data>
-<data name="RichTextEditor_SlashMenuImage" xml:space="preserve">
+  </data>
+  <data name="RichTextEditor_SlashMenuImage" xml:space="preserve">
     <value>Bild</value>
-</data>
-<data name="RichTextEditor_SlashMenuAudio" xml:space="preserve">
+  </data>
+  <data name="RichTextEditor_SlashMenuAudio" xml:space="preserve">
     <value>Audio</value>
-</data>
-<data name="RichTextEditor_SlashMenuVideo" xml:space="preserve">
+  </data>
+  <data name="RichTextEditor_SlashMenuVideo" xml:space="preserve">
     <value>Video</value>
-</data>
-<data name="RichTextEditor_SlashMenuLink" xml:space="preserve">
+  </data>
+  <data name="RichTextEditor_SlashMenuLink" xml:space="preserve">
     <value>Link</value>
-</data>
-<data name="RichTextEditor_SlashMenuHeading1Description" xml:space="preserve">
+  </data>
+  <data name="RichTextEditor_SlashMenuHeading1Description" xml:space="preserve">
     <value>Verwenden Sie dies für eine Überschrift oder einen Titel der obersten Ebene.</value>
-</data>
-<data name="RichTextEditor_SlashMenuHeading2Description" xml:space="preserve">
+  </data>
+  <data name="RichTextEditor_SlashMenuHeading2Description" xml:space="preserve">
     <value>Verwenden Sie dies für wichtige Abschnitte.</value>
-</data>
-<data name="RichTextEditor_SlashMenuHeading3Description" xml:space="preserve">
+  </data>
+  <data name="RichTextEditor_SlashMenuHeading3Description" xml:space="preserve">
     <value>Verwenden Sie dies für Unterabschnitte und Gruppenüberschriften.</value>
-</data>
-<data name="RichTextEditor_SlashMenuHeading4Description" xml:space="preserve">
+  </data>
+  <data name="RichTextEditor_SlashMenuHeading4Description" xml:space="preserve">
     <value>Verwenden Sie dies für die Kernpunkte der Unterthemen.</value>
-</data>
-<data name="RichTextEditor_SlashMenuParagraphDescription" xml:space="preserve">
+  </data>
+  <data name="RichTextEditor_SlashMenuParagraphDescription" xml:space="preserve">
     <value>Mit Absätzen schreiben.</value>
-</data>
-<data name="RichTextEditor_SlashMenuBlockQuoteDescription" xml:space="preserve">
+  </data>
+  <data name="RichTextEditor_SlashMenuBlockQuoteDescription" xml:space="preserve">
     <value>Erstellen Sie ein Zitat oder Zitat.</value>
-</data>
-<data name="RichTextEditor_SlashMenuOrderedListDescription" xml:space="preserve">
+  </data>
+  <data name="RichTextEditor_SlashMenuOrderedListDescription" xml:space="preserve">
     <value>Erstellen Sie eine geordnete Liste.</value>
-</data>
-<data name="RichTextEditor_SlashMenuUnorderedListDescription" xml:space="preserve">
+  </data>
+  <data name="RichTextEditor_SlashMenuUnorderedListDescription" xml:space="preserve">
     <value>Erstellen Sie eine ungeordnete Liste.</value>
-</data>
-<data name="RichTextEditor_SlashMenuCodeBlockDescription" xml:space="preserve">
+  </data>
+  <data name="RichTextEditor_SlashMenuCodeBlockDescription" xml:space="preserve">
     <value>Erstellen Sie einen vorformatierten Codeblock.</value>
-</data>
-<data name="RichTextEditor_SlashMenuTableDescription" xml:space="preserve">
+  </data>
+  <data name="RichTextEditor_SlashMenuTableDescription" xml:space="preserve">
     <value>Fügen Sie eine Tabelle ein.</value>
-</data>
-<data name="RichTextEditor_SlashMenuImageDescription" xml:space="preserve">
+  </data>
+  <data name="RichTextEditor_SlashMenuImageDescription" xml:space="preserve">
     <value>Fügen Sie ein Bild ein.</value>
-</data>
-<data name="RichTextEditor_SlashMenuAudioDescription" xml:space="preserve">
+  </data>
+  <data name="RichTextEditor_SlashMenuAudioDescription" xml:space="preserve">
     <value>Fügen Sie ein Audio ein.</value>
-</data>
-<data name="RichTextEditor_SlashMenuVideoDescription" xml:space="preserve">
+  </data>
+  <data name="RichTextEditor_SlashMenuVideoDescription" xml:space="preserve">
     <value>Fügen Sie ein Video ein.</value>
-</data>
-<data name="RichTextEditor_SlashMenuLinkDescription" xml:space="preserve">
+  </data>
+  <data name="RichTextEditor_SlashMenuLinkDescription" xml:space="preserve">
     <value>Fügen Sie einen Link ein.</value>
-</data>
-<data name="RichTextEditor_HorizontalLine" xml:space="preserve">
+  </data>
+  <data name="RichTextEditor_HorizontalLine" xml:space="preserve">
     <value>Horizontale Linie</value>
-</data>
+  </data>
   <data name="RichTextEditor_CodeBlock" xml:space="preserve">
     <value>Codeblock einfügen</value>
   </data>
@@ -8395,33 +8395,33 @@
     <value>Zum Schwärzen markieren</value>
   </data>
   <data name="PdfViewer_RedactPages" xml:space="preserve">
-      <value>Seiten schwärzen</value>
+    <value>Seiten schwärzen</value>
   </data>
   <data name="PdfViewer_RedactionPanel" xml:space="preserve">
-      <value>Schwärzungsbereich</value>
+    <value>Schwärzungsbereich</value>
   </data>
   <data name="PdfViewer_Redact" xml:space="preserve">
-      <value>Schwärzen</value>
+    <value>Schwärzen</value>
   </data>
   <data name="PdfViewer_Redaction" xml:space="preserve">
-      <value>Schwärzung</value>
+    <value>Schwärzung</value>
   </data>
   <data name="PdfViewer_OverlayText" xml:space="preserve">
-      <value>Überlagerungstext</value>
+    <value>Überlagerungstext</value>
   </data>
   <data name="PdfViewer_RepeatText" xml:space="preserve">
-      <value>Text wiederholen</value>
+    <value>Text wiederholen</value>
   </data>
   <data name="PdfViewer_UseOverlayText" xml:space="preserve">
-      <value>Überlagerungstext verwenden</value>
+    <value>Überlagerungstext verwenden</value>
   </data>
   <data name="PdfViewer_OutlineColor" xml:space="preserve">
-      <value>Konturfarbe</value>
+    <value>Konturfarbe</value>
   </data>
   <data name="PdfViewer_FillOpacity" xml:space="preserve">
-      <value>Füllopazität</value>
+    <value>Füllopazität</value>
   </data>
-   <data name="PdfViewer_MarkPageRange" xml:space="preserve">
+  <data name="PdfViewer_MarkPageRange" xml:space="preserve">
     <value>Seitenbereich markieren</value>
   </data>
   <data name="PdfViewer_CurrentPage" xml:space="preserve">

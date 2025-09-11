@@ -17,16 +17,17 @@ namespace ignivault.Services
         public async Task LoginAsync(string token)
         {
             await _localStorage.SetItemAsync("authToken", token);
-
-            
-
             _authProvider.NotifyUserAuthentication(token);
         }
 
         public async Task LogoutAsync()
         {
-            await _localStorage.RemoveItemAsync("authToken");
-            _authProvider.NotifyUserLogout();
+            try
+            {
+                await _localStorage.RemoveItemAsync("authToken");
+                _authProvider.NotifyUserLogout();
+            }
+            catch { }
         }
     }
 }

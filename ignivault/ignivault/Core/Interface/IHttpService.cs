@@ -10,5 +10,9 @@ namespace ignivault.Core.Interface
         public abstract Task<List<VaultItem>?> GetVaultItemsAsync();
 
         public abstract Task<bool> AddVaultItemAsync(VaultItem item);
+
+        public abstract Task<bool> UpdateVaultItem(VaultItem item);
+
+        public abstract Task<bool> DeleteVaultItem(int itemId);
     }
 }

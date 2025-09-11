@@ -45,8 +45,6 @@ namespace ignivault.API.Controllers
                 return Unauthorized();
             }
 
-            Console.WriteLine($"USER ID: {userId}");
-
             var user = await _userManager.FindByIdAsync(userId);
             if (user == null)
             {               
@@ -67,8 +65,19 @@ namespace ignivault.API.Controllers
         [HttpDelete("delete")]
         public async Task<IActionResult> DeleteVaultItem([FromQuery] int itemId)
         {
+            Console.WriteLine("Delete request for item ID: " + itemId);
             var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
-            if (userId == null) return Unauthorized();
+            if (userId == null)
+            {
+                return Unauthorized();
+            }
+
+            var user = await _userManager.FindByIdAsync(userId);
+            if (user == null)
+            {
+                return Unauthorized();
+            }
+
             var item = await _db.VaultItems.FirstOrDefaultAsync(v => v.Id == itemId && v.UserId == userId);
             if (item == null) return NotFound();
             _db.VaultItems.Remove(item);
@@ -81,14 +90,33 @@ namespace ignivault.API.Controllers
         public async Task<IActionResult> UpdateVaultItem([FromBody] VaultItem model)
         {
             var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
-            if (userId == null) return Unauthorized();
-            var item = await _db.VaultItems.FirstOrDefaultAsync(v => v.Id == model.Id && v.UserId == userId);
-            if (item == null) return NotFound();
-            
+            if (userId == null)
+            {
+                return Unauthorized();
+            }
 
+            var user = await _userManager.FindByIdAsync(userId);
+            if (user == null)
+            {
+                return Unauthorized();
+            }
+
+
+            var item = await _db.VaultItems.FirstOrDefaultAsync(v => v.Id == model.Id && v.UserId == userId);
+            if (item == null)
+            {
+                return NotFound();
+            }
+            
+            item.EncryptedData = model.EncryptedData;
+            item.Name = model.Name;
+            item.IV = model.IV;
+            item.UpdatedAt = DateTime.UtcNow;
+
+            _db.VaultItems.Update(item);
 
             await _db.SaveChangesAsync();
-            return Ok();
+            return Ok("Vault Updated");
         }
 
         #region DTOs

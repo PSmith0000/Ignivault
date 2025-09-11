@@ -1,17 +1,17 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <root>
-  <!--
-    Microsoft ResX Schema
-
+  <!-- 
+    Microsoft ResX Schema 
+    
     Version 2.0
-
-    The primary goals of this format is to allow a simple XML format
-    that is mostly human readable. The generation and parsing of the
-    various data types are done through the TypeConverter classes
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
     associated with the data types.
-
+    
     Example:
-
+    
     ... ado.net/XML headers & schema ...
     <resheader name="resmimetype">text/microsoft-resx</resheader>
     <resheader name="version">2.0</resheader>
@@ -26,36 +26,36 @@
         <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
         <comment>This is a comment</comment>
     </data>
-
-    There are any number of "resheader" rows that contain simple
+                
+    There are any number of "resheader" rows that contain simple 
     name/value pairs.
-
-    Each data row contains a name, and value. The row also contains a
-    type or mimetype. Type corresponds to a .NET class that support
-    text/value conversion through the TypeConverter architecture.
-    Classes that don't support this are serialized and stored with the
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
     mimetype set.
-
-    The mimetype is used for serialized objects, and tells the
-    ResXResourceReader how to depersist the object. This is currently not
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
     extensible. For a given mimetype the value must be set accordingly:
-
-    Note - application/x-microsoft.net.object.binary.base64 is the format
-    that the ResXResourceWriter will generate, however the reader can
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
     read any of the formats listed below.
-
+    
     mimetype: application/x-microsoft.net.object.binary.base64
-    value   : The object must be serialized with
+    value   : The object must be serialized with 
             : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
             : and then encoded with base64 encoding.
-
+    
     mimetype: application/x-microsoft.net.object.soap.base64
-    value   : The object must be serialized with
+    value   : The object must be serialized with 
             : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
             : and then encoded with base64 encoding.
 
     mimetype: application/x-microsoft.net.object.bytearray.base64
-    value   : The object must be serialized into a byte array
+    value   : The object must be serialized into a byte array 
             : using a System.ComponentModel.TypeConverter
             : and then encoded with base64 encoding.
     -->
@@ -3481,7 +3481,7 @@
     <value>https://example.com/image.png</value>
   </data>
   <data name="RichTextEditor_ImageCaption" xml:space="preserve">
-  <value>التسمية التوضيحية</value>
+    <value>التسمية التوضيحية</value>
   </data>
   <data name="RichTextEditor_ImageSizeHeader" xml:space="preserve">
     <value>Iحجم الصورة</value>
@@ -3724,10 +3724,10 @@
     <value>إظهار الصفحة الأولى</value>
   </data>
   <data name="PdfViewer_NavigateToFirstPage" xml:space="preserve">
-   <value>انتقل إلى الصفحة الأولى</value>
+    <value>انتقل إلى الصفحة الأولى</value>
   </data>
   <data name="PdfViewer_NavigateToPreviousPage" xml:space="preserve">
-   <value>انتقل إلى الصفحة السابقة</value>
+    <value>انتقل إلى الصفحة السابقة</value>
   </data>
   <data name="PdfViewer_InvalidPassword" xml:space="preserve">
     <value>كلمة سر خاطئة. حاول مرة اخرى.</value>
@@ -4012,16 +4012,16 @@
     <value>انتقل إلى صفحة</value>
   </data>
   <data name="PdfViewer_NoMatches" xml:space="preserve">
-   <value>انتهى المشاهد من البحث في المستند. لم يتم العثور على أي تطابقات</value>
+    <value>انتهى المشاهد من البحث في المستند. لم يتم العثور على أي تطابقات</value>
   </data>
   <data name="PdfViewer_NoMoreMatches" xml:space="preserve">
     <value>انتهى العارض من البحث في المستند. لم يتم العثور على مزيد من التطابقات</value>
   </data>
   <data name="PdfViewer_NoSearchMatches" xml:space="preserve">
-   <value>لم يتم العثور على أي تطابقات</value>
+    <value>لم يتم العثور على أي تطابقات</value>
   </data>
   <data name="PdfViewer_NoMoreSearchMatches" xml:space="preserve">
-   <value>لم يتم العثور على المزيد من التطابقات</value>
+    <value>لم يتم العثور على المزيد من التطابقات</value>
   </data>
   <data name="PdfViewer_Undo" xml:space="preserve">
     <value>الغاء التحميل</value>
@@ -4663,8 +4663,8 @@
     <value>مستوى المخطط التفصيلي</value>
   </data>
   <data name="DocumentEditor_BodyText" xml:space="preserve">
-  <value>نص الجسم</value>
-    </data>
+    <value>نص الجسم</value>
+  </data>
   <data name="DocumentEditor_Level1" xml:space="preserve">
     <value>المستوى 1</value>
   </data>
@@ -5698,203 +5698,203 @@
     <value>استمر مع التالي</value>
   </data>
   <data name="DocumentEditor_ScreenTip" xml:space="preserve">
-       <value>نص تلميح الشاشة</value>
-</data>
+    <value>نص تلميح الشاشة</value>
+  </data>
   <data name="DocumentEditor_KeepSource" xml:space="preserve">
-       <value>الاحتفاظ بتنسيق المصدر</value>
-</data>
+    <value>الاحتفاظ بتنسيق المصدر</value>
+  </data>
   <data name="DocumentEditor_DestinationFormat" xml:space="preserve">
-       <value>تطابق تنسيق الوجهة</value>
-</data>
+    <value>تطابق تنسيق الوجهة</value>
+  </data>
   <data name="DocumentEditor_CommentsOnly" xml:space="preserve">
-       <value>يمكنك فقط إدراج التعليقات في هذه المنطقة.</value>
-</data>
+    <value>يمكنك فقط إدراج التعليقات في هذه المنطقة.</value>
+  </data>
   <data name="DocumentEditor_RowRange" xml:space="preserve">
-       <value>يجب أن يكون عدد الصفوف بين 1 و 32767</value>
-</data>
+    <value>يجب أن يكون عدد الصفوف بين 1 و 32767</value>
+  </data>
   <data name="DocumentEditor_ColumnRange" xml:space="preserve">
-       <value>يجب أن يتراوح عدد الأعمدة بين 1 و 63</value>
-</data>
+    <value>يجب أن يتراوح عدد الأعمدة بين 1 و 63</value>
+  </data>
   <data name="DocumentEditor_Information" xml:space="preserve">
-       <value>معلومة</value>
-</data>
+    <value>معلومة</value>
+  </data>
   <data name="DocumentEditor_Dot" xml:space="preserve">
-       <value>نقطة</value>
-</data>
+    <value>نقطة</value>
+  </data>
   <data name="DocumentEditor_DashSmallGap" xml:space="preserve">
-       <value>داش فجوة صغيرة</value>
-</data>
+    <value>داش فجوة صغيرة</value>
+  </data>
   <data name="DocumentEditor_DashDot" xml:space="preserve">
-       <value>داش دوت</value>
-</data>
+    <value>داش دوت</value>
+  </data>
   <data name="DocumentEditor_ThinThickSmallGap" xml:space="preserve">
-       <value>فجوة صغيرة وسميكة ورقيقة</value>
-</data>
+    <value>فجوة صغيرة وسميكة ورقيقة</value>
+  </data>
   <data name="DocumentEditor_ThickThinSmallGap" xml:space="preserve">
-       <value>فجوة صغيرة رقيقة رقيقة</value>
-</data>
+    <value>فجوة صغيرة رقيقة رقيقة</value>
+  </data>
   <data name="DocumentEditor_ThickThinMediumGap" xml:space="preserve">
-       <value>سميكة رقيقة متوسطة الفجوة</value>
-</data>
+    <value>سميكة رقيقة متوسطة الفجوة</value>
+  </data>
   <data name="DocumentEditor_ThickThinLargeGap" xml:space="preserve">
-       <value>فجوة كبيرة رقيقة رقيقة</value>
-</data>
+    <value>فجوة كبيرة رقيقة رقيقة</value>
+  </data>
   <data name="DocumentEditor_SingleWavy" xml:space="preserve">
-       <value>واحد مائج</value>
-</data>
+    <value>واحد مائج</value>
+  </data>
   <data name="DocumentEditor_DoubleWavy" xml:space="preserve">
-       <value>مزدوج متموج</value>
-</data>
+    <value>مزدوج متموج</value>
+  </data>
   <data name="DocumentEditor_Inset" xml:space="preserve">
-       <value>أقحم</value>
-</data>
+    <value>أقحم</value>
+  </data>
   <data name="DocumentEditor_DashLargeGap" xml:space="preserve">
-       <value>داش فجوة كبيرة</value>
-</data>
+    <value>داش فجوة كبيرة</value>
+  </data>
   <data name="DocumentEditor_DashDotDot" xml:space="preserve">
-       <value>شرطة نقطة نقطة</value>
-</data>
+    <value>شرطة نقطة نقطة</value>
+  </data>
   <data name="DocumentEditor_Triple" xml:space="preserve">
-       <value>ثلاثية</value>
-</data>
+    <value>ثلاثية</value>
+  </data>
   <data name="DocumentEditor_ThinThickThinSmallGap" xml:space="preserve">
-       <value>رقيقة سميكة رقيقة فجوة صغيرة</value>
-</data>
+    <value>رقيقة سميكة رقيقة فجوة صغيرة</value>
+  </data>
   <data name="DocumentEditor_ThinThickThinMediumGap" xml:space="preserve">
-       <value>رقيقة سميكة رقيقة متوسطة الفجوة</value>
-</data>
+    <value>رقيقة سميكة رقيقة متوسطة الفجوة</value>
+  </data>
   <data name="DocumentEditor_ThinThickThinLargeGap" xml:space="preserve">
-       <value>رقيقة سميكة رقيقة فجوة كبيرة</value>
-</data>
+    <value>رقيقة سميكة رقيقة فجوة كبيرة</value>
+  </data>
   <data name="DocumentEditor_DashDotStroked" xml:space="preserve">
-       <value>داش دوت مخططة</value>
-</data>
+    <value>داش دوت مخططة</value>
+  </data>
   <data name="DocumentEditor_Engrave3D" xml:space="preserve">
-       <value>نقش</value>
-</data>
+    <value>نقش</value>
+  </data>
   <data name="DocumentEditor_Thick" xml:space="preserve">
-       <value>سميك</value>
-</data>
+    <value>سميك</value>
+  </data>
   <data name="DocumentEditor_Outset" xml:space="preserve">
-       <value>البداية</value>
-</data>
+    <value>البداية</value>
+  </data>
   <data name="DocumentEditor_Emboss3D" xml:space="preserve">
-       <value>النقش</value>
-</data>
+    <value>النقش</value>
+  </data>
   <data name="DocumentEditor_ThinThickLargeGap" xml:space="preserve">
-       <value>رقيقة سميكة فجوة كبيرة</value>
-</data>
+    <value>رقيقة سميكة فجوة كبيرة</value>
+  </data>
   <data name="DocumentEditor_ThinThickMediumGap" xml:space="preserve">
-       <value>رقيقة متوسطة الفجوة سميكة</value>
-</data>
+    <value>رقيقة متوسطة الفجوة سميكة</value>
+  </data>
   <data name="DocumentEditor_RegularText" xml:space="preserve">
-       <value>نص عادي</value>
-</data>
+    <value>نص عادي</value>
+  </data>
   <data name="DocumentEditor_Date" xml:space="preserve">
-       <value>تاريخ</value>
-</data>
+    <value>تاريخ</value>
+  </data>
   <data name="DocumentEditor_Uppercase" xml:space="preserve">
-  <value>الأحرف الكبيرة</value>
-</data>
+    <value>الأحرف الكبيرة</value>
+  </data>
   <data name="DocumentEditor_Lowercase" xml:space="preserve">
     <value>أحرف صغيرة</value>
-</data>
+  </data>
   <data name="DocumentEditorContainer_Changecase" xml:space="preserve">
-  <value>تغيير الحالة</value>
+    <value>تغيير الحالة</value>
   </data>
   <data name="DocumentEditorContainer_Uppercase" xml:space="preserve">
-  <value>الأحرف الكبيرة</value>
+    <value>الأحرف الكبيرة</value>
   </data>
   <data name="DocumentEditorContainer_Lowercase" xml:space="preserve">
-  <value>أحرف صغيرة</value>
+    <value>أحرف صغيرة</value>
   </data>
   <data name="DocumentEditorContainer_SentenceCase" xml:space="preserve">
-  <value>حالة الجملة</value>
+    <value>حالة الجملة</value>
   </data>
   <data name="DocumentEditorContainer_CapitalizeEachWord" xml:space="preserve">
-  <value>تكبير كل كلمة</value>
+    <value>تكبير كل كلمة</value>
   </data>
   <data name="DocumentEditorContainer_ToggleCase" xml:space="preserve">
-  <value>حالة تبديل</value>
-</data>
+    <value>حالة تبديل</value>
+  </data>
   <data name="DocumentEditor_FirstCapital" xml:space="preserve">
-       <value>فيرست كابيتال</value>
-</data>
+    <value>فيرست كابيتال</value>
+  </data>
   <data name="DocumentEditor_Titlecase" xml:space="preserve">
-       <value>حالة العنوان</value>
-</data>
+    <value>حالة العنوان</value>
+  </data>
   <data name="DocumentEditor_MoveFrom" xml:space="preserve">
-       <value>انتقل من</value>
-</data>
+    <value>انتقل من</value>
+  </data>
   <data name="DocumentEditor_MoveTo" xml:space="preserve">
-       <value>الانتقال إلى</value>
-</data>
+    <value>الانتقال إلى</value>
+  </data>
   <data name="DocumentEditor_Px" xml:space="preserve">
-       <value>مقصف</value>
-</data>
+    <value>مقصف</value>
+  </data>
   <data name="DocumentEditor_ReadOnlyProtection" xml:space="preserve">
-       <value>يمكنك التعديل في هذه المنطقة.</value>
-</data>
+    <value>يمكنك التعديل في هذه المنطقة.</value>
+  </data>
   <data name="DocumentEditor_SectionBreakNextPage" xml:space="preserve">
-<value>فاصل مقطعي (الصفحة التالية)</value>
-</data>
+    <value>فاصل مقطعي (الصفحة التالية)</value>
+  </data>
   <data name="DocumentEditor_PageBreak" xml:space="preserve">
-<value>فاصل صفحة</value>
-</data>
+    <value>فاصل صفحة</value>
+  </data>
   <data name="DocumentEditor_ColumnBreak" xml:space="preserve">
-<value>فاصل العمود</value>
-</data>
+    <value>فاصل العمود</value>
+  </data>
   <data name="DocumentEditor_One" xml:space="preserve">
-<value>واحد</value>
-</data>
+    <value>واحد</value>
+  </data>
   <data name="DocumentEditor_Two" xml:space="preserve">
-<value>اثنين</value>
-</data>
+    <value>اثنين</value>
+  </data>
   <data name="DocumentEditor_Three" xml:space="preserve">
-<value>ثلاثة</value>
-</data>
+    <value>ثلاثة</value>
+  </data>
   <data name="DocumentEditor_Presets" xml:space="preserve">
-<value>الإعدادات المسبقة</value>
-</data>
+    <value>الإعدادات المسبقة</value>
+  </data>
   <data name="DocumentEditor_Columns" xml:space="preserve">
-<value>الأعمدة</value>
-</data>
+    <value>الأعمدة</value>
+  </data>
   <data name="DocumentEditor_SplitToColumns" xml:space="preserve">
-<value>قسّم النص إلى عمودين أو أكثر</value>
-</data>
+    <value>قسّم النص إلى عمودين أو أكثر</value>
+  </data>
   <data name="DocumentEditor_LineBetweenColumn" xml:space="preserve">
-<value>خط بين العمود</value>
-</data>
+    <value>خط بين العمود</value>
+  </data>
   <data name="DocumentEditor_WidthAndSpacing" xml:space="preserve">
-<value>العرض والتباعد</value>
-</data>
+    <value>العرض والتباعد</value>
+  </data>
   <data name="DocumentEditor_EqualColumnWidth" xml:space="preserve">
-<value>عرض عمود متساوي</value>
-</data>
+    <value>عرض عمود متساوي</value>
+  </data>
   <data name="DocumentEditor_Column" xml:space="preserve">
-<value>عمودي</value>
-</data>
+    <value>عمودي</value>
+  </data>
   <data name="DocumentEditor_SectionBreakContinuous" xml:space="preserve">
-<value>فاصل مقطعي (مستمر)</value>
-</data>
+    <value>فاصل مقطعي (مستمر)</value>
+  </data>
   <data name="DocumentEditor_PasteContentDialog" xml:space="preserve">
-  <value>نظرًا لسياسة أمان المتصفح ، يتم تقييد اللصق من حافظة النظام. بدلاً من ذلك ، استخدم اختصار لوحة المفاتيح</value>
-</data>
+    <value>نظرًا لسياسة أمان المتصفح ، يتم تقييد اللصق من حافظة النظام. بدلاً من ذلك ، استخدم اختصار لوحة المفاتيح</value>
+  </data>
   <data name="DocumentEditor_PasteCheckBoxContentDialog" xml:space="preserve">
-  <value>لا تظهر مرة أخرى</value>
-</data>
+    <value>لا تظهر مرة أخرى</value>
+  </data>
   <data name="DocumentEditorContainer_Columns" xml:space="preserve">
-<value>الأعمدة</value>
-</data>
+    <value>الأعمدة</value>
+  </data>
   <data name="DocumentEditorContainer_ShowHiddenMarks" xml:space="preserve">
-<value>إظهار الأحرف المخفية مثل المسافات وعلامات الجدولة وعلامات الفقرات والفواصل. (Ctrl + *)</value>
-</data>
+    <value>إظهار الأحرف المخفية مثل المسافات وعلامات الجدولة وعلامات الفقرات والفواصل. (Ctrl + *)</value>
+  </data>
   <data name="DocumentEditorContainer_RegularTooltip" xml:space="preserve">
-       <value>عادي</value>
-</data>
+    <value>عادي</value>
+  </data>
   <data name="DocumentEditorContainer_BoldItalicTooltip" xml:space="preserve">
-       <value>مائل غامق</value>
-</data>
+    <value>مائل غامق</value>
+  </data>
   <data name="DocumentEditorContainer_New" xml:space="preserve">
     <value>جديد</value>
   </data>
@@ -6379,7 +6379,7 @@
     <value>يمكنك التحرير في هذه المنطقة ، ولكن سيتم تعقب كل التغييرات</value>
   </data>
   <data name="DocumentEditor_UnsupportedFormat" xml:space="preserve">
-  	<value>تنسيق الملف الذي حددته غير مدعوم. الرجاء اختيار تنسيق صالح.</value>
+    <value>تنسيق الملف الذي حددته غير مدعوم. الرجاء اختيار تنسيق صالح.</value>
   </data>
   <data name="DocumentEditor_InvalidFile" xml:space="preserve">
     <value>كانت هناك مشكلة في فتح هذا المستند</value>
@@ -6397,59 +6397,59 @@
     <value>إظهار جزء الخصائص</value>
   </data>
   <data name="DocumentEditorContainer_HidePropertiesPane" xml:space="preserve">
-  <value>إخفاء جزء الخصائص</value>
-</data>
+    <value>إخفاء جزء الخصائص</value>
+  </data>
   <data name="DocumentEditorContainer_SectionBreakContinuous" xml:space="preserve">
-  <value>مستمر</value>
-</data>
+    <value>مستمر</value>
+  </data>
   <data name="DocumentEditorContainer_ColumnBreak" xml:space="preserve">
-  <value>عمود</value>
-</data>
+    <value>عمود</value>
+  </data>
   <data name="DocumentEditorContainer_PageBreak" xml:space="preserve">
-  <value>صفحة</value>
-</data>
+    <value>صفحة</value>
+  </data>
   <data name="DocumentEditorContainer_SectionBreak" xml:space="preserve">
-  <value>الصفحة التالية</value>
-</data>
+    <value>الصفحة التالية</value>
+  </data>
   <data name="DocumentEditorContainer_PageBreaks" xml:space="preserve">
-  <value>فواصل الصفحة</value>
-</data>
+    <value>فواصل الصفحة</value>
+  </data>
   <data name="DocumentEditorContainer_SectionBreaks" xml:space="preserve">
-  <value>فواصل القسم</value>
-</data>
+    <value>فواصل القسم</value>
+  </data>
   <data name="DocumentEditorContainer_UnsupportedHyperLink" xml:space="preserve">
-  <value>عنوان هذا الموقع غير صالح. تحقق من العنوان ثم حاول مرة أخرى.</value>
-</data>
+    <value>عنوان هذا الموقع غير صالح. تحقق من العنوان ثم حاول مرة أخرى.</value>
+  </data>
   <data name="DocumentEditorContainer_Ok" xml:space="preserve">
-  <value>موافق</value>
-</data>
+    <value>موافق</value>
+  </data>
   <data name="Gantt_Touch_DialogTextOnClickingConnectorPoint" xml:space="preserve">
-  <value>اختر مهمة أخرى</value>
-</data>
+    <value>اختر مهمة أخرى</value>
+  </data>
   <data name="Gantt_Touch_DialogTextOnSelectingTaskbar" xml:space="preserve">
-  <value>حدد موضع الموصل</value>
-</data>
+    <value>حدد موضع الموصل</value>
+  </data>
   <data name="Gantt_Touch_LeftButton" xml:space="preserve">
-  <value>اليسار</value>
-</data>
+    <value>اليسار</value>
+  </data>
   <data name="Gantt_Touch_RightButton" xml:space="preserve">
-  <value>حق</value>
-</data>
+    <value>حق</value>
+  </data>
   <data name="PdfViewer_ExportXFDF" xml:space="preserve">
-  <value>تصدير التعليق التوضيحي إلى ملف XFDF</value>
-</data>
+    <value>تصدير التعليق التوضيحي إلى ملف XFDF</value>
+  </data>
   <data name="PdfViewer_ImportXFDF" xml:space="preserve">
-  <value>Nhập chú thích từ tệp XFDF</value>
-</data>
+    <value>Nhập chú thích từ tệp XFDF</value>
+  </data>
   <data name="Predefined_Dialog_Title" xml:space="preserve">
-  <value>معلومة</value>
-</data>
+    <value>معلومة</value>
+  </data>
   <data name="PivotView_StackedLine" xml:space="preserve">
-  <value>خط مكدس</value>
-</data>
+    <value>خط مكدس</value>
+  </data>
   <data name="PivotView_StackedLine100" xml:space="preserve">
-  <value>خط مكدس مائة بالمائة</value>
-</data>
+    <value>خط مكدس مائة بالمائة</value>
+  </data>
   <data name="PivotView_None" xml:space="preserve">
     <value>لا أحد</value>
   </data>
@@ -6523,22 +6523,22 @@
     <value>قسم</value>
   </data>
   <data name="DocumentEditor_OddPageHeader" xml:space="preserve">
-  <value>رأس الصفحة الفردية</value>
+    <value>رأس الصفحة الفردية</value>
   </data>
   <data name="DocumentEditor_OddPageFooter" xml:space="preserve">
-  <value>تذييل الصفحة الفردية</value>
+    <value>تذييل الصفحة الفردية</value>
   </data>
   <data name="DocumentEditor_EvenPageHeader" xml:space="preserve">
-  <value>حتى رأس الصفحة</value>
+    <value>حتى رأس الصفحة</value>
   </data>
   <data name="DocumentEditor_EvenPageFooter" xml:space="preserve">
-  <value>حتى تذييل الصفحة</value>
+    <value>حتى تذييل الصفحة</value>
   </data>
   <data name="DocumentEditor_FirstPageHeader" xml:space="preserve">
-  <value>رأس الصفحة الأولى</value>
+    <value>رأس الصفحة الأولى</value>
   </data>
   <data name="DocumentEditor_FirstPageFooter" xml:space="preserve">
-  <value>تذييل الصفحة الأولى</value>
+    <value>تذييل الصفحة الأولى</value>
   </data>
   <data name="DocumentEditor_And" xml:space="preserve">
     <value>و</value>
@@ -6565,83 +6565,83 @@
     <value>قم بإسقاط صورتك هنا أو</value>
   </data>
   <data name="DocumentEditorContainer_TabStopPosition" xml:space="preserve">
-<value>موضع توقف علامة التبويب</value>
-</data>
+    <value>موضع توقف علامة التبويب</value>
+  </data>
   <data name="DocumentEditorContainer_DefaultTabStops" xml:space="preserve">
-<value>علامات التبويب الافتراضية</value>
-</data>
+    <value>علامات التبويب الافتراضية</value>
+  </data>
   <data name="DocumentEditorContainer_TabStopsCleared" xml:space="preserve">
-<value>علامات التبويب المراد مسحها</value>
-</data>
+    <value>علامات التبويب المراد مسحها</value>
+  </data>
   <data name="DocumentEditorContainer_Tabs" xml:space="preserve">
-<value>نوافذ التبويب</value>
-</data>
+    <value>نوافذ التبويب</value>
+  </data>
   <data name="DocumentEditor_Set" xml:space="preserve">
-<value>تعيين</value>
-</data>
+    <value>تعيين</value>
+  </data>
   <data name="DocumentEditor_Clear" xml:space="preserve">
-<value>واضح</value>
-</data>
+    <value>واضح</value>
+  </data>
   <data name="DocumentEditor_ClearAll" xml:space="preserve">
-<value>امسح الكل</value>
-</data>
+    <value>امسح الكل</value>
+  </data>
   <data name="DocumentEditor_Decimal" xml:space="preserve">
-<value>عدد عشري</value>
-</data>
+    <value>عدد عشري</value>
+  </data>
   <data name="DocumentEditor_Bar" xml:space="preserve">
-<value>حاجِز</value>
-</data>
+    <value>حاجِز</value>
+  </data>
   <data name="DocumentEditorContainer_Alignment" xml:space="preserve">
-<value>تنسيق</value>
-</data>
+    <value>تنسيق</value>
+  </data>
   <data name="DocumentEditorContainer_Leader" xml:space="preserve">
-<value>قائد</value>
-</data>
+    <value>قائد</value>
+  </data>
   <data name="DocumentEditorContainer_All" xml:space="preserve">
-<value>الجميع</value>
-</data>
+    <value>الجميع</value>
+  </data>
   <data name="DocumentEditor_BottomMargin" xml:space="preserve">
-<value>الهامش السفلي</value>
-</data>
+    <value>الهامش السفلي</value>
+  </data>
   <data name="DocumentEditor_FirstLineIndent" xml:space="preserve">
-<value>الأولى المسافة البادئة للسطر</value>
-</data>
+    <value>الأولى المسافة البادئة للسطر</value>
+  </data>
   <data name="DocumentEditor_HangingIndent" xml:space="preserve">
-<value>المسافة البادئة المعلقة</value>
-</data>
+    <value>المسافة البادئة المعلقة</value>
+  </data>
   <data name="DocumentEditor_LeftIndent" xml:space="preserve">
-<value>المسافة البادئة اليسرى</value>
-</data>
+    <value>المسافة البادئة اليسرى</value>
+  </data>
   <data name="DocumentEditor_LeftMargin" xml:space="preserve">
-<value>الهامش الأيسر</value>
-</data>
+    <value>الهامش الأيسر</value>
+  </data>
   <data name="DocumentEditor_MoveTableColumn" xml:space="preserve">
-<value>نقل عمود الجدول</value>
-</data>
+    <value>نقل عمود الجدول</value>
+  </data>
   <data name="DocumentEditor_RightIndent" xml:space="preserve">
-<value>المسافة البادئة اليمنى</value>
-</data>
+    <value>المسافة البادئة اليمنى</value>
+  </data>
   <data name="DocumentEditor_RightMargin" xml:space="preserve">
-<value>الهامش الأيمن</value>
-</data>
+    <value>الهامش الأيمن</value>
+  </data>
   <data name="DocumentEditor_TopMargin" xml:space="preserve">
-<value>الهامش العلوي</value>
-</data>
+    <value>الهامش العلوي</value>
+  </data>
   <data name="DocumentEditor_LeftTab" xml:space="preserve">
-<value>علامة التبويب اليسرى</value>
-</data>
+    <value>علامة التبويب اليسرى</value>
+  </data>
   <data name="DocumentEditor_CenterTab" xml:space="preserve">
-<value>علامة التبويب المركزية</value>
-</data>
+    <value>علامة التبويب المركزية</value>
+  </data>
   <data name="DocumentEditor_RightTab" xml:space="preserve">
-<value>علامة التبويب اليمنى</value>
-</data>
+    <value>علامة التبويب اليمنى</value>
+  </data>
   <data name="DocumentEditor_DecimalTab" xml:space="preserve">
-<value>علامة التبويب العشرية</value>
-</data>
+    <value>علامة التبويب العشرية</value>
+  </data>
   <data name="DocumentEditor_BarTab" xml:space="preserve">
-<value>شريط التبويب</value>
-</data>
+    <value>شريط التبويب</value>
+  </data>
   <data name="ImageEditor_Annotation" xml:space="preserve">
     <value>حاشية. ملاحظة</value>
   </data>
@@ -6855,7 +6855,7 @@
   <data name="Spreadsheet_ANDFormula" xml:space="preserve">
     <value>يُرجع TRUE إذا كانت كل وسيطاته TRUE</value>
   </data>
-    <data name="Spreadsheet_AREAS" xml:space="preserve">
+  <data name="Spreadsheet_AREAS" xml:space="preserve">
     <value>يُرجع عدد المناطق في مرجع</value>
   </data>
   <data name="Spreadsheet_ARRAYTOTEXT" xml:space="preserve">
@@ -6885,7 +6885,7 @@
   <data name="Spreadsheet_AVERAGE" xml:space="preserve">
     <value>يُرجع متوسط وسيطاته</value>
   </data>
-    <data name="Spreadsheet_AVERAGEA" xml:space="preserve">
+  <data name="Spreadsheet_AVERAGEA" xml:space="preserve">
     <value>يعيد متوسط وسيطاته</value>
   </data>
   <data name="Spreadsheet_AVERAGEIF" xml:space="preserve">
@@ -6933,7 +6933,7 @@
   <data name="Spreadsheet_CHAR" xml:space="preserve">
     <value>يعيد الحرف المحدد برقم الكود</value>
   </data>
-    <data name="Spreadsheet_CHIDIST" xml:space="preserve">
+  <data name="Spreadsheet_CHIDIST" xml:space="preserve">
     <value>يُرجع الاحتمال أحادي الطرف لتوزيع مربع كاي</value>
   </data>
   <data name="Spreadsheet_CHIINV" xml:space="preserve">
@@ -7798,10 +7798,10 @@
     <value>حساب المصنف</value>
   </data>
   <data name="Spreadsheet_Description" xml:space="preserve">
-      <value>وصف</value>
+    <value>وصف</value>
   </data>
   <data name="Spreadsheet_PickCategory" xml:space="preserve">
-      <value>اختر فئة</value>
+    <value>اختر فئة</value>
   </data>
   <data name="Spreadsheet_AllUsers" xml:space="preserve">
     <value>السماح لجميع مستخدمي ورقة العمل هذه بـ</value>
@@ -8135,7 +8135,7 @@
   </data>
   <data name="Spreadsheet_HorizontalAlignment" xml:space="preserve">
     <value>المحاذاة الأفقية</value>
-  </data> 
+  </data>
   <data name="Spreadsheet_WrapText" xml:space="preserve">
     <value>التفاف النص</value>
   </data>
@@ -8341,7 +8341,7 @@
     <value>إدراج كتلة التعليمات البرمجية</value>
   </data>
   <data name="_Empty[1]" xml:space="preserve">
-    <value></value>
+    <value />
   </data>
   <data name="SpeechToText_Aborted_Error" xml:space="preserve">
     <value>تم إحباط التعرف على الكلام.</value>
@@ -8392,31 +8392,31 @@
     <value>تحديد للمحو</value>
   </data>
   <data name="PdfViewer_RedactPages" xml:space="preserve">
-      <value>محو الصفحات</value>
+    <value>محو الصفحات</value>
   </data>
   <data name="PdfViewer_RedactionPanel" xml:space="preserve">
-      <value>لوحة المحو</value>
+    <value>لوحة المحو</value>
   </data>
   <data name="PdfViewer_Redact" xml:space="preserve">
-      <value>محو</value>
+    <value>محو</value>
   </data>
   <data name="PdfViewer_Redaction" xml:space="preserve">
-      <value>المحو</value>
+    <value>المحو</value>
   </data>
   <data name="PdfViewer_OverlayText" xml:space="preserve">
-      <value>نص التراكب</value>
+    <value>نص التراكب</value>
   </data>
   <data name="PdfViewer_RepeatText" xml:space="preserve">
-      <value>تكرار النص</value>
+    <value>تكرار النص</value>
   </data>
   <data name="PdfViewer_UseOverlayText" xml:space="preserve">
-      <value>استخدام نص التراكب</value>
+    <value>استخدام نص التراكب</value>
   </data>
   <data name="PdfViewer_OutlineColor" xml:space="preserve">
-      <value>لون المخطط</value>
+    <value>لون المخطط</value>
   </data>
   <data name="PdfViewer_FillOpacity" xml:space="preserve">
-      <value>شفافية التعبئة</value>
+    <value>شفافية التعبئة</value>
   </data>
   <data name="PdfViewer_MarkPageRange" xml:space="preserve">
     <value>وضع علامة على نطاق الصفحات</value>

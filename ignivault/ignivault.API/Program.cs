@@ -38,11 +38,13 @@ namespace ignivault.API
             .AddEntityFrameworkStores<AppDbContext>()
             .AddDefaultTokenProviders();
 
+
+
             builder.Services.AddCors(options =>
             {
                 options.AddPolicy("AllowBlazor", policy =>
                 {
-                    policy.WithOrigins(new string[] { "https://localhost:7085", "https://localhost:7185" })
+                    policy.WithOrigins(new string[] { "https://localhost:7085", "https://localhost:7185", "http://localhost:65453" })
                           .AllowAnyHeader()
                           .AllowAnyMethod();
                 });

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ignivault.Data.Models.Data;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -13,6 +14,8 @@ namespace ignivault.Data
     public class RecordTypes
     {
         public record LoginDetail(string Name, string URL, string Username, string Password);
+
+        public record ItemUpdate(VaultItem VaultItem, bool Modified);
     }
 }
 

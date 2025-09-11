@@ -1,7 +1,9 @@
 ﻿@page "/"
 @inject NavigationManager Navigation
 @inject AuthenticationStateProvider AuthenticationStateProvider
-
+@inject VaultService VaultService
+@inject AccountService AccountService
+@inject AuthService AuthService
 <PageTitle>IgniVault</PageTitle>
 
 
@@ -10,15 +12,33 @@
     {
         var authState = await AuthenticationStateProvider.GetAuthenticationStateAsync();
         var user = authState.User;
+        bool redirect = false;
 
-        if (user.Identity is not null && user.Identity.IsAuthenticated)
+        if (user.Identity is not null && user.Identity.IsAuthenticated && await CheckTokenAndMasterKey())
+        {
+            redirect = true;
+        }
+
+        if (redirect)
         {
             Navigation.NavigateTo("/dashboard");
         }
         else
         {
-            Navigation.NavigateTo("/login");
+            await AuthService.LogoutAsync();
+            Navigation.NavigateTo("/login", true);
         }
+    }
+
+    //this should return false each time the page is closed and opened again as the MK becomes null
+    public async Task<bool> CheckTokenAndMasterKey()
+    {
+        if (VaultService.IsMasterKeySet() && await AccountService.IsTokenSetAsync())
+        {
+            return true;
+        }
+
+        return false;
     }
 }
 
