@@ -1,17 +1,17 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <root>
-  <!--
-    Microsoft ResX Schema
-
+  <!-- 
+    Microsoft ResX Schema 
+    
     Version 2.0
-
-    The primary goals of this format is to allow a simple XML format
-    that is mostly human readable. The generation and parsing of the
-    various data types are done through the TypeConverter classes
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
     associated with the data types.
-
+    
     Example:
-
+    
     ... ado.net/XML headers & schema ...
     <resheader name="resmimetype">text/microsoft-resx</resheader>
     <resheader name="version">2.0</resheader>
@@ -26,36 +26,36 @@
         <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
         <comment>This is a comment</comment>
     </data>
-
-    There are any number of "resheader" rows that contain simple
+                
+    There are any number of "resheader" rows that contain simple 
     name/value pairs.
-
-    Each data row contains a name, and value. The row also contains a
-    type or mimetype. Type corresponds to a .NET class that support
-    text/value conversion through the TypeConverter architecture.
-    Classes that don't support this are serialized and stored with the
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
     mimetype set.
-
-    The mimetype is used for serialized objects, and tells the
-    ResXResourceReader how to depersist the object. This is currently not
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
     extensible. For a given mimetype the value must be set accordingly:
-
-    Note - application/x-microsoft.net.object.binary.base64 is the format
-    that the ResXResourceWriter will generate, however the reader can
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
     read any of the formats listed below.
-
+    
     mimetype: application/x-microsoft.net.object.binary.base64
-    value   : The object must be serialized with
+    value   : The object must be serialized with 
             : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
             : and then encoded with base64 encoding.
-
+    
     mimetype: application/x-microsoft.net.object.soap.base64
-    value   : The object must be serialized with
+    value   : The object must be serialized with 
             : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
             : and then encoded with base64 encoding.
 
     mimetype: application/x-microsoft.net.object.bytearray.base64
-    value   : The object must be serialized into a byte array
+    value   : The object must be serialized into a byte array 
             : using a System.ComponentModel.TypeConverter
             : and then encoded with base64 encoding.
     -->
@@ -583,7 +583,7 @@
     <value>降序</value>
   </data>
   <data name="FileManager_None" xml:space="preserve">
-     <value>没有</value>
+    <value>没有</value>
   </data>
   <data name="FileManager_ViewLargeIcons" xml:space="preserve">
     <value>大圖標</value>
@@ -763,16 +763,16 @@
     <value>放大</value>
   </data>
   <data name="Maps_ZoomIn" xml:space="preserve">
-      <value>放大</value>
+    <value>放大</value>
   </data>
   <data name="Maps_ZoomOut" xml:space="preserve">
-      <value>縮小</value>
+    <value>縮小</value>
   </data>
   <data name="Maps_Reset" xml:space="preserve">
-      <value>重啟</value>
+    <value>重啟</value>
   </data>
   <data name="Maps_Pan" xml:space="preserve">
-      <value>泛</value>
+    <value>泛</value>
   </data>
   <data name="Gantt_EmptyRecord" xml:space="preserve">
     <value>無記錄可顯示</value>
@@ -4006,16 +4006,16 @@
     <value>转到页面</value>
   </data>
   <data name="PdfViewer_NoMatches" xml:space="preserve">
-   <value>查看者已完成文档搜索。未找到匹配项</value>
+    <value>查看者已完成文档搜索。未找到匹配项</value>
   </data>
   <data name="PdfViewer_NoMoreMatches" xml:space="preserve">
-   <value>查看器已完成文档搜索。找不到更多匹配项</value>
+    <value>查看器已完成文档搜索。找不到更多匹配项</value>
   </data>
   <data name="PdfViewer_NoSearchMatches" xml:space="preserve">
-   <value>未找到匹配项</value>
+    <value>未找到匹配项</value>
   </data>
   <data name="PdfViewer_NoMoreSearchMatches" xml:space="preserve">
-   <value>没有找到更多匹配项</value>
+    <value>没有找到更多匹配项</value>
   </data>
   <data name="PdfViewer_Undo" xml:space="preserve">
     <value>撤消</value>
@@ -5692,185 +5692,185 @@
     <value>继续下一步</value>
   </data>
   <data name="DocumentEditor_ScreenTip" xml:space="preserve">
-       <value>屏幕提示文本</value>
-</data>
+    <value>屏幕提示文本</value>
+  </data>
   <data name="DocumentEditor_KeepSource" xml:space="preserve">
-       <value>保持源格式</value>
-</data>
+    <value>保持源格式</value>
+  </data>
   <data name="DocumentEditor_DestinationFormat" xml:space="preserve">
-       <value>匹配目标格式</value>
-</data>
+    <value>匹配目标格式</value>
+  </data>
   <data name="DocumentEditor_CommentsOnly" xml:space="preserve">
-       <value>您只能在该区域中插入评论。</value>
-</data>
+    <value>您只能在该区域中插入评论。</value>
+  </data>
   <data name="DocumentEditor_RowRange" xml:space="preserve">
-       <value>行数必须介于 1 和 32767 之间</value>
-</data>
+    <value>行数必须介于 1 和 32767 之间</value>
+  </data>
   <data name="DocumentEditor_ColumnRange" xml:space="preserve">
-       <value>列数必须介于 1 到 63 之间</value>
-</data>
+    <value>列数必须介于 1 到 63 之间</value>
+  </data>
   <data name="DocumentEditor_Information" xml:space="preserve">
-       <value>信息</value>
-</data>
+    <value>信息</value>
+  </data>
   <data name="DocumentEditor_Dot" xml:space="preserve">
-       <value>点</value>
-</data>
+    <value>点</value>
+  </data>
   <data name="DocumentEditor_DashSmallGap" xml:space="preserve">
-       <value>短跑小缺口</value>
-</data>
+    <value>短跑小缺口</value>
+  </data>
   <data name="DocumentEditor_DashDot" xml:space="preserve">
-       <value>破折号</value>
-</data>
+    <value>破折号</value>
+  </data>
   <data name="DocumentEditor_ThinThickSmallGap" xml:space="preserve">
-       <value>薄厚小间隙</value>
-</data>
+    <value>薄厚小间隙</value>
+  </data>
   <data name="DocumentEditor_ThickThinSmallGap" xml:space="preserve">
-       <value>厚薄小间隙</value>
-</data>
+    <value>厚薄小间隙</value>
+  </data>
   <data name="DocumentEditor_ThickThinMediumGap" xml:space="preserve">
-       <value>厚薄中间隙</value>
-</data>
+    <value>厚薄中间隙</value>
+  </data>
   <data name="DocumentEditor_ThickThinLargeGap" xml:space="preserve">
-       <value>厚薄大间隙</value>
-</data>
+    <value>厚薄大间隙</value>
+  </data>
   <data name="DocumentEditor_SingleWavy" xml:space="preserve">
-       <value>单波浪</value>
-</data>
+    <value>单波浪</value>
+  </data>
   <data name="DocumentEditor_DoubleWavy" xml:space="preserve">
-       <value>双波浪</value>
-</data>
+    <value>双波浪</value>
+  </data>
   <data name="DocumentEditor_Inset" xml:space="preserve">
-       <value>插图</value>
-</data>
+    <value>插图</value>
+  </data>
   <data name="DocumentEditor_DashLargeGap" xml:space="preserve">
-       <value>短跑大差距</value>
-</data>
+    <value>短跑大差距</value>
+  </data>
   <data name="DocumentEditor_DashDotDot" xml:space="preserve">
-       <value>点划线点</value>
-</data>
+    <value>点划线点</value>
+  </data>
   <data name="DocumentEditor_Triple" xml:space="preserve">
-       <value>三倍</value>
-</data>
+    <value>三倍</value>
+  </data>
   <data name="DocumentEditor_ThinThickThinSmallGap" xml:space="preserve">
-       <value>薄厚薄小间隙</value>
-</data>
+    <value>薄厚薄小间隙</value>
+  </data>
   <data name="DocumentEditor_ThinThickThinMediumGap" xml:space="preserve">
-       <value>薄厚薄中间隙</value>
-</data>
+    <value>薄厚薄中间隙</value>
+  </data>
   <data name="DocumentEditor_ThinThickThinLargeGap" xml:space="preserve">
-       <value>薄厚薄大间隙</value>
-</data>
+    <value>薄厚薄大间隙</value>
+  </data>
   <data name="DocumentEditor_DashDotStroked" xml:space="preserve">
-       <value>划点划线</value>
-</data>
+    <value>划点划线</value>
+  </data>
   <data name="DocumentEditor_Engrave3D" xml:space="preserve">
-       <value>雕刻3D</value>
-</data>
+    <value>雕刻3D</value>
+  </data>
   <data name="DocumentEditor_Thick" xml:space="preserve">
-       <value>厚的</value>
-</data>
+    <value>厚的</value>
+  </data>
   <data name="DocumentEditor_Outset" xml:space="preserve">
-       <value>一开始</value>
-</data>
+    <value>一开始</value>
+  </data>
   <data name="DocumentEditor_Emboss3D" xml:space="preserve">
-       <value>浮雕3D</value>
-</data>
+    <value>浮雕3D</value>
+  </data>
   <data name="DocumentEditor_ThinThickLargeGap" xml:space="preserve">
-       <value>薄厚大间隙</value>
-</data>
+    <value>薄厚大间隙</value>
+  </data>
   <data name="DocumentEditor_ThinThickMediumGap" xml:space="preserve">
-       <value>薄厚中等间隙</value>
-</data>
+    <value>薄厚中等间隙</value>
+  </data>
   <data name="DocumentEditor_RegularText" xml:space="preserve">
-       <value>常规文本</value>
-</data>
+    <value>常规文本</value>
+  </data>
   <data name="DocumentEditor_Date" xml:space="preserve">
-       <value>日期</value>
-</data>
+    <value>日期</value>
+  </data>
   <data name="DocumentEditor_Uppercase" xml:space="preserve">
-       <value>大写</value>
-</data>
+    <value>大写</value>
+  </data>
   <data name="DocumentEditor_Lowercase" xml:space="preserve">
-       <value>小写</value>
-</data>
+    <value>小写</value>
+  </data>
   <data name="DocumentEditor_FirstCapital" xml:space="preserve">
-       <value>第一资本</value>
-</data>
+    <value>第一资本</value>
+  </data>
   <data name="DocumentEditor_Titlecase" xml:space="preserve">
-       <value>标题案例</value>
-</data>
+    <value>标题案例</value>
+  </data>
   <data name="DocumentEditor_MoveFrom" xml:space="preserve">
-       <value>搬离</value>
-</data>
+    <value>搬离</value>
+  </data>
   <data name="DocumentEditor_MoveTo" xml:space="preserve">
-       <value>搬去</value>
-</data>
+    <value>搬去</value>
+  </data>
   <data name="DocumentEditor_Px" xml:space="preserve">
-       <value>像素</value>
-</data>
+    <value>像素</value>
+  </data>
   <data name="DocumentEditor_ReadOnlyProtection" xml:space="preserve">
-       <value>您可以在该区域进行编辑。</value>
-</data>
+    <value>您可以在该区域进行编辑。</value>
+  </data>
   <data name="DocumentEditor_SectionBreakNextPage" xml:space="preserve">
-<value>分节符（下一页）</value>
-</data>
+    <value>分节符（下一页）</value>
+  </data>
   <data name="DocumentEditor_PageBreak" xml:space="preserve">
-<value>分页符</value>
-</data>
+    <value>分页符</value>
+  </data>
   <data name="DocumentEditor_ColumnBreak" xml:space="preserve">
-<value>分栏符</value>
-</data>
+    <value>分栏符</value>
+  </data>
   <data name="DocumentEditor_One" xml:space="preserve">
-<value>一</value>
-</data>
+    <value>一</value>
+  </data>
   <data name="DocumentEditor_Two" xml:space="preserve">
-<value>二</value>
-</data>
+    <value>二</value>
+  </data>
   <data name="DocumentEditor_Three" xml:space="preserve">
-<value>三</value>
-</data>
+    <value>三</value>
+  </data>
   <data name="DocumentEditor_Presets" xml:space="preserve">
-<value>预设</value>
-</data>
+    <value>预设</value>
+  </data>
   <data name="DocumentEditor_Columns" xml:space="preserve">
-<value>列</value>
-</data>
+    <value>列</value>
+  </data>
   <data name="DocumentEditor_SplitToColumns" xml:space="preserve">
-<value>将您的文本分成两列或更多列</value>
-</data>
+    <value>将您的文本分成两列或更多列</value>
+  </data>
   <data name="DocumentEditor_LineBetweenColumn" xml:space="preserve">
-<value>列之间的线</value>
-</data>
+    <value>列之间的线</value>
+  </data>
   <data name="DocumentEditor_WidthAndSpacing" xml:space="preserve">
-<value>宽度和间距</value>
-</data>
+    <value>宽度和间距</value>
+  </data>
   <data name="DocumentEditor_EqualColumnWidth" xml:space="preserve">
-<value>列宽相等</value>
-</data>
+    <value>列宽相等</value>
+  </data>
   <data name="DocumentEditor_Column" xml:space="preserve">
-<value>柱子</value>
-</data>
+    <value>柱子</value>
+  </data>
   <data name="DocumentEditor_SectionBreakContinuous" xml:space="preserve">
-<value>分节符（连续）</value>
-</data>
+    <value>分节符（连续）</value>
+  </data>
   <data name="DocumentEditor_PasteContentDialog" xml:space="preserve">
-  <value>由于浏览器的安全策略，从系统剪贴板粘贴是受限制的。或者使用键盘快捷键</value>
-</data>
+    <value>由于浏览器的安全策略，从系统剪贴板粘贴是受限制的。或者使用键盘快捷键</value>
+  </data>
   <data name="DocumentEditor_PasteCheckBoxContentDialog" xml:space="preserve">
-  <value>不再显示</value>
-</data>
+    <value>不再显示</value>
+  </data>
   <data name="DocumentEditorContainer_Columns" xml:space="preserve">
-<value>列</value>
-</data>
+    <value>列</value>
+  </data>
   <data name="DocumentEditorContainer_ShowHiddenMarks" xml:space="preserve">
-<value>显示隐藏的字符，如空格、制表符、段落标记和换行符。(Ctrl + *)</value>
-</data>
+    <value>显示隐藏的字符，如空格、制表符、段落标记和换行符。(Ctrl + *)</value>
+  </data>
   <data name="DocumentEditorContainer_RegularTooltip" xml:space="preserve">
-       <value>常规的</value>
-</data>
+    <value>常规的</value>
+  </data>
   <data name="DocumentEditorContainer_BoldItalicTooltip" xml:space="preserve">
-       <value>加粗斜体</value>
-</data>
+    <value>加粗斜体</value>
+  </data>
   <data name="DocumentEditorContainer_New" xml:space="preserve">
     <value>新</value>
   </data>
@@ -6398,22 +6398,22 @@
   </data>
   <data name="DocumentEditorContainer_Changecase" xml:space="preserve">
     <value>更改大小写</value>
-</data>
+  </data>
   <data name="DocumentEditorContainer_Uppercase" xml:space="preserve">
     <value>大写</value>
-</data>
+  </data>
   <data name="DocumentEditorContainer_Lowercase" xml:space="preserve">
     <value>小写</value>
-</data>
+  </data>
   <data name="DocumentEditorContainer_SentenceCase" xml:space="preserve">
     <value>句格</value>
-</data>
+  </data>
   <data name="DocumentEditorContainer_CapitalizeEachWord" xml:space="preserve">
     <value>每个单词大写</value>
-</data>
+  </data>
   <data name="DocumentEditorContainer_ToggleCase" xml:space="preserve">
     <value>切换大小写</value>
-</data>
+  </data>
   <data name="Gantt_Touch_DialogTextOnClickingConnectorPoint" xml:space="preserve">
     <value>選擇另一個任務</value>
   </data>
@@ -6490,7 +6490,7 @@
     <value>转到第一页</value>
   </data>
   <data name="PivotView_GoToLastPage" xml:space="preserve">
-   <value>转到最后一页</value>
+    <value>转到最后一页</value>
   </data>
   <data name="PivotView_GoToNextPage" xml:space="preserve">
     <value>转到下一页</value>
@@ -6511,22 +6511,22 @@
     <value>部分</value>
   </data>
   <data name="DocumentEditor_OddPageHeader" xml:space="preserve">
-  <value>奇数页眉</value>
+    <value>奇数页眉</value>
   </data>
   <data name="DocumentEditor_OddPageFooter" xml:space="preserve">
-  <value>奇数页脚</value>
+    <value>奇数页脚</value>
   </data>
   <data name="DocumentEditor_EvenPageHeader" xml:space="preserve">
-  <value>偶数页眉</value>
+    <value>偶数页眉</value>
   </data>
   <data name="DocumentEditor_EvenPageFooter" xml:space="preserve">
-  <value>偶数页脚</value>
+    <value>偶数页脚</value>
   </data>
   <data name="DocumentEditor_FirstPageHeader" xml:space="preserve">
-  <value>第一页标题</value>
+    <value>第一页标题</value>
   </data>
   <data name="DocumentEditor_FirstPageFooter" xml:space="preserve">
-  <value>首页页脚</value>
+    <value>首页页脚</value>
   </data>
   <data name="DocumentEditorContainer_AlternateText" xml:space="preserve">
     <value>替代文本</value>
@@ -6556,83 +6556,83 @@
     <value>将您的图片拖放到此处或</value>
   </data>
   <data name="DocumentEditorContainer_TabStopPosition" xml:space="preserve">
-<value>制表位停止位置</value>
-</data>
+    <value>制表位停止位置</value>
+  </data>
   <data name="DocumentEditorContainer_DefaultTabStops" xml:space="preserve">
-<value>默认制表位</value>
-</data>
+    <value>默认制表位</value>
+  </data>
   <data name="DocumentEditorContainer_TabStopsCleared" xml:space="preserve">
-<value>要清除的制表位</value>
-</data>
+    <value>要清除的制表位</value>
+  </data>
   <data name="DocumentEditorContainer_Tabs" xml:space="preserve">
-<value>选项卡</value>
-</data>
+    <value>选项卡</value>
+  </data>
   <data name="DocumentEditor_Set" xml:space="preserve">
-<value>放</value>
-</data>
+    <value>放</value>
+  </data>
   <data name="DocumentEditor_Clear" xml:space="preserve">
-<value>清除</value>
-</data>
+    <value>清除</value>
+  </data>
   <data name="DocumentEditor_ClearAll" xml:space="preserve">
-<value>全部清除</value>
-</data>
+    <value>全部清除</value>
+  </data>
   <data name="DocumentEditor_Decimal" xml:space="preserve">
-<value>十进制</value>
-</data>
+    <value>十进制</value>
+  </data>
   <data name="DocumentEditor_Bar" xml:space="preserve">
-<value>酒吧</value>
-</data>
+    <value>酒吧</value>
+  </data>
   <data name="DocumentEditorContainer_Alignment" xml:space="preserve">
-<value>结盟</value>
-</data>
+    <value>结盟</value>
+  </data>
   <data name="DocumentEditorContainer_Leader" xml:space="preserve">
-<value>领导者</value>
-</data>
+    <value>领导者</value>
+  </data>
   <data name="DocumentEditorContainer_All" xml:space="preserve">
-<value>全部</value>
-</data>
+    <value>全部</value>
+  </data>
   <data name="DocumentEditor_BottomMargin" xml:space="preserve">
-<value>下边距</value>
-</data>
+    <value>下边距</value>
+  </data>
   <data name="DocumentEditor_FirstLineIndent" xml:space="preserve">
-<value>首行缩进</value>
-</data>
+    <value>首行缩进</value>
+  </data>
   <data name="DocumentEditor_HangingIndent" xml:space="preserve">
-<value>悬挂缩进</value>
-</data>
+    <value>悬挂缩进</value>
+  </data>
   <data name="DocumentEditor_LeftIndent" xml:space="preserve">
-<value>左缩进</value>
-</data>
+    <value>左缩进</value>
+  </data>
   <data name="DocumentEditor_LeftMargin" xml:space="preserve">
-<value>左边距</value>
-</data>
+    <value>左边距</value>
+  </data>
   <data name="DocumentEditor_MoveTableColumn" xml:space="preserve">
-<value>移动表列</value>
-</data>
+    <value>移动表列</value>
+  </data>
   <data name="DocumentEditor_RightIndent" xml:space="preserve">
-<value>右缩进</value>
-</data>
+    <value>右缩进</value>
+  </data>
   <data name="DocumentEditor_RightMargin" xml:space="preserve">
-<value>右边距</value>
-</data>
+    <value>右边距</value>
+  </data>
   <data name="DocumentEditor_TopMargin" xml:space="preserve">
-<value>上边距</value>
-</data>
+    <value>上边距</value>
+  </data>
   <data name="DocumentEditor_LeftTab" xml:space="preserve">
-<value>左标签</value>
-</data>
+    <value>左标签</value>
+  </data>
   <data name="DocumentEditor_CenterTab" xml:space="preserve">
-<value>中心选项卡</value>
-</data>
+    <value>中心选项卡</value>
+  </data>
   <data name="DocumentEditor_RightTab" xml:space="preserve">
-<value>右选项卡</value>
-</data>
+    <value>右选项卡</value>
+  </data>
   <data name="DocumentEditor_DecimalTab" xml:space="preserve">
-<value>小数制表符</value>
-</data>
+    <value>小数制表符</value>
+  </data>
   <data name="DocumentEditor_BarTab" xml:space="preserve">
-<value>栏选项卡</value>
-</data>
+    <value>栏选项卡</value>
+  </data>
   <data name="ImageEditor_OkBtnTooltip" xml:space="preserve">
     <value>應用</value>
   </data>
@@ -7807,10 +7807,10 @@
     <value>计算工作簿</value>
   </data>
   <data name="Spreadsheet_Description" xml:space="preserve">
-      <value>描述</value>
+    <value>描述</value>
   </data>
   <data name="Spreadsheet_PickCategory" xml:space="preserve">
-      <value>选择类别</value>
+    <value>选择类别</value>
   </data>
   <data name="Spreadsheet_AllUsers" xml:space="preserve">
     <value>允许此工作表的所有用户</value>
@@ -8255,91 +8255,91 @@
   </data>
   <data name="RichTextEditor_SlashMenuHeading1" xml:space="preserve">
     <value>标题 1</value>
-</data>
-<data name="RichTextEditor_SlashMenuHeading2" xml:space="preserve">
+  </data>
+  <data name="RichTextEditor_SlashMenuHeading2" xml:space="preserve">
     <value>标题 2</value>
-</data>
-<data name="RichTextEditor_SlashMenuHeading3" xml:space="preserve">
+  </data>
+  <data name="RichTextEditor_SlashMenuHeading3" xml:space="preserve">
     <value>标题 3</value>
-</data>
-<data name="RichTextEditor_SlashMenuHeading4" xml:space="preserve">
+  </data>
+  <data name="RichTextEditor_SlashMenuHeading4" xml:space="preserve">
     <value>标题 4</value>
-</data>
-<data name="RichTextEditor_SlashMenuParagraph" xml:space="preserve">
+  </data>
+  <data name="RichTextEditor_SlashMenuParagraph" xml:space="preserve">
     <value>段落</value>
-</data>
-<data name="RichTextEditor_SlashMenuBlockQuote" xml:space="preserve">
+  </data>
+  <data name="RichTextEditor_SlashMenuBlockQuote" xml:space="preserve">
     <value>块引用</value>
-</data>
-<data name="RichTextEditor_SlashMenuOrderedList" xml:space="preserve">
+  </data>
+  <data name="RichTextEditor_SlashMenuOrderedList" xml:space="preserve">
     <value>有序列表</value>
-</data>
-<data name="RichTextEditor_SlashMenuUnorderedList" xml:space="preserve">
+  </data>
+  <data name="RichTextEditor_SlashMenuUnorderedList" xml:space="preserve">
     <value>无序列表</value>
-</data>
-<data name="RichTextEditor_SlashMenuCodeBlock" xml:space="preserve">
+  </data>
+  <data name="RichTextEditor_SlashMenuCodeBlock" xml:space="preserve">
     <value>代码块</value>
-</data>
-<data name="RichTextEditor_SlashMenuTable" xml:space="preserve">
+  </data>
+  <data name="RichTextEditor_SlashMenuTable" xml:space="preserve">
     <value>桌子</value>
-</data>
-<data name="RichTextEditor_SlashMenuImage" xml:space="preserve">
+  </data>
+  <data name="RichTextEditor_SlashMenuImage" xml:space="preserve">
     <value>图像</value>
-</data>
-<data name="RichTextEditor_SlashMenuAudio" xml:space="preserve">
+  </data>
+  <data name="RichTextEditor_SlashMenuAudio" xml:space="preserve">
     <value>声音的</value>
-</data>
-<data name="RichTextEditor_SlashMenuVideo" xml:space="preserve">
+  </data>
+  <data name="RichTextEditor_SlashMenuVideo" xml:space="preserve">
     <value>视频</value>
-</data>
-<data name="RichTextEditor_SlashMenuLink" xml:space="preserve">
+  </data>
+  <data name="RichTextEditor_SlashMenuLink" xml:space="preserve">
     <value>关联</value>
-</data>
-<data name="RichTextEditor_SlashMenuHeading1Description" xml:space="preserve">
+  </data>
+  <data name="RichTextEditor_SlashMenuHeading1Description" xml:space="preserve">
     <value>使用它作为顶级标题或标题。</value>
-</data>
-<data name="RichTextEditor_SlashMenuHeading2Description" xml:space="preserve">
+  </data>
+  <data name="RichTextEditor_SlashMenuHeading2Description" xml:space="preserve">
     <value>将其用于关键部分。</value>
-</data>
-<data name="RichTextEditor_SlashMenuHeading3Description" xml:space="preserve">
+  </data>
+  <data name="RichTextEditor_SlashMenuHeading3Description" xml:space="preserve">
     <value>将其用于子部分和组标题。</value>
-</data>
-<data name="RichTextEditor_SlashMenuHeading4Description" xml:space="preserve">
+  </data>
+  <data name="RichTextEditor_SlashMenuHeading4Description" xml:space="preserve">
     <value>将其用于子主题的要点。</value>
-</data>
-<data name="RichTextEditor_SlashMenuParagraphDescription" xml:space="preserve">
+  </data>
+  <data name="RichTextEditor_SlashMenuParagraphDescription" xml:space="preserve">
     <value>用段落来写作。</value>
-</data>
-<data name="RichTextEditor_SlashMenuBlockQuoteDescription" xml:space="preserve">
+  </data>
+  <data name="RichTextEditor_SlashMenuBlockQuoteDescription" xml:space="preserve">
     <value>创建引用或引文。</value>
-</data>
-<data name="RichTextEditor_SlashMenuOrderedListDescription" xml:space="preserve">
+  </data>
+  <data name="RichTextEditor_SlashMenuOrderedListDescription" xml:space="preserve">
     <value>创建一个有序列表。</value>
-</data>
-<data name="RichTextEditor_SlashMenuUnorderedListDescription" xml:space="preserve">
+  </data>
+  <data name="RichTextEditor_SlashMenuUnorderedListDescription" xml:space="preserve">
     <value>创建一个无序列表。</value>
-</data>
-<data name="RichTextEditor_SlashMenuCodeBlockDescription" xml:space="preserve">
+  </data>
+  <data name="RichTextEditor_SlashMenuCodeBlockDescription" xml:space="preserve">
     <value>创建预格式化的代码块。</value>
-</data>
-<data name="RichTextEditor_SlashMenuTableDescription" xml:space="preserve">
+  </data>
+  <data name="RichTextEditor_SlashMenuTableDescription" xml:space="preserve">
     <value>插入一个表格。</value>
-</data>
-<data name="RichTextEditor_SlashMenuImageDescription" xml:space="preserve">
+  </data>
+  <data name="RichTextEditor_SlashMenuImageDescription" xml:space="preserve">
     <value>插入图像。</value>
-</data>
-<data name="RichTextEditor_SlashMenuAudioDescription" xml:space="preserve">
+  </data>
+  <data name="RichTextEditor_SlashMenuAudioDescription" xml:space="preserve">
     <value>插入音频。</value>
-</data>
-<data name="RichTextEditor_SlashMenuVideoDescription" xml:space="preserve">
+  </data>
+  <data name="RichTextEditor_SlashMenuVideoDescription" xml:space="preserve">
     <value>插入视频。</value>
-</data>
-<data name="RichTextEditor_SlashMenuLinkDescription" xml:space="preserve">
+  </data>
+  <data name="RichTextEditor_SlashMenuLinkDescription" xml:space="preserve">
     <value>插入链接。</value>
-</data>
-<data name="RichTextEditor_HorizontalLine" xml:space="preserve">
+  </data>
+  <data name="RichTextEditor_HorizontalLine" xml:space="preserve">
     <value>水平线</value>
-</data>
+  </data>
   <data name="RichTextEditor_CodeBlock" xml:space="preserve">
     <value>插入程式碼區塊</value>
   </data>
@@ -8392,49 +8392,49 @@
     <value>标记以编辑</value>
   </data>
   <data name="PdfViewer_RedactPages" xml:space="preserve">
-      <value>编辑页面</value>
+    <value>编辑页面</value>
   </data>
   <data name="PdfViewer_RedactionPanel" xml:space="preserve">
-      <value>编辑面板</value>
+    <value>编辑面板</value>
   </data>
   <data name="PdfViewer_Redact" xml:space="preserve">
-      <value>编辑</value>
+    <value>编辑</value>
   </data>
   <data name="PdfViewer_Redaction" xml:space="preserve">
-      <value>编辑内容</value>
+    <value>编辑内容</value>
   </data>
   <data name="PdfViewer_OverlayText" xml:space="preserve">
-      <value>覆盖文字</value>
+    <value>覆盖文字</value>
   </data>
   <data name="PdfViewer_RepeatText" xml:space="preserve">
-      <value>重复文字</value>
+    <value>重复文字</value>
   </data>
   <data name="PdfViewer_UseOverlayText" xml:space="preserve">
-      <value>使用覆盖文字</value>
+    <value>使用覆盖文字</value>
   </data>
   <data name="PdfViewer_OutlineColor" xml:space="preserve">
-      <value>轮廓颜色</value>
+    <value>轮廓颜色</value>
   </data>
   <data name="PdfViewer_FillOpacity" xml:space="preserve">
-      <value>填充不透明度</value>
+    <value>填充不透明度</value>
   </data>
   <data name="PdfViewer_MarkPageRange" xml:space="preserve">
-      <value>标记页面范围</value>
+    <value>标记页面范围</value>
   </data>
   <data name="PdfViewer_CurrentPage" xml:space="preserve">
-      <value>当前页</value>
+    <value>当前页</value>
   </data>
   <data name="PdfViewer_OddPagesOnly" xml:space="preserve">
-      <value>仅奇数页</value>
+    <value>仅奇数页</value>
   </data>
   <data name="PdfViewer_EvenPagesOnly" xml:space="preserve">
-      <value>仅偶数页</value>
+    <value>仅偶数页</value>
   </data>
   <data name="PdfViewer_SpecificPages" xml:space="preserve">
-      <value>特定页面</value>
+    <value>特定页面</value>
   </data>
   <data name="PdfViewer_PageRange" xml:space="preserve">
-      <value>页面范围</value>
+    <value>页面范围</value>
   </data>
   <data name="PdfViewer_RedactionConfirmation" xml:space="preserve">
     <value>所有标记为编辑的内容将从文档中永久删除。此操作无法撤销。</value>

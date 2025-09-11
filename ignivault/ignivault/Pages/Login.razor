@@ -92,7 +92,7 @@
 
                 var t = response.Response;
 
-                Console.WriteLine($"{t.Username}, {t.Id}, {t.MasterIV}");
+                Console.WriteLine($"User Login");
 
 
                 bool ValidMasterKey = await VaultService.DecryptMasterKey(response.Response, login_data.Password);

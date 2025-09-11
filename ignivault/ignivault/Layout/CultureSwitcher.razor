@@ -1,16 +1,18 @@
-﻿@using  System.Globalization
+﻿@using System.Globalization
 @inject IJSRuntime JSRuntime
 @inject NavigationManager NavigationManager
-@using Syncfusion.Blazor.DropDowns
 
-    <div style="padding-left:20px">
-            <SfDropDownList TValue="string" TItem="Cultures" DataSource="@CultureList" Width="143px" Index="@cultureIndex"   PopupWidth="143px" CssClass="localization-combo">
-        <DropDownListEvents TItem="Cultures" TValue="string" ValueChange="OnSelected"></DropDownListEvents>
-        <DropDownListFieldSettings Value="Code" Text="Text"></DropDownListFieldSettings>
-    </SfDropDownList>
-    </div>
-    <style>
-.localization-combo {
+
+
+
+<div style="padding-left:20px">
+   <SfComboBox TValue="string" TItem="Cultures" DataSource="CultureList"  Placeholder="@CultureList[cultureIndex].Text" AllowCustom="false">
+        <ComboBoxEvents TValue="string" TItem="Cultures" OnValueSelect="OnSelected"/>
+        <ComboBoxFieldSettings Text="Text" Value="Code" />
+   </SfComboBox>
+</div>
+<style>
+    .localization-combo {
         border-radius: 4px;
         border-color: #B3B3B3;
         font-family: OpenSans-Regular;
@@ -19,13 +21,13 @@
         border-width: 1px;
         color: #333333;
     }
-  </style>
+</style>
 
 @code {
     private int cultureIndex { get; set; }
     protected override async Task OnInitializedAsync()
     {
-                await base.OnInitializedAsync();
+        await base.OnInitializedAsync();
         switch (System.Globalization.CultureInfo.CurrentCulture.Name)
         {
             case "en-US":
@@ -44,7 +46,6 @@
                 this.cultureIndex = 4;
                 break;
         }
-
     }
     private CultureInfo[] supportedCultures = new[]
    {
@@ -55,23 +56,23 @@
         new CultureInfo("zh")
     };
 
-     private CultureInfo Culture
+    private CultureInfo Culture
     {
-                get => CultureInfo.CurrentCulture;
-                set
-                {
-                    if (CultureInfo.CurrentCulture != value)
-                    {
-                        var js = (IJSInProcessRuntime)JSRuntime;
-                        js.InvokeVoid("cultureInfo.set", value.Name);
-
-                        NavigationManager.NavigateTo(NavigationManager.Uri, forceLoad: true);
-                    }
-                }
+        get => CultureInfo.CurrentCulture;
+        set
+        {
+            if (CultureInfo.CurrentCulture != value)
+            {
+                var js = (IJSInProcessRuntime)JSRuntime;
+                js.InvokeVoid("cultureInfo.set", value.Name);
+                
+                NavigationManager.NavigateTo(NavigationManager.Uri, forceLoad: true);
+            }
+        }
     }
-     private void OnSelected(Syncfusion.Blazor.DropDowns.ChangeEventArgs<string,Cultures> e)
+    private void OnSelected(Syncfusion.Blazor.DropDowns.SelectEventArgs<Cultures> e)
     {
-        switch ((string)e.Value)
+        switch ((string)e.ItemData.Code)
         {
             case "en-US":
                 this.cultureIndex = 0;
@@ -89,7 +90,7 @@
                 this.cultureIndex = 4;
                 break;
         }
-        Culture = new CultureInfo((string)e.Value);
+        Culture = new CultureInfo((string)e.ItemData.Code);
     }
     public class Cultures
     {
@@ -107,3 +108,4 @@
         new Cultures() { Text = "Chinese (zh)", Code = "zh" },
     };
 }
+

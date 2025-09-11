@@ -14,7 +14,7 @@ namespace ignivault.Services
         {
             _http = http;
             _localStorage = localStorage;
-           
+
         }
 
         public async Task<(bool Success, LoginUser? Response)> LoginAsync(string email, string password)
@@ -79,6 +79,30 @@ namespace ignivault.Services
 
             var response = await _http.PostAsJsonAsync("api/vault/add", item);
 
+            return response.IsSuccessStatusCode;
+        }
+
+
+        public async Task<bool> UpdateVaultItem(VaultItem item)
+        {
+            var token = await _localStorage.GetItemAsync<string>("authToken");
+            if (string.IsNullOrEmpty(token))
+                return false;
+            _http.DefaultRequestHeaders.Authorization =
+                new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", token);
+            var response = await _http.PutAsJsonAsync("api/vault/update", item);
+            return response.IsSuccessStatusCode;
+        }
+
+
+        public async Task<bool> DeleteVaultItem(int itemId)
+        {
+            var token = await _localStorage.GetItemAsync<string>("authToken");
+            if (string.IsNullOrEmpty(token))
+                return false;
+            _http.DefaultRequestHeaders.Authorization =
+                new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", token);
+            var response = await _http.DeleteAsync($"api/vault/delete/?itemId={itemId}");
             return response.IsSuccessStatusCode;
         }
     }

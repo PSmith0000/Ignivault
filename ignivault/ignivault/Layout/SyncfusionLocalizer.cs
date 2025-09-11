@@ -10,7 +10,15 @@ namespace ignivault.Layout
         // To get the locale key from mapped resources file
         public string? GetText(string key)
         {
-            return this.ResourceManager.GetString(key);
+            string value = this.ResourceManager.GetString(key);
+
+            if(string.IsNullOrEmpty(value))
+            {
+                Console.WriteLine($"Missing localization for key: {key}");
+                return key;
+            }
+
+            return value;
         }
 
         // To access the resource file and get the exact value for locale key

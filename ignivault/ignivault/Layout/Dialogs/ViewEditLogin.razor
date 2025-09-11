@@ -6,7 +6,7 @@
 
 @if (_loginDetail != null)
 {
-    <SfDialog Visible="false" AllowDragging="true" @ref="_dialog" Width="400px" ShowCloseIcon="true">
+    <SfDialog @bind-Visible="@_ShowDialog" AllowDragging="true" @ref="_dialog" Width="400px" ShowCloseIcon="true" AllowPrerender=true>
         <DialogTemplates>
             <Content>
                 <label class="text-lg font-bold mb-4">Login Details</label>
@@ -28,12 +28,14 @@
 }
 
 @code {
+    private bool _ShowDialog { get; set; } = false;
+
     private VaultItem _VaultItem { get; set; }
 
     [Parameter]
-    public EventCallback<VaultItem> OnItemUpdated { get; set; }
+    public EventCallback<RecordTypes.ItemUpdate> OnItemUpdated { get; set; }
 
-    private RecordTypes.LoginDetail _loginDetail;
+    private RecordTypes.LoginDetail? _loginDetail;
 
     private SfDialog _dialog;
 
@@ -43,8 +45,17 @@
         if(_VaultItem != null)
         {
             _loginDetail = await VaultService.DecryptRecordType<RecordTypes.LoginDetail>(_VaultItem);
+            StateHasChanged();
         }
-        StateHasChanged();
+        _ShowDialog = true;
+    }
+
+    private async Task ItemUpdated(RecordTypes.ItemUpdate update)
+    {
+        if (update != null)
+        {
+            await OnItemUpdated.InvokeAsync(update);
+        }
     }
 
     public async Task ShowAsync()
@@ -54,11 +65,24 @@
 
     public async Task HideAsync()
     {
+        _ShowDialog = false;
         await _dialog.HideAsync();
     }
 
     private async Task SaveItem()
     {
+        string json = System.Text.Json.JsonSerializer.Serialize(_loginDetail);
+        string json64 = Convert.ToBase64String(System.Text.Encoding.UTF8.GetBytes(json));
+        var json_encrypted = await VaultService.EncryptBase64(json64, VaultService.GetMasterKeyBase64());
+
+        if(_VaultItem.EncryptedData != json_encrypted.Ciphertext)
+        {
+            _VaultItem.EncryptedData = json_encrypted.Ciphertext;
+            _VaultItem.IV = json_encrypted.IV;
+            _VaultItem.Name = _loginDetail.Name;
+            await ItemUpdated(new RecordTypes.ItemUpdate(_VaultItem, true));
+        }
+
         await HideAsync();
     }
 
