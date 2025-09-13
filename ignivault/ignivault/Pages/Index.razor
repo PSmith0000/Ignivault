@@ -13,11 +13,13 @@
         var authState = await AuthenticationStateProvider.GetAuthenticationStateAsync();
         var user = authState.User;
         bool redirect = false;
-
-        if (user.Identity is not null && user.Identity.IsAuthenticated && await CheckTokenAndMasterKey())
+        bool tokenValid = await CheckTokenAndMasterKey();
+        if (tokenValid && user.Identity is not null && user.Identity.IsAuthenticated)
         {
             redirect = true;
         }
+
+        Console.WriteLine($"AuthState: {tokenValid} {user.Identity != null} {user.Identity.IsAuthenticated}");
 
         if (redirect)
         {
@@ -26,14 +28,16 @@
         else
         {
             await AuthService.LogoutAsync();
-            Navigation.NavigateTo("/login", true);
+            Navigation.NavigateTo("/login");
         }
     }
 
-    //this should return false each time the page is closed and opened again as the MK becomes null
     public async Task<bool> CheckTokenAndMasterKey()
     {
-        if (VaultService.IsMasterKeySet() && await AccountService.IsTokenSetAsync())
+        bool masterKeySet = VaultService.IsMasterKeySet();
+        bool tokenSet = await AccountService.IsTokenSetAsync();
+        Console.WriteLine($"MasterKeySet: {masterKeySet}, TokenSet: {tokenSet}");
+        if (masterKeySet && tokenSet)
         {
             return true;
         }

@@ -71,7 +71,11 @@
 
     protected override void OnInitialized()
     {
-        login_data = new LoginUserModel();
+        login_data = new LoginUserModel()
+        {
+            Email = "user@user.com",
+            Password = "1Password!"
+        };
 
         var uri = NavManager.ToAbsoluteUri(NavManager.Uri);
         var query = System.Web.HttpUtility.ParseQueryString(uri.Query);
@@ -95,7 +99,7 @@
                 Console.WriteLine($"User Login");
 
 
-                bool ValidMasterKey = await VaultService.DecryptMasterKey(response.Response, login_data.Password);
+                bool ValidMasterKey = await VaultService.DecryptMasterKeyAsync(response.Response, login_data.Password);
                 await AuthService.LoginAsync(response.Response.Token);
 
 

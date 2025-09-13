@@ -74,8 +74,7 @@ namespace ignivault.Services
             if (string.IsNullOrEmpty(token))
                 return false;
 
-            _http.DefaultRequestHeaders.Authorization =
-                new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", token);
+            _http.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", token);
 
             var response = await _http.PostAsJsonAsync("api/vault/add", item);
 
@@ -105,5 +104,23 @@ namespace ignivault.Services
             var response = await _http.DeleteAsync($"api/vault/delete/?itemId={itemId}");
             return response.IsSuccessStatusCode;
         }
+
+        public async Task<byte[]?> GetFileData(int itemId)
+        {
+            var token = await _localStorage.GetItemAsync<string>("authToken");
+            if (string.IsNullOrEmpty(token))
+                return null;
+            _http.DefaultRequestHeaders.Authorization =
+                new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", token);
+
+            var response = await _http.GetAsync($"api/vault/getfile?itemId={itemId}");
+            if (response.IsSuccessStatusCode)
+            {
+                var fileData = await response.Content.ReadAsStringAsync();
+                return Convert.FromBase64String(fileData);
+            }
+
+            return null;
+        } 
     }
 }

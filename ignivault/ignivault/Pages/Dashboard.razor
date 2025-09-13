@@ -14,14 +14,14 @@
                     <TabItems>
                         <TabItem Header="LoginHeader">
                             <ContentTemplate>
-                                <SfGrid @ref="LoginDataGrid" TValue="VaultItem" DataSource="@vaultItems" AllowSelection="true" AllowPaging="true" AllowSorting="true">
+                                <SfGrid @ref="LoginDataGrid" TValue="VaultItem" DataSource="@vaultItems.Where(x => x.Type == "Login")" AllowSelection="true" AllowPaging="true" AllowSorting="true">
                                     <GridPageSettings PageSize="5"></GridPageSettings>
                                     <GridEvents TValue="VaultItem"></GridEvents>
                                     <GridSelectionSettings EnableSimpleMultiRowSelection="false"></GridSelectionSettings>
                                     <GridEditSettings AllowAdding="true" AllowEditing="true" AllowDeleting="true" Mode="EditMode.Dialog">
                                     <SfToolbar>
                                             <ToolbarItems>
-                                                <ToolbarItem OnClick="OnAddLogin" Text="Add Vault Item" PrefixIcon="e-add" Id="AddLogin"></ToolbarItem>
+                                                <ToolbarItem OnClick="OnAddLogin" Text="Add Login Entry" PrefixIcon="e-add" Id="AddLogin"></ToolbarItem>
                                                 <ToolbarItem OnClick="OnViewEditLogin" Text="View\Edit Login" PrefixIcon="e-add" Id="ViewEditLogin"></ToolbarItem>
                                                 <ToolbarItem OnClick="OnDeleteLogin" Text="Delete Login" PrefixIcon="e-add" Id="DeleteLogin"></ToolbarItem>
                                             </ToolbarItems>
@@ -38,9 +38,16 @@
 
                         <TabItem Header="FileHeader">
                             <ContentTemplate>
-                                <SfGrid TValue="VaultItem" DataSource="@vaultItems" AllowPaging="true" AllowSorting="true">
+                                <SfGrid @ref="FileDataGrid" TValue="VaultItem" DataSource="@vaultItems.Where(x => x.Type == "File")" AllowPaging="true" AllowSorting="true">
                                     <GridPageSettings PageSize="5"></GridPageSettings>
                                     <GridEvents TValue="VaultItem"></GridEvents>
+                                    <SfToolbar>
+                                        <ToolbarItems>
+                                            <ToolbarItem OnClick="OnAddFile" Text="Add New File" PrefixIcon="e-add" Id="AddLogin"></ToolbarItem>
+                                            <ToolbarItem OnClick="OnViewDownloadFile" Text="ViewDownload" PrefixIcon="e-add" Id="DownloadFile"></ToolbarItem>
+                                            <ToolbarItem OnClick="OnDeleteFile" Text="Delete File" PrefixIcon="e-add" Id="DeleteFile"></ToolbarItem>
+                                        </ToolbarItems>
+                                    </SfToolbar>
                                     <GridEditSettings AllowAdding="true" AllowEditing="true" AllowDeleting="true" Mode="EditMode.Dialog"></GridEditSettings>
                                     <GridColumns>
                                         <GridColumn AllowEditing="false" Field="Id" HeaderText="ID" Width="80" IsPrimaryKey="true"></GridColumn>
@@ -53,9 +60,16 @@
 
                         <TabItem Header="TextHeader">
                             <ContentTemplate>
-                                <SfGrid TValue="VaultItem" DataSource="@vaultItems" AllowPaging="true" AllowSorting="true">
+                                <SfGrid @ref="TextDataGrid" TValue="VaultItem" DataSource="@vaultItems.Where(x => x.Type == "Text")" AllowPaging="true" AllowSorting="true">
                                     <GridPageSettings PageSize="5"></GridPageSettings>
                                     <GridEvents  TValue="VaultItem"></GridEvents>
+                                    <SfToolbar>
+                                        <ToolbarItems>
+                                            <ToolbarItem OnClick="OnAddNote" Text="Add New Note" PrefixIcon="e-add" Id="AddNote"></ToolbarItem>
+                                            <ToolbarItem OnClick="OnViewEditNote" Text="View\Edit Note" PrefixIcon="e-add" Id="ViewEditNote"></ToolbarItem>
+                                            <ToolbarItem OnClick="OnDeleteNote" Text="Delete Note" PrefixIcon="e-add" Id="DeleteNote"></ToolbarItem>
+                                        </ToolbarItems>
+                                    </SfToolbar>
                                     <GridEditSettings AllowAdding="true" AllowEditing="true" AllowDeleting="true" Mode="EditMode.Dialog"></GridEditSettings>
                                     <GridColumns>
                                         <GridColumn AllowEditing="false" Field="Id" HeaderText="ID" Width="80" IsPrimaryKey="true"></GridColumn>
@@ -114,8 +128,14 @@
         <!--------------------->
 
 
-        <AddLogin ItemAdded="OnLoginAdded" @ref="addLoginDialog"></AddLogin>
-        <ViewEditLogin OnItemUpdated="OnLoginUpdated" @ref="viewEditLoginDialog"></ViewEditLogin>
+        <AddLogin ItemAdded="OnItemAdded" @ref="addLoginDialog"></AddLogin>
+        <ViewEditLogin OnItemUpdated="OnVaultUpdated" @ref="viewEditLoginDialog"></ViewEditLogin>
+
+        <AddFile ItemAdded="OnItemAdded" @ref="addFileDialog"></AddFile>
+        <ViewDownloadFile @ref="viewDownloadFileDialog"></ViewDownloadFile>
+
+        <AddNote ItemAdded="OnItemAdded" @ref="addNoteDialog"></AddNote>
+        <ViewEditNote @ref="viewEditNoteDialog" OnItemUpdated="OnVaultUpdated"></ViewEditNote>
     </DashboardLayoutPanels>
 </SfDashboardLayout>
 @code {
@@ -144,9 +164,13 @@
     }
 
 
-    private SfGrid<VaultItem> LoginDataGrid;
+    private SfGrid<VaultItem> LoginDataGrid, FileDataGrid, TextDataGrid;
     private AddLogin addLoginDialog;
     private ViewEditLogin viewEditLoginDialog;
+    private AddFile addFileDialog;
+    private AddNote addNoteDialog;
+    private ViewEditNote viewEditNoteDialog;
+    private ViewDownloadFile viewDownloadFileDialog;
 
 
     public void NotAuthorizedRedirect()
@@ -175,11 +199,36 @@
         }
     }
 
+    public async void OnViewDownloadFile(ClickEventArgs args)
+    {
+        if (FileDataGrid != null)
+        {
+            var vaultItem = FileDataGrid.SelectedRecords.FirstOrDefault();
+            if (vaultItem != null)
+            {
+                await viewDownloadFileDialog.SetVaultItem(vaultItem);
+                await viewDownloadFileDialog.ShowAsync();
+            }
+        }
+    }
+
+    public async void OnViewEditNote(ClickEventArgs args)
+    {
+        if (TextDataGrid != null)
+        {
+            var vaultItem = TextDataGrid.SelectedRecords.FirstOrDefault();
+            if (vaultItem != null)
+            {
+                await viewEditNoteDialog.SetVaultItem(vaultItem);
+                await viewEditNoteDialog.ShowAsync();
+            }
+        }
+    }
+
     protected override async Task OnInitializedAsync()
     {      
         await RefreshVaultItemsAsync();
     }
-
 
     public async Task RefreshVaultItemsAsync()
     {
@@ -204,14 +253,56 @@
                     if (status)
                     {
                         await RefreshVaultItemsAsync();
-                        await LoginDataGrid.Refresh();
+                        StateHasChanged();
                     }
                 }
             }
         }
     }
 
-    public async void OnLoginAdded(VaultItem args)
+    public async Task OnDeleteNote(ClickEventArgs args)
+    {
+        if (TextDataGrid != null)
+        {
+            var vaultItem = TextDataGrid.SelectedRecords.FirstOrDefault();
+            if (vaultItem != null)
+            {
+                bool confirmed = await JS.InvokeAsync<bool>("confirm", $"Are you sure you want to delete: {vaultItem.Name}?");
+                if (confirmed)
+                {
+                    bool status = await Http.DeleteVaultItem(vaultItem.Id);
+                    if (status)
+                    {
+                        await RefreshVaultItemsAsync();
+                        StateHasChanged();
+                    }
+                }
+            }
+        }
+    }
+
+    public async Task OnDeleteFile(ClickEventArgs args)
+    {
+        if (FileDataGrid != null)
+        {
+            var vaultItem = FileDataGrid.SelectedRecords.FirstOrDefault();
+            if (vaultItem != null)
+            {
+                bool confirmed = await JS.InvokeAsync<bool>("confirm", $"Are you sure you want to delete: {vaultItem.Name}?");
+                if (confirmed)
+                {
+                    bool status = await Http.DeleteVaultItem(vaultItem.Id);
+                    if (status)
+                    {
+                        await RefreshVaultItemsAsync();
+                        StateHasChanged();
+                    }
+                }
+            }
+        }
+    }
+
+    public async void OnItemAdded(VaultItem args)
     {
         bool status = await Http.AddVaultItemAsync(args);
         if(status)
@@ -225,18 +316,26 @@
         StateHasChanged();
     }
 
-    public async void OnLoginUpdated(RecordTypes.ItemUpdate update)
+    public async void OnVaultUpdated(RecordTypes.ItemUpdate update)
     {
         if(update != null && update.Modified)
         {
             bool status = await Http.UpdateVaultItem(update.VaultItem);
-            if (status)
-            {
-                await LoginDataGrid.Refresh();
-            }
         }
         StateHasChanged();
     }
+
+
+    public async void OnAddFile(ClickEventArgs args)
+    {
+        await addFileDialog.ShowAsync();
+    }
+
+    public async void OnAddNote(ClickEventArgs args)
+    {
+        await addNoteDialog.ShowAsync();
+    }
+
 
     
     TabHeader LoginHeader = new TabHeader() { Text = "Logins" };

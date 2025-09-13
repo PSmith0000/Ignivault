@@ -1,31 +1,33 @@
 ﻿using ignivault.Data.Models.Auth;
 using ignivault.Data.Models.Data;
+using ignivault.Pages;
 using Microsoft.JSInterop;
-using Syncfusion.XlsIO.Parser.Biff_Records;
-using System.Runtime.CompilerServices;
+using System;
+using System.Text;
+using System.Text.Json;
+using System.Threading.Tasks;
 
 namespace ignivault.Services
 {
+    /// <summary>
+    /// Handles client-side encryption/decryption of Vault data and master-key management.
+    /// JS now works on raw byte arrays; C# handles Base64 conversions.
+    /// </summary>
     public class VaultService
     {
-        private readonly IJSRuntime JS;
-        public VaultService(IJSRuntime _js)
+        private readonly IJSRuntime _js;
+        private byte[]? _masterKey;
+
+        public VaultService(IJSRuntime js)
         {
-            JS= _js;
-            if (JS == null)
-                throw new ArgumentNullException(nameof(JS));
+            _js = js ?? throw new ArgumentNullException(nameof(js));
         }
 
-        private byte[] _masterKey;
+        #region Master Key Management
 
-        public void SetMasterKey(byte[] key) => _masterKey = key;
+        public void SetMasterKey(byte[] key) => _masterKey = key ?? throw new ArgumentNullException(nameof(key));
 
-        public byte[] GetMasterKey()
-        {
-            if (_masterKey == null)
-                Console.WriteLine("Master key not set.");
-            return _masterKey;
-        }
+        public byte[]? GetMasterKey() => _masterKey;
 
         public string GetMasterKeyBase64()
         {
@@ -41,40 +43,22 @@ namespace ignivault.Services
             _masterKey = null;
         }
 
-
-
         public bool IsMasterKeySet() => _masterKey != null;
 
-
-        public async Task<T?> DecryptRecordType<T>(VaultItem item)
-        {
-            if (!IsMasterKeySet())
-                throw new InvalidOperationException("Master key not set.");
-
-
-            string keyBase64 = GetMasterKeyBase64();
-
-            string decryptedJson_b64 = await DecryptBase64(item.EncryptedData, keyBase64, item.IV);
-            string decryptedJson = System.Text.Encoding.UTF8.GetString(Convert.FromBase64String(decryptedJson_b64));
-
-
-            T? record = System.Text.Json.JsonSerializer.Deserialize<T>(decryptedJson);
-
-            return record;
-        }
-
-
-        public async Task<bool> DecryptMasterKey(LoginUser login, string password)
+        /// <summary>
+        /// Decrypt and cache the master key using the supplied password.
+        /// JS returns raw bytes; C# converts to byte[].
+        /// </summary>
+        public async Task<bool> DecryptMasterKeyAsync(LoginUser login, string password)
         {
             try
             {
-                var encMasterKey = (login.EncryptedMasterKey);
-                var keySalt = (login.KeySalt);
-                var masterKeyIV = (login.MasterIV);
-                string b64_masterkey = await JS.InvokeAsync<string>("Crypt.decryptMasterKeyBase64", encMasterKey, password, keySalt, masterKeyIV);
-                byte[] masterKey = Convert.FromBase64String(b64_masterkey);
+                byte[] mk = Convert.FromBase64String(login.EncryptedMasterKey);
+                byte[] ks = Convert.FromBase64String(login.KeySalt);
+                byte[] iv = Convert.FromBase64String(login.MasterIV);
+                byte[] masterKey = await _js.InvokeAsync<byte[]>("Crypt.decryptMasterKey", mk, password, ks, iv);          
 
-                this.SetMasterKey(masterKey);
+                SetMasterKey(masterKey);
                 return true;
             }
             catch (Exception ex)
@@ -84,23 +68,60 @@ namespace ignivault.Services
             }
         }
 
-        public async Task<(string Ciphertext, string IV)> EncryptBase64(string plaintextBase64, string keyBase64)
+        #endregion
+
+        #region Encryption / Decryption
+
+        /// <summary>
+        /// Encrypts a plaintext byte array with a key byte array. Returns raw ciphertext and IV.
+        /// </summary>
+        public async Task<(byte[] Ciphertext, byte[] IV)> EncryptAsync(byte[] plaintext, byte[] key)
         {
-            var result = await JS.InvokeAsync<EncryptionResult>(
-                "Crypt.encryptBase64",
-                plaintextBase64,
-                keyBase64
-            );
+            var result = await _js.InvokeAsync<EncryptionResult>("Crypt.encrypt", plaintext, key);
+
             return (result.Ciphertext, result.Iv);
         }
 
-        public async Task<string> DecryptBase64(string ciphertextBase64, string keyBase64, string ivBase64) =>
-        await JS.InvokeAsync<string>("Crypt.decryptBase64", ciphertextBase64, keyBase64, ivBase64);
+        /// <summary>
+        /// Decrypts a ciphertext byte array with a key and IV byte arrays. Returns raw plaintext.
+        /// </summary>
+        public async Task<byte[]> DecryptAsync(byte[] ciphertext, byte[] key, byte[] iv)
+        {
+            return await _js.InvokeAsync<byte[]>("Crypt.decrypt", ciphertext, key, iv);
+        }
+
+        /// <summary>
+        /// Decrypts a VaultItem into the specified record type.
+        /// JS returns raw bytes; C# converts to UTF-8 string and deserializes.
+        /// </summary>
+        public async Task<T?> DecryptRecordTypeAsync<T>(VaultItem item)
+        {
+            try
+            {
+                if (!IsMasterKeySet())
+                    throw new InvalidOperationException("Master key not set.");
+
+                byte[] mk = Convert.FromBase64String(item.EncryptedData);
+                byte[] iv = Convert.FromBase64String(item.IV);
+                byte[] decryptedBytes = await DecryptAsync(mk, _masterKey!, iv);
+
+                string decryptedJson = Encoding.UTF8.GetString(decryptedBytes);
+                return JsonSerializer.Deserialize<T>(decryptedJson);
+            }
+            catch (Exception)
+            {
+                Console.WriteLine($"Error decrypting item ID {item.Id}, {item.EncryptedData}, {item.IV}");
+            }
+
+            return default;
+        }
+
+        #endregion
 
         private class EncryptionResult
         {
-            public string Ciphertext { get; set; }
-            public string Iv { get; set; }
+            public byte[] Ciphertext { get; set; } = Array.Empty<byte>();
+            public byte[] Iv { get; set; } = Array.Empty<byte>();
         }
     }
 }

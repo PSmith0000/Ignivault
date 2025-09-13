@@ -1,0 +1,95 @@
+﻿@using System.Collections.ObjectModel
+@using ignivault.Data.Models.Data
+
+@inject VaultService VaultService
+@inject AccountService AccountService
+
+@if (vItem != null)
+{
+    <SfDialog @bind-Visible="@_ShowDialog" AllowDragging="true" @ref="_dialog" Width="400px" ShowCloseIcon="true" AllowPrerender=true>
+        <DialogTemplates>
+            <Content>
+                <label class="text-lg font-bold mb-4">Login Details</label>
+                <SfDataForm ID="ViewEditLoginItemForm" Model="vItem" ColumnSpacing="20px">
+                    <FormValidator>
+                        <DataAnnotationsValidator></DataAnnotationsValidator>
+                    </FormValidator>
+                    <FormItems>
+                        <FormItem Field="@nameof(vItem.Title)" LabelText="Note Title"></FormItem>
+                        <FormItem Field="@nameof(vItem.Content)" LabelText="Content" EditorType="FormEditorType.TextArea"></FormItem>
+                    </FormItems>
+                    <FormButtons>
+                        <SfButton CssClass="e-outline" OnClick="Cancel">Cancel</SfButton>
+                        <SfButton IsPrimary="true" OnClick="SaveItem">Save Entry</SfButton>
+                    </FormButtons>
+                </SfDataForm>
+            </Content>
+        </DialogTemplates>
+    </SfDialog>
+}
+
+@code {
+    private bool _ShowDialog { get; set; } = false;
+
+    private VaultItem _VaultItem { get; set; }
+
+    [Parameter]
+    public EventCallback<RecordTypes.ItemUpdate> OnItemUpdated { get; set; }
+
+    private RecordTypes.StoredNote? vItem;
+
+    private SfDialog _dialog;
+
+    public async Task SetVaultItem(VaultItem item)
+    {
+        _VaultItem = item;
+        if (_VaultItem != null)
+        {
+            vItem = await VaultService.DecryptRecordTypeAsync<RecordTypes.StoredNote>(_VaultItem);
+            StateHasChanged();
+        }
+        _ShowDialog = true;
+    }
+
+    private async Task ItemUpdated(RecordTypes.ItemUpdate update)
+    {
+        if (update != null)
+        {
+            await OnItemUpdated.InvokeAsync(update);
+        }
+    }
+
+    public async Task ShowAsync()
+    {
+        await _dialog.ShowAsync();
+    }
+
+    public async Task HideAsync()
+    {
+        _ShowDialog = false;
+        await _dialog.HideAsync();
+    }
+
+    private async Task SaveItem()
+    {
+        string json = System.Text.Json.JsonSerializer.Serialize(vItem);
+        byte[] jsonBytes = System.Text.Encoding.UTF8.GetBytes(json);
+        var (ciphertext, iv) = await VaultService.EncryptAsync(jsonBytes, VaultService.GetMasterKey());
+
+        if (_VaultItem.EncryptedData == null || !DataUtils.AreEqual(System.Text.Encoding.UTF8.GetBytes(_VaultItem.EncryptedData), ciphertext))
+        {
+            _VaultItem.EncryptedData = Convert.ToBase64String(ciphertext);
+            _VaultItem.IV = Convert.ToBase64String(iv);
+            _VaultItem.Name = vItem.Title;
+
+            await ItemUpdated(new RecordTypes.ItemUpdate(_VaultItem, true));
+        }
+
+        await HideAsync();
+    }
+
+    private async Task Cancel()
+    {
+        await HideAsync();
+    }
+}
