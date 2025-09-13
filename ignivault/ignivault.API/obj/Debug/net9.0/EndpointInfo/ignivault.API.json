@@ -79,6 +79,28 @@
         }
       }
     },
+    "/api/Vault/getfile": {
+      "get": {
+        "tags": [
+          "Vault"
+        ],
+        "parameters": [
+          {
+            "name": "itemId",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
     "/api/Vault/add": {
       "post": {
         "tags": [

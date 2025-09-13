@@ -44,7 +44,7 @@
         _VaultItem = item;
         if(_VaultItem != null)
         {
-            _loginDetail = await VaultService.DecryptRecordType<RecordTypes.LoginDetail>(_VaultItem);
+            _loginDetail = await VaultService.DecryptRecordTypeAsync<RecordTypes.LoginDetail>(_VaultItem);
             StateHasChanged();
         }
         _ShowDialog = true;
@@ -72,14 +72,15 @@
     private async Task SaveItem()
     {
         string json = System.Text.Json.JsonSerializer.Serialize(_loginDetail);
-        string json64 = Convert.ToBase64String(System.Text.Encoding.UTF8.GetBytes(json));
-        var json_encrypted = await VaultService.EncryptBase64(json64, VaultService.GetMasterKeyBase64());
+        byte[] jsonBytes = System.Text.Encoding.UTF8.GetBytes(json);
+        var (ciphertext, iv) = await VaultService.EncryptAsync(jsonBytes, VaultService.GetMasterKey());
 
-        if(_VaultItem.EncryptedData != json_encrypted.Ciphertext)
+        if (_VaultItem.EncryptedData == null || !DataUtils.AreEqual(System.Text.Encoding.UTF8.GetBytes(_VaultItem.EncryptedData), ciphertext))
         {
-            _VaultItem.EncryptedData = json_encrypted.Ciphertext;
-            _VaultItem.IV = json_encrypted.IV;
+            _VaultItem.EncryptedData = Convert.ToBase64String(ciphertext);
+            _VaultItem.IV = Convert.ToBase64String(iv);
             _VaultItem.Name = _loginDetail.Name;
+
             await ItemUpdated(new RecordTypes.ItemUpdate(_VaultItem, true));
         }
 

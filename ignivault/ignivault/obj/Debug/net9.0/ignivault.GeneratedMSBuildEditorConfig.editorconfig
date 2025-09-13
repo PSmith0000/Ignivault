@@ -32,12 +32,28 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = TGF5b3V0XEN1bHR1cmVTd2l0Y2hlci5yYXpvcg==
 build_metadata.AdditionalFiles.CssScope = 
 
+[C:/Users/prest/Desktop/GitHub/Ignivault/ignivault/ignivault/Layout/Dialogs/AddFile.razor]
+build_metadata.AdditionalFiles.TargetPath = TGF5b3V0XERpYWxvZ3NcQWRkRmlsZS5yYXpvcg==
+build_metadata.AdditionalFiles.CssScope = 
+
 [C:/Users/prest/Desktop/GitHub/Ignivault/ignivault/ignivault/Layout/Dialogs/AddLogin.razor]
 build_metadata.AdditionalFiles.TargetPath = TGF5b3V0XERpYWxvZ3NcQWRkTG9naW4ucmF6b3I=
 build_metadata.AdditionalFiles.CssScope = 
 
+[C:/Users/prest/Desktop/GitHub/Ignivault/ignivault/ignivault/Layout/Dialogs/AddNote.razor]
+build_metadata.AdditionalFiles.TargetPath = TGF5b3V0XERpYWxvZ3NcQWRkTm90ZS5yYXpvcg==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/prest/Desktop/GitHub/Ignivault/ignivault/ignivault/Layout/Dialogs/ViewDownloadFile.razor]
+build_metadata.AdditionalFiles.TargetPath = TGF5b3V0XERpYWxvZ3NcVmlld0Rvd25sb2FkRmlsZS5yYXpvcg==
+build_metadata.AdditionalFiles.CssScope = 
+
 [C:/Users/prest/Desktop/GitHub/Ignivault/ignivault/ignivault/Layout/Dialogs/ViewEditLogin.razor]
 build_metadata.AdditionalFiles.TargetPath = TGF5b3V0XERpYWxvZ3NcVmlld0VkaXRMb2dpbi5yYXpvcg==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/prest/Desktop/GitHub/Ignivault/ignivault/ignivault/Layout/Dialogs/ViewEditNote.razor]
+build_metadata.AdditionalFiles.TargetPath = TGF5b3V0XERpYWxvZ3NcVmlld0VkaXROb3RlLnJhem9y
 build_metadata.AdditionalFiles.CssScope = 
 
 [C:/Users/prest/Desktop/GitHub/Ignivault/ignivault/ignivault/Layout/ForgotLoginDialog.razor]

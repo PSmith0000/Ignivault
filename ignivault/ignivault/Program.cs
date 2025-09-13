@@ -20,12 +20,13 @@ try
     var builder = WebAssemblyHostBuilder.CreateDefault(args);
 
 
-
     builder.Services.AddMemoryCache();
     builder.RootComponents.Add<App>("#app");
     builder.RootComponents.Add<HeadOutlet>("head::after");
     builder.Services.AddSyncfusionBlazor();
     builder.Services.AddSingleton(typeof(ISyncfusionStringLocalizer), typeof(SyncfusionLocalizer));
+
+    
 
     // Set the default culture of the application
     CultureInfo.DefaultThreadCurrentCulture = new CultureInfo("en-US");
@@ -54,7 +55,7 @@ try
     builder.Services.AddAuthorizationCore();
 
     var app = builder.Build();
-
+    
     await app.RunAsync();
 }
 catch

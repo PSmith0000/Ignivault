@@ -1,0 +1,89 @@
+﻿@using System.Collections.ObjectModel
+@using ignivault.Data.Models.Data
+
+@inject VaultService VaultService
+@inject AccountService AccountService
+
+<SfDialog Visible="false" AllowDragging="true" @ref="dialog" Width="400px" ShowCloseIcon="true">
+    <DialogTemplates>
+        <Content>
+            <label class="text-lg font-bold mb-4">Add New Note Record</label>
+            <SfDataForm ID="AddNoteItemForm" Model="item" ColumnSpacing="20px">
+                <FormValidator>
+                    <DataAnnotationsValidator></DataAnnotationsValidator>
+                </FormValidator>
+
+                <FormItems>
+                    <FormItem Field="@nameof(item.Title)" LabelText="Note Title"></FormItem>
+                    <FormItem Field="@nameof(item.Content)" LabelText="Content" EditorType="FormEditorType.TextArea"></FormItem>
+                </FormItems>
+                <FormButtons>
+                    <SfButton CssClass="e-outline" OnClick="Cancel">Cancel</SfButton>
+                    <SfButton IsPrimary="true" OnClick="SaveItem">Save Entry</SfButton>
+                </FormButtons>
+            </SfDataForm>
+        </Content>
+    </DialogTemplates>
+</SfDialog>
+
+@code {
+    private SfDialog dialog;
+
+    [Parameter]
+    public EventCallback<VaultItem> ItemAdded { get; set; }
+
+    private VaultItem NewItem { get; set; } = new();
+    private RecordTypes.StoredNote item = new("", "");
+
+    private async Task OnItemAdded(VaultItem args)
+    {
+        if (args != null)
+        {
+            await ItemAdded.InvokeAsync(args);
+        }
+    }
+
+    public async Task ShowAsync()
+    {
+        ResetForm();
+        await dialog.ShowAsync();
+    }
+
+    public async Task HideAsync()
+    {
+        await dialog.HideAsync();
+    }
+
+    private void ResetForm()
+    {
+        NewItem = new VaultItem
+        {
+            CreatedAt = DateTime.UtcNow,
+            Type = "Text"
+        };
+    }
+
+    private async Task SaveItem()
+    {
+        string jsonData = System.Text.Json.JsonSerializer.Serialize(item);
+
+        byte[] jsonBytes = System.Text.Encoding.UTF8.GetBytes(jsonData);
+
+        var (ciphertext, iv) = await VaultService.EncryptAsync(jsonBytes, VaultService.GetMasterKey());
+
+        NewItem.EncryptedData = Convert.ToBase64String(ciphertext);
+        NewItem.IV = Convert.ToBase64String(iv);
+        NewItem.Name = item.Title;
+        NewItem.Id = 0;
+        NewItem.UserId = AccountService.LoginUser.Id;
+        NewItem.UpdatedAt = DateTime.Now;
+        NewItem.CreatedAt = DateTime.Now;
+        await OnItemAdded(NewItem);
+        await HideAsync();
+    }
+
+    private async Task Cancel()
+    {
+        await HideAsync();
+    }
+}

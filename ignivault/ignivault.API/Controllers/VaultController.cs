@@ -29,12 +29,45 @@ namespace ignivault.API.Controllers
 
             if (userId == null) return Unauthorized();
 
-            var vaultItems = await _db.VaultItems.Where(v => v.UserId == userId).ToListAsync();
+            var user = await _userManager.FindByIdAsync(userId);
+            if (user == null)
+            {
+                return Unauthorized();
+            }
+
+            var vaultItems = await _db.VaultItems.ToListAsync();
 
             return Ok(vaultItems);
         }
 
         [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
+        [HttpGet("getfile")]
+        [RequestSizeLimit(450_000_000)]
+        public async Task<IActionResult> GetFileData([FromQuery] int itemId)
+        {
+            var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+
+            if (userId == null) return Unauthorized();
+
+            var user = await _userManager.FindByIdAsync(userId);
+            if (user == null)
+            {
+                return Unauthorized();
+            }
+
+            var vaultItem = await _db.VaultItems.Where(v => v.UserId == userId && v.Id == itemId).FirstOrDefaultAsync();
+
+            if(vaultItem == null)
+            {
+                return NotFound();
+            }
+
+            return Ok(vaultItem);
+        }
+
+
+        [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
+        [RequestSizeLimit(450_000_000)]
         [HttpPost("add")]
         public async Task<IActionResult> AddVaultItem([FromBody] VaultItem model)
         {     

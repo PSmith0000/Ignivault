@@ -26,9 +26,6 @@
     </DialogTemplates>
 </SfDialog>
 
-
-
-
 @code {
     private SfDialog dialog;
 
@@ -37,15 +34,6 @@
 
     private VaultItem NewItem { get; set; } = new();
     private RecordTypes.LoginDetail item = new("", "", "", "");
-
-    protected override void OnAfterRender(bool firstRender)
-    {
-        if (firstRender)
-        {
-            
-        }
-        base.OnAfterRender(firstRender);
-    }
 
     private async Task OnItemAdded(VaultItem args)
     {
@@ -77,17 +65,19 @@
 
     private async Task SaveItem()
     {
-        string data = System.Text.Json.JsonSerializer.Serialize(item);
-        string json = Convert.ToBase64String(System.Text.Encoding.UTF8.GetBytes(data));
-        var result  = await VaultService.EncryptBase64(json, VaultService.GetMasterKeyBase64());
-        NewItem.EncryptedData = (result.Ciphertext);
-        NewItem.IV = (result.IV);
+        string jsonData = System.Text.Json.JsonSerializer.Serialize(item);
+
+        byte[] jsonBytes = System.Text.Encoding.UTF8.GetBytes(jsonData);
+
+        var (ciphertext, iv) = await VaultService.EncryptAsync(jsonBytes, VaultService.GetMasterKey());
+
+        NewItem.EncryptedData = Convert.ToBase64String(ciphertext);
+        NewItem.IV = Convert.ToBase64String(iv);
         NewItem.Name = item.Name;
         NewItem.Id = 0;
         NewItem.UserId = AccountService.LoginUser.Id;
         NewItem.UpdatedAt = DateTime.Now;
         NewItem.CreatedAt = DateTime.Now;
-        Console.WriteLine(System.Text.Json.JsonSerializer.Serialize(NewItem));
         await OnItemAdded(NewItem);
         await HideAsync();
     }

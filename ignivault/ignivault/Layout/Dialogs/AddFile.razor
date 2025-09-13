@@ -1,0 +1,135 @@
+﻿@using System.Collections.ObjectModel
+@using System.IO.Compression
+@using ignivault.Data.Models.Data
+
+@inject VaultService VaultService
+@inject AccountService AccountService
+
+<SfDialog Visible="false" AllowDragging="true" @ref="dialog" Width="400px" ShowCloseIcon="true">
+    <DialogTemplates>
+        <Content>
+            <label class="text-lg font-bold mb-4">Add New Stored File</label>
+            <SfDataForm @ref="dataForm" ID="AddFileItemForm" Model="item" ColumnSpacing="20px">
+                <FormValidator>
+                    <DataAnnotationsValidator></DataAnnotationsValidator>
+                </FormValidator>
+                
+                <FormItems>
+                    <FormItem Field="@nameof(item.FileName)" LabelText="File Name"></FormItem>
+                    <FormItem Field="@nameof(item.extension)" LabelText="File Extension"></FormItem>
+                </FormItems>
+                <FormButtons>
+                    <SfButton CssClass="e-outline" OnClick="Cancel">Cancel</SfButton>
+                    <SfButton IsPrimary="true" OnClick="SaveItem">Save Entry</SfButton>
+                    <SfUploader MaxFileSize="1L * 1024 * 1024 * 1024" @ref="uploader" EnableHtmlSanitizer="true" ShowProgressBar="true" AutoUpload="false" AllowMultiple="false">
+                        <UploaderEvents ValueChange="HandleFileSelection"/>
+                    </SfUploader>
+                </FormButtons>
+            </SfDataForm>
+        </Content>
+    </DialogTemplates>
+</SfDialog>
+
+@code {
+    private SfDialog dialog;
+    private SfDataForm dataForm;
+    private SfUploader uploader;
+
+    [Parameter]
+    public EventCallback<VaultItem> ItemAdded { get; set; }
+
+    private VaultItem NewItem { get; set; } = new();
+    private RecordTypes.StoredFile item = new("", new byte[] { }, "");
+
+
+    private async Task OnItemAdded(VaultItem args)
+    {
+        if (args != null)
+        {
+            await ItemAdded.InvokeAsync(args);
+        }
+    }
+
+    private async Task HandleFileSelection(UploadChangeEventArgs e)
+    {
+        try
+        {
+            const long Limit = 300L * 1024 * 1024; // 1 GB
+
+            var file = e.Files.FirstOrDefault()?.File;
+            if (file is null) return;
+
+            if (file.Size > Limit)
+            {
+                Console.WriteLine("File size exceeds the 300MB limit.");
+            }
+
+            using var ms = new MemoryStream();
+            await file.OpenReadStream(maxAllowedSize: Limit + 1).CopyToAsync(ms);
+            byte[] fileData = ms.ToArray();
+
+            item = new RecordTypes.StoredFile(file.Name, fileData, Path.GetExtension(file.Name));
+
+            string json = System.Text.Json.JsonSerializer.Serialize(item);
+            byte[] jsonBytes = System.Text.Encoding.UTF8.GetBytes(json);
+
+            var (ciphertext, iv) = await VaultService.EncryptAsync(jsonBytes, VaultService.GetMasterKey());
+
+            NewItem.Name = file.Name;
+            NewItem.CreatedAt = DateTime.UtcNow;
+            NewItem.Type = "File";
+            NewItem.EncryptedData = Convert.ToBase64String(ciphertext);
+            NewItem.IV = Convert.ToBase64String(iv);
+            NewItem.UserId = AccountService.LoginUser.Id;
+            NewItem.UpdatedAt = DateTime.UtcNow;
+
+            ms.Close();
+            StateHasChanged();
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine(ex.Message);
+        }
+    }
+
+
+
+    public async Task ShowAsync()
+    {
+        ResetForm();
+        await dialog.ShowAsync();
+    }
+
+    public async Task HideAsync()
+    {
+        await dialog.HideAsync();
+    }
+
+    private async void ResetForm()
+    {
+        NewItem = new VaultItem
+        {
+            CreatedAt = DateTime.UtcNow,
+            Type = "File"
+        };
+        item = new RecordTypes.StoredFile("", new byte[] { }, "");
+    }
+
+    private async Task SaveItem()
+    {       
+        if(string.IsNullOrEmpty(NewItem.EncryptedData) || string.IsNullOrEmpty(NewItem.IV))
+        {
+            Console.WriteLine("File Save Failed.");
+            return;
+        }
+
+        await OnItemAdded(NewItem);
+
+        await HideAsync();
+    }
+
+    private async Task Cancel()
+    {
+        await HideAsync();
+    }
+}

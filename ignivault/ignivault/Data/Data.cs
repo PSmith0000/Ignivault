@@ -16,6 +16,10 @@ namespace ignivault.Data
         public record LoginDetail(string Name, string URL, string Username, string Password);
 
         public record ItemUpdate(VaultItem VaultItem, bool Modified);
+
+        public record StoredFile(string FileName, byte[] data, string extension);
+
+        public record StoredNote(string Title, string Content);
     }
 }
 

@@ -1,0 +1,112 @@
+﻿@using System.Collections.ObjectModel
+@using Syncfusion.Blazor.ProgressBar
+@using ignivault.Data.Models.Data
+
+@inject VaultService VaultService
+@inject AccountService AccountService
+
+@if (vItem != null && !_Downloading)
+{
+    <SfDialog @bind-Visible="@_ShowDialog" AllowDragging="true" @ref="_dialog" Width="400px" ShowCloseIcon="true" AllowPrerender=true>
+        <DialogTemplates>
+            <Content>
+                <label class="text-lg font-bold mb-4">Stored File</label>
+                <SfDataForm ID="ViewDownloadFileForm" Model="vItem" ColumnSpacing="20px">
+                    <FormValidator>
+                        <DataAnnotationsValidator></DataAnnotationsValidator>
+                    </FormValidator>
+                    <FormItems>
+                        <FormItem Field="@nameof(vItem.FileName)" LabelText="File Name"></FormItem>
+                    </FormItems>
+                    <FormButtons>
+                        <SfButton CssClass="e-outline" OnClick="Cancel">Cancel</SfButton>
+                        <SfButton IsPrimary="true" OnClick="DownloadItem">Download</SfButton>
+                    </FormButtons>
+                </SfDataForm>
+            </Content>
+        </DialogTemplates>
+    </SfDialog>
+}
+
+@if (_Downloading)
+{
+    <SfProgressBar ID="FullProgressBar"
+                   @ref="FullProgress"
+                   Type="ProgressType.Circular"
+                   Minimum="0"
+                   Maximum="100"
+                   Value="60"
+                   Width="160px"
+                   Height="170px"
+                   Radius="100%"
+                   InnerRadius="190%"
+                   ProgressThickness="10"
+                   TrackThickness="80"
+                   ProgressColor="#4F46E5"
+                   CornerRadius="CornerType.Round"
+                   TrackColor="#4F46E5"
+                   Theme="@Theme.Tailwind3">
+        <ProgressBarAnimation Enable="true" Duration="3000" Delay="0" />
+        <ProgressBarAnnotations>
+            <ProgressBarAnnotation>
+                <ContentTemplate>
+                    <div style='font-size:20px;font-weight:bold;color:#4F46E5;'>
+                        <span>60%</span>
+                    </div>
+                </ContentTemplate>
+            </ProgressBarAnnotation>
+        </ProgressBarAnnotations>
+    </SfProgressBar>
+}
+
+
+
+
+
+@code {
+    private bool _ShowDialog { get; set; } = false;
+
+    private bool _Downloading { get; set; } = false;
+
+    public SfProgressBar? FullProgress { get; set; }
+
+    private VaultItem _VaultItem { get; set; }
+
+    private RecordTypes.StoredFile? vItem;
+
+    private SfDialog _dialog;
+
+    public async Task SetVaultItem(VaultItem item)
+    {
+        _VaultItem = item;
+        if (_VaultItem != null)
+        {
+            vItem = new RecordTypes.StoredFile(_VaultItem.Name, new byte[] {0x0,0x0}, "");
+            StateHasChanged();
+        }
+        _ShowDialog = true;
+    }
+
+    public async Task ShowAsync()
+    {
+        await _dialog.ShowAsync();
+    }
+
+    public async Task HideAsync()
+    {
+        _ShowDialog = false;
+        await _dialog.HideAsync();
+    }
+
+    private async Task DownloadItem()
+    {
+        _Downloading = true;
+
+        await HideAsync();
+    }
+
+    private async Task Cancel()
+    {
+        await HideAsync();
+    }
+}

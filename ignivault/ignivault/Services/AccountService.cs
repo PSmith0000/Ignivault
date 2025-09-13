@@ -22,24 +22,23 @@ namespace ignivault.Services
 
         public bool IsLoggedIn()
         {
-            return LoginUser != null && DataUtils.IsTokenExpired(LoginUser.Token);
+            if (LoginUser == null) return false;
+
+            if (DataUtils.IsTokenExpired(LoginUser.Token)) return false;
+
+            return true;
         }
 
         public async Task<bool> IsTokenSetAsync()
         {
             var storedToken = await _localStorage.GetItemAsync<string>("authToken");
-            if (!string.IsNullOrEmpty(storedToken) && IsLoggedIn())
-            {
-                return true;
-            }
+            bool nullToken = string.IsNullOrEmpty(storedToken);
 
-            if (LoginUser != null && !string.IsNullOrEmpty(LoginUser.Token) && IsLoggedIn())
-            {
-                return true;
-            }
+            bool loggedIn = IsLoggedIn();
 
+            Console.WriteLine($"Stored Token: {storedToken}, IsLoggedIn: {loggedIn}, IsNullOrEmpty: {nullToken}");
 
-            return false;
+            return !nullToken && loggedIn;
         }
     }
 }

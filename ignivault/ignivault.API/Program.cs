@@ -17,6 +17,11 @@ namespace ignivault.API
 
             var builder = WebApplication.CreateBuilder(args);
 
+            builder.WebHost.ConfigureKestrel(options =>
+            {
+                options.Limits.MaxRequestBodySize = 450L * 1024 * 1024; // 450 MB
+            });
+
             builder.Logging.ClearProviders();
             builder.Logging.AddConsole();
 
@@ -99,6 +104,12 @@ namespace ignivault.API
             //security stuff
 
             //General stuff
+
+            builder.WebHost.ConfigureKestrel(options =>
+            {
+                options.Limits.MaxRequestBodySize = 10 * 1024 * 1024;
+            });
+
             var app = builder.Build();
 
             //addtional auth
