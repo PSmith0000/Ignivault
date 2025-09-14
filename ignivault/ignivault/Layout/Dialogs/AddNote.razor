@@ -4,82 +4,119 @@
 @inject VaultService VaultService
 @inject AccountService AccountService
 
-<SfDialog Visible="false" AllowDragging="true" @ref="dialog" Width="400px" ShowCloseIcon="true">
+<SfDialog @bind-Visible="_isOpen" AllowDragging="true" @ref="_dialog" Width="400px" ShowCloseIcon="true">
     <DialogTemplates>
         <Content>
             <label class="text-lg font-bold mb-4">Add New Note Record</label>
-            <SfDataForm ID="AddNoteItemForm" Model="item" ColumnSpacing="20px">
+
+            <SfDataForm ID="AddNoteItemForm" Model="_noteItem" ColumnSpacing="20px">
                 <FormValidator>
-                    <DataAnnotationsValidator></DataAnnotationsValidator>
+                    <DataAnnotationsValidator />
                 </FormValidator>
 
                 <FormItems>
-                    <FormItem Field="@nameof(item.Title)" LabelText="Note Title"></FormItem>
-                    <FormItem Field="@nameof(item.Content)" LabelText="Content" EditorType="FormEditorType.TextArea"></FormItem>
+                    <FormItem Field="@nameof(_noteItem.Title)" LabelText="Note Title" />
+                    <FormItem Field="@nameof(_noteItem.Content)" LabelText="Content" EditorType="FormEditorType.TextArea" />
                 </FormItems>
+
                 <FormButtons>
                     <SfButton CssClass="e-outline" OnClick="Cancel">Cancel</SfButton>
-                    <SfButton IsPrimary="true" OnClick="SaveItem">Save Entry</SfButton>
+                    <SfButton IsPrimary="true" OnClick="SaveItemAsync" Disabled="@_isSaving">
+                        @(_isSaving ? "Saving..." : "Save Entry")
+                    </SfButton>
                 </FormButtons>
             </SfDataForm>
+
+            @if (!string.IsNullOrEmpty(_status))
+            {
+                <div class="mt-2 text-sm text-danger">@_status</div>
+            }
         </Content>
     </DialogTemplates>
 </SfDialog>
 
 @code {
-    private SfDialog dialog;
+    private SfDialog _dialog;
+    private bool _isOpen = false;
+    private bool _isSaving = false;
+    private string _status = string.Empty;
 
-    [Parameter]
-    public EventCallback<VaultItem> ItemAdded { get; set; }
+    private VaultItem _newVaultItem;
+    private RecordTypes.StoredNote _noteItem;
 
-    private VaultItem NewItem { get; set; } = new();
-    private RecordTypes.StoredNote item = new("", "");
+    [Parameter] public EventCallback<VaultItem> ItemAdded { get; set; }
 
-    private async Task OnItemAdded(VaultItem args)
+    public AddNote()
     {
-        if (args != null)
-        {
-            await ItemAdded.InvokeAsync(args);
-        }
+        _noteItem = new RecordTypes.StoredNote("", "");
+        _newVaultItem = new VaultItem { Type = "Text", CreatedAt = DateTime.UtcNow };
     }
 
     public async Task ShowAsync()
     {
         ResetForm();
-        await dialog.ShowAsync();
+        _isOpen = true;
+        await _dialog.ShowAsync();
     }
 
     public async Task HideAsync()
     {
-        await dialog.HideAsync();
+        _isOpen = false;
+        await _dialog.HideAsync();
     }
 
     private void ResetForm()
     {
-        NewItem = new VaultItem
+        _noteItem = new RecordTypes.StoredNote("", "");
+        _newVaultItem = new VaultItem
         {
-            CreatedAt = DateTime.UtcNow,
-            Type = "Text"
+            Type = "Text",
+            CreatedAt = DateTime.UtcNow
         };
+        _status = string.Empty;
+        _isSaving = false;
     }
 
-    private async Task SaveItem()
+    private async Task SaveItemAsync()
     {
-        string jsonData = System.Text.Json.JsonSerializer.Serialize(item);
+        if (string.IsNullOrWhiteSpace(_noteItem.Title))
+        {
+            _status = "Title cannot be empty.";
+            return;
+        }
 
-        byte[] jsonBytes = System.Text.Encoding.UTF8.GetBytes(jsonData);
+        try
+        {
+            _isSaving = true;
+            _status = string.Empty;
 
-        var (ciphertext, iv) = await VaultService.EncryptAsync(jsonBytes, VaultService.GetMasterKey());
+            // Serialize and encrypt the note
+            string jsonData = System.Text.Json.JsonSerializer.Serialize(_noteItem);
+            byte[] jsonBytes = System.Text.Encoding.UTF8.GetBytes(jsonData);
+            var (ciphertext, iv) = await VaultService.EncryptAsync(jsonBytes, VaultService.GetMasterKey());
 
-        NewItem.EncryptedData = Convert.ToBase64String(ciphertext);
-        NewItem.IV = Convert.ToBase64String(iv);
-        NewItem.Name = item.Title;
-        NewItem.Id = 0;
-        NewItem.UserId = AccountService.LoginUser.Id;
-        NewItem.UpdatedAt = DateTime.Now;
-        NewItem.CreatedAt = DateTime.Now;
-        await OnItemAdded(NewItem);
-        await HideAsync();
+            // Prepare VaultItem
+            _newVaultItem.EncryptedData = Convert.ToBase64String(ciphertext);
+            _newVaultItem.Iv = Convert.ToBase64String(iv);
+            _newVaultItem.Name = _noteItem.Title;
+            _newVaultItem.Id = 0;
+            _newVaultItem.UserId = AccountService.LoginUser.Id;
+            _newVaultItem.UpdatedAt = DateTime.UtcNow;
+            _newVaultItem.CreatedAt = DateTime.UtcNow;
+
+            // Invoke callback
+            await ItemAdded.InvokeAsync(_newVaultItem);
+
+            await HideAsync();
+        }
+        catch (Exception ex)
+        {
+            _status = $"Error saving note: {ex.Message}";
+        }
+        finally
+        {
+            _isSaving = false;
+        }
     }
 
     private async Task Cancel()

@@ -1,17 +1,17 @@
-﻿using Blazored.LocalStorage;
+﻿using Blazored.SessionStorage;
+using ignivault.Data;
 using Microsoft.AspNetCore.Components.Authorization;
-using System.Net.Http.Headers;
-using System.Security.Claims;
-using System.Text.Json;
 using System.IdentityModel.Tokens.Jwt;
+using System.Security.Claims;
+
 namespace ignivault.Services
 {
     public class JwtAuthenticationStateProvider : AuthenticationStateProvider
     {
-        private readonly ILocalStorageService _localStorage;
+        private readonly ISessionStorageService _localStorage;
         private readonly JwtSecurityTokenHandler _tokenHandler = new();
 
-        public JwtAuthenticationStateProvider(ILocalStorageService localStorage)
+        public JwtAuthenticationStateProvider(ISessionStorageService localStorage)
         {
             _localStorage = localStorage;
         }
@@ -20,8 +20,9 @@ namespace ignivault.Services
         {
             var token = await _localStorage.GetItemAsync<string>("authToken");
 
-            if (string.IsNullOrWhiteSpace(token))
+            if (string.IsNullOrWhiteSpace(token) || DataUtils.IsTokenExpired(token))
             {
+                await _localStorage.RemoveItemAsync("authToken");
                 return new AuthenticationState(new ClaimsPrincipal(new ClaimsIdentity()));
             }
 
@@ -33,16 +34,13 @@ namespace ignivault.Services
         {
             var identity = GetClaimsPrincipalFromToken(token);
             var user = new ClaimsPrincipal(identity);
-
-            var authState = Task.FromResult(new AuthenticationState(user));
-            NotifyAuthenticationStateChanged(authState);
+            NotifyAuthenticationStateChanged(Task.FromResult(new AuthenticationState(user)));
         }
 
         public void NotifyUserLogout()
         {
             var anonymous = new ClaimsPrincipal(new ClaimsIdentity());
-            var authState = Task.FromResult(new AuthenticationState(anonymous));
-            NotifyAuthenticationStateChanged(authState);
+            NotifyAuthenticationStateChanged(Task.FromResult(new AuthenticationState(anonymous)));
         }
 
         private ClaimsIdentity GetClaimsPrincipalFromToken(string token)
@@ -51,7 +49,6 @@ namespace ignivault.Services
             {
                 var jwt = _tokenHandler.ReadJwtToken(token);
                 var claims = jwt.Claims;
-
                 return new ClaimsIdentity(claims, "authToken");
             }
             catch
@@ -60,5 +57,4 @@ namespace ignivault.Services
             }
         }
     }
-
 }

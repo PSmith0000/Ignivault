@@ -1,9 +1,7 @@
 ﻿using ignivault.API.Models;
 using ignivault.API.Security;
 using ignivault.API.Security.Auth;
-using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.IdentityModel.Tokens;
@@ -17,7 +15,7 @@ namespace ignivault.API.Controllers
     [ApiController]
     public class AuthenticationController : ControllerBase
     {
-        public readonly UserManager<LoginUser> _userManager;
+        private readonly UserManager<LoginUser> _userManager;
         private readonly SignInManager<LoginUser> _signInManager;
         private readonly IConfiguration _configuration;
 
@@ -38,25 +36,22 @@ namespace ignivault.API.Controllers
             var user = new LoginUser
             {
                 UserName = model.Username,
-                Email = model.Email,
+                Email = model.Email
             };
 
-            var master_key = Crypt.GenerateRandomKey();
+            var masterKey = Crypt.GenerateRandomKey();
             var salt = Crypt.GenerateSalt();
             var KHK = Crypt.DeriveKey(model.Password, salt);
-            var (encrypted_master_key, iv) = Crypt.Encrypt(master_key, KHK);
+            var (encryptedMasterKey, iv) = Crypt.Encrypt(masterKey, KHK);
 
-            user.EncryptedMasterKey = Convert.ToBase64String(encrypted_master_key);
+            user.EncryptedMasterKey = Convert.ToBase64String(encryptedMasterKey);
             user.KeySalt = Convert.ToBase64String(salt);
             user.MasterIV = Convert.ToBase64String(iv);
 
             var result = await _userManager.CreateAsync(user, model.Password);
-
             if (!result.Succeeded)
             {
-                string errors = string.Join(", ", result.Errors.Select(e => e.Description));
-
-                return BadRequest(errors);
+                return BadRequest(string.Join(", ", result.Errors.Select(e => e.Description)));
             }
 
             return Ok(new { Message = "User registered successfully!" });
@@ -67,27 +62,17 @@ namespace ignivault.API.Controllers
         public async Task<IActionResult> Login([FromBody] LoginModel model)
         {
             var user = await _userManager.FindByEmailAsync(model.Email);
-            if (user == null)
-                return Unauthorized("Invalid credentials");
+            if (user == null) return Unauthorized("Invalid credentials");
 
             var result = await _signInManager.CheckPasswordSignInAsync(user, model.Password, false);
-            if (!result.Succeeded)
-                return Unauthorized("Invalid credentials");
+            if (!result.Succeeded) return Unauthorized("Invalid credentials");
 
             var token = GenerateJwtToken(user);
-            LoginUserDto LoginUser = new LoginUserDto(user, token);
+            var loginDto = new LoginUserDto(user, token);
 
-            Console.WriteLine("Login Data Sent: " + System.Text.Json.JsonSerializer.Serialize(LoginUser));
-            return Ok(new {LoginUser});
+            return Ok(loginDto);
         }
 
-
-
-        /// <summary>
-        /// Generates a JWT token for the authenticated user.
-        /// </summary>
-        /// <param name="user">Logged In User</param>
-        /// <returns></returns>
         private string GenerateJwtToken(LoginUser user)
         {
             var claims = new List<Claim>
@@ -110,9 +95,5 @@ namespace ignivault.API.Controllers
 
             return new JwtSecurityTokenHandler().WriteToken(token);
         }
-
-
-
-
     }
 }

@@ -1,85 +1,119 @@
-﻿
-@using System.Collections.ObjectModel
+﻿@using System.Collections.ObjectModel
 @using ignivault.Data.Models.Data
 
 @inject VaultService VaultService
 @inject AccountService AccountService
 
-<SfDialog Visible="false" AllowDragging="true" @ref="dialog" Width="400px" ShowCloseIcon="true">
+<SfDialog @bind-Visible="_isOpen" AllowDragging="true" @ref="_dialog" Width="400px" ShowCloseIcon="true">
     <DialogTemplates>
         <Content>
             <label class="text-lg font-bold mb-4">Add New Login Record</label>
-            <SfDataForm ID="AddLoginItemForm" Model="item" ColumnSpacing="20px">
+
+            <SfDataForm ID="AddLoginItemForm" Model="_loginItem" ColumnSpacing="20px">
                 <FormValidator>
-                    <DataAnnotationsValidator></DataAnnotationsValidator>
+                    <DataAnnotationsValidator />
                 </FormValidator>
-              
+
                 <FormItems>
-                   <FormAutoGenerateItems></FormAutoGenerateItems>
+                    <FormAutoGenerateItems />
                 </FormItems>
+
                 <FormButtons>
                     <SfButton CssClass="e-outline" OnClick="Cancel">Cancel</SfButton>
-                    <SfButton IsPrimary="true" OnClick="SaveItem">Save Entry</SfButton>
+                    <SfButton IsPrimary="true" OnClick="SaveItemAsync" Disabled="@_isSaving">
+                        @(_isSaving ? "Saving..." : "Save Entry")
+                    </SfButton>
                 </FormButtons>
             </SfDataForm>
+
+            @if (!string.IsNullOrEmpty(_status))
+            {
+                <div class="mt-2 text-sm text-danger">@_status</div>
+            }
         </Content>
     </DialogTemplates>
 </SfDialog>
 
 @code {
-    private SfDialog dialog;
+    private SfDialog _dialog;
+    private bool _isOpen = false;
+    private bool _isSaving = false;
+    private string _status = string.Empty;
 
-    [Parameter] 
-    public EventCallback<VaultItem> ItemAdded { get; set; }
+    private VaultItem _newVaultItem;
+    private RecordTypes.LoginDetail _loginItem;
 
-    private VaultItem NewItem { get; set; } = new();
-    private RecordTypes.LoginDetail item = new("", "", "", "");
+    [Parameter] public EventCallback<VaultItem> ItemAdded { get; set; }
 
-    private async Task OnItemAdded(VaultItem args)
+    public AddLogin()
     {
-        if(args != null)
-        {
-            await ItemAdded.InvokeAsync(args);
-        }
+        _loginItem = new RecordTypes.LoginDetail("", "", "", "");
+        _newVaultItem = new VaultItem { Type = "Login", CreatedAt = DateTime.UtcNow };
     }
 
     public async Task ShowAsync()
     {
         ResetForm();
-        await dialog.ShowAsync();
+        _isOpen = true;
+        await _dialog.ShowAsync();
     }
 
     public async Task HideAsync()
     {
-        await dialog.HideAsync();
+        _isOpen = false;
+        await _dialog.HideAsync();
     }
 
     private void ResetForm()
     {
-        NewItem = new VaultItem
+        _loginItem = new RecordTypes.LoginDetail("", "", "", "");
+        _newVaultItem = new VaultItem
         {
-            CreatedAt = DateTime.UtcNow,
-            Type = "Login"
+            Type = "Login",
+            CreatedAt = DateTime.UtcNow
         };
+        _status = string.Empty;
+        _isSaving = false;
     }
 
-    private async Task SaveItem()
+    private async Task SaveItemAsync()
     {
-        string jsonData = System.Text.Json.JsonSerializer.Serialize(item);
+        if (string.IsNullOrWhiteSpace(_loginItem.Name))
+        {
+            _status = "Name cannot be empty.";
+            return;
+        }
 
-        byte[] jsonBytes = System.Text.Encoding.UTF8.GetBytes(jsonData);
+        try
+        {
+            _isSaving = true;
+            _status = string.Empty;
 
-        var (ciphertext, iv) = await VaultService.EncryptAsync(jsonBytes, VaultService.GetMasterKey());
+            // Serialize and encrypt login item
+            string jsonData = System.Text.Json.JsonSerializer.Serialize(_loginItem);
+            byte[] jsonBytes = System.Text.Encoding.UTF8.GetBytes(jsonData);
+            var (ciphertext, iv) = await VaultService.EncryptAsync(jsonBytes, VaultService.GetMasterKey());
 
-        NewItem.EncryptedData = Convert.ToBase64String(ciphertext);
-        NewItem.IV = Convert.ToBase64String(iv);
-        NewItem.Name = item.Name;
-        NewItem.Id = 0;
-        NewItem.UserId = AccountService.LoginUser.Id;
-        NewItem.UpdatedAt = DateTime.Now;
-        NewItem.CreatedAt = DateTime.Now;
-        await OnItemAdded(NewItem);
-        await HideAsync();
+            _newVaultItem.EncryptedData = Convert.ToBase64String(ciphertext);
+            _newVaultItem.Iv = Convert.ToBase64String(iv);
+            _newVaultItem.Name = _loginItem.Name;
+            _newVaultItem.Id = 0;
+            _newVaultItem.UserId = AccountService.LoginUser.Id;
+            _newVaultItem.UpdatedAt = DateTime.UtcNow;
+            _newVaultItem.CreatedAt = DateTime.UtcNow;
+
+            await ItemAdded.InvokeAsync(_newVaultItem);
+
+            await HideAsync();
+        }
+        catch (Exception ex)
+        {
+            _status = $"Error saving login: {ex.Message}";
+        }
+        finally
+        {
+            _isSaving = false;
+        }
     }
 
     private async Task Cancel()

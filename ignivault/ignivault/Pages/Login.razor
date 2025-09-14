@@ -1,126 +1,119 @@
 ﻿@page "/login"
 @using ignivault.Core.Interface
-@inject HttpClient Http
 @inject IJSRuntime JS
 @inject VaultService VaultService
 @inject NavigationManager NavManager
-@inject Blazored.LocalStorage.ILocalStorageService localStorage
+@inject Blazored.SessionStorage.ISessionStorageService LocalStorage
 @inject AuthService AuthService
 @inject IHttpService HttpService
 @inject AccountService AccountService
-<head>
-    <script src="js/Crypt.js"></script>
-</head>
+
 <div class="flex items-center justify-center min-h-screen bg-gradient-to-br from-blue-50 to-blue-100">
     <div class="bg-white shadow-2xl rounded-2xl p-10 w-full max-w-md">
         <h2 class="text-3xl font-bold text-center text-gray-800 mb-2">Ignivault Login</h2>
         <p class="text-center text-gray-500 mb-8">Please login to continue</p>
 
         <!-- Login Form -->
-        <SfDataForm ID="forgot-form" Model="@login_data" OnValidSubmit="@HandleValidSubmit">
+        <SfDataForm ID="login-form" Model="@loginData">
             <FormValidator>
-                <DataAnnotationsValidator></DataAnnotationsValidator>
+                <DataAnnotationsValidator />
             </FormValidator>
             <FormItems>
-                <FormItem Field="@nameof(LoginUserModel.Email)" LabelText="Email" EditorType="FormEditorType.TextBox"></FormItem>
-                <FormItem Field="@nameof(LoginUserModel.Password)" LabelText="Password" EditorType="FormEditorType.Password"></FormItem>
+                <FormItem Field="@nameof(LoginUserModel.Email)" LabelText="Email" EditorType="FormEditorType.TextBox" />
+                <FormItem Field="@nameof(LoginUserModel.Password)" LabelText="Password" EditorType="FormEditorType.Password" />
             </FormItems>
-            <FormButtons>
-                <SfButton type="submit" CssClass="e-primary">
-                    Sign In
-                </SfButton>
-                <SfButton type="button" CssClass="e-secondary" OnClick="@ToggleForgotPasswordDialog">
-                    Reset
-                </SfButton>
-            </FormButtons>
+            <div class="flex justify-between mt-4">
+                <FormButtons>
+                    <SfButton OnClick="HandleValidSubmit" CssClass="e-primary w-full mr-2">Sign In</SfButton>
+                    <SfButton CssClass="e-secondary w-full ml-2" OnClick="@ToggleForgotPasswordDialog">Reset</SfButton>
+                </FormButtons>
+            </div>
         </SfDataForm>
 
-        <!-- Sign Up -->
         <p class="text-center text-gray-600 text-sm mt-6">
-            <a href="/signup">Don’t have an account?</a>
+            <a href="/signup" class="text-blue-600 hover:underline">Don’t have an account?</a>
         </p>
 
         @if (ForgotPasswordDialogVisible)
         {
-            <ForgotLoginDialog/>
+            <ForgotLoginDialog />
         }
 
-        @if(showSuccess)
+        @if (showSuccess)
         {
-            <SfMessage Severity=MessageSeverity.Success ShowCloseIcon="true">Registration Successful! Please login.</SfMessage>
+            <SfMessage Severity="MessageSeverity.Success" ShowCloseIcon="true">
+                Registration Successful! Please login.
+            </SfMessage>
         }
         else if (loginFailed)
         {
-            <SfMessage Severity=MessageSeverity.Error ShowCloseIcon="true">Login failed. Please check your credentials and try again.</SfMessage>
+            <SfMessage Severity="MessageSeverity.Error" ShowCloseIcon="true">
+                Login failed. Please check your credentials and try again.
+            </SfMessage>
         }
-
     </div>
 </div>
 
 @code {
-    private LoginUserModel login_data;
+    private LoginUserModel loginData = new LoginUserModel();
     private bool ForgotPasswordDialogVisible { get; set; } = false;
     private bool loginFailed = false;
-
-    private void ToggleForgotPasswordDialog()
-    {
-        ForgotPasswordDialogVisible = !ForgotPasswordDialogVisible;
-    }
-
-    private bool showSuccess;
+    private bool showSuccess = false;
 
     protected override void OnInitialized()
     {
-        login_data = new LoginUserModel()
-        {
-            Email = "user@user.com",
-            Password = "1Password!"
-        };
+        // Optional default credentials for dev/testing
+        loginData.Email = "user@user.com";
+        loginData.Password = "1Password!";
 
         var uri = NavManager.ToAbsoluteUri(NavManager.Uri);
         var query = System.Web.HttpUtility.ParseQueryString(uri.Query);
-
-        if (query["signedup"] == "true")
-        {
-            showSuccess = true;
-        }
+        showSuccess = query["signedup"] == "true";
     }
 
-    private async void HandleValidSubmit(EditContext context)
+    private void ToggleForgotPasswordDialog() => ForgotPasswordDialogVisible = !ForgotPasswordDialogVisible;
+
+    private async Task HandleValidSubmit()
     {
+        loginFailed = false;
+
         try
         {
-            var response = await HttpService.LoginAsync(login_data.Email, login_data.Password);
-            if (response.Success)
-            {
-
-                var t = response.Response;
-
-                Console.WriteLine($"User Login");
-
-
-                bool ValidMasterKey = await VaultService.DecryptMasterKeyAsync(response.Response, login_data.Password);
-                await AuthService.LoginAsync(response.Response.Token);
-
-
-                AccountService.SetAccount(response.Response);
-
-                if (DataUtils.IsTokenExpired(response.Response.Token))
-                {
-                    Console.WriteLine("Token is expired.");
-                }
-
-
-                NavManager.NavigateTo("/dashboard");
-            }
-            else
+            // Attempt login
+            var user = await HttpService.LoginAsync(loginData.Email, loginData.Password);
+            if (user == null)
             {
                 loginFailed = true;
+                return;
             }
+
+            // Set user account and store token
+            AccountService.SetAccount(user);
+            await AuthService.LoginAsync(user.Token);
+
+            // Decrypt master key
+            if (!await VaultService.DecryptMasterKeyAsync(user, loginData.Password))
+            {
+                loginFailed = true;
+                return;
+            }
+
+            // Verify token expiration
+            if (DataUtils.IsTokenExpired(user.Token))
+            {
+                loginFailed = true;
+                return;
+            }
+
+            // Navigate to dashboard
+            NavManager.NavigateTo("/dashboard");
         }
         catch (Exception ex)
         {
-            Console.WriteLine("SUBMIT");
+            Console.WriteLine($"Login failed: {ex.Message}");
+            loginFailed = true;
         }
     }
+
 }
+

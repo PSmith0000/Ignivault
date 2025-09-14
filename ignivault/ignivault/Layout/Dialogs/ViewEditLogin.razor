@@ -1,94 +1,96 @@
-﻿@using System.Collections.ObjectModel
-@using ignivault.Data.Models.Data
-
+﻿@using ignivault.Data.Models.Data
+@implements IModalDialog<VaultItem>
 @inject VaultService VaultService
-@inject AccountService AccountService
 
-@if (_loginDetail != null)
-{
-    <SfDialog @bind-Visible="@_ShowDialog" AllowDragging="true" @ref="_dialog" Width="400px" ShowCloseIcon="true" AllowPrerender=true>
-        <DialogTemplates>
-            <Content>
-                <label class="text-lg font-bold mb-4">Login Details</label>
-                <SfDataForm ID="ViewEditLoginItemForm" Model="_loginDetail" ColumnSpacing="20px">
-                    <FormValidator>
-                        <DataAnnotationsValidator></DataAnnotationsValidator>
-                    </FormValidator>
-                    <FormItems>
-                        <FormAutoGenerateItems></FormAutoGenerateItems>
-                    </FormItems>
-                    <FormButtons>
-                        <SfButton CssClass="e-outline" OnClick="Cancel">Cancel</SfButton>
-                        <SfButton IsPrimary="true" OnClick="SaveItem">Save Entry</SfButton>
-                    </FormButtons>
-                </SfDataForm>
-            </Content>
-        </DialogTemplates>
-    </SfDialog>
-}
+<SfDialog @bind-Visible="_showDialog"
+          AllowDragging="true"
+          @ref="_dialog"
+          Width="400px"
+          ShowCloseIcon="true"
+          IsModal="true"
+          Header="Edit Login">
+    <DialogTemplates>
+        <Content>
+            <SfDataForm Model="vItem" ID="ViewEditLoginForm" ColumnSpacing="20px">
+                <FormValidator><DataAnnotationsValidator /></FormValidator>
+                <FormItems>
+                    <FormItem Field="@nameof(vItem.Name)" LabelText="Account Name">
+                        <Template>
+                            <SfTextBox @bind-Value="vItem.Name" Placeholder="Enter account name" />
+                        </Template>
+                    </FormItem>
+                    <FormItem Field="@nameof(vItem.URL)" LabelText="URL">
+                        <Template>
+                            <SfTextBox @bind-Value="vItem.URL" Placeholder="https://" />
+                        </Template>
+                    </FormItem>
+                    <FormItem Field="@nameof(vItem.Username)" LabelText="Username">
+                        <Template>
+                            <SfTextBox @bind-Value="vItem.Username" />
+                        </Template>
+                    </FormItem>
+                    <FormItem Field="@nameof(vItem.Password)" LabelText="Password">
+                        <Template>
+                            <SfTextBox @bind-Value="vItem.Password" Type="InputType.Password" />
+                        </Template>
+                    </FormItem>
+                </FormItems>
+                <FormButtons>
+                    <SfButton CssClass="e-outline me-2" OnClick="Cancel">Cancel</SfButton>
+                    <SfButton IsPrimary="true" OnClick="SaveItem">Save</SfButton>
+                </FormButtons>
+            </SfDataForm>
+        </Content>
+    </DialogTemplates>
+</SfDialog>
 
 @code {
-    private bool _ShowDialog { get; set; } = false;
-
-    private VaultItem _VaultItem { get; set; }
-
-    [Parameter]
-    public EventCallback<RecordTypes.ItemUpdate> OnItemUpdated { get; set; }
-
-    private RecordTypes.LoginDetail? _loginDetail;
-
+    private bool _showDialog;
+    private VaultItem _vaultItem;
+    private RecordTypes.LoginDetail? vItem;
     private SfDialog _dialog;
+
+    [Parameter] public EventCallback<RecordTypes.ItemUpdate> OnItemUpdated { get; set; }
 
     public async Task SetVaultItem(VaultItem item)
     {
-        _VaultItem = item;
-        if(_VaultItem != null)
-        {
-            _loginDetail = await VaultService.DecryptRecordTypeAsync<RecordTypes.LoginDetail>(_VaultItem);
-            StateHasChanged();
-        }
-        _ShowDialog = true;
+        _vaultItem = item;
+        if (_vaultItem != null)
+            vItem = await VaultService.DecryptRecordTypeAsync<RecordTypes.LoginDetail>(_vaultItem);
+
+        _showDialog = true;
+        StateHasChanged();
     }
 
-    private async Task ItemUpdated(RecordTypes.ItemUpdate update)
+    private async Task SaveItem()
     {
-        if (update != null)
-        {
-            await OnItemUpdated.InvokeAsync(update);
-        }
+        if (_vaultItem == null || vItem == null)
+            return;
+
+        string json = System.Text.Json.JsonSerializer.Serialize(vItem);
+        var jsonBytes = System.Text.Encoding.UTF8.GetBytes(json);
+
+        var (ciphertext, iv) = await VaultService.EncryptAsync(jsonBytes, VaultService.GetMasterKey());
+
+        _vaultItem.EncryptedData = Convert.ToBase64String(ciphertext);
+        _vaultItem.Iv = Convert.ToBase64String(iv);
+        _vaultItem.Name = vItem.Name;
+
+        await OnItemUpdated.InvokeAsync(new RecordTypes.ItemUpdate(_vaultItem, true));
+        await HideAsync();
     }
+
+    private async Task Cancel() => await HideAsync();
 
     public async Task ShowAsync()
     {
+        _showDialog = true;
         await _dialog.ShowAsync();
     }
 
     public async Task HideAsync()
     {
-        _ShowDialog = false;
+        _showDialog = false;
         await _dialog.HideAsync();
-    }
-
-    private async Task SaveItem()
-    {
-        string json = System.Text.Json.JsonSerializer.Serialize(_loginDetail);
-        byte[] jsonBytes = System.Text.Encoding.UTF8.GetBytes(json);
-        var (ciphertext, iv) = await VaultService.EncryptAsync(jsonBytes, VaultService.GetMasterKey());
-
-        if (_VaultItem.EncryptedData == null || !DataUtils.AreEqual(System.Text.Encoding.UTF8.GetBytes(_VaultItem.EncryptedData), ciphertext))
-        {
-            _VaultItem.EncryptedData = Convert.ToBase64String(ciphertext);
-            _VaultItem.IV = Convert.ToBase64String(iv);
-            _VaultItem.Name = _loginDetail.Name;
-
-            await ItemUpdated(new RecordTypes.ItemUpdate(_VaultItem, true));
-        }
-
-        await HideAsync();
-    }
-
-    private async Task Cancel()
-    {
-        await HideAsync();
     }
 }

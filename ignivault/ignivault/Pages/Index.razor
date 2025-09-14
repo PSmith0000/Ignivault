@@ -4,103 +4,49 @@
 @inject VaultService VaultService
 @inject AccountService AccountService
 @inject AuthService AuthService
+
 <PageTitle>IgniVault</PageTitle>
 
+<div class="controlregion text-center">
+    <h1 class="pageheader">Welcome to IgniVault</h1>
+    <p class="pagecontent">
+        Securely store and manage your logins, files, and notes in one place.
+    </p>
+    <ul class="ulstyle">
+        <li class="list"><span class="syncfusion-blazor-index-icons e-icons e-lock"></span>Encrypted Login Details</li>
+        <li class="list"><span class="syncfusion-blazor-index-icons e-icons e-file"></span>Secure File Storage</li>
+        <li class="list"><span class="syncfusion-blazor-index-icons e-icons e-note"></span>Encrypted Notes</li>
+    </ul>
+</div>
 
 @code {
     protected override async Task OnInitializedAsync()
     {
-        var authState = await AuthenticationStateProvider.GetAuthenticationStateAsync();
-        var user = authState.User;
-        bool redirect = false;
-        bool tokenValid = await CheckTokenAndMasterKey();
-        if (tokenValid && user.Identity is not null && user.Identity.IsAuthenticated)
+        try
         {
-            redirect = true;
-        }
+            var authState = await AuthenticationStateProvider.GetAuthenticationStateAsync();
+            var user = authState.User;
 
-        Console.WriteLine($"AuthState: {tokenValid} {user.Identity != null} {user.Identity.IsAuthenticated}");
+            bool tokenValid = await AccountService.IsLoggedInAsync();
 
-        if (redirect)
-        {
-            Navigation.NavigateTo("/dashboard");
+            if (tokenValid && user.Identity is not null && user.Identity.IsAuthenticated && !VaultService.IsMasterKeySet())
+            {
+
+                // Redirect to dashboard if authenticated
+                Navigation.NavigateTo("/dashboard", forceLoad: true);
+            }
+            else
+            {
+                // Ensure logout clears any partial session/token
+                await AuthService.LogoutAsync();
+                Navigation.NavigateTo("/login", forceLoad: true);
+            }
         }
-        else
+        catch (Exception ex)
         {
+            Console.WriteLine($"[Index] Error during initialization: {ex.Message}");
             await AuthService.LogoutAsync();
-            Navigation.NavigateTo("/login");
+            Navigation.NavigateTo("/login", forceLoad: true);
         }
-    }
-
-    public async Task<bool> CheckTokenAndMasterKey()
-    {
-        bool masterKeySet = VaultService.IsMasterKeySet();
-        bool tokenSet = await AccountService.IsTokenSetAsync();
-        Console.WriteLine($"MasterKeySet: {masterKeySet}, TokenSet: {tokenSet}");
-        if (masterKeySet && tokenSet)
-        {
-            return true;
-        }
-
-        return false;
     }
 }
-
-
-<style>
-    .ulstyle {
-        margin-top: 10px;
-        margin-bottom: 20px;
-        display: inline-block;
-        list-style-type: none !important;
-        padding-left: 0px !important;
-    }
-
-    .controlregion {
-        margin-top: 50px;
-    }
-
-    .pagecontent {
-        font-family: sans-serif !important;
-font-size: 16px;
-color: #333333;
-letter-spacing: 0.34px;
-line-height: 24px;
-margin-top: 10px;
-    }
-    
-
-    .list {
-        float: left;
-        line-height: 40px;
-        min-width: 280px;
-        font-family: sans-serif !important;
-        font-size: 19px;
-        color: #0073DC;
-    }
-
-    .syncfusion-blazor-index-icons {
-        font-family: "sbicons";
-        color: #0073DC !important;
-        font-style: normal;
-        font-weight: normal;
-        font-variant: normal;
-        text-transform: none;
-        padding-right: 13px;
-        font-size: 18px;
-    }
-
-    .productheader {
-        font-family: sans-serif !important;
-        font-size: 19px !important;
-        color: #333333 !important;
-        letter-spacing: 0.41px ;
-    }
-
-    .pageheader {
-        font-family: sans-serif !important;
-        font-size: 24px !important;
-        color: #333333 ;
-        font-weight: bold !important;
-    }
-</style>

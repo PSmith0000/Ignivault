@@ -1,44 +1,43 @@
-﻿using Blazored.LocalStorage;
-using ignivault.Data;
+﻿using Blazored.SessionStorage;
 using ignivault.Data.Models.Auth;
-using Syncfusion.Blazor.Data;
+using ignivault.Data;
 
 namespace ignivault.Services
 {
+    /// <summary>
+    /// Tracks current user session and validates login state.
+    /// </summary>
     public class AccountService
     {
-        public AccountService(ILocalStorageService localStorage)
-        {
-            _localStorage = localStorage;
-        }
+        private readonly ISessionStorageService _localStorage;
+        public LoginUser? LoginUser { get; private set; }
 
-        private readonly ILocalStorageService _localStorage;
-        public LoginUser LoginUser { get; set; }
+        public AccountService(ISessionStorageService localStorage)
+        {
+            _localStorage = localStorage ?? throw new ArgumentNullException(nameof(localStorage));
+        }
 
         public void SetAccount(LoginUser user)
         {
-           LoginUser = user;
+            LoginUser = user ?? throw new ArgumentNullException(nameof(user));
         }
 
-        public bool IsLoggedIn()
+        /// <summary>
+        /// Determines whether the user is currently logged in (token exists and is valid).
+        /// </summary>
+        public async Task<bool> IsLoggedInAsync()
         {
-            if (LoginUser == null) return false;
+            if (LoginUser != null && !DataUtils.IsTokenExpired(LoginUser.Token))
+                return true;
 
-            if (DataUtils.IsTokenExpired(LoginUser.Token)) return false;
-
-            return true;
-        }
-
-        public async Task<bool> IsTokenSetAsync()
-        {
             var storedToken = await _localStorage.GetItemAsync<string>("authToken");
-            bool nullToken = string.IsNullOrEmpty(storedToken);
+            if (!string.IsNullOrEmpty(storedToken))
+            {
+                // Optional: parse token for validation
+                return !DataUtils.IsTokenExpired(storedToken);
+            }
 
-            bool loggedIn = IsLoggedIn();
-
-            Console.WriteLine($"Stored Token: {storedToken}, IsLoggedIn: {loggedIn}, IsNullOrEmpty: {nullToken}");
-
-            return !nullToken && loggedIn;
+            return false;
         }
     }
 }

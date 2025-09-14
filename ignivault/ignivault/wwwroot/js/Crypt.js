@@ -92,8 +92,4 @@
         const decrypted = await this.decrypt(encryptedMasterKeyBytes, passwordKey, iv);
         return decrypted; // Uint8Array
     },
-
-    // --- Helpers to convert in C# ---
-    // You can remove _uint8ArrayToBase64/_base64ToUint8Array in JS
-    // and let C# do Base64 conversions if needed.
 };

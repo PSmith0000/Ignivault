@@ -15,16 +15,16 @@
           }
         }
       },
-      "Blazored.LocalStorage/4.5.0": {
+      "Blazored.SessionStorage/2.4.0": {
         "type": "package",
         "dependencies": {
-          "Microsoft.AspNetCore.Components.Web": "8.0.0"
+          "Microsoft.AspNetCore.Components.Web": "7.0.1"
         },
         "compile": {
-          "lib/net8.0/Blazored.LocalStorage.dll": {}
+          "lib/net7.0/Blazored.SessionStorage.dll": {}
         },
         "runtime": {
-          "lib/net8.0/Blazored.LocalStorage.dll": {}
+          "lib/net7.0/Blazored.SessionStorage.dll": {}
         }
       },
       "HarfBuzzSharp/8.3.0.1": {
@@ -1958,16 +1958,16 @@
           }
         }
       },
-      "Blazored.LocalStorage/4.5.0": {
+      "Blazored.SessionStorage/2.4.0": {
         "type": "package",
         "dependencies": {
-          "Microsoft.AspNetCore.Components.Web": "8.0.0"
+          "Microsoft.AspNetCore.Components.Web": "7.0.1"
         },
         "compile": {
-          "lib/net8.0/Blazored.LocalStorage.dll": {}
+          "lib/net7.0/Blazored.SessionStorage.dll": {}
         },
         "runtime": {
-          "lib/net8.0/Blazored.LocalStorage.dll": {}
+          "lib/net7.0/Blazored.SessionStorage.dll": {}
         }
       },
       "HarfBuzzSharp/8.3.0.1": {
@@ -3818,20 +3818,18 @@
         "lib/netstandard2.0/BitMiracle.LibTiff.NET.xml"
       ]
     },
-    "Blazored.LocalStorage/4.5.0": {
-      "sha512": "6nZuJwA7zNIKx83IsObiHXZb09ponJOpCClU3en+hI8ZFvrOKXeOw+H7TegQZQrvdR1n9fkrVkEBQZg8vx6ZTw==",
+    "Blazored.SessionStorage/2.4.0": {
+      "sha512": "e3XXH+zGGxDq1zC7YzLDD8mfvtoC6ESwTWOGD25H+FbPJlB7yQeL72hDY76tqkcrh98fh+y12r4BNhyQVV9YKw==",
       "type": "package",
-      "path": "blazored.localstorage/4.5.0",
+      "path": "blazored.sessionstorage/2.4.0",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
-        "README.md",
-        "blazored.localstorage.4.5.0.nupkg.sha512",
-        "blazored.localstorage.nuspec",
+        "blazored.sessionstorage.2.4.0.nupkg.sha512",
+        "blazored.sessionstorage.nuspec",
         "icon.png",
-        "lib/net6.0/Blazored.LocalStorage.dll",
-        "lib/net7.0/Blazored.LocalStorage.dll",
-        "lib/net8.0/Blazored.LocalStorage.dll"
+        "lib/net6.0/Blazored.SessionStorage.dll",
+        "lib/net7.0/Blazored.SessionStorage.dll"
       ]
     },
     "HarfBuzzSharp/8.3.0.1": {
@@ -6506,7 +6504,7 @@
   },
   "projectFileDependencyGroups": {
     "net9.0": [
-      "Blazored.LocalStorage >= 4.5.0",
+      "Blazored.SessionStorage >= 2.4.0",
       "Microsoft.AspNetCore.Components.Authorization >= 9.0.8",
       "Microsoft.AspNetCore.Components.WebAssembly >= 9.0.0",
       "Microsoft.AspNetCore.Components.WebAssembly.DevServer >= 9.0.0",
@@ -6599,9 +6597,9 @@
       "net9.0": {
         "targetAlias": "net9.0",
         "dependencies": {
-          "Blazored.LocalStorage": {
+          "Blazored.SessionStorage": {
             "target": "Package",
-            "version": "[4.5.0, )"
+            "version": "[2.4.0, )"
           },
           "Microsoft.AspNetCore.Components.Authorization": {
             "target": "Package",
