@@ -1,4 +1,5 @@
 using ignivault.API.Security.Auth;
+using ignivault.API.Services;
 using ignivault.API.SQL;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Identity;
@@ -43,7 +44,7 @@ namespace ignivault.API
             .AddEntityFrameworkStores<AppDbContext>()
             .AddDefaultTokenProviders();
 
-
+            builder.Services.AddScoped<UserActivityService>();
 
             builder.Services.AddCors(options =>
             {
@@ -74,29 +75,6 @@ namespace ignivault.API
         IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(builder.Configuration["Jwt:Key"])),
         NameClaimType = ClaimTypes.NameIdentifier
     };
-
-    options.Events = new JwtBearerEvents
-    {
-        OnAuthenticationFailed = context =>
-        {
-            Console.WriteLine("JWT Authentication failed: " + context.Exception.Message);
-            if (context.Exception.InnerException != null)
-            {
-                Console.WriteLine("Inner exception: " + context.Exception.InnerException.Message);
-            }
-            return Task.CompletedTask;
-        },
-        OnTokenValidated = context =>
-        {
-            Console.WriteLine("JWT Token successfully validated for user: " + context.Principal.Identity.Name);
-            return Task.CompletedTask;
-        },
-        OnChallenge = context =>
-        {
-            Console.WriteLine("JWT Challenge triggered: " + context.ErrorDescription);
-            return Task.CompletedTask;
-        }
-    };
 });
 
             builder.Services.AddAuthorization();
@@ -104,7 +82,6 @@ namespace ignivault.API
             //security stuff
 
             //General stuff
-
             builder.WebHost.ConfigureKestrel(options =>
             {
                 options.Limits.MaxRequestBodySize = 10 * 1024 * 1024;

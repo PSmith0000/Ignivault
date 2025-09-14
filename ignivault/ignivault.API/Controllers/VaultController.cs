@@ -1,5 +1,6 @@
 ﻿using ignivault.API.Models.Records;
 using ignivault.API.Security.Auth;
+using ignivault.API.Services;
 using ignivault.API.SQL;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
@@ -16,11 +17,13 @@ namespace ignivault.API.Controllers
     {
         private readonly AppDbContext _db;
         private readonly UserManager<LoginUser> _userManager;
+        private readonly UserActivityService _activityService;
 
-        public VaultController(AppDbContext db, UserManager<LoginUser> userManager)
+        public VaultController(AppDbContext db, UserManager<LoginUser> userManager, UserActivityService userActivityService)
         {
             _db = db;
             _userManager = userManager;
+            _activityService = userActivityService;
         }
 
         [HttpGet("myvault")]
@@ -83,6 +86,9 @@ namespace ignivault.API.Controllers
             try
             {
                 await _db.AddAsync(model);
+
+                await _activityService.LogActivityAsync(userId, "Add Item", $"Added vault item with name {model.Name} and type {model.Type}");
+
                 await _db.SaveChangesAsync();
                 return Ok("Vault item added successfully.");
             }
@@ -103,7 +109,17 @@ namespace ignivault.API.Controllers
             if (item == null) return NotFound();
 
             _db.VaultItems.Remove(item);
+            
+            await _db.UserActivities.AddAsync(new UserActivity
+            {
+                UserId = userId,
+                ActivityType = "Delete Item",
+                ActivityTime = DateTime.UtcNow,
+                Details = $"Deleted vault item with ID {itemId}"
+            });
+
             await _db.SaveChangesAsync();
+
             return Ok("Vault item deleted.");
         }
 
@@ -120,6 +136,14 @@ namespace ignivault.API.Controllers
             item.IV = model.IV;
             item.EncryptedData = model.EncryptedData;
             item.UpdatedAt = DateTime.UtcNow;
+
+            await _db.UserActivities.AddAsync(new UserActivity
+            {
+                UserId = userId,
+                ActivityType = "Update Item",
+                ActivityTime = DateTime.UtcNow,
+                Details = $"Updated vault item with ID {model.Id}"
+            });
 
             await _db.SaveChangesAsync();
             return Ok("Vault item updated successfully.");

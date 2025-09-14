@@ -1,7 +1,7 @@
 {
   "mainAssemblyName": "ignivault",
   "resources": {
-    "hash": "sha256-hjfVBGOy7CIirpmSVMZK5k98sJ+XJk9dhSLJ2OfsVjc=",
+    "hash": "sha256-69oT+zPayG4QqJnxpSaImIZ2VWrHrrFgwy1VD1O+pvw=",
     "fingerprinting": {
       "BitMiracle.LibTiff.NET.k3fftbjbr6.wasm": "BitMiracle.LibTiff.NET.wasm",
       "Blazored.SessionStorage.34xr2ein7y.wasm": "Blazored.SessionStorage.wasm",
@@ -262,13 +262,13 @@
       "dotnet.native.pk43x8e436.wasm": "dotnet.native.wasm",
       "dotnet.runtime.ew19f13umk.js": "dotnet.runtime.js",
       "icudt.oh1zvcfom8.dat": "icudt.dat",
-      "ignivault.lotrwnwftq.wasm": "ignivault.wasm",
-      "ignivault.ggy36mwrn8.pdb": "ignivault.pdb",
-      "ignivault.resources.1cpk38zt87.wasm": "ignivault.resources.wasm",
-      "ignivault.resources.d2j84sb54t.wasm": "ignivault.resources.wasm",
-      "ignivault.resources.cumzqs9y4q.wasm": "ignivault.resources.wasm",
-      "ignivault.resources.tivbpegv8e.wasm": "ignivault.resources.wasm",
-      "ignivault.resources.qo7u5iyp8z.wasm": "ignivault.resources.wasm"
+      "ignivault.vn93aur7qh.wasm": "ignivault.wasm",
+      "ignivault.8ht50lnxst.pdb": "ignivault.pdb",
+      "ignivault.resources.m7m69ce2fs.wasm": "ignivault.resources.wasm",
+      "ignivault.resources.5vx4t5sk5x.wasm": "ignivault.resources.wasm",
+      "ignivault.resources.f7dlc0ibfl.wasm": "ignivault.resources.wasm",
+      "ignivault.resources.wqd436khr8.wasm": "ignivault.resources.wasm",
+      "ignivault.resources.wkoy351ayh.wasm": "ignivault.resources.wasm"
     },
     "jsModuleNative": {
       "dotnet.native.50iqa8w3ys.js": "sha256-pQdXuxfVeqYHOwd5HUM2ERd7OnXirj9JTF37b6OdTAc="
@@ -539,26 +539,26 @@
       "WindowsBase.361km0836k.wasm": "sha256-FacUCEIJYTnbOWgX/R9QP2QnurqRZwRIkDAH0N9z69s=",
       "mscorlib.qiu3j3msqk.wasm": "sha256-QvztpxTOEw4aMIl7zP3QtsPLNv/IWaK5wq22J4ReGrA=",
       "netstandard.lp03u0xxi4.wasm": "sha256-WVQsxULiAiEbyXLKolS7txnWVT82SsvsuMe4jJ+SqqI=",
-      "ignivault.lotrwnwftq.wasm": "sha256-BWuJKhnUG9c0arvsuQliSsz7u9oN7dXbe+H0hi5/1ek="
+      "ignivault.vn93aur7qh.wasm": "sha256-q0Vq8U4FHegzMJvBhrllCmhRW61jiEr96KLbfMyjdyc="
     },
     "pdb": {
-      "ignivault.ggy36mwrn8.pdb": "sha256-0JDPs7nY/+7qzxNv71RTfFsj3Z3oGawn6U8Kw0TfyQE="
+      "ignivault.8ht50lnxst.pdb": "sha256-hLdLTCJyfV3E9l5d2E38xtpL+Z53Jo6bTC/l22Q5urE="
     },
     "satelliteResources": {
       "ar": {
-        "ignivault.resources.1cpk38zt87.wasm": "sha256-v8/ukoMopHvFkCFR1U598LQpJr4w5gPwEd1yyccIUq4="
+        "ignivault.resources.m7m69ce2fs.wasm": "sha256-DpEWWEqW6mTQYDIBgNUi8Z8M5ND42S0kLUq6CcX77dw="
       },
       "de": {
-        "ignivault.resources.d2j84sb54t.wasm": "sha256-e4lU8gN63fK/oewMvPMNGETXWtHa7klhA6VdnBW+vAE="
+        "ignivault.resources.5vx4t5sk5x.wasm": "sha256-j0pE/y4SEMfChJMX+b39bZgXmmV9PacZnMWW3MvYwMI="
       },
       "en-US": {
-        "ignivault.resources.cumzqs9y4q.wasm": "sha256-nEfqn2JNQRyLY9XIyf7z8ujn4MKkOYw4qEOGt8B7qho="
+        "ignivault.resources.f7dlc0ibfl.wasm": "sha256-5V2uED5NCYPmIQHPajitqpJzxV0TlwdVBXSIaKYmEyA="
       },
       "fr": {
-        "ignivault.resources.tivbpegv8e.wasm": "sha256-qxpHtsYaHRGnz6tnueFPbby7efQJhOnvtI+DkrU1pyg="
+        "ignivault.resources.wqd436khr8.wasm": "sha256-aKbVseyvn9uDkdUcQ3sFKdLciCwN4tbEWCbJtC9uoVQ="
       },
       "zh": {
-        "ignivault.resources.qo7u5iyp8z.wasm": "sha256-ao/9JI6UxHdoQSrQCkD297uOvCgo3TAYMRF7PMn+1sU="
+        "ignivault.resources.wkoy351ayh.wasm": "sha256-EKhR82R36IyLNvaX5SuA6On20UJLCrnwMqurDOvjzmU="
       }
     }
   },

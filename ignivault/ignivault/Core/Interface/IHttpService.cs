@@ -6,6 +6,8 @@ namespace ignivault.Core.Interface
 {
     public interface IHttpService
     {
+        public abstract Task<(bool Success, string? Message)> ChangePasswordAsync(string currentPassword, string newPassword);
+        public abstract Task<LoginUser?> FetchUserProfileAsync();
         public abstract Task<LoginUser?> LoginAsync(string email, string password);
         public abstract Task<(bool Success, string? Message)> RegisterAsync(RegistrationModel model);
         public abstract Task<RecordTypes.VaultResponse?> GetVaultItemsAsync();

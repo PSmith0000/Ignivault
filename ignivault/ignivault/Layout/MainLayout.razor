@@ -2,7 +2,7 @@
 @inject AuthService AuthService
 @inject NavigationManager Nav
 @inject AccountService AccountService
-
+@inject VaultService VaultService
 
 <head>
     <script src="js/Crypt.js"></script>
@@ -23,6 +23,8 @@
                 <li>
                     <button class="btn btn-link logout-btn" @onclick="Logout">Logout</button>
                 </li>
+
+                <AskKey @ref="keyDialog" />
             }
             else
             {
@@ -105,9 +107,38 @@
 </style>
 
 @code {
+    private AskKey? keyDialog;
+    private int FailedAttempts = 0;
+
     private async Task Logout()
     {
         await AuthService.LogoutAsync();
-        Nav.NavigateTo("/");
+        Nav.NavigateTo("/login");
+    }
+
+    private async Task<bool> PromptAndDecryptAsync(LoginUser user)
+    {
+        var key = await keyDialog!.ShowAndWaitAsync();
+        if (!string.IsNullOrEmpty(key))
+        {
+            return await VaultService.DecryptMasterKeyAsync(user, key);
+        }
+        return false;
+    }
+
+    protected override async void OnAfterRender(bool firstRender)
+    {
+        if (firstRender)
+        {
+            if (!VaultService.IsMasterKeySet() && await AccountService.IsLoggedInAsync())
+            {
+                bool status = await PromptAndDecryptAsync(AccountService.LoginUser!);
+
+                if (!status)
+                {
+                    await Logout();
+                }
+            }
+        }
     }
 }

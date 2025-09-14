@@ -46,7 +46,7 @@
 
     private void Cancel()
     {
-        _tcs?.TrySetResult(null); // null if user canceled
+        _tcs?.TrySetResult(null);
         Close();
     }
 

@@ -32,6 +32,64 @@
     "ReturnTypes": []
   },
   {
+    "ContainingType": "ignivault.API.Controllers.AuthenticationController",
+    "Method": "RequestPasswordReset",
+    "RelativePath": "api/Authentication/request-reset",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "request",
+        "Type": "ignivault.API.Models.PasswordResetRequestDto",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "ignivault.API.Controllers.AuthenticationController",
+    "Method": "ResetPassword",
+    "RelativePath": "api/Authentication/reset-password",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "model",
+        "Type": "ignivault.API.Models.ResetPasswordModel",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "ignivault.API.Controllers.AuthenticationController",
+    "Method": "GetUserProfile",
+    "RelativePath": "api/Authentication/userdata",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "ignivault.API.Controllers.UserController",
+    "Method": "ChangePassword",
+    "RelativePath": "api/User/change-password",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "model",
+        "Type": "ignivault.API.Models.ChangePasswordModel",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
     "ContainingType": "ignivault.API.Controllers.VaultController",
     "Method": "AddVaultItem",
     "RelativePath": "api/Vault/add",

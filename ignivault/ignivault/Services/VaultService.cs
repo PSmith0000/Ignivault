@@ -30,7 +30,11 @@ namespace ignivault.Services
             _masterKey = null;
         }
 
-        public bool IsMasterKeySet() => _masterKey != null;
+        public bool IsMasterKeySet()
+        {
+            bool nil = (_masterKey != null);
+            return nil;
+        }
 
         public async Task<bool> DecryptMasterKeyAsync(LoginUser login, string password)
         {

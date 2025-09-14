@@ -44,6 +44,11 @@ namespace ignivault.Services
             }
         }
 
+        public async Task<LoginUser?> FetchUserProfileAsync()
+        {
+            return await SendAsync<LoginUser>(HttpMethod.Get, "api/Authentication/userdata");
+        }
+
         // ---------- Vault ----------
         public Task<RecordTypes.VaultResponse?> GetVaultItemsAsync() =>
             SendAsync<RecordTypes.VaultResponse>(HttpMethod.Get, "api/vault/myvault");
@@ -93,6 +98,31 @@ namespace ignivault.Services
                 request.Content = JsonContent.Create(content);
 
             return request;
+        }
+
+        public async Task<(bool Success, string? Message)> ChangePasswordAsync(string currentPassword, string newPassword)
+        {
+            try
+            {
+                var model = new { CurrentPassword = currentPassword, NewPassword = newPassword };
+                var request = await CreateRequestAsync(HttpMethod.Post, "api/user/change-password", model);
+
+                var response = await _http.SendAsync(request);
+
+                if (response.IsSuccessStatusCode)
+                {
+                    return (true, "Password changed successfully.");
+                }
+                else
+                {
+                    var content = await response.Content.ReadAsStringAsync();
+                    return (false, content);
+                }
+            }
+            catch (Exception ex)
+            {
+                return (false, ex.Message);
+            }
         }
     }
 }

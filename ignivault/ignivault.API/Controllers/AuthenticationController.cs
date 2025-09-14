@@ -1,6 +1,8 @@
 ﻿using ignivault.API.Models;
 using ignivault.API.Security;
 using ignivault.API.Security.Auth;
+using ignivault.API.Services;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
@@ -18,12 +20,14 @@ namespace ignivault.API.Controllers
         private readonly UserManager<LoginUser> _userManager;
         private readonly SignInManager<LoginUser> _signInManager;
         private readonly IConfiguration _configuration;
+        private readonly UserActivityService _activityService;
 
-        public AuthenticationController(UserManager<LoginUser> userManager, SignInManager<LoginUser> signInManager, IConfiguration configuration)
+        public AuthenticationController(UserManager<LoginUser> userManager, SignInManager<LoginUser> signInManager, IConfiguration configuration, UserActivityService userActivityService)
         {
             _userManager = userManager;
             _signInManager = signInManager;
             _configuration = configuration;
+            _activityService = userActivityService;
         }
 
         [HttpPost("register")]
@@ -58,6 +62,8 @@ namespace ignivault.API.Controllers
                 return BadRequest(string.Join(", ", result.Errors.Select(e => e.Description)));
             }
 
+            await _activityService.LogActivityAsync(user.Id, "Registration", "User registered successfully");
+
             return Ok(new { Message = "User registered successfully!" });
         }
 
@@ -77,13 +83,68 @@ namespace ignivault.API.Controllers
             return Ok(loginDto);
         }
 
+        [HttpGet("userdata")]
+        [Authorize(AuthenticationSchemes = Microsoft.AspNetCore.Authentication.JwtBearer.JwtBearerDefaults.AuthenticationScheme)]
+        public async Task<IActionResult> GetUserProfile()
+        {
+            var user = await _userManager.GetUserAsync(User);
+            if (user == null) return Unauthorized();
+
+            var dto = new LoginUserDto(user, string.Empty);
+            return Ok(dto);
+        }
+
+        [HttpPost("reset-password")]
+        public async Task<IActionResult> ResetPassword([FromBody] ResetPasswordModel model)
+        {
+            if (!ModelState.IsValid)
+                return BadRequest(ModelState);
+
+            var user = await _userManager.FindByEmailAsync(model.Email);
+            if (user == null)
+                return BadRequest("Invalid request.");
+
+            var result = await _userManager.ResetPasswordAsync(user, model.Token, model.NewPassword);
+
+            if (!result.Succeeded)
+                return BadRequest(result.Errors);
+
+            await _activityService.LogActivityAsync(user.Id, "Password Reset", "User reset their password via email link");
+
+            return Ok("Password has been reset successfully.");
+        }
+
+        [HttpPost("request-reset")]
+        public async Task<IActionResult> RequestPasswordReset([FromBody] PasswordResetRequestDto request)
+        {
+            if (string.IsNullOrWhiteSpace(request.Email))
+                return BadRequest("Email is required.");
+
+            var user = await _userManager.FindByEmailAsync(request.Email);
+            if (user == null)
+                return Ok();
+
+            var token = await _userManager.GeneratePasswordResetTokenAsync(user);
+
+            var resetLink = Url.Action(
+                "ResetPassword",
+                "Auth",
+                new { email = user.Email, token },
+                Request.Scheme);
+
+            // TODO: send email
+            // await _emailService.SendPasswordResetEmail(user.Email, resetLink);
+
+            return Ok("Password reset link sent if the email exists.");
+        }
+
         private string GenerateJwtToken(LoginUser user)
         {
             var claims = new List<Claim>
             {
                 new Claim(ClaimTypes.NameIdentifier, user.Id),
                 new Claim(JwtRegisteredClaimNames.Sub, user.Email),
-                new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString())
+                new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString()),               
             };
 
             var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_configuration["Jwt:Key"]));
@@ -93,7 +154,7 @@ namespace ignivault.API.Controllers
                 issuer: _configuration["Jwt:Issuer"],
                 audience: _configuration["Jwt:Audience"],
                 claims: claims,
-                expires: DateTime.UtcNow.AddMinutes(15), //temp (normal 1 hour)
+                expires: DateTime.UtcNow.AddHours(1), //temp (normal 1 hour)
                 signingCredentials: creds
             );
 

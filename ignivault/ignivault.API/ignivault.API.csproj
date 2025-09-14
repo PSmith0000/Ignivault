@@ -21,7 +21,6 @@
 
   <ItemGroup>
     <Folder Include="Security\Auth\Roles\" />
-    <Folder Include="Services\" />
   </ItemGroup>
 
 </Project>
