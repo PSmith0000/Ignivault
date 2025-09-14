@@ -1,8 +1,6 @@
 ﻿using ignivault.API.Models.Records;
-using ignivault.API.Security;
 using ignivault.API.Security.Auth;
 using ignivault.API.SQL;
-using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
@@ -13,146 +11,118 @@ namespace ignivault.API.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
+    [Authorize(AuthenticationSchemes = Microsoft.AspNetCore.Authentication.JwtBearer.JwtBearerDefaults.AuthenticationScheme)]
     public class VaultController : ControllerBase
     {
         private readonly AppDbContext _db;
         private readonly UserManager<LoginUser> _userManager;
-        public VaultController(AppDbContext db, UserManager<LoginUser> userManager) { _db = db; _userManager = userManager; }
 
+        public VaultController(AppDbContext db, UserManager<LoginUser> userManager)
+        {
+            _db = db;
+            _userManager = userManager;
+        }
 
-        [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
         [HttpGet("myvault")]
         public async Task<IActionResult> GetVaultData()
         {
             var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
-
             if (userId == null) return Unauthorized();
 
-            var user = await _userManager.FindByIdAsync(userId);
-            if (user == null)
+            try
             {
-                return Unauthorized();
+                var items = await _db.VaultItems
+                    .Where(v => v.UserId == userId)
+                    .Select(v => new VaultItem
+                    {
+                        Id = v.Id,
+                        Name = v.Name,
+                        Type = v.Type,
+                        CreatedAt = v.CreatedAt,
+                        UpdatedAt = v.UpdatedAt,
+                        UserId = v.UserId,
+                        IV = v.IV,
+                        EncryptedData = v.Type == "File" ? "NULL" : v.EncryptedData
+                    }).ToListAsync();
+
+                return Ok(new { success = true, data = items });
             }
-
-            var vaultItems = await _db.VaultItems.ToListAsync();
-
-            return Ok(vaultItems);
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Error fetching vault: {ex.Message}");
+                return StatusCode(500, "Failed to fetch vault items.");
+            }
         }
 
-        [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
         [HttpGet("getfile")]
-        [RequestSizeLimit(450_000_000)]
-        public async Task<IActionResult> GetFileData([FromQuery] int itemId)
+        public async Task<IActionResult> DownloadVaultItem([FromQuery] int id)
         {
             var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
-
             if (userId == null) return Unauthorized();
 
-            var user = await _userManager.FindByIdAsync(userId);
-            if (user == null)
-            {
-                return Unauthorized();
-            }
+            var item = await _db.VaultItems.FirstOrDefaultAsync(i => i.Id == id && i.UserId == userId && i.Type == "File");
+            if (item == null) return NotFound();
 
-            var vaultItem = await _db.VaultItems.Where(v => v.UserId == userId && v.Id == itemId).FirstOrDefaultAsync();
+            byte[] recordId = BitConverter.GetBytes(item.Id);
+            byte[] fileBytes = Convert.FromBase64String(item.EncryptedData);
+            var data = recordId.Concat(fileBytes).ToArray();
 
-            if(vaultItem == null)
-            {
-                return NotFound();
-            }
-
-            return Ok(vaultItem);
+            return File(data, "application/octet-stream", item.Name ?? $"vaultfile-{id}");
         }
 
-
-        [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
         [RequestSizeLimit(450_000_000)]
         [HttpPost("add")]
         public async Task<IActionResult> AddVaultItem([FromBody] VaultItem model)
-        {     
-            VaultItem item = model;
+        {
             var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
-            if (userId == null)
+            if (userId == null) return Unauthorized();
+
+            model.UserId = userId;
+            model.CreatedAt = DateTime.UtcNow;
+
+            try
             {
-                return Unauthorized();
+                await _db.AddAsync(model);
+                await _db.SaveChangesAsync();
+                return Ok("Vault item added successfully.");
             }
-
-            var user = await _userManager.FindByIdAsync(userId);
-            if (user == null)
-            {               
-                return Unauthorized();
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Error adding vault item: {ex.Message}");
+                return StatusCode(500, "Failed to add vault item.");
             }
-
-            item.UserId = userId;
-            item.CreatedAt = DateTime.UtcNow;
-
-            await _db.AddAsync<VaultItem>(item);
-
-            await _db.SaveChangesAsync();
-
-            return Ok("User Vault Updated.");
         }
 
-        [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
         [HttpDelete("delete")]
         public async Task<IActionResult> DeleteVaultItem([FromQuery] int itemId)
         {
-            Console.WriteLine("Delete request for item ID: " + itemId);
             var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
-            if (userId == null)
-            {
-                return Unauthorized();
-            }
-
-            var user = await _userManager.FindByIdAsync(userId);
-            if (user == null)
-            {
-                return Unauthorized();
-            }
+            if (userId == null) return Unauthorized();
 
             var item = await _db.VaultItems.FirstOrDefaultAsync(v => v.Id == itemId && v.UserId == userId);
             if (item == null) return NotFound();
+
             _db.VaultItems.Remove(item);
             await _db.SaveChangesAsync();
-            return Ok();
+            return Ok("Vault item deleted.");
         }
 
-        [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
         [HttpPut("update")]
         public async Task<IActionResult> UpdateVaultItem([FromBody] VaultItem model)
         {
             var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
-            if (userId == null)
-            {
-                return Unauthorized();
-            }
-
-            var user = await _userManager.FindByIdAsync(userId);
-            if (user == null)
-            {
-                return Unauthorized();
-            }
-
+            if (userId == null) return Unauthorized();
 
             var item = await _db.VaultItems.FirstOrDefaultAsync(v => v.Id == model.Id && v.UserId == userId);
-            if (item == null)
-            {
-                return NotFound();
-            }
-            
-            item.EncryptedData = model.EncryptedData;
+            if (item == null) return NotFound();
+
             item.Name = model.Name;
             item.IV = model.IV;
+            item.EncryptedData = model.EncryptedData;
             item.UpdatedAt = DateTime.UtcNow;
 
-            _db.VaultItems.Update(item);
-
             await _db.SaveChangesAsync();
-            return Ok("Vault Updated");
+            return Ok("Vault item updated successfully.");
         }
-
-        #region DTOs
-        #endregion
     }
 }

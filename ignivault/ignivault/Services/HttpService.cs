@@ -1,126 +1,98 @@
-﻿using Blazored.LocalStorage;
+﻿using Blazored.SessionStorage;
 using ignivault.Core.Interface;
+using ignivault.Data;
 using ignivault.Data.Models.Auth;
 using ignivault.Data.Models.Data;
+using System.Net.Http.Headers;
 using System.Net.Http.Json;
 using System.Text.Json;
+
 namespace ignivault.Services
 {
-    public class HttpService : HttpClient, IHttpService
+    public class HttpService : IHttpService
     {
         private readonly HttpClient _http;
-        private readonly ILocalStorageService _localStorage;
-        public HttpService(HttpClient http, ILocalStorageService localStorage)
-        {
-            _http = http;
-            _localStorage = localStorage;
+        private readonly ISessionStorageService _sessionStorage;
 
+        public HttpService(HttpClient http, ISessionStorageService sessionStorage)
+        {
+            _http = http ?? throw new ArgumentNullException(nameof(http));
+            _sessionStorage = sessionStorage ?? throw new ArgumentNullException(nameof(sessionStorage));
         }
 
-        public async Task<(bool Success, LoginUser? Response)> LoginAsync(string email, string password)
+        public string ApiBaseUrl => _http.BaseAddress?.ToString() ?? string.Empty;
+
+        // ---------- Authentication ----------
+        public async Task<LoginUser?> LoginAsync(string email, string password)
         {
-            var response = await _http.PostAsJsonAsync("api/Authentication/login", new { Email = email, Password = password });
-            if (response.IsSuccessStatusCode)
-            {
-                var loginData = await response.Content.ReadAsStringAsync();
-
-                //flatten json
-                var doc = JsonDocument.Parse(loginData);
-                var loginUserJson = doc.RootElement.GetProperty("loginUser").GetRawText();
-                var loginUser = JsonSerializer.Deserialize<LoginUser>(loginUserJson);
-
-                if (loginUser != null)
-                {
-                    return (true, loginUser);
-                }
-            }
-            return (false, null);
+            var loginRequest = new { Email = email, Password = password };
+            return await SendAsync<LoginUser>(HttpMethod.Post, "api/Authentication/login", loginRequest);
         }
 
         public async Task<(bool Success, string? Message)> RegisterAsync(RegistrationModel model)
         {
-            var response = await _http.PostAsJsonAsync("api/Authentication/register", model);
-            if (response.IsSuccessStatusCode)
+            try
             {
-                return (true, null);
+                var resp = await _http.PostAsJsonAsync("api/Authentication/register", model);
+                return resp.IsSuccessStatusCode
+                    ? (true, null)
+                    : (false, await resp.Content.ReadAsStringAsync());
             }
-            else
+            catch (Exception ex)
             {
-                var error = await response.Content.ReadAsStringAsync();
-                return (false, error);
+                return (false, ex.Message);
             }
         }
 
-        public async Task<List<VaultItem>?> GetVaultItemsAsync()
-        {
-            var token = await _localStorage.GetItemAsync<string>("authToken");
-            if (string.IsNullOrEmpty(token))
-            {
-                return null;
-            }
-            _http.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", token);
-            var response = await _http.GetAsync("api/Vault/myvault");
-            if (response.IsSuccessStatusCode)
-            {
-                var vaultItems = await response.Content.ReadFromJsonAsync<List<VaultItem>>();
-                return vaultItems;
-            }
-            return null;
-        }
+        // ---------- Vault ----------
+        public Task<RecordTypes.VaultResponse?> GetVaultItemsAsync() =>
+            SendAsync<RecordTypes.VaultResponse>(HttpMethod.Get, "api/vault/myvault");
 
-        public async Task<bool> AddVaultItemAsync(VaultItem item)
-        {
-            var token = await _localStorage.GetItemAsync<string>("authToken");
-            if (string.IsNullOrEmpty(token))
-                return false;
+        public Task<bool> AddVaultItemAsync(VaultItem item) =>
+            SendNoContentAsync(HttpMethod.Post, "api/vault/add", item);
 
-            _http.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", token);
+        public Task<bool> UpdateVaultItem(VaultItem item) =>
+            SendNoContentAsync(HttpMethod.Put, "api/vault/update", item);
 
-            var response = await _http.PostAsJsonAsync("api/vault/add", item);
-
-            return response.IsSuccessStatusCode;
-        }
-
-
-        public async Task<bool> UpdateVaultItem(VaultItem item)
-        {
-            var token = await _localStorage.GetItemAsync<string>("authToken");
-            if (string.IsNullOrEmpty(token))
-                return false;
-            _http.DefaultRequestHeaders.Authorization =
-                new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", token);
-            var response = await _http.PutAsJsonAsync("api/vault/update", item);
-            return response.IsSuccessStatusCode;
-        }
-
-
-        public async Task<bool> DeleteVaultItem(int itemId)
-        {
-            var token = await _localStorage.GetItemAsync<string>("authToken");
-            if (string.IsNullOrEmpty(token))
-                return false;
-            _http.DefaultRequestHeaders.Authorization =
-                new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", token);
-            var response = await _http.DeleteAsync($"api/vault/delete/?itemId={itemId}");
-            return response.IsSuccessStatusCode;
-        }
+        public Task<bool> DeleteVaultItem(int itemId) =>
+            SendNoContentAsync(HttpMethod.Delete, $"api/vault/delete/?itemId={itemId}");
 
         public async Task<byte[]?> GetFileData(int itemId)
         {
-            var token = await _localStorage.GetItemAsync<string>("authToken");
-            if (string.IsNullOrEmpty(token))
-                return null;
-            _http.DefaultRequestHeaders.Authorization =
-                new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", token);
+            var request = await CreateRequestAsync(HttpMethod.Get, $"api/vault/getfile?itemId={itemId}");
+            var response = await _http.SendAsync(request);
+            return response.IsSuccessStatusCode ? await response.Content.ReadAsByteArrayAsync() : null;
+        }
 
-            var response = await _http.GetAsync($"api/vault/getfile?itemId={itemId}");
-            if (response.IsSuccessStatusCode)
-            {
-                var fileData = await response.Content.ReadAsStringAsync();
-                return Convert.FromBase64String(fileData);
-            }
+        // ---------- Helpers ----------
+        private async Task<T?> SendAsync<T>(HttpMethod method, string url, object? content = null)
+        {
+            var request = await CreateRequestAsync(method, url, content);
+            var response = await _http.SendAsync(request);
+            return response.IsSuccessStatusCode
+                ? await response.Content.ReadFromJsonAsync<T>(new JsonSerializerOptions { PropertyNameCaseInsensitive = true })
+                : default;
+        }
 
-            return null;
-        } 
+        private async Task<bool> SendNoContentAsync(HttpMethod method, string url, object? content = null)
+        {
+            var request = await CreateRequestAsync(method, url, content);
+            var response = await _http.SendAsync(request);
+            return response.IsSuccessStatusCode;
+        }
+
+        private async Task<HttpRequestMessage> CreateRequestAsync(HttpMethod method, string url, object? content = null)
+        {
+            var request = new HttpRequestMessage(method, url);
+
+            var token = await _sessionStorage.GetItemAsync<string>("authToken");
+            if (!string.IsNullOrWhiteSpace(token))
+                request.Headers.Authorization = new AuthenticationHeaderValue("Bearer", token);
+
+            if (content != null)
+                request.Content = JsonContent.Create(content);
+
+            return request;
+        }
     }
 }

@@ -1,95 +1,91 @@
-﻿@using System.Collections.ObjectModel
-@using ignivault.Data.Models.Data
-
+﻿@using ignivault.Data.Models.Data
+@using ignivault.Core.Interface
 @inject VaultService VaultService
-@inject AccountService AccountService
+@implements IModalDialog<VaultItem>
 
-@if (vItem != null)
-{
-    <SfDialog @bind-Visible="@_ShowDialog" AllowDragging="true" @ref="_dialog" Width="400px" ShowCloseIcon="true" AllowPrerender=true>
-        <DialogTemplates>
-            <Content>
-                <label class="text-lg font-bold mb-4">Login Details</label>
-                <SfDataForm ID="ViewEditLoginItemForm" Model="vItem" ColumnSpacing="20px">
-                    <FormValidator>
-                        <DataAnnotationsValidator></DataAnnotationsValidator>
-                    </FormValidator>
-                    <FormItems>
-                        <FormItem Field="@nameof(vItem.Title)" LabelText="Note Title"></FormItem>
-                        <FormItem Field="@nameof(vItem.Content)" LabelText="Content" EditorType="FormEditorType.TextArea"></FormItem>
-                    </FormItems>
-                    <FormButtons>
-                        <SfButton CssClass="e-outline" OnClick="Cancel">Cancel</SfButton>
-                        <SfButton IsPrimary="true" OnClick="SaveItem">Save Entry</SfButton>
-                    </FormButtons>
-                </SfDataForm>
-            </Content>
-        </DialogTemplates>
-    </SfDialog>
-}
+<SfDialog @bind-Visible="_showDialog"
+          AllowDragging="true"
+          @ref="_dialog"
+          Width="400px"
+          ShowCloseIcon="true"
+          CssClass="custom-dialog"
+          IsModal="true"
+          Header="Edit Note">
+    <DialogTemplates>
+        <Content>
+            <SfDataForm Model="vItem" ID="ViewEditNoteForm" ColumnSpacing="20px">
+                <FormValidator>
+                    <DataAnnotationsValidator />
+                </FormValidator>
+                <FormItems>
+                    <FormItem Field="@nameof(vItem.Title)" LabelText="Note Title">
+                        <Template>
+                            <SfTextBox @bind-Value="vItem.Title" Placeholder="Enter note title" CssClass="full-width" />
+                        </Template>
+                    </FormItem>
+                    <FormItem Field="@nameof(vItem.Content)" LabelText="Content" EditorType="FormEditorType.TextArea">
+                        <Template>
+                            <SfTextBox @bind-Value="vItem.Content" Placeholder="Enter content..." Multiline="true" Rows="5" CssClass="full-width" />
+                        </Template>
+                    </FormItem>
+                </FormItems>
+                <FormButtons>
+                    <SfButton CssClass="e-outline me-2" OnClick="Cancel">Cancel</SfButton>
+                    <SfButton IsPrimary="true" OnClick="SaveItem">Save</SfButton>
+                </FormButtons>
+            </SfDataForm>
+        </Content>
+    </DialogTemplates>
+</SfDialog>
 
 @code {
-    private bool _ShowDialog { get; set; } = false;
-
-    private VaultItem _VaultItem { get; set; }
-
-    [Parameter]
-    public EventCallback<RecordTypes.ItemUpdate> OnItemUpdated { get; set; }
-
+    private bool _showDialog;
+    private VaultItem _vaultItem;
     private RecordTypes.StoredNote? vItem;
-
     private SfDialog _dialog;
+
+    [Parameter] public EventCallback<RecordTypes.ItemUpdate> OnItemUpdated { get; set; }
 
     public async Task SetVaultItem(VaultItem item)
     {
-        _VaultItem = item;
-        if (_VaultItem != null)
+        _vaultItem = item;
+        if (_vaultItem != null)
         {
-            vItem = await VaultService.DecryptRecordTypeAsync<RecordTypes.StoredNote>(_VaultItem);
-            StateHasChanged();
+            vItem = await VaultService.DecryptRecordTypeAsync<RecordTypes.StoredNote>(_vaultItem);
         }
-        _ShowDialog = true;
+        _showDialog = true;
+        StateHasChanged();
     }
 
-    private async Task ItemUpdated(RecordTypes.ItemUpdate update)
+    private async Task SaveItem()
     {
-        if (update != null)
-        {
-            await OnItemUpdated.InvokeAsync(update);
-        }
+        if (_vaultItem == null || vItem == null)
+            return;
+
+        string json = System.Text.Json.JsonSerializer.Serialize(vItem);
+        var jsonBytes = System.Text.Encoding.UTF8.GetBytes(json);
+
+        var (ciphertext, iv) = await VaultService.EncryptAsync(jsonBytes, VaultService.GetMasterKey());
+
+        _vaultItem.EncryptedData = Convert.ToBase64String(ciphertext);
+        _vaultItem.Iv = Convert.ToBase64String(iv);
+        _vaultItem.Name = vItem.Title;
+
+        await OnItemUpdated.InvokeAsync(new RecordTypes.ItemUpdate(_vaultItem, true));
+        await HideAsync();
     }
+
+    private async Task Cancel() => await HideAsync();
 
     public async Task ShowAsync()
     {
+        _showDialog = true;
         await _dialog.ShowAsync();
     }
 
     public async Task HideAsync()
     {
-        _ShowDialog = false;
+        _showDialog = false;
         await _dialog.HideAsync();
-    }
-
-    private async Task SaveItem()
-    {
-        string json = System.Text.Json.JsonSerializer.Serialize(vItem);
-        byte[] jsonBytes = System.Text.Encoding.UTF8.GetBytes(json);
-        var (ciphertext, iv) = await VaultService.EncryptAsync(jsonBytes, VaultService.GetMasterKey());
-
-        if (_VaultItem.EncryptedData == null || !DataUtils.AreEqual(System.Text.Encoding.UTF8.GetBytes(_VaultItem.EncryptedData), ciphertext))
-        {
-            _VaultItem.EncryptedData = Convert.ToBase64String(ciphertext);
-            _VaultItem.IV = Convert.ToBase64String(iv);
-            _VaultItem.Name = vItem.Title;
-
-            await ItemUpdated(new RecordTypes.ItemUpdate(_VaultItem, true));
-        }
-
-        await HideAsync();
-    }
-
-    private async Task Cancel()
-    {
-        await HideAsync();
     }
 }

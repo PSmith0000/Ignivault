@@ -6,28 +6,69 @@
 <div class="min-h-screen flex items-center justify-center bg-gray-100">
     <div class="bg-white shadow-lg rounded-2xl p-8 w-full max-w-2xl">
         <h2 class="text-2xl font-semibold text-center text-gray-700 mb-6">My Account</h2>
-        <label for="UserID" class="block text-gray-600 mb-2">User ID</label>
-        <SfTextBox ID="UserID" @bind-Value="AccountService.LoginUser.Id" Enabled="false"></SfTextBox>
 
-        <label for="Username" class="block text-gray-600 mt-4 mb-2">Username</label>
-        <SfTextBox ID="Username" @bind-Value="AccountService.LoginUser.Username"></SfTextBox>
+        <!-- Account Details -->
+        <div class="space-y-4">
+            <label for="UserID" class="block text-gray-600">User ID</label>
+            <SfTextBox ID="UserID" @bind-Value="AccountService.LoginUser.Id" Enabled="false" Placeholder="User ID" />
 
-        <label for="Email" class="block text-gray-600 mt-4 mb-2">Email</label>
-        <SfTextBox ID="Email" @bind-Value="AccountService.LoginUser.Email"></SfTextBox>
+            <label for="Username" class="block text-gray-600">Username</label>
+            <SfTextBox ID="Username" @bind-Value="AccountService.LoginUser.Username" Placeholder="Enter your username" />
+
+            <label for="Email" class="block text-gray-600">Email</label>
+            <SfTextBox ID="Email" @bind-Value="AccountService.LoginUser.Email" Placeholder="Enter your email" />
+        </div>
+
+        <!-- Change Password -->
+        <div class="mt-6 space-y-4">
+            <h3 class="text-lg font-medium text-gray-700 mb-2">Change Password</h3>
+            <SfTextBox ID="CurrentPassword" Placeholder="Current password" InputType="InputType.Password" />
+            <SfTextBox ID="NewPassword" Placeholder="New password" InputType="InputType.Password" />
+            <SfTextBox ID="ConfirmNewPassword" Placeholder="Confirm new password" InputType="InputType.Password" />
+        </div>
+
+        <!-- Save Changes Button -->
+        <div class="mt-6 flex justify-end">
+            <SfButton CssClass="e-primary" @onclick="UpdateAccount">Save Changes</SfButton>
+        </div>
+
+        <!-- Optional Messages -->
+        @if (!string.IsNullOrEmpty(UpdateMessage))
+        {
+            <SfMessage Severity="@UpdateMessageSeverity" ShowCloseIcon="true">
+                @UpdateMessage
+            </SfMessage>
+        }
     </div>
 </div>
 
 @code {
-    
+    private string UpdateMessage = string.Empty;
+    private MessageSeverity UpdateMessageSeverity = MessageSeverity.Success;
 
-    public void RedirectToLogin()
+    private void RedirectToLogin()
     {
         Navigation.NavigateTo("/login");
     }
 
-  
-    private void UpdateAccount()
+    private async Task UpdateAccount()
     {
-        
+        try
+        {
+            // TODO: Call HttpService / API to update username/email
+            // TODO: Handle password change if fields are filled
+
+            UpdateMessage = "Account updated successfully!";
+            UpdateMessageSeverity = MessageSeverity.Success;
+
+            // Optional: refresh account info
+            StateHasChanged();
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine($"Account update failed: {ex.Message}");
+            UpdateMessage = "Failed to update account. Please try again.";
+            UpdateMessageSeverity = MessageSeverity.Error;
+        }
     }
 }

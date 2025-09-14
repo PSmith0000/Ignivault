@@ -9,31 +9,14 @@ namespace ignivault.Data.Models.Auth
 
     public class LoginUser
     {
-        [JsonPropertyName("token")]
-        public string Token { get; set; }
-
-        [JsonPropertyName("twoFactorEnabled")]
+        public string Token { get; set; } = "";
         public bool TwoFactorEnabled { get; set; }
-
-        [JsonPropertyName("id")]
-        public string Id { get; set; }
-
-        [JsonPropertyName("email")]
-        public string Email { get; set; }
-
-        [JsonPropertyName("username")]
-        public string Username { get; set; }
-
-        [JsonPropertyName("encryptedMasterKey")]
-        public string EncryptedMasterKey { get; set; }
-
-        [JsonPropertyName("keySalt")]
-        public string KeySalt { get; set; }
-
-        [JsonPropertyName("masterIV")]
-        public string MasterIV { get; set; }
-
-        [JsonPropertyName("lastPasswordChange")]
+        public string Id { get; set; } = "";
+        public string Email { get; set; } = "";
+        public string Username { get; set; } = "";
+        public string EncryptedMasterKey { get; set; } = "";
+        public string KeySalt { get; set; } = "";
+        public string MasterIV { get; set; } = "";
         public DateTime? LastPasswordChange { get; set; }
     }
 }

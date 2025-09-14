@@ -13,13 +13,69 @@ namespace ignivault.Data
 
     public class RecordTypes
     {
-        public record LoginDetail(string Name, string URL, string Username, string Password);
+        public record LoginDetail
+        {
+            public string? Name { get; set; }
+            public string? URL { get; set; }
+            public string? Username { get; set; }
+            public string? Password { get; set; }
 
-        public record ItemUpdate(VaultItem VaultItem, bool Modified);
+            public LoginDetail() { }
 
-        public record StoredFile(string FileName, byte[] data, string extension);
+            public LoginDetail(string? name, string? url, string? username, string? password)
+            {
+                Name = name;
+                URL = url;
+                Username = username;
+                Password = password;
+            }
+        }
 
-        public record StoredNote(string Title, string Content);
+        public record ItemUpdate
+        {
+            public VaultItem? VaultItem { get; set; }
+            public bool? Modified { get; set; }
+
+            public ItemUpdate() { }
+
+            public ItemUpdate(VaultItem? vaultItem, bool? modified)
+            {
+                VaultItem = vaultItem;
+                Modified = modified;
+            }
+        }
+
+        public record StoredFile
+        {
+            public string? FileName { get; set; }
+            public byte[]? Data { get; set; }
+            public string? Extension { get; set; }
+
+            public StoredFile() { }
+
+            public StoredFile(string? fileName, byte[]? data, string? extension)
+            {
+                FileName = fileName;
+                Data = data;
+                Extension = extension;
+            }
+        }
+
+        public record StoredNote
+        {
+            public string? Title { get; set; }
+            public string? Content { get; set; }
+
+            public StoredNote() { }
+
+            public StoredNote(string? title, string? content)
+            {
+                Title = title;
+                Content = content;
+            }
+        }
+
+        public record VaultResponse(bool Success, List<VaultItem> Data);
     }
 }
 

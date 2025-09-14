@@ -29,6 +29,7 @@ wwwroot\images\ToggleButton.png
 wwwroot\index.html
 wwwroot\janet.png
 wwwroot\js\Crypt.js
+wwwroot\js\downloadHelper.js
 wwwroot\laura.png
 wwwroot\lib\bootstrap\dist\css\bootstrap-grid.css
 wwwroot\lib\bootstrap\dist\css\bootstrap-grid.css.map
@@ -94,6 +95,7 @@ C:\Users\prest\Desktop\GitHub\Ignivault\ignivault\ignivault\wwwroot\css\open-ico
 C:\Users\prest\Desktop\GitHub\Ignivault\ignivault\ignivault\wwwroot\css\syncfusion-blazor-icons.css
 C:\Users\prest\Desktop\GitHub\Ignivault\ignivault\ignivault\wwwroot\index.html
 C:\Users\prest\Desktop\GitHub\Ignivault\ignivault\ignivault\wwwroot\js\Crypt.js
+C:\Users\prest\Desktop\GitHub\Ignivault\ignivault\ignivault\wwwroot\js\downloadHelper.js
 C:\Users\prest\Desktop\GitHub\Ignivault\ignivault\ignivault\wwwroot\lib\bootstrap\dist\css\bootstrap-grid.css
 C:\Users\prest\Desktop\GitHub\Ignivault\ignivault\ignivault\wwwroot\lib\bootstrap\dist\css\bootstrap-grid.css.map
 C:\Users\prest\Desktop\GitHub\Ignivault\ignivault\ignivault\wwwroot\lib\bootstrap\dist\css\bootstrap-grid.min.css

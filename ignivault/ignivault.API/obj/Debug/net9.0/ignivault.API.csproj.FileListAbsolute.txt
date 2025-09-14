@@ -163,10 +163,10 @@ C:\Users\prest\Desktop\GitHub\Ignivault\ignivault\ignivault.API\obj\Debug\net9.0
 C:\Users\prest\Desktop\GitHub\Ignivault\ignivault\ignivault.API\obj\Debug\net9.0\staticwebassets.build.json.cache
 C:\Users\prest\Desktop\GitHub\Ignivault\ignivault\ignivault.API\obj\Debug\net9.0\staticwebassets.development.json
 C:\Users\prest\Desktop\GitHub\Ignivault\ignivault\ignivault.API\obj\Debug\net9.0\staticwebassets.build.endpoints.json
+C:\Users\prest\Desktop\GitHub\Ignivault\ignivault\ignivault.API\obj\Debug\net9.0\staticwebassets.upToDateCheck.txt
 C:\Users\prest\Desktop\GitHub\Ignivault\ignivault\ignivault.API\obj\Debug\net9.0\ignivaul.9C65956D.Up2Date
 C:\Users\prest\Desktop\GitHub\Ignivault\ignivault\ignivault.API\obj\Debug\net9.0\ignivault.API.dll
 C:\Users\prest\Desktop\GitHub\Ignivault\ignivault\ignivault.API\obj\Debug\net9.0\refint\ignivault.API.dll
 C:\Users\prest\Desktop\GitHub\Ignivault\ignivault\ignivault.API\obj\Debug\net9.0\ignivault.API.pdb
 C:\Users\prest\Desktop\GitHub\Ignivault\ignivault\ignivault.API\obj\Debug\net9.0\ignivault.API.genruntimeconfig.cache
 C:\Users\prest\Desktop\GitHub\Ignivault\ignivault\ignivault.API\obj\Debug\net9.0\ref\ignivault.API.dll
-C:\Users\prest\Desktop\GitHub\Ignivault\ignivault\ignivault.API\obj\Debug\net9.0\staticwebassets.upToDateCheck.txt

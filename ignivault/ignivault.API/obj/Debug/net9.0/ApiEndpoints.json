@@ -65,14 +65,14 @@
   },
   {
     "ContainingType": "ignivault.API.Controllers.VaultController",
-    "Method": "GetFileData",
+    "Method": "DownloadVaultItem",
     "RelativePath": "api/Vault/getfile",
     "HttpMethod": "GET",
     "IsController": true,
     "Order": 0,
     "Parameters": [
       {
-        "Name": "itemId",
+        "Name": "id",
         "Type": "System.Int32",
         "IsRequired": false
       }
