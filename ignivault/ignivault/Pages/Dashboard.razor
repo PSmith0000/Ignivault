@@ -1,4 +1,6 @@
 ﻿@page "/dashboard"
+@using ignivault.Data.Models.Data
+@using Syncfusion.Blazor.Notifications
 @inject NavigationManager Navigation
 @inject IHttpService Http
 @inject IJSRuntime JS
@@ -12,15 +14,32 @@
             <SfSpinner Type="SpinnerType.Material" />
         </div>
     }
-    <SfDashboardLayout AllowResizing="true" AllowFloating="true" CellSpacing="@CellSpacing" Columns="@ColumnCount">
-        <DashboardLayoutPanels>
 
+    <SfDashboardLayout AllowDragging="false" AllowResizing="true" AllowFloating="true" CellSpacing="@CellSpacing" Columns="@ColumnCount">
+        <DashboardLayoutPanels>
             <!-- Vault Items Panel -->
             <DashboardLayoutPanel Id="vaultPanel" Row="0" Column="0" SizeX="3" SizeY="1">
                 <HeaderTemplate>
                     <div class="e-header-text">Storage</div>
                 </HeaderTemplate>
                 <ContentTemplate>
+                    <!-- Search controls -->
+                    <div class="mb-4 d-flex align-items-center gap-2" style="flex-wrap: wrap;">
+                        <input class="form-control" style="min-width:220px;"
+                               placeholder="Search all vault items… (leave blank for wildcard)"
+                               @bind="searchString"
+                               @bind:event="oninput" />
+
+                        <SfDateRangePicker TValue="DateTime?" Placeholder="Optional date range"
+                                           @bind-StartDate="startDate"
+                                           @bind-EndDate="endDate"
+                                           ShowClearButton="true">
+                        </SfDateRangePicker>
+
+                        <SfCheckBox @bind-Checked="enableDateFilter" Label="Apply date filter" />
+                        <SfButton OnClick="ClearSearch" CssClass="e-flat">Clear</SfButton>
+                    </div>
+
                     <SfTab>
                         <TabItems>
                             <!-- Logins Tab -->
@@ -28,24 +47,26 @@
                                 <ContentTemplate>
                                     <SfGrid @ref="LoginDataGrid"
                                             TValue="VaultItem"
-                                            DataSource="@vaultItems.Where(x => x.Type == "Login")"
+                                            DataSource="@LoginItems"
                                             AllowSelection="true"
                                             AllowPaging="true"
                                             AllowSorting="true">
-                                        <GridPageSettings PageSize="5" />
+                                        <GridPageSettings PageSize="8" />
                                         <GridSelectionSettings EnableSimpleMultiRowSelection="false" />
                                         <GridEditSettings AllowAdding="true" AllowEditing="true" AllowDeleting="true" Mode="EditMode.Dialog">
                                             <SfToolbar>
                                                 <ToolbarItems>
-                                                    <ToolbarItem OnClick="OnAddLogin" Text="Add Login Entry" PrefixIcon="e-add" Id="AddLogin" />
-                                                    <ToolbarItem OnClick="OnViewEditLogin" Text="View/Edit Login" PrefixIcon="e-edit" Id="ViewEditLogin" />
-                                                    <ToolbarItem OnClick="OnDeleteLogin" Text="Delete Login" PrefixIcon="e-delete" Id="DeleteLogin" />
+                                                    <ToolbarItem OnClick="OnAddLogin" Text="Add Login" PrefixIcon="e-add" Id="AddLogin" />
+                                                    <ToolbarItem OnClick="OnViewEditLogin" Text="View/Edit" PrefixIcon="e-edit" Id="ViewEditLogin" />
+                                                    <ToolbarItem OnClick="OnDeleteLogin" Text="Delete" PrefixIcon="e-delete" Id="DeleteLogin" />
                                                 </ToolbarItems>
                                             </SfToolbar>
                                         </GridEditSettings>
                                         <GridColumns>
                                             <GridColumn AllowEditing="false" Field="Id" HeaderText="ID" Width="80" IsPrimaryKey="true" />
-                                            <GridColumn Field="Name" HeaderText="Account Name" Width="200" />
+                                            <GridColumn Field="Name" HeaderText="Account Name" Width="250" />
+                                            <GridColumn Field="CreatedAt" HeaderText="Created" Type="ColumnType.DateTime" Format="dd/MM/yyyy hh:mm tt" Width="150" />
+                                            <GridColumn Field="UpdatedAt" HeaderText="Updated" Type="ColumnType.DateTime" Format="dd/MM/yyyy hh:mm tt" Width="150" />
                                         </GridColumns>
                                     </SfGrid>
                                 </ContentTemplate>
@@ -56,21 +77,23 @@
                                 <ContentTemplate>
                                     <SfGrid @ref="FileDataGrid"
                                             TValue="VaultItem"
-                                            DataSource="@vaultItems.Where(x => x.Type == "File")"
+                                            DataSource="@FileItems"
                                             AllowPaging="true"
                                             AllowSorting="true">
-                                        <GridPageSettings PageSize="5" />
+                                        <GridPageSettings PageSize="8" />
                                         <SfToolbar>
                                             <ToolbarItems>
-                                                <ToolbarItem OnClick="OnAddFile" Text="Add New File" PrefixIcon="e-add" Id="AddFile" />
+                                                <ToolbarItem OnClick="OnAddFile" Text="Add File" PrefixIcon="e-add" Id="AddFile" />
                                                 <ToolbarItem OnClick="OnViewDownloadFile" Text="Download" PrefixIcon="e-download" Id="DownloadFile" />
-                                                <ToolbarItem OnClick="OnDeleteFile" Text="Delete File" PrefixIcon="e-delete" Id="DeleteFile" />
-                                                <ToolbarItem OnClick="OnDecryptFile" Text="Decrypt Downloaded File" PrefixIcon="e-unlock" Id="DecryptFile" />
+                                                <ToolbarItem OnClick="OnDeleteFile" Text="Delete" PrefixIcon="e-delete" Id="DeleteFile" />
+                                                <ToolbarItem OnClick="OnDecryptFile" Text="Decrypt File" PrefixIcon="e-unlock" Id="DecryptFile" />
                                             </ToolbarItems>
                                         </SfToolbar>
                                         <GridColumns>
                                             <GridColumn AllowEditing="false" Field="Id" HeaderText="ID" Width="80" IsPrimaryKey="true" />
-                                            <GridColumn Field="Name" HeaderText="File Name" Width="200" />
+                                            <GridColumn Field="Name" HeaderText="File Name" Width="300" />
+                                            <GridColumn Field="CreatedAt" HeaderText="Created" Type="ColumnType.DateTime" Format="dd/MM/yyyy hh:mm tt" Width="150" />
+                                            <GridColumn Field="UpdatedAt" HeaderText="Updated" Type="ColumnType.DateTime" Format="dd/MM/yyyy hh:mm tt" Width="150" />
                                         </GridColumns>
                                     </SfGrid>
                                 </ContentTemplate>
@@ -81,20 +104,22 @@
                                 <ContentTemplate>
                                     <SfGrid @ref="TextDataGrid"
                                             TValue="VaultItem"
-                                            DataSource="@vaultItems.Where(x => x.Type == "Text")"
+                                            DataSource="@NoteItems"
                                             AllowPaging="true"
                                             AllowSorting="true">
-                                        <GridPageSettings PageSize="5" />
+                                        <GridPageSettings PageSize="8" />
                                         <SfToolbar>
                                             <ToolbarItems>
-                                                <ToolbarItem OnClick="OnAddNote" Text="Add New Note" PrefixIcon="e-add" Id="AddNote" />
-                                                <ToolbarItem OnClick="OnViewEditNote" Text="View/Edit Note" PrefixIcon="e-edit" Id="ViewEditNote" />
-                                                <ToolbarItem OnClick="OnDeleteNote" Text="Delete Note" PrefixIcon="e-delete" Id="DeleteNote" />
+                                                <ToolbarItem OnClick="OnAddNote" Text="Add Note" PrefixIcon="e-add" Id="AddNote" />
+                                                <ToolbarItem OnClick="OnViewEditNote" Text="View/Edit" PrefixIcon="e-edit" Id="ViewEditNote" />
+                                                <ToolbarItem OnClick="OnDeleteNote" Text="Delete" PrefixIcon="e-delete" Id="DeleteNote" />
                                             </ToolbarItems>
                                         </SfToolbar>
                                         <GridColumns>
                                             <GridColumn AllowEditing="false" Field="Id" HeaderText="ID" Width="80" IsPrimaryKey="true" />
-                                            <GridColumn Field="Name" HeaderText="Note Title" Width="200" />
+                                            <GridColumn Field="Name" HeaderText="Title" Width="300" />
+                                            <GridColumn Field="CreatedAt" HeaderText="Created" Type="ColumnType.DateTime" Format="dd/MM/yyyy hh:mm tt" Width="150" />
+                                            <GridColumn Field="UpdatedAt" HeaderText="Updated" Type="ColumnType.DateTime" Format="dd/MM/yyyy hh:mm tt" Width="150" />
                                         </GridColumns>
                                     </SfGrid>
                                 </ContentTemplate>
@@ -108,7 +133,7 @@
             <DashboardLayoutPanel Id="statsPanel" SizeX="1" SizeY="1" Row="3" Column="0">
                 <HeaderTemplate><div class="e-header-text">Record Statistics</div></HeaderTemplate>
                 <ContentTemplate>
-                    @if (vaultItems.Any())
+                    @if (vaultItems?.Any() == true)
                     {
                         <SfAccumulationChart Height="300px">
                             <AccumulationChartSeriesCollection>
@@ -124,8 +149,8 @@
                     else
                     {
                         <SfSkeleton CssClass="skeletonCircleLarger"
-                                    Shape="Syncfusion.Blazor.Notifications.SkeletonType.Circle"
-                                    Width="80px"></SfSkeleton>
+                                    Shape="Syncfusion.Blazor.Notifications.SkeletonType.Circle">
+                        </SfSkeleton>
                     }
                 </ContentTemplate>
             </DashboardLayoutPanel>
@@ -136,7 +161,8 @@
                     <div class="h-full p-4 bg-white shadow rounded-2xl">
                         <h3 class="text-lg font-medium mb-2">Recent Activity</h3>
                         <ul class="list-disc pl-5">
-                            <!-- Add dynamic recent activity items here -->
+                            <!-- TODO: wire real activities -->
+                            <li>No recent activity</li>
                         </ul>
                     </div>
                 </ContentTemplate>
@@ -147,39 +173,46 @@
                 <ContentTemplate>
                     <div class="h-full p-4 bg-white shadow rounded-2xl">
                         <h3 class="text-lg font-medium mb-2">Data Groups</h3>
-                        <!-- Optional content here -->
                     </div>
                 </ContentTemplate>
             </DashboardLayoutPanel>
 
-            <!-- Dialogs -->
+            <!-- Dialog components (assume they exist elsewhere) -->
             <AddLogin ItemAdded="OnItemAdded" @ref="addLoginDialog" />
             <ViewEditLogin OnItemUpdated="OnVaultUpdated" @ref="viewEditLoginDialog" />
             <AddFile ItemAdded="OnItemAdded" @ref="addFileDialog" />
-            <ViewDownloadFile OnFileDownloaded="OnFileDownlaoded" @ref="viewDownloadFileDialog" />
+            <ViewDownloadFile OnFileDownloaded="OnFileDownloaded" @ref="viewDownloadFileDialog" />
             <FileDecrypter @ref="fileDecrypterDialog" />
             <AddNote ItemAdded="OnItemAdded" @ref="addNoteDialog" />
             <ViewEditNote OnItemUpdated="OnVaultUpdated" @ref="viewEditNoteDialog" />
 
-
-            <SfToast @ref="NotifactionToast"></SfToast>
+            <SfToast @ref="NotificationToast"></SfToast>
         </DashboardLayoutPanels>
     </SfDashboardLayout>
 </div>
 
 @code {
+    // layout & UI
+    private readonly double[] CellSpacing = { 10, 10 };
+    private const int ColumnCount = 3;
     private TabHeader Logins = new TabHeader() { Text = "Logins" };
     private TabHeader Files = new TabHeader() { Text = "Files" };
     private TabHeader Notes = new TabHeader() { Text = "Notes" };
 
-    private readonly double[] CellSpacing = { 10, 10 };
-    private const int ColumnCount = 3;
 
+    // search/filter
+    private string searchString = string.Empty;
+    private bool enableDateFilter = false;
+    private DateTime? startDate { get; set; }
+    private DateTime? endDate { get; set; }
+
+    // state
     private bool isProcessing = false;
+    public List<VaultItem> vaultItems = new();
 
+    // dialogs / UI refs
     private SfGrid<VaultItem>? LoginDataGrid, FileDataGrid, TextDataGrid;
-
-    private SfToast? NotifactionToast;
+    private SfToast? NotificationToast;
 
     private AddLogin? addLoginDialog;
     private ViewEditLogin? viewEditLoginDialog;
@@ -189,15 +222,18 @@
     private AddNote? addNoteDialog;
     private ViewEditNote? viewEditNoteDialog;
 
-    public List<VaultItem> vaultItems = new();
-
+    // chart settings
     private AccumulationDataLabelSettings PieChartSettings = new() { Visible = true };
-
     public List<PieChartItem> PieChartData =>
         vaultItems
             .GroupBy(x => x.Type)
             .Select(g => new PieChartItem { Type = g.Key, Count = g.Count() })
             .ToList();
+
+    // Filtered lists displayed in the grids:
+    public IEnumerable<VaultItem> LoginItems => ApplyFilter("Login");
+    public IEnumerable<VaultItem> FileItems => ApplyFilter("File");
+    public IEnumerable<VaultItem> NoteItems => ApplyFilter("Text");
 
     protected override async Task OnInitializedAsync()
     {
@@ -209,21 +245,40 @@
         isProcessing = true;
         StateHasChanged();
 
-        var requestVaultItems = await Http.GetVaultItemsAsync();
-
-        if (!requestVaultItems.Success) { Console.WriteLine("Failed to get vault items."); }
-
-        vaultItems = requestVaultItems?.Data ?? new();
+        try
+        {
+            // Http.GetVaultItemsAsync expected to return a wrapper { Success, Data }
+            var response = await Http.GetVaultItemsAsync();
+            if (response == null)
+            {
+                Console.WriteLine("GetVaultItemsAsync returned null.");
+                vaultItems = new();
+            }
+            else if (response.Success == false)
+            {
+                Console.WriteLine("GetVaultItemsAsync indicated failure.");
+                vaultItems = new();
+            }
+            else
+            {
+                vaultItems = response.Data ?? new();
+            }
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine("Error fetching vault items: " + ex.Message);
+            vaultItems = new();
+        }
 
         isProcessing = false;
         StateHasChanged();
     }
 
     // Toolbar actions
-    private async Task OnAddLogin(ClickEventArgs args) => await addLoginDialog.ShowAsync();
+    private async Task OnAddLogin(ClickEventArgs args) => await addLoginDialog?.ShowAsync();
     private async Task OnViewEditLogin(ClickEventArgs args)
     {
-        var vaultItem = LoginDataGrid?.SelectedRecords.FirstOrDefault();
+        var vaultItem = LoginDataGrid?.SelectedRecords?.FirstOrDefault();
         if (vaultItem != null)
         {
             await viewEditLoginDialog.SetVaultItem(vaultItem);
@@ -231,24 +286,25 @@
         }
     }
 
-    private async Task OnFileDownlaoded(ToastModel toast) => await NotifactionToast.ShowAsync(toast);
-    private async Task OnAddFile(ClickEventArgs args) => await addFileDialog.ShowAsync();
+    private async Task OnAddFile(ClickEventArgs args) => await addFileDialog?.ShowAsync();
+
     private async Task OnViewDownloadFile(ClickEventArgs args)
     {
-        var vaultItem = FileDataGrid?.SelectedRecords.FirstOrDefault();
+        var vaultItem = FileDataGrid?.SelectedRecords?.FirstOrDefault();
         if (vaultItem != null)
         {
             await viewDownloadFileDialog.SetVaultItem(vaultItem);
+            // show dialog - the dialog itself will trigger download and invoke callback
             await viewDownloadFileDialog.ShowAsync();
         }
     }
 
-    private void OnDecryptFile(ClickEventArgs args) => fileDecrypterDialog.Open(vaultItems);
+    private void OnDecryptFile(ClickEventArgs args) => fileDecrypterDialog?.Open(vaultItems);
 
-    private async Task OnAddNote(ClickEventArgs args) => await addNoteDialog.ShowAsync();
+    private async Task OnAddNote(ClickEventArgs args) => await addNoteDialog?.ShowAsync();
     private async Task OnViewEditNote(ClickEventArgs args)
     {
-        var vaultItem = TextDataGrid?.SelectedRecords.FirstOrDefault();
+        var vaultItem = TextDataGrid?.SelectedRecords?.FirstOrDefault();
         if (vaultItem != null)
         {
             await viewEditNoteDialog.SetVaultItem(vaultItem);
@@ -260,34 +316,33 @@
     private async Task OnDeleteFile(ClickEventArgs args) => await DeleteVaultItem(FileDataGrid);
     private async Task OnDeleteNote(ClickEventArgs args) => await DeleteVaultItem(TextDataGrid);
 
-    private async Task DeleteVaultItem(SfGrid<VaultItem> grid)
+    private async Task DeleteVaultItem(SfGrid<VaultItem>? grid)
     {
-        var vaultItem = grid?.SelectedRecords.FirstOrDefault();
+        var vaultItem = grid?.SelectedRecords?.FirstOrDefault();
         if (vaultItem == null) return;
 
         bool confirmed = await JS.InvokeAsync<bool>("confirm", $"Are you sure you want to delete: {vaultItem.Name}?");
         if (confirmed)
         {
             await Http.DeleteVaultItem(vaultItem.Id);
+            await RefreshVaultItemsAsync();
         }
-
-        await RefreshVaultItemsAsync();
     }
 
-    // Handle vault item updates
+    // Called by the Add dialogs
     public async Task OnItemAdded(VaultItem item)
     {
         if (item == null) return;
-
         isProcessing = true;
         StateHasChanged();
 
-        bool success = await Http.AddVaultItemAsync(item);
+        var ok = await Http.AddVaultItemAsync(item);
 
         isProcessing = false;
         await RefreshVaultItemsAsync();
     }
 
+    // Handle updates from edit dialog
     public async Task OnVaultUpdated(RecordTypes.ItemUpdate update)
     {
         if (update?.Modified == true && update.VaultItem != null)
@@ -297,6 +352,77 @@
         }
     }
 
+    // When the download dialog signals download started
+    private async Task OnFileDownloaded()
+    {
+        if (NotificationToast == null) return;
+
+        var toast = new ToastModel
+        {
+            Title = "Download",
+            Content = "Your file download has started.",
+            Timeout = 4000,
+            CssClass = "e-toast-success"
+        };
+
+        await NotificationToast.ShowAsync(toast);
+    }
+
+    // SEARCH / FILTER
+    private void ApplySearch()
+    {
+        StateHasChanged();
+    }
+
+    private void ClearSearch()
+    {
+        searchString = string.Empty;
+        enableDateFilter = false;
+        startDate = null;
+        endDate = null;
+        StateHasChanged();
+    }
+
+    /// <summary>
+    /// Applies the combined filter for a given vault item type.
+    /// Empty search string acts as wildcard (matches anything).
+    /// If enableDateFilter is true, the date range is applied; open-ended ranges are supported.
+    /// </summary>
+    private IEnumerable<VaultItem> ApplyFilter(string type)
+    {
+        if (vaultItems == null || !vaultItems.Any())
+            return Enumerable.Empty<VaultItem>();
+
+        var q = vaultItems.Where(x => string.Equals(x.Type, type, StringComparison.OrdinalIgnoreCase));
+
+        // Text filter: wildcard when empty
+        if (!string.IsNullOrWhiteSpace(searchString))
+        {
+            var s = searchString.Trim();
+            q = q.Where(item => item.Name?.Contains(s, StringComparison.OrdinalIgnoreCase) ?? false);
+        }
+
+        // Date filter (optional)
+        if (enableDateFilter)
+        {
+            if (startDate.HasValue)
+            {
+                var sd = startDate.Value.Date;
+                q = q.Where(item => item.CreatedAt >= sd);
+            }
+
+            if (endDate.HasValue)
+            {
+                // Include entire end day
+                var ed = endDate.Value.Date;
+                q = q.Where(item => item.CreatedAt <= ed);
+            }
+        }
+
+        return q.ToList();
+    }
+
+    // small helper class for chart
     public class PieChartItem
     {
         public string Type { get; set; }

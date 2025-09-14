@@ -29,14 +29,13 @@
 
             bool tokenValid = await AccountService.IsLoggedInAsync();
 
-            if (tokenValid && user.Identity is not null && user.Identity.IsAuthenticated && !VaultService.IsMasterKeySet())
+            if (tokenValid && user.Identity is not null && user.Identity.IsAuthenticated)
             {
                 // Redirect to dashboard if authenticated
                 Navigation.NavigateTo("/dashboard", forceLoad: true);
             }
             else
             {
-                // Ensure logout clears any partial session/token
                 await AuthService.LogoutAsync();
                 Navigation.NavigateTo("/login", forceLoad: true);
             }

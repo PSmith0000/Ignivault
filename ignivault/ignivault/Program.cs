@@ -11,45 +11,50 @@ using System.Globalization;
 
 try
 {
-    Syncfusion.Licensing.SyncfusionLicenseProvider.RegisterLicense("Ngo9BigBOggjHTQxAR8/V1JEaF5cXmRCf1FpRmJGdld5fUVHYVZUTXxaS00DNHVRdkdmWXdcdXZURmVdUUV0X0VWYEk=");
+    Syncfusion.Licensing.SyncfusionLicenseProvider
+        .RegisterLicense("Ngo9BigBOggjHTQxAR8/V1JEaF5cXmRCf1FpRmJGdld5fUVHYVZUTXxaS00DNHVRdkdmWXdcdXZURmVdUUV0X0VWYEk=");
 
     var builder = WebAssemblyHostBuilder.CreateDefault(args);
 
     builder.RootComponents.Add<App>("#app");
     builder.RootComponents.Add<HeadOutlet>("head::after");
 
-    // Http Client
-    builder.Services.AddScoped(sp => new HttpClient { BaseAddress = new Uri("https://localhost:7158/") });
+    // ---------- HTTP ----------
+    builder.Services.AddScoped(sp =>
+        new HttpClient { BaseAddress = new Uri("https://localhost:7158/") });
 
-    // Blazored LocalStorage
+    // ---------- Storage & Auth ----------
     builder.Services.AddBlazoredSessionStorage();
-
-    // Authentication & Vault Services
     builder.Services.AddScoped<AuthenticationStateProvider, JwtAuthenticationStateProvider>();
+    builder.Services.AddAuthorizationCore();
+
+    // ---------- Application Services ----------
     builder.Services.AddScoped<AuthService>();
     builder.Services.AddScoped<AccountService>();
     builder.Services.AddScoped<VaultService>();
     builder.Services.AddScoped<IHttpService, HttpService>();
 
-    builder.Services.AddAuthorizationCore();
-
-    // Syncfusion
+    // ---------- Syncfusion ----------
     builder.Services.AddSyncfusionBlazor();
 
-    // Culture Setup
+    // ---------- Culture ----------
     CultureInfo.DefaultThreadCurrentCulture = new CultureInfo("en-US");
     CultureInfo.DefaultThreadCurrentUICulture = new CultureInfo("en-US");
 
     var host = builder.Build();
-    var jsInterop = host.Services.GetRequiredService<IJSRuntime>();
 
-    var cultureName = await jsInterop.InvokeAsync<string>("cultureInfo.get");
+    // Restore user’s saved culture (optional)
+    var js = host.Services.GetRequiredService<IJSRuntime>();
+    var cultureName = await js.InvokeAsync<string>("cultureInfo.get");
     if (!string.IsNullOrEmpty(cultureName))
     {
         var culture = new CultureInfo(cultureName);
         CultureInfo.DefaultThreadCurrentCulture = culture;
         CultureInfo.DefaultThreadCurrentUICulture = culture;
     }
+
+    var accountService = host.Services.GetRequiredService<AccountService>();
+    await accountService.LoadUserAsync();
 
     await host.RunAsync();
 }
