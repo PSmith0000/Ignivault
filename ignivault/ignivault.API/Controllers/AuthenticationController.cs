@@ -31,7 +31,9 @@ namespace ignivault.API.Controllers
         public async Task<IActionResult> Register([FromBody] RegisterModel model)
         {
             if (!ModelState.IsValid)
+            {
                 return BadRequest(ModelState);
+            }
 
             var user = new LoginUser
             {
@@ -39,9 +41,11 @@ namespace ignivault.API.Controllers
                 Email = model.Email
             };
 
+            Console.WriteLine(System.Text.Json.JsonSerializer.Serialize(model));
+
             var masterKey = Crypt.GenerateRandomKey();
             var salt = Crypt.GenerateSalt();
-            var KHK = Crypt.DeriveKey(model.Password, salt);
+            var KHK = Crypt.DeriveKey(model.EncryptionKey, salt);
             var (encryptedMasterKey, iv) = Crypt.Encrypt(masterKey, KHK);
 
             user.EncryptedMasterKey = Convert.ToBase64String(encryptedMasterKey);
@@ -89,7 +93,7 @@ namespace ignivault.API.Controllers
                 issuer: _configuration["Jwt:Issuer"],
                 audience: _configuration["Jwt:Audience"],
                 claims: claims,
-                expires: DateTime.UtcNow.AddHours(2),
+                expires: DateTime.UtcNow.AddMinutes(15), //temp (normal 1 hour)
                 signingCredentials: creds
             );
 

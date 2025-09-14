@@ -31,7 +31,6 @@
 
             if (tokenValid && user.Identity is not null && user.Identity.IsAuthenticated && !VaultService.IsMasterKeySet())
             {
-
                 // Redirect to dashboard if authenticated
                 Navigation.NavigateTo("/dashboard", forceLoad: true);
             }

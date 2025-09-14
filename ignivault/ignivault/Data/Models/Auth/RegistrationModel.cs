@@ -16,5 +16,11 @@ namespace ignivault.Data.Models.Auth
 
         [Required, Compare("Password", ErrorMessage = "Passwords do not match.")]
         public string ConfirmPassword { get; set; }
+
+        [Required, MinLength(6, ErrorMessage = "Vault password must be at least 6 characters.")]
+        public string EncryptionKey { get; set; } = string.Empty;
+
+        [Required, Compare("EncryptionKey", ErrorMessage = "Keys do not match.")]
+        public string EncryptionKeyConfirm { get; set; } = string.Empty;
     }
 }

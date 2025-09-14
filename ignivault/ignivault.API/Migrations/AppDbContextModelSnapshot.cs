@@ -155,6 +155,38 @@ namespace ignivault.API.Migrations
                     b.ToTable("AspNetUserTokens", (string)null);
                 });
 
+            modelBuilder.Entity("ignivault.API.Models.Records.UserActivity", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<DateTime>("ActivityTime")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("ActivityType")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Details")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("LoginUserId")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("UserId")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("LoginUserId");
+
+                    b.ToTable("UserActivities");
+                });
+
             modelBuilder.Entity("ignivault.API.Models.Records.VaultItem", b =>
                 {
                     b.Property<int>("Id")
@@ -330,6 +362,13 @@ namespace ignivault.API.Migrations
                         .IsRequired();
                 });
 
+            modelBuilder.Entity("ignivault.API.Models.Records.UserActivity", b =>
+                {
+                    b.HasOne("ignivault.API.Security.Auth.LoginUser", null)
+                        .WithMany("UserActivities")
+                        .HasForeignKey("LoginUserId");
+                });
+
             modelBuilder.Entity("ignivault.API.Models.Records.VaultItem", b =>
                 {
                     b.HasOne("ignivault.API.Security.Auth.LoginUser", null)
@@ -339,6 +378,8 @@ namespace ignivault.API.Migrations
 
             modelBuilder.Entity("ignivault.API.Security.Auth.LoginUser", b =>
                 {
+                    b.Navigation("UserActivities");
+
                     b.Navigation("VaultItems");
                 });
 #pragma warning restore 612, 618

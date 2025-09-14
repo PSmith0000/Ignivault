@@ -12,5 +12,6 @@ namespace ignivault.API.SQL
 
 
         public DbSet<VaultItem> VaultItems { get; set; }
+        public DbSet<UserActivity> UserActivities { get; set; }
     }
 }

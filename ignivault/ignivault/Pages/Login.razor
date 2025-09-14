@@ -51,14 +51,21 @@
                 Login failed. Please check your credentials and try again.
             </SfMessage>
         }
+
+        <AskKey @ref="keyDialog"/>
+
     </div>
 </div>
 
 @code {
     private LoginUserModel loginData = new LoginUserModel();
+    private AskKey keyDialog;
     private bool ForgotPasswordDialogVisible { get; set; } = false;
     private bool loginFailed = false;
     private bool showSuccess = false;
+    private bool DecryptionSuccess = false;
+
+
 
     protected override void OnInitialized()
     {
@@ -72,6 +79,16 @@
     }
 
     private void ToggleForgotPasswordDialog() => ForgotPasswordDialogVisible = !ForgotPasswordDialogVisible;
+
+    private async Task PromptAndDecryptAsync(LoginUser user)
+    {
+        var key = await keyDialog!.ShowAndWaitAsync();
+        if (!string.IsNullOrEmpty(key))
+        {
+            bool status = await VaultService.DecryptMasterKeyAsync(user, key);
+            DecryptionSuccess = status;
+        }
+    }
 
     private async Task HandleValidSubmit()
     {
@@ -87,23 +104,24 @@
                 return;
             }
 
-            // Set user account and store token
-            AccountService.SetAccount(user);
-            await AuthService.LoginAsync(user.Token);
-
-            // Decrypt master key
-            if (!await VaultService.DecryptMasterKeyAsync(user, loginData.Password))
-            {
-                loginFailed = true;
-                return;
-            }
-
             // Verify token expiration
             if (DataUtils.IsTokenExpired(user.Token))
             {
                 loginFailed = true;
                 return;
             }
+
+            // Decrypt master key
+            await PromptAndDecryptAsync(user);
+            if (!DecryptionSuccess)
+            {
+                loginFailed = true;
+                return;
+            }
+     
+            // Set user account and store token
+            AccountService.SetAccount(user);
+            await AuthService.LoginAsync(user.Token);
 
             // Navigate to dashboard
             NavManager.NavigateTo("/dashboard");
