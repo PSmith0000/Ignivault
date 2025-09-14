@@ -211,6 +211,8 @@
         "required": [
           "confirmPassword",
           "email",
+          "encryptionKey",
+          "encryptionKeyConfirm",
           "password",
           "username"
         ],
@@ -230,6 +232,14 @@
             "type": "string"
           },
           "confirmPassword": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "encryptionKey": {
+            "minLength": 6,
+            "type": "string"
+          },
+          "encryptionKeyConfirm": {
             "minLength": 1,
             "type": "string"
           }

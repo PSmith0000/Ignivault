@@ -2,6 +2,7 @@
 @inject NavigationManager Navigation
 @inject IHttpService Http
 @inject IJSRuntime JS
+@attribute [Authorize]
 
 <div class="relative">
     @if (isProcessing)

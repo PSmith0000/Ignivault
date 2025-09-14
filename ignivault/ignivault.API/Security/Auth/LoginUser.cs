@@ -12,6 +12,7 @@ namespace ignivault.API.Security.Auth
         public string MasterIV { get; set; }
 
         public ICollection<VaultItem> VaultItems { get; set; } = new List<VaultItem>();
+        public ICollection<UserActivity> UserActivities { get; set; } = new List<UserActivity>();
 
         public DateTime? LastPasswordChange { get; set; }
     }

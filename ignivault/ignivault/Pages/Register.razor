@@ -48,7 +48,7 @@
                 await ShowMessage();
 
                 // Delay slightly before redirect
-                await Task.Delay(1000);
+                await Task.Delay(500);
                 NavManager.NavigateTo("/login?signedup=true");
             }
             else
@@ -72,7 +72,7 @@
         showMessage = true;
         StateHasChanged();
 
-        await Task.Delay(10000); // Auto-hide after 10 seconds
+        await Task.Delay(3000); // Auto-hide after 10 seconds
         showMessage = false;
         StateHasChanged();
     }

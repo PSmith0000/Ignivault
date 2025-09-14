@@ -1,0 +1,58 @@
+﻿<SfDialog @bind-Visible="IsOpen"
+          Width="420px"
+          Header="Vault Encryption Key"
+          IsModal="true"
+          ShowCloseIcon="false">
+    <DialogTemplates>
+        <Content>
+            <div class="p-4 space-y-4">
+                <label class="form-label font-semibold">Enter Your Vault Encryption Key</label>
+                <input class="form-control w-full"
+                       @bind="EncryptionKey"
+                       type="password"
+                       placeholder="Encryption key" />
+
+                <div class="flex justify-end gap-2 mt-4">
+                    <SfButton CssClass="e-primary" OnClick="Submit">Submit</SfButton>
+                    <SfButton CssClass="e-flat" OnClick="Cancel">Cancel</SfButton>
+                </div>
+            </div>
+        </Content>
+    </DialogTemplates>
+</SfDialog>
+
+@code {
+    private bool IsOpen { get; set; }
+    private string EncryptionKey { get; set; } = string.Empty;
+
+    // TaskCompletionSource to signal when the dialog closes
+    private TaskCompletionSource<string?>? _tcs;
+
+    /// <summary>Show the dialog and await the key.</summary>
+    public Task<string?> ShowAndWaitAsync()
+    {
+        EncryptionKey = string.Empty;
+        IsOpen = true;
+        _tcs = new TaskCompletionSource<string?>();
+        StateHasChanged();
+        return _tcs.Task;
+    }
+
+    private void Submit()
+    {
+        _tcs?.TrySetResult(EncryptionKey);
+        Close();
+    }
+
+    private void Cancel()
+    {
+        _tcs?.TrySetResult(null); // null if user canceled
+        Close();
+    }
+
+    private void Close()
+    {
+        IsOpen = false;
+        EncryptionKey = string.Empty;
+    }
+}

@@ -1,4 +1,5 @@
 ﻿using ignivault.API.Security.Auth;
+using Microsoft.AspNetCore.Identity;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
