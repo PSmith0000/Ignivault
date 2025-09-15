@@ -1,69 +1,74 @@
 ﻿@using ignivault.Data.Models.Auth
+@inject IHttpService HttpService
 
 <div class="col-lg-12 control-section" id="target">
-    <div>
-    </div>
-    <SfDialog Target="#target" Width="500px" ShowCloseIcon="true" @bind-Visible="Visibility">
+    <SfDialog Target="#target"
+              Width="400px"
+              ShowCloseIcon="true"
+              @bind-Visible="Visibility"
+              IsModal="true"
+              Header="Ignivault: Password Reset">
         <DialogTemplates>
-            <Header> Ignivault: Password Reset </Header>
             <Content>
-                <SfDataForm ID="forgot-form" Model="@account">
-                    <FormValidator>
-                        <DataAnnotationsValidator></DataAnnotationsValidator>
-                    </FormValidator>
-                    <FormItems>
-                        <FormAutoGenerateItems></FormAutoGenerateItems>
-                    </FormItems>
-                </SfDataForm>
+                <EditForm Model="account" OnValidSubmit="RequestResetAsync">
+                    <DataAnnotationsValidator />
+                    <ValidationSummary />
+
+                    <div class="mb-3">
+                        <label class="form-label fw-bold">Email Address</label>
+                        <InputText @bind-Value="account.Email" class="form-control" placeholder="Enter your email" />
+                        <ValidationMessage For="@(() => account.Email)" />
+                    </div>
+
+                    <div class="d-flex justify-content-end">
+                        <SfButton IsPrimary="true" Type="Submit" Disabled="_isSubmitting">
+                            @(_isSubmitting ? "Sending..." : "Send Reset Link")
+                        </SfButton>
+                    </div>
+
+                    @if (!string.IsNullOrEmpty(_status))
+                    {
+                        <div class="mt-2 text-sm @( _success ? "text-success" : "text-danger")">
+                            @_status
+                        </div>
+                    }
+                </EditForm>
             </Content>
         </DialogTemplates>
-        <DialogEvents OnOpen="@DialogOpen" Closed="@DialogClose"></DialogEvents>
-        <DialogButtons>
-            
-        </DialogButtons>
     </SfDialog>
 </div>
-<style>
-    a, a:hover, .highcontrast #dialog a, .highcontrast #dialog a:hover {
-        color: inherit;
-        text-decoration: none;
-    }
 
-    .fabric #target .e-dialog {
-        height: 306px;
-    }
-
-    .material #target .e-dialog {
-        height: 270px;
-    }
-
-    .bootstrap4 #target .e-dialog {
-        height: 305px;
-    }
-
-    #target .e-dialog {
-        height: 320px;
-    }
-
-    #target {
-        height: 500px;
-    }
-
-    .e-dialog .e-dlg-header-content + .e-dlg-content {
-        padding-bottom: 0;
-    }
-</style>
 @code {
     private ForgotPasswordModel account = new ForgotPasswordModel();
-
     private bool Visibility { get; set; } = true;
-    private bool ShowButton { get; set; } = false;
-    private void DialogOpen(Object args)
+    private bool _isSubmitting = false;
+    private string? _status;
+    private bool _success;
+
+    private async Task RequestResetAsync()
     {
-        this.ShowButton = false;
-    }
-    private void DialogClose(Object args)
-    {
-        this.ShowButton = true;
+        if (string.IsNullOrWhiteSpace(account.Email))
+        {
+            _status = "Email is required.";
+            _success = false;
+            return;
+        }
+
+        try
+        {
+            _isSubmitting = true;
+            var (success, message) = await HttpService.RequestPasswordResetAsync(account.Email);
+            _status = message ?? (success ? "Reset link sent successfully!" : "Failed to send reset link.");
+            _success = success;
+        }
+        catch (Exception ex)
+        {
+            _status = $"Error: {ex.Message}";
+            _success = false;
+        }
+        finally
+        {
+            _isSubmitting = false;
+        }
     }
 }

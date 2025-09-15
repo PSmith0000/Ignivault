@@ -1,56 +1,113 @@
-﻿@using System.Collections.ObjectModel
+﻿@using System.ComponentModel.DataAnnotations
 @using ignivault.Data.Models.Data
-
 @inject VaultService VaultService
 @inject AccountService AccountService
 
-<SfDialog @bind-Visible="_isOpen" AllowDragging="true" @ref="_dialog" Width="400px" ShowCloseIcon="true">
+<SfDialog @bind-Visible="_isOpen"
+          @ref="_dialog"
+          Width="90%" MaxWidth="650px"
+          ShowCloseIcon="true"
+          AllowDragging="true"
+          IsModal="true"
+          CssClass="custom-dialog"
+          Header="Add New Note">
+
     <DialogTemplates>
         <Content>
-            <label class="text-lg font-bold mb-4">Add New Note Record</label>
+            <EditForm Model="_noteItem" OnValidSubmit="SaveItemAsync">
+                <DataAnnotationsValidator />
+                <ValidationSummary />
 
-            <SfDataForm ID="AddNoteItemForm" Model="_noteItem" ColumnSpacing="20px">
-                <FormValidator>
-                    <DataAnnotationsValidator />
-                </FormValidator>
+                <!-- Title Input -->
+                <div class="mb-3">
+                    <label class="form-label fw-bold">Note Title</label>
+                    <SfTextBox @bind-Value="_noteItem.Title" Placeholder="Enter title" />
+                </div>
 
-                <FormItems>
-                    <FormItem Field="@nameof(_noteItem.Title)" LabelText="Note Title" />
-                    <FormItem Field="@nameof(_noteItem.Content)" LabelText="Content" EditorType="FormEditorType.TextArea" />
-                </FormItems>
+                <!-- Rich Text Editor -->
+                <div class="mb-3">
+                    <label class="form-label fw-bold">Content</label>
+                    <SfRichTextEditor @bind-Value="_noteItem.Content"
+                                      Height="300px"
+                                      EnableResize="true"
+                                      EnableTabKey="true"
+                                      EnableXhtml="true"
+                                      ShowCharCount="true"
+                                      MaxLength="10000">
+                        <RichTextEditorToolbarSettings Items="@Tools" />
+                        <RichTextEditorQuickToolbarSettings Table="TableQuickToolbarItems"></RichTextEditorQuickToolbarSettings>
+                        <RichTextEditorExportWord />
+                        <RichTextEditorExportPdf />
+                    </SfRichTextEditor>
+                </div>
 
-                <FormButtons>
-                    <SfButton CssClass="e-outline" OnClick="Cancel">Cancel</SfButton>
-                    <SfButton IsPrimary="true" OnClick="SaveItemAsync" Disabled="@_isSaving">
+                <!-- Action Buttons -->
+                <div class="d-flex justify-content-end mt-3">
+                    <SfButton CssClass="e-outline me-2" OnClick="Cancel" Disabled="_isSaving">Cancel</SfButton>
+                    <SfButton IsPrimary="true" Type="Submit" Disabled="_isSaving">
                         @(_isSaving ? "Saving..." : "Save Entry")
                     </SfButton>
-                </FormButtons>
-            </SfDataForm>
+                </div>
 
-            @if (!string.IsNullOrEmpty(_status))
-            {
-                <div class="mt-2 text-sm text-danger">@_status</div>
-            }
+                @if (!string.IsNullOrEmpty(_status))
+                {
+                    <div class="mt-2 text-danger small">@_status</div>
+                }
+            </EditForm>
         </Content>
     </DialogTemplates>
 </SfDialog>
 
 @code {
     private SfDialog _dialog;
-    private bool _isOpen = false;
-    private bool _isSaving = false;
+    private bool _isOpen;
+    private bool _isSaving;
     private string _status = string.Empty;
 
     private VaultItem _newVaultItem;
-    private RecordTypes.StoredNote _noteItem;
+    private NoteInputModel _noteItem = new();
 
     [Parameter] public EventCallback<VaultItem> ItemAdded { get; set; }
 
-    public AddNote()
+    public class NoteInputModel
     {
-        _noteItem = new RecordTypes.StoredNote("", "");
-        _newVaultItem = new VaultItem { Type = "Text", CreatedAt = DateTime.UtcNow };
+        [Required(ErrorMessage = "Title is required")]
+        public string Title { get; set; } = string.Empty;
+
+        public string Content { get; set; } = string.Empty;
     }
+
+    private readonly List<ToolbarItemModel> Tools = new()
+    {
+        new ToolbarItemModel() { Command = ToolbarCommand.Bold },
+        new ToolbarItemModel() { Command = ToolbarCommand.Italic },
+        new ToolbarItemModel() { Command = ToolbarCommand.Underline },
+        new ToolbarItemModel() { Command = ToolbarCommand.Separator },
+        new ToolbarItemModel() { Command = ToolbarCommand.FontName },
+        new ToolbarItemModel() { Command = ToolbarCommand.FontSize },
+        new ToolbarItemModel() { Command = ToolbarCommand.FontColor },
+        new ToolbarItemModel() { Command = ToolbarCommand.BackgroundColor },
+        new ToolbarItemModel() { Command = ToolbarCommand.Separator },
+        new ToolbarItemModel() { Command = ToolbarCommand.Alignments },
+        new ToolbarItemModel() { Command = ToolbarCommand.NumberFormatList },
+        new ToolbarItemModel() { Command = ToolbarCommand.BulletFormatList },
+        new ToolbarItemModel() { Command = ToolbarCommand.Separator },
+        new ToolbarItemModel() { Command = ToolbarCommand.CreateLink },
+        new ToolbarItemModel() { Command = ToolbarCommand.Image },
+        new ToolbarItemModel() { Command = ToolbarCommand.Video },
+        new ToolbarItemModel() { Command = ToolbarCommand.FullScreen },
+        new ToolbarItemModel() { Command = ToolbarCommand.SourceCode },
+    };
+
+    private readonly List<TableToolbarItemModel> TableQuickToolbarItems = new()
+    {
+        new TableToolbarItemModel() { Command = TableToolbarCommand.TableHeader },
+        new TableToolbarItemModel() { Command = TableToolbarCommand.TableRows },
+        new TableToolbarItemModel() { Command = TableToolbarCommand.TableColumns },
+        new TableToolbarItemModel() { Command = TableToolbarCommand.TableCell },
+        new TableToolbarItemModel() { Command = TableToolbarCommand.TableRemove },
+        new TableToolbarItemModel() { Command = TableToolbarCommand.BackgroundColor }
+    };
 
     public async Task ShowAsync()
     {
@@ -67,46 +124,32 @@
 
     private void ResetForm()
     {
-        _noteItem = new RecordTypes.StoredNote("", "");
-        _newVaultItem = new VaultItem
-        {
-            Type = "Text",
-            CreatedAt = DateTime.UtcNow
-        };
+        _noteItem = new NoteInputModel();
+        _newVaultItem = new VaultItem { Type = "Text", CreatedAt = DateTime.UtcNow };
         _status = string.Empty;
         _isSaving = false;
     }
 
     private async Task SaveItemAsync()
     {
-        if (string.IsNullOrWhiteSpace(_noteItem.Title))
-        {
-            _status = "Title cannot be empty.";
-            return;
-        }
-
         try
         {
             _isSaving = true;
             _status = string.Empty;
 
-            // Serialize and encrypt the note
-            string jsonData = System.Text.Json.JsonSerializer.Serialize(_noteItem);
+            var storedNote = new RecordTypes.StoredNote(_noteItem.Title, _noteItem.Content);
+            string jsonData = System.Text.Json.JsonSerializer.Serialize(storedNote);
             byte[] jsonBytes = System.Text.Encoding.UTF8.GetBytes(jsonData);
             var (ciphertext, iv) = await VaultService.EncryptAsync(jsonBytes, VaultService.GetMasterKey());
 
-            // Prepare VaultItem
             _newVaultItem.EncryptedData = Convert.ToBase64String(ciphertext);
             _newVaultItem.Iv = Convert.ToBase64String(iv);
             _newVaultItem.Name = _noteItem.Title;
-            _newVaultItem.Id = 0;
             _newVaultItem.UserId = AccountService.LoginUser.Id;
-            _newVaultItem.UpdatedAt = DateTime.UtcNow;
             _newVaultItem.CreatedAt = DateTime.UtcNow;
+            _newVaultItem.UpdatedAt = DateTime.UtcNow;
 
-            // Invoke callback
             await ItemAdded.InvokeAsync(_newVaultItem);
-
             await HideAsync();
         }
         catch (Exception ex)
@@ -119,8 +162,5 @@
         }
     }
 
-    private async Task Cancel()
-    {
-        await HideAsync();
-    }
+    private async Task Cancel() => await HideAsync();
 }

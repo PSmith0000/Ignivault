@@ -36,7 +36,7 @@ namespace ignivault.API.Controllers
         public async Task<IActionResult> ChangePassword([FromBody] ChangePasswordModel model)
         {
             if (model == null || string.IsNullOrWhiteSpace(model.CurrentPassword) || string.IsNullOrWhiteSpace(model.NewPassword))
-                return BadRequest("Invalid password data.");
+                return BadRequest("Invalid data.");
 
             var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
             if (userId == null) return Unauthorized();
@@ -57,6 +57,24 @@ namespace ignivault.API.Controllers
             await _activityService.LogActivityAsync(user.Id, "Password Change", "User changed their password (logged in)");
 
             return Ok(new { Success = true, Message = "Password changed successfully." });
+        }
+
+
+        [HttpGet("activities")]
+        public async Task<IActionResult> GetUserActivity(int limit = 5)
+        {
+            var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+            if (userId == null) return Unauthorized();
+            try
+            {
+                var activities = await _activityService.GetRecentActivitiesAsync(userId, limit);
+                return Ok(activities);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Error fetching user activities: {ex.Message}");
+                return StatusCode(500, "Failed to fetch user activities.");
+            }
         }
     }
 }

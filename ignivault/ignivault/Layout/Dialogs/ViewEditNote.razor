@@ -1,39 +1,44 @@
-﻿@using ignivault.Data.Models.Data
-@using ignivault.Core.Interface
-@inject VaultService VaultService
+﻿@inject VaultService VaultService
 @implements IModalDialog<VaultItem>
 
 <SfDialog @bind-Visible="_showDialog"
           AllowDragging="true"
           @ref="_dialog"
-          Width="400px"
+          Width="90%" MaxWidth="800px" MinHeight="500px"
+          EnableResize="true"
           ShowCloseIcon="true"
           CssClass="custom-dialog"
           IsModal="true"
           Header="Edit Note">
+
     <DialogTemplates>
         <Content>
-            <SfDataForm Model="vItem" ID="ViewEditNoteForm" ColumnSpacing="20px">
-                <FormValidator>
-                    <DataAnnotationsValidator />
-                </FormValidator>
-                <FormItems>
-                    <FormItem Field="@nameof(vItem.Title)" LabelText="Note Title">
-                        <Template>
-                            <SfTextBox @bind-Value="vItem.Title" Placeholder="Enter note title" CssClass="full-width" />
-                        </Template>
-                    </FormItem>
-                    <FormItem Field="@nameof(vItem.Content)" LabelText="Content" EditorType="FormEditorType.TextArea">
-                        <Template>
-                            <SfTextBox @bind-Value="vItem.Content" Placeholder="Enter content..." Multiline="true" Rows="5" CssClass="full-width" />
-                        </Template>
-                    </FormItem>
-                </FormItems>
-                <FormButtons>
+            <EditForm Model="vItem" OnValidSubmit="SaveItem">
+                <DataAnnotationsValidator />
+
+                <div class="mb-3">
+                    <SfTextBox @bind-Value="vItem.Title"
+                               Placeholder="Enter note title"
+                               CssClass="full-width" />
+                </div>
+
+                <SfRichTextEditor Height="400px"
+                                  ShowCharCount="true"
+                                  AutoSaveOnIdle="true"
+                                  EnableResize="true"
+                                  EnableTabKey="true"
+                                  EnableXhtml="true"
+                                  @bind-Value="vItem.Content">
+                    <RichTextEditorToolbarSettings Items="@Tools" Type="ToolbarType.Expand" />
+                    <RichTextEditorQuickToolbarSettings Table="@TableQuickToolbarItems"
+                                                        ShowOnRightClick="true" />
+                </SfRichTextEditor>
+
+                <div class="d-flex justify-content-end mt-3">
                     <SfButton CssClass="e-outline me-2" OnClick="Cancel">Cancel</SfButton>
-                    <SfButton IsPrimary="true" OnClick="SaveItem">Save</SfButton>
-                </FormButtons>
-            </SfDataForm>
+                    <SfButton IsPrimary="true" Type="Submit">Save</SfButton>
+                </div>
+            </EditForm>
         </Content>
     </DialogTemplates>
 </SfDialog>
@@ -59,8 +64,7 @@
 
     private async Task SaveItem()
     {
-        if (_vaultItem == null || vItem == null)
-            return;
+        if (_vaultItem == null || vItem == null) return;
 
         string json = System.Text.Json.JsonSerializer.Serialize(vItem);
         var jsonBytes = System.Text.Encoding.UTF8.GetBytes(json);
@@ -88,4 +92,36 @@
         _showDialog = false;
         await _dialog.HideAsync();
     }
+
+    private readonly List<ToolbarItemModel> Tools = new()
+    {
+        new ToolbarItemModel() { Command = ToolbarCommand.Bold },
+        new ToolbarItemModel() { Command = ToolbarCommand.Italic },
+        new ToolbarItemModel() { Command = ToolbarCommand.Underline },
+        new ToolbarItemModel() { Command = ToolbarCommand.Separator },
+        new ToolbarItemModel() { Command = ToolbarCommand.FontName },
+        new ToolbarItemModel() { Command = ToolbarCommand.FontSize },
+        new ToolbarItemModel() { Command = ToolbarCommand.FontColor },
+        new ToolbarItemModel() { Command = ToolbarCommand.BackgroundColor },
+        new ToolbarItemModel() { Command = ToolbarCommand.Separator },
+        new ToolbarItemModel() { Command = ToolbarCommand.Alignments },
+        new ToolbarItemModel() { Command = ToolbarCommand.NumberFormatList },
+        new ToolbarItemModel() { Command = ToolbarCommand.BulletFormatList },
+        new ToolbarItemModel() { Command = ToolbarCommand.Separator },
+        new ToolbarItemModel() { Command = ToolbarCommand.CreateLink },
+        new ToolbarItemModel() { Command = ToolbarCommand.Image },
+        new ToolbarItemModel() { Command = ToolbarCommand.Video },
+        new ToolbarItemModel() { Command = ToolbarCommand.FullScreen },
+        new ToolbarItemModel() { Command = ToolbarCommand.SourceCode },
+    };
+
+    private readonly List<TableToolbarItemModel> TableQuickToolbarItems = new()
+    {
+        new TableToolbarItemModel() { Command = TableToolbarCommand.TableHeader },
+        new TableToolbarItemModel() { Command = TableToolbarCommand.TableRows },
+        new TableToolbarItemModel() { Command = TableToolbarCommand.TableColumns },
+        new TableToolbarItemModel() { Command = TableToolbarCommand.TableCell },
+        new TableToolbarItemModel() { Command = TableToolbarCommand.TableRemove },
+        new TableToolbarItemModel() { Command = TableToolbarCommand.BackgroundColor }
+    };
 }

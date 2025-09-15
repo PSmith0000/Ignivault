@@ -45,6 +45,7 @@ namespace ignivault.API
             .AddDefaultTokenProviders();
 
             builder.Services.AddScoped<UserActivityService>();
+            builder.Services.AddTransient<IEmailService, EmailService>();
 
             builder.Services.AddCors(options =>
             {
