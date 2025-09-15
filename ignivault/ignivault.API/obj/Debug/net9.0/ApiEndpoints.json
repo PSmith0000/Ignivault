@@ -75,6 +75,22 @@
   },
   {
     "ContainingType": "ignivault.API.Controllers.UserController",
+    "Method": "GetUserActivity",
+    "RelativePath": "api/User/activities",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "limit",
+        "Type": "System.Int32",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "ignivault.API.Controllers.UserController",
     "Method": "ChangePassword",
     "RelativePath": "api/User/change-password",
     "HttpMethod": "POST",

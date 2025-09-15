@@ -6,6 +6,8 @@ namespace ignivault.Core.Interface
 {
     public interface IHttpService
     {
+        public abstract Task<(bool Success, string? Message)> RequestPasswordResetAsync(string email);
+        public abstract Task<(bool Success, string? Message)> ResetPasswordAsync(ResetPasswordModel resetPasswordModel);
         public abstract Task<(bool Success, string? Message)> ChangePasswordAsync(string currentPassword, string newPassword);
         public abstract Task<LoginUser?> FetchUserProfileAsync();
         public abstract Task<LoginUser?> LoginAsync(string email, string password);
@@ -19,6 +21,8 @@ namespace ignivault.Core.Interface
         public abstract Task<bool> DeleteVaultItem(int itemId);
 
         public abstract Task<byte[]?> GetFileData(int itemId);
+
+        public abstract Task<List<UserActivity>?> GetUserActivitiesAsync();
 
         public abstract string ApiBaseUrl { get; }
     }

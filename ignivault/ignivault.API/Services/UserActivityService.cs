@@ -42,7 +42,7 @@ namespace ignivault.API.Services
         /// <summary>
         /// Retrieves the recent activities for a given user.
         /// </summary>
-        public async Task<List<UserActivity>> GetRecentActivitiesAsync(string userId, int limit = 50)
+        public async Task<List<UserActivity>> GetRecentActivitiesAsync(string userId, int limit = 10)
         {
             return await _dbContext.UserActivities
                                    .AsNoTracking()

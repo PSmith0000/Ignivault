@@ -161,8 +161,21 @@
                     <div class="h-full p-4 bg-white shadow rounded-2xl">
                         <h3 class="text-lg font-medium mb-2">Recent Activity</h3>
                         <ul class="list-disc pl-5">
-                            <!-- TODO: wire real activities -->
-                            <li>No recent activity</li>
+                            @if(recentActivities.Any())
+                            {
+                                foreach(var activity in recentActivities)
+                                {
+                                    <li>
+                                        <strong>@activity.ActivityType</strong> - @activity.ActivityTime.ToString("dd/MM/yyyy hh:mm tt")
+                                        <br />
+                                        <small class="text-gray-500">@activity.Details</small>
+                                    </li>
+                                }
+                            }
+                            else
+                            {
+                                <li>No recent activity</li>
+                            }
                         </ul>
                     </div>
                 </ContentTemplate>
@@ -209,6 +222,8 @@
     // state
     private bool isProcessing = false;
     public List<VaultItem> vaultItems = new();
+    public List<UserActivity> recentActivities = new();
+
 
     // dialogs / UI refs
     private SfGrid<VaultItem>? LoginDataGrid, FileDataGrid, TextDataGrid;
@@ -238,6 +253,19 @@
     protected override async Task OnInitializedAsync()
     {
         await RefreshVaultItemsAsync();
+        await FetchRecentActivitiesAsync();
+    }
+
+    private async Task FetchRecentActivitiesAsync()
+    {
+        try
+        {
+            recentActivities = await Http.GetUserActivitiesAsync() ?? new List<UserActivity>();
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine("Error fetching user activities: " + ex.Message);
+        }
     }
 
     private async Task RefreshVaultItemsAsync()
@@ -247,7 +275,7 @@
 
         try
         {
-            // Http.GetVaultItemsAsync expected to return a wrapper { Success, Data }
+            //Http.GetVaultItemsAsync expected to return { Success, Data }
             var response = await Http.GetVaultItemsAsync();
             if (response == null)
             {
@@ -281,6 +309,8 @@
         var vaultItem = LoginDataGrid?.SelectedRecords?.FirstOrDefault();
         if (vaultItem != null)
         {
+            if (viewEditLoginDialog == null) return;
+
             await viewEditLoginDialog.SetVaultItem(vaultItem);
             await viewEditLoginDialog.ShowAsync();
         }
@@ -293,6 +323,8 @@
         var vaultItem = FileDataGrid?.SelectedRecords?.FirstOrDefault();
         if (vaultItem != null)
         {
+            if (viewDownloadFileDialog == null) return; //these will never be null, but to keep the compiler happy
+
             await viewDownloadFileDialog.SetVaultItem(vaultItem);
             // show dialog - the dialog itself will trigger download and invoke callback
             await viewDownloadFileDialog.ShowAsync();
@@ -307,6 +339,8 @@
         var vaultItem = TextDataGrid?.SelectedRecords?.FirstOrDefault();
         if (vaultItem != null)
         {
+            if (viewEditNoteDialog == null) return;
+
             await viewEditNoteDialog.SetVaultItem(vaultItem);
             await viewEditNoteDialog.ShowAsync();
         }

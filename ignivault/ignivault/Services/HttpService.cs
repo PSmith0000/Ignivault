@@ -3,6 +3,7 @@ using ignivault.Core.Interface;
 using ignivault.Data;
 using ignivault.Data.Models.Auth;
 using ignivault.Data.Models.Data;
+using ignivault.Pages;
 using System.Net.Http.Headers;
 using System.Net.Http.Json;
 using System.Text.Json;
@@ -98,6 +99,61 @@ namespace ignivault.Services
                 request.Content = JsonContent.Create(content);
 
             return request;
+        }
+
+        public async Task<List<UserActivity>?> GetUserActivitiesAsync()
+        {
+            return await SendAsync<List<UserActivity>>(HttpMethod.Get, "api/user/activities");
+        }
+
+        public async Task<(bool Success, string? Message)> ResetPasswordAsync(ResetPasswordModel resetPasswordModel)
+        {
+            try
+            {
+                var request = await CreateRequestAsync(HttpMethod.Post, "api/Authentication/reset-password", resetPasswordModel);
+                var response = await _http.SendAsync(request);
+
+                if (response.IsSuccessStatusCode)
+                {
+                    return (true, "Password reset successfully.");
+                }
+                else
+                {
+                    var content = await response.Content.ReadAsStringAsync();
+                    return (false, content);
+                }
+            }
+            catch (Exception ex)
+            {
+                return (false, ex.Message);
+            }
+        }
+
+        public async Task<(bool Success, string? Message)> RequestPasswordResetAsync(string email)
+        {
+            try
+            {
+                if (string.IsNullOrWhiteSpace(email))
+                    return (false, "Email cannot be empty.");
+
+                var model = new { Email = email };
+                var request = await CreateRequestAsync(HttpMethod.Post, "api/Authentication/request-reset", model);
+                var response = await _http.SendAsync(request);
+
+                if (response.IsSuccessStatusCode)
+                {
+                    return (true, "Password reset successfully.");
+                }
+                else
+                {
+                    var content = await response.Content.ReadAsStringAsync();
+                    return (false, content);
+                }
+            }
+            catch (Exception ex)
+            {
+                return (false, ex.Message);
+            }
         }
 
         public async Task<(bool Success, string? Message)> ChangePasswordAsync(string currentPassword, string newPassword)

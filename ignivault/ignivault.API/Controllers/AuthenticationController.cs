@@ -21,13 +21,15 @@ namespace ignivault.API.Controllers
         private readonly SignInManager<LoginUser> _signInManager;
         private readonly IConfiguration _configuration;
         private readonly UserActivityService _activityService;
+        private readonly IEmailService _emailService;
 
-        public AuthenticationController(UserManager<LoginUser> userManager, SignInManager<LoginUser> signInManager, IConfiguration configuration, UserActivityService userActivityService)
+        public AuthenticationController(UserManager<LoginUser> userManager, SignInManager<LoginUser> signInManager, IConfiguration configuration, UserActivityService userActivityService, IEmailService emailService)
         {
             _userManager = userManager;
             _signInManager = signInManager;
             _configuration = configuration;
             _activityService = userActivityService;
+            _emailService = emailService;
         }
 
         [HttpPost("register")]
@@ -98,11 +100,11 @@ namespace ignivault.API.Controllers
         public async Task<IActionResult> ResetPassword([FromBody] ResetPasswordModel model)
         {
             if (!ModelState.IsValid)
-                return BadRequest(ModelState);
+                return BadRequest(new { Success = false, Message = "Invalid ModelState" });
 
             var user = await _userManager.FindByEmailAsync(model.Email);
             if (user == null)
-                return BadRequest("Invalid request.");
+                return BadRequest(new { Success = false, Message = "Invalid Request" });
 
             var result = await _userManager.ResetPasswordAsync(user, model.Token, model.NewPassword);
 
@@ -111,14 +113,14 @@ namespace ignivault.API.Controllers
 
             await _activityService.LogActivityAsync(user.Id, "Password Reset", "User reset their password via email link");
 
-            return Ok("Password has been reset successfully.");
+            return Ok(new { Success = true, Message = "Password has been reset successfully." });
         }
 
         [HttpPost("request-reset")]
         public async Task<IActionResult> RequestPasswordReset([FromBody] PasswordResetRequestDto request)
         {
             if (string.IsNullOrWhiteSpace(request.Email))
-                return BadRequest("Email is required.");
+                return BadRequest(new { Success = false, Message = "Email is required" });
 
             var user = await _userManager.FindByEmailAsync(request.Email);
             if (user == null)
@@ -126,16 +128,13 @@ namespace ignivault.API.Controllers
 
             var token = await _userManager.GeneratePasswordResetTokenAsync(user);
 
-            var resetLink = Url.Action(
-                "ResetPassword",
-                "Auth",
-                new { email = user.Email, token },
-                Request.Scheme);
+            var resetLink = $"https://localhost:7085/reset-password?email={Uri.EscapeDataString(user.Email)}&token={Uri.EscapeDataString(token)}";
 
-            // TODO: send email
-            // await _emailService.SendPasswordResetEmail(user.Email, resetLink);
+            Console.WriteLine($"ResetLink: {resetLink}");
 
-            return Ok("Password reset link sent if the email exists.");
+            //await _emailService.SendPasswordResetAsync(user.Email, resetLink);
+
+            return Ok(new { Success = true, Message = "Password reset link sent if the email exists." });
         }
 
         private string GenerateJwtToken(LoginUser user)
