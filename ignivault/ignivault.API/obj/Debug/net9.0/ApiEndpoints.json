@@ -165,6 +165,26 @@
   },
   {
     "ContainingType": "ignivault.API.Controllers.VaultController",
+    "Method": "GetVaultStorageReport",
+    "RelativePath": "api/Vault/storage-report",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": [
+      {
+        "Type": "System.Collections.Generic.IEnumerable\u00601[[ignivault.API.Models.VaultStorageMonthlyDto, ignivault.API, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "ignivault.API.Controllers.VaultController",
     "Method": "UpdateVaultItem",
     "RelativePath": "api/Vault/update",
     "HttpMethod": "PUT",
@@ -174,6 +194,22 @@
       {
         "Name": "model",
         "Type": "ignivault.API.Models.Records.VaultItem",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "ignivault.API.Controllers.VaultController",
+    "Method": "VaultKeyReset",
+    "RelativePath": "api/Vault/vault-key-reset",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "model",
+        "Type": "ignivault.API.Models.Records.KeyResetModel",
         "IsRequired": true
       }
     ],

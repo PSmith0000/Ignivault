@@ -8,7 +8,7 @@
 @inject IHttpService HttpService
 @inject AccountService AccountService
 
-<div class="flex items-center justify-center min-h-screen bg-gradient-to-br from-blue-50 to-blue-100">
+<div class="relative flex items-center justify-center min-h-screen bg-gradient-to-br from-blue-50 to-blue-100">
     <div class="bg-white shadow-2xl rounded-2xl p-10 w-full max-w-md">
         <h2 class="text-3xl font-bold text-center text-gray-800 mb-2">Ignivault Login</h2>
         <p class="text-center text-gray-500 mb-8">Please login to continue</p>
@@ -39,21 +39,28 @@
             <ForgotLoginDialog />
         }
 
-        @if (showSuccess)
+        @if (showSuccessMessage)
         {
             <SfMessage Severity="MessageSeverity.Success" ShowCloseIcon="true">
-                Registration Successful! Please login.
+                @successMessage
             </SfMessage>
         }
-        else if (loginFailed)
+
+        @if (showErrorMessage)
         {
             <SfMessage Severity="MessageSeverity.Error" ShowCloseIcon="true">
-                Login failed. Please check your credentials and try again.
+                @errorMessage
             </SfMessage>
         }
 
-        <AskKey @ref="keyDialog"/>
+        <AskKey @ref="keyDialog" />
 
+        @if (showProgressThing)
+        {
+            <div class="absolute inset-0 bg-gray-200 bg-opacity-50 flex justify-center items-center z-50">
+                <SfSpinner Size="40" Label="Processing..." Type="SpinnerType.Tailwind" Visible="true"></SfSpinner>
+            </div>
+        }
     </div>
 </div>
 
@@ -61,77 +68,143 @@
     private LoginUserModel loginData = new LoginUserModel();
     private AskKey keyDialog;
     private bool ForgotPasswordDialogVisible { get; set; } = false;
-    private bool loginFailed = false;
-    private bool showSuccess = false;
+    private bool showProgressThing = false;
     private bool DecryptionSuccess = false;
 
+    private bool showSuccessMessage = false;
+    private string successMessage = string.Empty;
 
+    private bool showErrorMessage = false;
+    private string errorMessage = string.Empty;
+
+    private bool vaultReset = false;
 
     protected override void OnInitialized()
     {
-        // Optional default credentials for dev/testing
         loginData.Email = "user@user.com";
         loginData.Password = "1Password!";
 
         var uri = NavManager.ToAbsoluteUri(NavManager.Uri);
         var query = System.Web.HttpUtility.ParseQueryString(uri.Query);
-        showSuccess = query["signedup"] == "true";
+        if (query["signedup"] == "true")
+        {
+            showSuccessMessage = true;
+            successMessage = "Registration Successful! Please login.";
+        }
     }
 
     private void ToggleForgotPasswordDialog() => ForgotPasswordDialogVisible = !ForgotPasswordDialogVisible;
 
     private async Task PromptAndDecryptAsync(LoginUser user)
     {
-        var key = await keyDialog!.ShowAndWaitAsync();
-        if (!string.IsNullOrEmpty(key))
+        var keyResult = await keyDialog!.ShowAndWaitAsync();
+        if (!keyResult.HasValue) return;
+
+        if (!keyResult.Value.reset)
         {
-            bool status = await VaultService.DecryptMasterKeyAsync(user, key);
-            DecryptionSuccess = status;
+            if (!string.IsNullOrEmpty(keyResult.Value.DecryptionKey))
+            {
+                showProgressThing = true;
+                StateHasChanged();
+
+                DecryptionSuccess = await VaultService.DecryptMasterKeyAsync(user, keyResult.Value.DecryptionKey);
+
+                showProgressThing = false;
+                StateHasChanged();
+
+                if (!DecryptionSuccess)
+                {
+                    ShowError("Vault decryption failed. Please check your key.");
+                }
+            }
+        }
+        else
+        {
+            showProgressThing = true;
+            StateHasChanged();
+
+            try
+            {
+                var resetResult = await HttpService.ResetVaultKeyAsync(keyResult.Value.DecryptionKey, keyResult.Value.NewKey, user.Token);
+                Console.WriteLine("RESET");
+                showProgressThing = false;
+                StateHasChanged();
+
+                if (resetResult.Success)
+                {
+                    DecryptionSuccess = true;
+                    vaultReset = true;
+                    ShowSuccess("Vault reset successfully. You may now continue.");
+                }
+                else
+                {
+                    DecryptionSuccess = false;
+                    ShowError(resetResult.Message);
+                }
+            }
+            catch (Exception ex)
+            {
+                showProgressThing = false;
+                DecryptionSuccess = false;
+                ShowError($"Vault reset error: {ex.Message}");
+            }
         }
     }
 
     private async Task HandleValidSubmit()
     {
-        loginFailed = false;
+        ClearMessages();
 
         try
         {
-            // Attempt login
             var user = await HttpService.LoginAsync(loginData.Email, loginData.Password);
-            if (user == null)
+            if (user == null || DataUtils.IsTokenExpired(user.Token))
             {
-                loginFailed = true;
+                ShowError("Login failed. Please check your credentials.");
                 return;
             }
 
-            // Verify token expiration
-            if (DataUtils.IsTokenExpired(user.Token))
-            {
-                loginFailed = true;
-                return;
-            }
-
-            // Decrypt master key
             await PromptAndDecryptAsync(user);
-            if (!DecryptionSuccess)
-            {
-                loginFailed = true;
-                return;
-            }
-     
-            // Set user account and store token
+
+            if (!DecryptionSuccess) return;
+
             AccountService.SetAccount(user);
             await AuthService.LoginAsync(user.Token);
 
-            // Navigate to dashboard
-            NavManager.NavigateTo("/dashboard");
+            if (vaultReset)
+            {
+                NavManager.NavigateTo("/dashboard", true);
+            }
+            else
+            {
+                NavManager.NavigateTo("/dashboard");
+            }
         }
         catch (Exception ex)
         {
-            Console.WriteLine($"Login failed: {ex.Message}");
-            loginFailed = true;
+            ShowError($"Login failed: {ex.Message}");
         }
     }
 
-}
+    private void ShowError(string message)
+    {
+        errorMessage = message;
+        showErrorMessage = true;
+        showSuccessMessage = false;
+    }
 
+    private void ShowSuccess(string message)
+    {
+        successMessage = message;
+        showSuccessMessage = true;
+        showErrorMessage = false;
+    }
+
+    private void ClearMessages()
+    {
+        showErrorMessage = false;
+        showSuccessMessage = false;
+        errorMessage = string.Empty;
+        successMessage = string.Empty;
+    }
+}

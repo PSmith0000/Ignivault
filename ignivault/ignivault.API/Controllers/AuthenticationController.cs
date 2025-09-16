@@ -1,4 +1,5 @@
 ﻿using ignivault.API.Models;
+using ignivault.API.Models.Records;
 using ignivault.API.Security;
 using ignivault.API.Security.Auth;
 using ignivault.API.Services;
@@ -46,8 +47,6 @@ namespace ignivault.API.Controllers
                 UserName = model.Username,
                 Email = model.Email
             };
-
-            Console.WriteLine(System.Text.Json.JsonSerializer.Serialize(model));
 
             var masterKey = Crypt.GenerateRandomKey();
             var salt = Crypt.GenerateSalt();
@@ -132,7 +131,7 @@ namespace ignivault.API.Controllers
 
             Console.WriteLine($"ResetLink: {resetLink}");
 
-            //await _emailService.SendPasswordResetAsync(user.Email, resetLink);
+            await _emailService.SendPasswordResetAsync(user.Email, resetLink);
 
             return Ok(new { Success = true, Message = "Password reset link sent if the email exists." });
         }

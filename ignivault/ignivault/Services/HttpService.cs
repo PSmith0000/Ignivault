@@ -19,6 +19,7 @@ namespace ignivault.Services
         {
             _http = http ?? throw new ArgumentNullException(nameof(http));
             _sessionStorage = sessionStorage ?? throw new ArgumentNullException(nameof(sessionStorage));
+            _http.Timeout = TimeSpan.FromMinutes(10);
         }
 
         public string ApiBaseUrl => _http.BaseAddress?.ToString() ?? string.Empty;
@@ -87,11 +88,11 @@ namespace ignivault.Services
             return response.IsSuccessStatusCode;
         }
 
-        private async Task<HttpRequestMessage> CreateRequestAsync(HttpMethod method, string url, object? content = null)
+        private async Task<HttpRequestMessage> CreateRequestAsync(HttpMethod method, string url, object? content = null, string? _token = null)
         {
             var request = new HttpRequestMessage(method, url);
 
-            var token = await _sessionStorage.GetItemAsync<string>("authToken");
+            var token = _token == null ? await _sessionStorage.GetItemAsync<string>("authToken") : _token;
             if (!string.IsNullOrWhiteSpace(token))
                 request.Headers.Authorization = new AuthenticationHeaderValue("Bearer", token);
 
@@ -101,9 +102,14 @@ namespace ignivault.Services
             return request;
         }
 
-        public async Task<List<UserActivity>?> GetUserActivitiesAsync()
+        public async Task<List<UserActivity>?> GetUserActivitiesAsync(int limit = 5)
         {
-            return await SendAsync<List<UserActivity>>(HttpMethod.Get, "api/user/activities");
+            return await SendAsync<List<UserActivity>>(HttpMethod.Get, $"api/user/activities?limit={limit}");
+        }
+
+        public async Task<List<VaultStorageMonthly>?> GetVaultStorageMonthlyAsync()
+        {
+            return await SendAsync<List<VaultStorageMonthly>>(HttpMethod.Get, $"api/vault/storage-report");
         }
 
         public async Task<(bool Success, string? Message)> ResetPasswordAsync(ResetPasswordModel resetPasswordModel)
@@ -148,6 +154,39 @@ namespace ignivault.Services
                 {
                     var content = await response.Content.ReadAsStringAsync();
                     return (false, content);
+                }
+            }
+            catch (Exception ex)
+            {
+                return (false, ex.Message);
+            }
+        }
+
+        public async Task<(bool Success, string? Message)> ResetVaultKeyAsync(string? currentKey, string newKey, string? token = null)
+        {
+            if (string.IsNullOrWhiteSpace(newKey))
+                return (false, "New key cannot be empty.");
+
+            var model = new
+            {
+                CurrentKey = currentKey,
+                NewKey = newKey
+            };
+
+            try
+            {
+                var request = await CreateRequestAsync(HttpMethod.Post, "api/vault/vault-key-reset", model, token);
+                var response = await _http.SendAsync(request);
+
+                if (response.IsSuccessStatusCode)
+                {
+                    var message = await response.Content.ReadAsStringAsync();
+                    return (true, string.IsNullOrWhiteSpace(message) ? "Vault key reset successfully." : message);
+                }
+                else
+                {
+                    var content = await response.Content.ReadAsStringAsync();
+                    return (false, string.IsNullOrWhiteSpace(content) ? "Failed to reset vault key." : content);
                 }
             }
             catch (Exception ex)

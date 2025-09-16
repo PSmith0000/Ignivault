@@ -21,9 +21,11 @@
                     <NavLink href="account">Account</NavLink>
                 </li>
                 <li>
+                    <NavLink href="reports">Reports</NavLink>
+                </li>
+                <li>
                     <button class="btn btn-link logout-btn" @onclick="Logout">Logout</button>
                 </li>
-
                 <AskKey @ref="keyDialog" />
             }
             else
@@ -113,15 +115,15 @@
     private async Task Logout()
     {
         await AuthService.LogoutAsync();
-        Nav.NavigateTo("/login");
+        Nav.NavigateTo("/login", true);
     }
 
     private async Task<bool> PromptAndDecryptAsync(LoginUser user)
     {
         var key = await keyDialog!.ShowAndWaitAsync();
-        if (!string.IsNullOrEmpty(key))
+        if (!string.IsNullOrEmpty(key.Value.DecryptionKey))
         {
-            return await VaultService.DecryptMasterKeyAsync(user, key);
+            return await VaultService.DecryptMasterKeyAsync(user, key.Value.DecryptionKey);
         }
         return false;
     }
