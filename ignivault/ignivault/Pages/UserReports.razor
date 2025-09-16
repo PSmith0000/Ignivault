@@ -1,0 +1,138 @@
+﻿@page "/reports"
+@inject IJSRuntime JS
+@inject IHttpService HttpService
+
+@attribute [Authorize]
+
+<PageTitle>Ignivault: Reports</PageTitle>
+
+<h1 class="text-2xl font-semibold mb-4">User Reports</h1>
+
+<SfTab>
+    <TabItems>
+
+        <!-- === Report 1: User Activity === -->
+        <TabItem Header="Report1">
+            <ContentTemplate>
+                <SfButton CssClass="e-primary mb-2" OnClick="@ExportUserActivityCsv">
+                    Export CSV
+                </SfButton>
+                <SfGrid DataSource="@UserActivityReport"
+                        AllowPaging="true" AllowSorting="true" AllowFiltering="true">
+                    <GridColumns>
+                        <GridColumn Field=@nameof(UserActivityRow.UserId) HeaderText="User Id" Width="150" />
+                        <GridColumn Field=@nameof(UserActivityRow.ActivityType) HeaderText="Activity" Width="180" />
+                        <GridColumn Field=@nameof(UserActivityRow.ActivityTime) HeaderText="When" Format="g" Width="180" TextAlign="TextAlign.Center" />
+                        <GridColumn Field=@nameof(UserActivityRow.Details) HeaderText="Details" Width="250" />
+                    </GridColumns>
+                </SfGrid>
+            </ContentTemplate>
+        </TabItem>
+
+        <!-- === Report 2: Vault Item Distribution === -->
+        <TabItem Header="Report2">
+            <ContentTemplate>
+                <SfButton CssClass="e-primary mb-2" OnClick="@ExportVaultItemsCsv">
+                    Export CSV
+                </SfButton>
+                <SfGrid DataSource="@VaultItemTypeReport"
+                        AllowPaging="true" AllowSorting="true" AllowFiltering="true">
+                    <GridColumns>
+                        <GridColumn Field=@nameof(VaultItemTypeRow.Type) HeaderText="Type" Width="200" />
+                        <GridColumn Field=@nameof(VaultItemTypeRow.Count) HeaderText="Count" Width="120" TextAlign="TextAlign.Right" />
+                    </GridColumns>
+                </SfGrid>
+            </ContentTemplate>
+        </TabItem>
+
+        <!-- === Report 3: Vault Storage Usage Per Month === -->
+        <TabItem Header="Report3">
+            <ContentTemplate>
+                <SfButton CssClass="e-primary mb-2" OnClick="@ExportVaultStorageCsv">
+                    Export CSV
+                </SfButton>
+                <SfGrid DataSource="@VaultStorageReport"
+                        AllowPaging="true" AllowSorting="true" AllowFiltering="true">
+                    <GridColumns>
+                        <GridColumn Field=@nameof(VaultStorageRow.MonthName) HeaderText="Month" Width="120" TextAlign="TextAlign.Center" />
+                        <GridColumn Field=@nameof(VaultStorageRow.Year) HeaderText="Year" Width="100" TextAlign="TextAlign.Center" />
+                        <GridColumn Field=@nameof(VaultStorageRow.TotalSizeKb) HeaderText="Total Size (KB)" Width="150" TextAlign="TextAlign.Right" Format="N2" />
+                        <GridColumn Field=@nameof(VaultStorageRow.AverageItemSizeKb) HeaderText="Avg Item Size (KB)" Width="150" TextAlign="TextAlign.Right" Format="N2" />
+                        <GridColumn Field=@nameof(VaultStorageRow.ItemCount) HeaderText="Item Count" Width="120" TextAlign="TextAlign.Right" />
+                    </GridColumns>
+                </SfGrid>
+            </ContentTemplate>
+        </TabItem>
+
+    </TabItems>
+</SfTab>
+
+@code {
+    // ===== UI =====
+    private TabHeader Report1 = new TabHeader() { Text = "User Acivity" }; 
+    private TabHeader Report2 = new TabHeader() { Text = "Vault Item Distribution" }; 
+    private TabHeader Report3 = new TabHeader() { Text = "Storage Usage" };
+
+    // ===== Record Types =====
+    public record UserActivityRow(string UserId, string ActivityType, DateTime ActivityTime, string? Details);
+    public record VaultItemTypeRow(string Type, int Count);
+    public record VaultStorageRow(int Year, int Month, double TotalSizeKb, double AverageItemSizeKb, int ItemCount)
+    {
+        public string MonthName => new DateTime(Year, Month, 1).ToString("MMMM");
+    }
+
+    // ===== Data =====
+    private List<UserActivityRow> UserActivityReport = new();
+    private List<VaultItemTypeRow> VaultItemTypeReport = new();
+    private List<VaultStorageRow> VaultStorageReport = new();
+
+    protected override async Task OnInitializedAsync()
+    {
+        // --- User Activities ---
+        var activities = await HttpService.GetUserActivitiesAsync(99999);
+        UserActivityReport = activities?.Select(a =>
+            new UserActivityRow(a.UserId, a.ActivityType, a.ActivityTime, a.Details)
+        ).ToList() ?? new List<UserActivityRow>();
+
+        // --- Vault Items ---
+        var vaultItems = await HttpService.GetVaultItemsAsync();
+        VaultItemTypeReport = vaultItems?.Data
+            .GroupBy(v => v.Type)
+            .Select(g => new VaultItemTypeRow(g.Key, g.Count()))
+            .ToList() ?? new List<VaultItemTypeRow>();
+
+        // --- Vault Storage Usage Per Month ---;
+        var vaultStorage = await HttpService.GetVaultStorageMonthlyAsync();
+        VaultStorageReport = vaultStorage?.Select(v =>
+            new VaultStorageRow(v.Year, v.Month, v.TotalSizeKb, v.AverageItemSizeKb, v.ItemCount)
+        ).ToList() ?? new List<VaultStorageRow>();
+    }
+
+    // ===== Export Buttons =====
+    private async Task ExportUserActivityCsv()
+        => await ExportToCsv("UserActivity.csv", UserActivityReport);
+
+    private async Task ExportVaultItemsCsv()
+        => await ExportToCsv("VaultItemsByType.csv", VaultItemTypeReport);
+
+    private async Task ExportVaultStorageCsv()
+        => await ExportToCsv("VaultStorage.csv", VaultStorageReport);
+
+    // ===== CSV Export =====
+    private async Task ExportToCsv<T>(string fileName, IEnumerable<T> data)
+    {
+        var props = typeof(T).GetProperties();
+        var lines = new List<string> { string.Join(",", props.Select(p => p.Name)) };
+
+        lines.AddRange(data.Select(d =>
+            string.Join(",", props.Select(p =>
+                (p.GetValue(d)?.ToString() ?? string.Empty).Replace(",", " ")
+            ))
+        ));
+
+        var csv = string.Join("\n", lines);
+        var bytes = System.Text.Encoding.UTF8.GetBytes(csv);
+
+        await JS.SaveAs(fileName, bytes);  // <- use the extension method
+    }
+}
