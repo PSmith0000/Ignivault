@@ -43,9 +43,9 @@ namespace ignivault.Services
 
             try
             {
-                byte[] mk = Convert.FromBase64String(login.EncryptedMasterKey);
-                byte[] ks = Convert.FromBase64String(login.KeySalt);
-                byte[] iv = Convert.FromBase64String(login.MasterIV);
+                byte[] mk = (login.EncryptedMasterKey);
+                byte[] ks = (login.KeySalt);
+                byte[] iv = (login.MasterIV);
 
                 byte[] masterKey = await _js.InvokeAsync<byte[]>("Crypt.decryptMasterKey", mk, password, ks, iv);
                 SetMasterKey(masterKey);
@@ -80,8 +80,8 @@ namespace ignivault.Services
             {
                 if (!IsMasterKeySet()) throw new InvalidOperationException("Master key not set.");
 
-                byte[] cipher = Convert.FromBase64String(item.EncryptedData);
-                byte[] iv = Convert.FromBase64String(item.Iv);
+                byte[] cipher = (item.EncryptedData);
+                byte[] iv = (item.Iv);
 
                 byte[] decryptedBytes = await DecryptAsync(cipher, _masterKey!, iv);
                 string json = Encoding.UTF8.GetString(decryptedBytes);

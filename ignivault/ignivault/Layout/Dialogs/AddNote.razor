@@ -142,8 +142,8 @@
             byte[] jsonBytes = System.Text.Encoding.UTF8.GetBytes(jsonData);
             var (ciphertext, iv) = await VaultService.EncryptAsync(jsonBytes, VaultService.GetMasterKey());
 
-            _newVaultItem.EncryptedData = Convert.ToBase64String(ciphertext);
-            _newVaultItem.Iv = Convert.ToBase64String(iv);
+            _newVaultItem.EncryptedData = (ciphertext);
+            _newVaultItem.Iv = (iv);
             _newVaultItem.Name = _noteItem.Title;
             _newVaultItem.UserId = AccountService.LoginUser.Id;
             _newVaultItem.CreatedAt = DateTime.UtcNow;

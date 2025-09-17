@@ -48,6 +48,10 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = TGF5b3V0XERpYWxvZ3NcQXNrS2V5LnJhem9y
 build_metadata.AdditionalFiles.CssScope = 
 
+[C:/Users/prest/Desktop/GitHub/Ignivault/ignivault/ignivault/Layout/Dialogs/AskOTP.razor]
+build_metadata.AdditionalFiles.TargetPath = TGF5b3V0XERpYWxvZ3NcQXNrT1RQLnJhem9y
+build_metadata.AdditionalFiles.CssScope = 
+
 [C:/Users/prest/Desktop/GitHub/Ignivault/ignivault/ignivault/Layout/Dialogs/FileDecrypter.razor]
 build_metadata.AdditionalFiles.TargetPath = TGF5b3V0XERpYWxvZ3NcRmlsZURlY3J5cHRlci5yYXpvcg==
 build_metadata.AdditionalFiles.CssScope = 

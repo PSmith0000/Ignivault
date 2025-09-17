@@ -31,6 +31,37 @@ namespace ignivault.API.Controllers
             _activityService = userActivityService;
         }
 
+        [HttpPost("two-factor-setup")]
+        public async Task<IActionResult> SetupTwoFactor()
+        {
+            var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+            if (userId == null) return Unauthorized();
+
+            var user = await _userManager.FindByIdAsync(userId);
+            if (user == null) return Unauthorized();
+
+            await _userManager.ResetAuthenticatorKeyAsync(user);
+
+            var key = await _userManager.GetAuthenticatorKeyAsync(user);
+
+
+            //QR
+            var qrCodeUri = $"otpauth://totp/Ignivault:{Uri.EscapeDataString(user.Email)}" + $"?secret={key}&issuer={Uri.EscapeDataString("Ignivault")}&digits=6";
+
+            Console.WriteLine($"2FA: {qrCodeUri}");
+
+            return Ok(new { SecretKey = key, QrCodeUri = qrCodeUri });
+        }
+
+        [HttpGet("userdata")]
+        public async Task<IActionResult> GetUserProfile()
+        {
+            var user = await _userManager.GetUserAsync(User);
+            if (user == null) return Unauthorized();
+
+            var dto = new LoginUserDto(user, string.Empty);
+            return Ok(dto);
+        }
 
         [HttpPost("change-password")]
         public async Task<IActionResult> ChangePassword([FromBody] ChangePasswordModel model)

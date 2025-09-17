@@ -198,13 +198,13 @@ namespace ignivault.API.Migrations
                     b.Property<DateTime>("CreatedAt")
                         .HasColumnType("datetime2");
 
-                    b.Property<string>("EncryptedData")
+                    b.Property<byte[]>("EncryptedData")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("varbinary(max)");
 
-                    b.Property<string>("IV")
+                    b.Property<byte[]>("IV")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("varbinary(max)");
 
                     b.Property<string>("LoginUserId")
                         .HasColumnType("nvarchar(450)");
@@ -250,13 +250,13 @@ namespace ignivault.API.Migrations
                     b.Property<bool>("EmailConfirmed")
                         .HasColumnType("bit");
 
-                    b.Property<string>("EncryptedMasterKey")
+                    b.Property<byte[]>("EncryptedMasterKey")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("varbinary(max)");
 
-                    b.Property<string>("KeySalt")
+                    b.Property<byte[]>("KeySalt")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("varbinary(max)");
 
                     b.Property<DateTime?>("LastPasswordChange")
                         .HasColumnType("datetime2");
@@ -267,9 +267,9 @@ namespace ignivault.API.Migrations
                     b.Property<DateTimeOffset?>("LockoutEnd")
                         .HasColumnType("datetimeoffset");
 
-                    b.Property<string>("MasterIV")
+                    b.Property<byte[]>("MasterIV")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("varbinary(max)");
 
                     b.Property<string>("NormalizedEmail")
                         .HasMaxLength(256)

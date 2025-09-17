@@ -21,10 +21,10 @@ namespace ignivault.API.Models.Records
         public string Name { get; set; }
 
         [Required]
-        public string EncryptedData { get; set; }
+        public byte[] EncryptedData { get; set; }
 
         [Required]
-        public string IV { get; set; }
+        public byte[] IV { get; set; }
 
         public DateTime CreatedAt { get; set; } = DateTime.UtcNow;
         public DateTime? UpdatedAt { get; set; }

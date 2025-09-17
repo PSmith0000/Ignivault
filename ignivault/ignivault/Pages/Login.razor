@@ -54,6 +54,7 @@
         }
 
         <AskKey @ref="keyDialog" />
+        <AskOTP @ref="askOTP"></AskOTP>
 
         @if (showProgressThing)
         {
@@ -67,6 +68,7 @@
 @code {
     private LoginUserModel loginData = new LoginUserModel();
     private AskKey keyDialog;
+    private AskOTP askOTP;
     private bool ForgotPasswordDialogVisible { get; set; } = false;
     private bool showProgressThing = false;
     private bool DecryptionSuccess = false;
@@ -126,7 +128,6 @@
             try
             {
                 var resetResult = await HttpService.ResetVaultKeyAsync(keyResult.Value.DecryptionKey, keyResult.Value.NewKey, user.Token);
-                Console.WriteLine("RESET");
                 showProgressThing = false;
                 StateHasChanged();
 
@@ -157,34 +158,52 @@
 
         try
         {
-            var user = await HttpService.LoginAsync(loginData.Email, loginData.Password);
-            if (user == null || DataUtils.IsTokenExpired(user.Token))
+            // Step 1: Attempt login
+            var loginResponse = await HttpService.LoginAsync(loginData.Email, loginData.Password);
+            if (loginResponse == null)
             {
                 ShowError("Login failed. Please check your credentials.");
                 return;
             }
 
-            await PromptAndDecryptAsync(user);
+            if (loginResponse.TwoFactorEnabled)
+            {
+                var otp = await askOTP.ShowAndWaitAsync(); // Your improved OTP dialog
+                if (string.IsNullOrWhiteSpace(otp))
+                {
+                    ShowError("2FA verification canceled.");
+                    return;
+                }
 
+                var tresult = await HttpService.VerifyTwoFactorAsync(otp);
+                if (!tresult.Success || tresult.token == null)
+                {
+                    ShowError(tresult.Message ?? "2FA verification failed.");
+                    return;
+                }
+
+                
+                loginResponse = tresult.User;
+            }
+
+            await PromptAndDecryptAsync(loginResponse);
             if (!DecryptionSuccess) return;
 
-            AccountService.SetAccount(user);
-            await AuthService.LoginAsync(user.Token);
+            AccountService.SetAccount(loginResponse);
+            await AuthService.LoginAsync(loginResponse.Token);
 
+            // Step 6: Navigate to dashboard
             if (vaultReset)
-            {
                 NavManager.NavigateTo("/dashboard", true);
-            }
             else
-            {
                 NavManager.NavigateTo("/dashboard");
-            }
         }
         catch (Exception ex)
         {
             ShowError($"Login failed: {ex.Message}");
         }
     }
+
 
     private void ShowError(string message)
     {

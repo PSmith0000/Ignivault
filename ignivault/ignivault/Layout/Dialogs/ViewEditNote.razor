@@ -71,8 +71,8 @@
 
         var (ciphertext, iv) = await VaultService.EncryptAsync(jsonBytes, VaultService.GetMasterKey());
 
-        _vaultItem.EncryptedData = Convert.ToBase64String(ciphertext);
-        _vaultItem.Iv = Convert.ToBase64String(iv);
+        _vaultItem.EncryptedData = (ciphertext);
+        _vaultItem.Iv = (iv);
         _vaultItem.Name = vItem.Title;
 
         await OnItemUpdated.InvokeAsync(new RecordTypes.ItemUpdate(_vaultItem, true));

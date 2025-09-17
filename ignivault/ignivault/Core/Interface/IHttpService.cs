@@ -6,6 +6,9 @@ namespace ignivault.Core.Interface
 {
     public interface IHttpService
     {
+        public abstract Task<TFALoginModel?>? VerifyTwoFactorAsync(string code);
+        public abstract Task<TwoFA.TwoFactorSetupResponse?> GetTwoFactorSetupAsync();
+
         public abstract Task<(bool Success, string? Message)> ResetVaultKeyAsync(string? currentKey, string newKey, string? token = null);
         public abstract Task<(bool Success, string? Message)> RequestPasswordResetAsync(string email);
         public abstract Task<(bool Success, string? Message)> ResetPasswordAsync(ResetPasswordModel resetPasswordModel);
