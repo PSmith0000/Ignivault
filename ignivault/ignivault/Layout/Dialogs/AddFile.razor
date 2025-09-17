@@ -58,6 +58,9 @@
     private bool IsProcessing { get; set; }
     private string Status { get; set; } = "";
 
+    const long Limit = 45L * 1024 * 1024;
+    const long FileLimit = 35L * 1024 * 1024;
+
     public async Task ShowAsync()
     {
         ResetForm();
@@ -86,11 +89,9 @@
         var selected = e.Files.FirstOrDefault()?.File;
         if (selected is null) return;
 
-        const long Limit = 250L * 1024 * 1024; //250MB
-
-        if (selected.Size > Limit)
+        if (selected.Size > FileLimit)
         {
-            Status = "File size exceeds 250MB limit.";
+            Status = "File size exceeds 35MB limit.";
             StateHasChanged();
             return;
         }
@@ -122,8 +123,8 @@
                     CreatedAt = DateTime.UtcNow,
                     UpdatedAt = DateTime.UtcNow,
                     Type = "File",
-                    EncryptedData = Convert.ToBase64String(ciphertext),
-                    Iv = Convert.ToBase64String(iv),
+                    EncryptedData = (ciphertext),
+                    Iv = (iv),
                     UserId = AccountService.LoginUser.Id
                 };
             });
@@ -143,7 +144,7 @@
 
     private async Task SaveItem()
     {
-        if (string.IsNullOrEmpty(NewItem.EncryptedData) || string.IsNullOrEmpty(NewItem.Iv))
+        if ((!NewItem.EncryptedData.Any()) || (!NewItem.Iv.Any()))
         {
             Status = "No file data to save.";
             return;

@@ -48,7 +48,7 @@ namespace ignivault.Services
 
         public async Task<LoginUser?> FetchUserProfileAsync()
         {
-            return await SendAsync<LoginUser>(HttpMethod.Get, "api/Authentication/userdata");
+            return await SendAsync<LoginUser>(HttpMethod.Get, "api/user/userdata");
         }
 
         // ---------- Vault ----------
@@ -218,6 +218,31 @@ namespace ignivault.Services
             {
                 return (false, ex.Message);
             }
+        }
+
+        public async Task<TwoFA.TwoFactorSetupResponse?> GetTwoFactorSetupAsync()
+        {
+            var request = await CreateRequestAsync(HttpMethod.Post, "api/user/two-factor-setup");
+            var response = await _http.SendAsync(request);
+
+            if (!response.IsSuccessStatusCode) return null;
+
+            return await response.Content.ReadFromJsonAsync<TwoFA.TwoFactorSetupResponse>(
+                new JsonSerializerOptions { PropertyNameCaseInsensitive = true }
+            );
+        }
+
+        public async Task<TFALoginModel?>? VerifyTwoFactorAsync(string code)
+        {
+            var model = new TwoFA.TwoFactorVerifyModel { Code = code };
+            var request = await CreateRequestAsync(HttpMethod.Post, "api/user/two-factor-setup");
+            var response = await _http.SendAsync(request);
+
+            if (!response.IsSuccessStatusCode) return null;
+
+            return await response.Content.ReadFromJsonAsync<TFALoginModel>(
+                new JsonSerializerOptions { PropertyNameCaseInsensitive = true }
+            );
         }
     }
 }

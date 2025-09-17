@@ -17,8 +17,8 @@ namespace ignivault.Data.Models.Data
         public string UserId { get; set; } = string.Empty;
         public string Type { get; set; } = string.Empty;
         public string Name { get; set; } = string.Empty;
-        public string EncryptedData { get; set; } = string.Empty;
-        public string Iv { get; set; } = string.Empty;
+        public byte[] EncryptedData { get; set; }
+        public byte[] Iv { get; set; }
         public DateTime CreatedAt { get; set; }
         public DateTime UpdatedAt { get; set; }
 

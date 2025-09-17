@@ -1,42 +1,81 @@
 ﻿@page "/account"
+@using QRCoder
 @attribute [Authorize]
 @inject NavigationManager Navigation
 @inject AccountService AccountService
 @inject IHttpService HttpService
 
-<div class="min-h-screen flex items-center justify-center bg-gray-100">
-    <div class="bg-white shadow-lg rounded-2xl p-8 w-full max-w-2xl">
-        <h2 class="text-2xl font-semibold text-center text-gray-700 mb-6">My Account</h2>
+<div class="min-h-screen flex items-center justify-center bg-gray-100 p-4">
+    <div class="bg-white shadow-lg rounded-2xl p-6 w-full max-w-2xl">
+        <h2 class="text-2xl font-semibold text-gray-700 text-center mb-6">My Account</h2>
 
         <!-- Account Details -->
-        <div class="space-y-4">
-            <label for="UserID" class="block text-gray-600">User ID</label>
-            <SfTextBox ID="UserID" @bind-Value="AccountService.LoginUser.Id" Enabled="false" Placeholder="User ID" />
+        <div class="mb-6">
+            <label class="block text-gray-600 mb-1">User ID</label>
+            <SfTextBox @bind-Value="AccountService.LoginUser.Id" Enabled="false" />
 
-            <label for="Username" class="block text-gray-600">Username</label>
-            <SfTextBox ID="Username" @bind-Value="AccountService.LoginUser.Username" Placeholder="Enter your username" />
+            <label class="block text-gray-600 mt-4 mb-1">Username</label>
+            <SfTextBox @bind-Value="AccountService.LoginUser.Username" />
 
-            <label for="Email" class="block text-gray-600">Email</label>
-            <SfTextBox ID="Email" @bind-Value="AccountService.LoginUser.Email" Placeholder="Enter your email" />
+            <label class="block text-gray-600 mt-4 mb-1">Email</label>
+            <SfTextBox @bind-Value="AccountService.LoginUser.Email" />
         </div>
 
         <!-- Change Password -->
-        <div class="mt-6 space-y-4">
+        <div class="mb-6">
             <h3 class="text-lg font-medium text-gray-700 mb-2">Change Password</h3>
-            <SfTextBox @bind-Value="changePasswordModel.CurrentPassword" ID="CurrentPassword" Placeholder="Current password" Type="InputType.Password" />
-            <SfTextBox @bind-Value="changePasswordModel.NewPassword" ID="NewPassword" Placeholder="New password" Type="InputType.Password" />
-            <SfTextBox @bind-Value="confirmNewPassword" ID="ConfirmNewPassword" Placeholder="Confirm new password" Type="InputType.Password" />
+            <SfTextBox @bind-Value="changePasswordModel.CurrentPassword" Placeholder="Current password" Type="InputType.Password" />
+            <SfTextBox @bind-Value="changePasswordModel.NewPassword" Placeholder="New password" Type="InputType.Password" class="mt-2" />
+            <SfTextBox @bind-Value="confirmNewPassword" Placeholder="Confirm new password" Type="InputType.Password" class="mt-2" />
         </div>
 
-        <!-- Save Changes Button -->
-        <div class="mt-6 flex justify-end">
+        <!-- Two-Factor Authentication -->
+        <div class="mb-6">
+            <h3 class="text-lg font-medium text-gray-700 mb-2">Two-Factor Authentication</h3>
+
+            @if (AccountService.LoginUser.TwoFactorEnabled)
+            {
+                <p class="text-green-600 mb-2">2FA is currently enabled.</p>
+                <SfButton CssClass="e-outline e-danger" @onclick="Disable2FA">Disable 2FA</SfButton>
+            }
+            else
+            {
+                <p class="text-gray-600 mb-2">2FA is not enabled. Enable it below:</p>
+                <SfButton CssClass="e-primary mb-2" @onclick="Show2FAQrCode">Enable 2FA</SfButton>
+
+                @if (showQr)
+                {
+                    <div class="mt-2 flex flex-col items-center">
+                        <SfCard @ref="QRBox">
+                            @if (qrCodeValue != null)
+                            {
+                                <img src="@GetQR()" style="max-width:300px;" />
+                            }
+                        </SfCard>
+
+                        <SfTextBox @bind-Value="verificationCode" Placeholder="Enter verification code" class="mt-2 w-48" />
+                        <SfButton CssClass="e-success mt-2" @onclick="Confirm2FA">Confirm 2FA</SfButton>
+
+                        @if (!string.IsNullOrEmpty(secretKey))
+                        {
+                            <p class="mt-2 text-sm text-gray-600 text-center">
+                                Can't scan? Enter this key manually: <strong>@secretKey</strong>
+                            </p>
+                        }
+                    </div>
+                }
+            }
+        </div>
+
+        <!-- Save Changes -->
+        <div class="flex justify-end">
             <SfButton CssClass="e-primary" @onclick="UpdateAccount">Save Changes</SfButton>
         </div>
 
-        <!-- Optional Messages -->
+        <!-- Messages -->
         @if (!string.IsNullOrEmpty(UpdateMessage))
         {
-            <SfMessage Severity="@UpdateMessageSeverity" ShowCloseIcon="true">
+            <SfMessage Severity="@UpdateMessageSeverity" ShowCloseIcon="true" CssClass="mt-4">
                 @UpdateMessage
             </SfMessage>
         }
@@ -50,44 +89,86 @@
     ChangePasswordModel changePasswordModel = new();
     private string confirmNewPassword = string.Empty;
 
-    private void RedirectToLogin()
+    // 2FA
+    private string qrCodeValue = string.Empty;
+    private bool showQr = false;
+    private string verificationCode = string.Empty;
+    private string secretKey = string.Empty;
+    private SfCard QRBox;
+    private byte[] QRBytes;
+
+    private string GetQR()
     {
-        Navigation.NavigateTo("/login");
+        return $"data:image/png;base64,{Convert.ToBase64String(QRBytes)}";
     }
 
     private async Task UpdateAccount()
     {
-        try
+        if (changePasswordModel.NewPassword != confirmNewPassword)
         {
-            if(confirmNewPassword != changePasswordModel.NewPassword)
-            {
-                UpdateMessage = "New password and confirmation do not match.";
-                UpdateMessageSeverity = MessageSeverity.Error;
-                confirmNewPassword = string.Empty;
-                StateHasChanged();
-                return;
-            }
-
-            var result = await HttpService.ChangePasswordAsync(changePasswordModel.CurrentPassword, changePasswordModel.NewPassword);
-
-            if (result.Success)
-            {
-                UpdateMessage = "Account updated successfully!";
-                UpdateMessageSeverity = MessageSeverity.Success;
-            }
-            else
-            {
-                UpdateMessage = result.Message;
-                UpdateMessageSeverity = MessageSeverity.Error;
-            }
-
-            StateHasChanged();
+            UpdateMessage = "New password and confirmation do not match.";
+            UpdateMessageSeverity = MessageSeverity.Error;
+            return;
         }
-        catch (Exception ex)
+
+        var result = await HttpService.ChangePasswordAsync(changePasswordModel.CurrentPassword, changePasswordModel.NewPassword);
+
+        UpdateMessage = result.Success ? "Account updated successfully!" : result.Message;
+        UpdateMessageSeverity = result.Success ? MessageSeverity.Success : MessageSeverity.Error;
+    }
+
+    private async Task Show2FAQrCode()
+    {
+        var result = await HttpService.GetTwoFactorSetupAsync();
+        if (result != null)
         {
-            Console.WriteLine($"Account update failed: {ex.Message}");
-            UpdateMessage = "Failed to update account. Please try again.";
+            qrCodeValue = $"otpauth://totp/Ignivault:{AccountService.LoginUser.Email}?secret={result.SecretKey}&issuer=Ignivault&digits=6";
+            secretKey = result.SecretKey;
+           
+
+            using (QRCodeGenerator qrGenerator = new QRCodeGenerator())
+            using (QRCodeData qrCodeData = qrGenerator.CreateQrCode(qrCodeValue, QRCodeGenerator.ECCLevel.L))
+            using (PngByteQRCode qrCode = new PngByteQRCode(qrCodeData))
+            {
+                byte[] qrCodeImage = qrCode.GetGraphic(20);
+                QRBytes = qrCodeImage;
+            }
+
+            showQr = true;
+        }
+        else
+        {
+            UpdateMessage = "Failed to generate 2FA setup.";
             UpdateMessageSeverity = MessageSeverity.Error;
         }
+    }
+
+    private async Task Confirm2FA()
+    {
+        if (string.IsNullOrWhiteSpace(verificationCode)) return;
+
+        var (success, message, recoveryCodes) = await HttpService.VerifyTwoFactorAsync(verificationCode);
+        UpdateMessage = message;
+        UpdateMessageSeverity = success ? MessageSeverity.Success : MessageSeverity.Error;
+
+        if (success)
+        {
+            AccountService.LoginUser.TwoFactorEnabled = true;
+            showQr = false;
+            verificationCode = string.Empty;
+
+            if (recoveryCodes != null && recoveryCodes.Length > 0)
+            {
+                UpdateMessage = "2FA Setup Complete.";
+                UpdateMessageSeverity = MessageSeverity.Success;
+            }
+        }
+    }
+
+    private async Task Disable2FA()
+    {
+        UpdateMessage = "2FA disabled";
+        UpdateMessageSeverity = MessageSeverity.Success;
+        
     }
 }

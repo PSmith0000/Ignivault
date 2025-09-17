@@ -1,4 +1,5 @@
-﻿using ignivault.API.Models;
+﻿using ignivault.API.Core.Interface;
+using ignivault.API.Models;
 using ignivault.API.Models.Records;
 using ignivault.API.Security;
 using ignivault.API.Security.Auth;
@@ -21,12 +22,14 @@ namespace ignivault.API.Controllers
         private readonly AppDbContext _db;
         private readonly UserManager<LoginUser> _userManager;
         private readonly UserActivityService _activityService;
+        private readonly ICryptService _cryptService;
 
-        public VaultController(AppDbContext db, UserManager<LoginUser> userManager, UserActivityService userActivityService)
+        public VaultController(AppDbContext db, UserManager<LoginUser> userManager, UserActivityService userActivityService, ICryptService cryptService)
         {
             _db = db;
             _userManager = userManager;
             _activityService = userActivityService;
+            _cryptService = cryptService;
         }
 
         [HttpGet("myvault")]
@@ -48,7 +51,7 @@ namespace ignivault.API.Controllers
                         UpdatedAt = v.UpdatedAt,
                         UserId = v.UserId,
                         IV = v.IV,
-                        EncryptedData = v.Type == "File" ? "NULL" : v.EncryptedData
+                        EncryptedData = v.Type == "File" ? new byte[] {0x0} : v.EncryptedData
                     }).ToListAsync();
 
                 return Ok(new { success = true, data = items });
@@ -70,13 +73,13 @@ namespace ignivault.API.Controllers
             if (item == null) return NotFound();
 
             byte[] recordId = BitConverter.GetBytes(item.Id);
-            byte[] fileBytes = Convert.FromBase64String(item.EncryptedData);
+            byte[] fileBytes = (item.EncryptedData);
             var data = recordId.Concat(fileBytes).ToArray();
 
             return File(data, "application/octet-stream", item.Name ?? $"vaultfile-{id}");
         }
 
-        [RequestSizeLimit(450_000_000)]
+        [RequestSizeLimit(60_000_000)]
         [HttpPost("add")]
         public async Task<IActionResult> AddVaultItem([FromBody] VaultItem model)
         {
@@ -163,10 +166,10 @@ namespace ignivault.API.Controllers
 
             var hasCurrentKey = !string.IsNullOrWhiteSpace(model.CurrentKey);
 
-            var newMasterKey = Crypt.GenerateRandomKey();
-            var newSalt = Crypt.GenerateSalt();
-            var newKhk = Crypt.DeriveKey(model.NewKey, newSalt);
-            var (encryptedMasterKey, masterIv) = Crypt.Encrypt(newMasterKey, newKhk);
+            var newMasterKey = _cryptService.GenerateRandomKey();
+            var newSalt = _cryptService.GenerateSalt();
+            var newKhk = _cryptService.DeriveKey(model.NewKey, newSalt);
+            var (encryptedMasterKey, masterIv) = _cryptService.Encrypt(newMasterKey, newKhk);
 
             byte[]? currentMasterKey = null;
 
@@ -174,12 +177,8 @@ namespace ignivault.API.Controllers
             {
                 try
                 {
-                    var khk = Crypt.DeriveKey(model.CurrentKey,
-                                Convert.FromBase64String(user.KeySalt));
-                    currentMasterKey = Crypt.Decrypt(
-                        Convert.FromBase64String(user.EncryptedMasterKey),
-                        khk,
-                        Convert.FromBase64String(user.MasterIV));
+                    var khk = _cryptService.DeriveKey(model.CurrentKey, user.KeySalt);
+                    currentMasterKey = _cryptService.Decrypt(user.EncryptedMasterKey, khk, user.MasterIV);
                 }
                 catch
                 {
@@ -191,20 +190,20 @@ namespace ignivault.API.Controllers
 
             if (hasCurrentKey)
             {
-                await foreach (var item in _db.VaultItems.Where(v => v.UserId == userId).AsNoTracking().AsAsyncEnumerable().ConfigureAwait(false))
+                var vaultItems = await _db.VaultItems
+                    .Where(v => v.UserId == userId)
+                    .ToListAsync()
+                    .ConfigureAwait(false);
+
+                foreach (var item in vaultItems)
                 {
                     try
                     {
-                        var decryptedData = Crypt.Decrypt(
-                                Convert.FromBase64String(item.EncryptedData),
-                                currentMasterKey!,
-                                Convert.FromBase64String(item.IV));
+                        var decrypted = _cryptService.Decrypt(item.EncryptedData, currentMasterKey!, item.IV);
+                        var (newEncrypted, newIv) = _cryptService.Encrypt(decrypted, newMasterKey);
 
-                        var (encryptedData, iv) = Crypt.Encrypt(decryptedData, newMasterKey);
-
-                        _db.VaultItems.Attach(item);
-                        item.EncryptedData = Convert.ToBase64String(encryptedData);
-                        item.IV = Convert.ToBase64String(iv);
+                        item.EncryptedData = newEncrypted;
+                        item.IV = newIv;
                     }
                     catch
                     {
@@ -218,12 +217,15 @@ namespace ignivault.API.Controllers
             }
             else
             {
-                await _db.VaultItems.Where(v => v.UserId == userId).ExecuteDeleteAsync().ConfigureAwait(false);
+                await _db.VaultItems
+                    .Where(v => v.UserId == userId)
+                    .ExecuteDeleteAsync()
+                    .ConfigureAwait(false);
             }
 
-            user.EncryptedMasterKey = Convert.ToBase64String(encryptedMasterKey);
-            user.MasterIV = Convert.ToBase64String(masterIv);
-            user.KeySalt = Convert.ToBase64String(newSalt);
+            user.EncryptedMasterKey = encryptedMasterKey;
+            user.MasterIV = masterIv;
+            user.KeySalt = newSalt;
 
             await _userManager.UpdateAsync(user).ConfigureAwait(false);
             await _db.SaveChangesAsync().ConfigureAwait(false);
@@ -233,7 +235,9 @@ namespace ignivault.API.Controllers
                 ? "Vault key successfully changed."
                 : "Vault key reset. All vault data deleted.";
 
-            await _activityService.LogActivityAsync(userId, "Vault Key Reset", actionMessage).ConfigureAwait(false);
+            await _activityService
+                .LogActivityAsync(userId, "Vault Key Reset", actionMessage)
+                .ConfigureAwait(false);
 
             return Ok(new { Success = true, Message = actionMessage });
         }
@@ -268,10 +272,10 @@ namespace ignivault.API.Controllers
                     double totalSizeKb = g.Sum(v =>
                     {
                         int bytes = 0;
-                        if (!string.IsNullOrEmpty(v.EncryptedData))
-                            bytes += System.Text.Encoding.UTF8.GetByteCount(v.EncryptedData);
-                        if (!string.IsNullOrEmpty(v.IV))
-                            bytes += System.Text.Encoding.UTF8.GetByteCount(v.IV);
+                        if ((v.EncryptedData.Any()))
+                            bytes += (v.EncryptedData.Length);
+                        if ((v.IV.Any()))
+                            bytes += (v.IV.Length);
                         return bytes / 1024.0;
                     });
 

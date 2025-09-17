@@ -14,9 +14,9 @@ namespace ignivault.Data.Models.Auth
         public string Id { get; set; } = "";
         public string Email { get; set; } = "";
         public string Username { get; set; } = "";
-        public string EncryptedMasterKey { get; set; } = "";
-        public string KeySalt { get; set; } = "";
-        public string MasterIV { get; set; } = "";
+        public byte[] EncryptedMasterKey { get; set; }
+        public byte[] KeySalt { get; set; }
+        public byte[] MasterIV { get; set; }
         public DateTime? LastPasswordChange { get; set; }
     }
 }

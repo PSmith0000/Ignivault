@@ -132,7 +132,7 @@
 
         try
         {
-            VaultFile.EncryptedData = Convert.ToBase64String(EncryptedWithHeader);
+            VaultFile.EncryptedData = (EncryptedWithHeader);
 
             var decryptedFile = await VaultService.DecryptRecordTypeAsync<RecordTypes.StoredFile>(VaultFile);
 

@@ -65,12 +65,18 @@
   },
   {
     "ContainingType": "ignivault.API.Controllers.AuthenticationController",
-    "Method": "GetUserProfile",
-    "RelativePath": "api/Authentication/userdata",
-    "HttpMethod": "GET",
+    "Method": "VerifyTwoFactor",
+    "RelativePath": "api/Authentication/two-factor-verify",
+    "HttpMethod": "POST",
     "IsController": true,
     "Order": 0,
-    "Parameters": [],
+    "Parameters": [
+      {
+        "Name": "model",
+        "Type": "ignivault.API.Models._2FAModel",
+        "IsRequired": true
+      }
+    ],
     "ReturnTypes": []
   },
   {
@@ -103,6 +109,26 @@
         "IsRequired": true
       }
     ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "ignivault.API.Controllers.UserController",
+    "Method": "SetupTwoFactor",
+    "RelativePath": "api/User/two-factor-setup",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "ignivault.API.Controllers.UserController",
+    "Method": "GetUserProfile",
+    "RelativePath": "api/User/userdata",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
     "ReturnTypes": []
   },
   {

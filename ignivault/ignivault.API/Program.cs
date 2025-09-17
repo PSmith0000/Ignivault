@@ -1,3 +1,4 @@
+using ignivault.API.Core.Interface;
 using ignivault.API.Security.Auth;
 using ignivault.API.Services;
 using ignivault.API.SQL;
@@ -45,8 +46,12 @@ namespace ignivault.API
             .AddEntityFrameworkStores<AppDbContext>()
             .AddDefaultTokenProviders();
 
-            
+            builder.Services.Configure<DataProtectionTokenProviderOptions>(opts =>
+            {
+                opts.TokenLifespan = TimeSpan.FromMinutes(5);
+            });
 
+            builder.Services.AddScoped<ICryptService, CryptService>();
             builder.Services.AddScoped<UserActivityService>();
             builder.Services.AddTransient<IEmailService, EmailService>();
 

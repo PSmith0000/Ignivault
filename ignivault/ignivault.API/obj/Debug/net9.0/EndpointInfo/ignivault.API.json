@@ -67,11 +67,30 @@
         }
       }
     },
-    "/api/Authentication/userdata": {
-      "get": {
+    "/api/Authentication/two-factor-verify": {
+      "post": {
         "tags": [
           "Authentication"
         ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/_2FAModel"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/_2FAModel"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/_2FAModel"
+              }
+            }
+          }
+        },
         "responses": {
           "200": {
             "description": "OK"
@@ -134,6 +153,30 @@
             }
           }
         },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/User/two-factor-setup": {
+      "post": {
+        "tags": [
+          "User"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/User/userdata": {
+      "get": {
+        "tags": [
+          "User"
+        ],
         "responses": {
           "200": {
             "description": "OK"
@@ -529,12 +572,12 @@
             "type": "string"
           },
           "encryptedData": {
-            "minLength": 1,
-            "type": "string"
+            "type": "string",
+            "format": "byte"
           },
           "iv": {
-            "minLength": 1,
-            "type": "string"
+            "type": "string",
+            "format": "byte"
           },
           "createdAt": {
             "type": "string",
@@ -570,6 +613,16 @@
           "itemCount": {
             "type": "integer",
             "format": "int32"
+          }
+        },
+        "additionalProperties": false
+      },
+      "_2FAModel": {
+        "type": "object",
+        "properties": {
+          "code": {
+            "type": "string",
+            "nullable": true
           }
         },
         "additionalProperties": false

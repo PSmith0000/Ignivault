@@ -1,4 +1,5 @@
-﻿using ignivault.API.Models;
+﻿using ignivault.API.Core.Interface;
+using ignivault.API.Models;
 using ignivault.API.Models.Records;
 using ignivault.API.Security;
 using ignivault.API.Security.Auth;
@@ -23,14 +24,15 @@ namespace ignivault.API.Controllers
         private readonly IConfiguration _configuration;
         private readonly UserActivityService _activityService;
         private readonly IEmailService _emailService;
-
-        public AuthenticationController(UserManager<LoginUser> userManager, SignInManager<LoginUser> signInManager, IConfiguration configuration, UserActivityService userActivityService, IEmailService emailService)
+        private readonly ICryptService _cryptService;
+        public AuthenticationController(UserManager<LoginUser> userManager, SignInManager<LoginUser> signInManager, ICryptService cryptService, IConfiguration configuration, UserActivityService userActivityService, IEmailService emailService)
         {
             _userManager = userManager;
             _signInManager = signInManager;
             _configuration = configuration;
             _activityService = userActivityService;
             _emailService = emailService;
+            _cryptService = cryptService;
         }
 
         [HttpPost("register")]
@@ -48,14 +50,14 @@ namespace ignivault.API.Controllers
                 Email = model.Email
             };
 
-            var masterKey = Crypt.GenerateRandomKey();
-            var salt = Crypt.GenerateSalt();
-            var KHK = Crypt.DeriveKey(model.EncryptionKey, salt);
-            var (encryptedMasterKey, iv) = Crypt.Encrypt(masterKey, KHK);
+            var masterKey = _cryptService.GenerateRandomKey();
+            var salt = _cryptService.GenerateSalt();
+            var KHK = _cryptService.DeriveKey(model.EncryptionKey, salt);
+            var (encryptedMasterKey, iv) = _cryptService.Encrypt(masterKey, KHK);
 
-            user.EncryptedMasterKey = Convert.ToBase64String(encryptedMasterKey);
-            user.KeySalt = Convert.ToBase64String(salt);
-            user.MasterIV = Convert.ToBase64String(iv);
+            user.EncryptedMasterKey = (encryptedMasterKey);
+            user.KeySalt = (salt);
+            user.MasterIV = (iv);
 
             var result = await _userManager.CreateAsync(user, model.Password);
             if (!result.Succeeded)
@@ -78,21 +80,58 @@ namespace ignivault.API.Controllers
             var result = await _signInManager.CheckPasswordSignInAsync(user, model.Password, false);
             if (!result.Succeeded) return Unauthorized("Invalid credentials");
 
+            if(user.TwoFactorEnabled)
+            {
+                //2FA required
+                var providers = await _userManager.GetValidTwoFactorProvidersAsync(user);
+                if (providers.Contains("Authenticator"))
+                {
+                    return Ok(new { TwoFactorRequired = true, Message = "Two-Factor Authentication code required." });
+                }
+            }
+
             var token = GenerateJwtToken(user);
             var loginDto = new LoginUserDto(user, token);
 
             return Ok(loginDto);
         }
 
-        [HttpGet("userdata")]
-        [Authorize(AuthenticationSchemes = Microsoft.AspNetCore.Authentication.JwtBearer.JwtBearerDefaults.AuthenticationScheme)]
-        public async Task<IActionResult> GetUserProfile()
+        [HttpPost("two-factor-verify")]
+        public async Task<IActionResult> VerifyTwoFactor([FromBody] _2FAModel model)
         {
             var user = await _userManager.GetUserAsync(User);
             if (user == null) return Unauthorized();
 
-            var dto = new LoginUserDto(user, string.Empty);
-            return Ok(dto);
+            var isValid = await _userManager.VerifyTwoFactorTokenAsync(
+                user,
+                _userManager.Options.Tokens.AuthenticatorTokenProvider,
+                model.Code
+            );
+
+            if (!isValid)
+                return BadRequest(new { success = false, message = "Invalid 2FA code." });
+
+            var token = GenerateJwtToken(user);
+            var loginDto = new LoginUserDto(user, token);
+
+            _2FALoginModel _2FALoginModel = new _2FALoginModel
+            {
+                User = loginDto,
+                Success = true,
+                token = token,
+                Message = "2FA verified."
+            };
+
+            if (!user.TwoFactorEnabled) //first time login after enabling 2FA
+            {
+                var codes = await _userManager.GenerateNewTwoFactorRecoveryCodesAsync(user, 5);
+                user.TwoFactorEnabled = true;
+                await _userManager.UpdateAsync(user);
+                _2FALoginModel.Codes = codes;
+                return Ok(_2FALoginModel);
+            }
+
+            return Ok(_2FALoginModel);
         }
 
         [HttpPost("reset-password")]
@@ -127,9 +166,8 @@ namespace ignivault.API.Controllers
 
             var token = await _userManager.GeneratePasswordResetTokenAsync(user);
 
+            //temp - change to config
             var resetLink = $"https://localhost:7085/reset-password?email={Uri.EscapeDataString(user.Email)}&token={Uri.EscapeDataString(token)}";
-
-            Console.WriteLine($"ResetLink: {resetLink}");
 
             await _emailService.SendPasswordResetAsync(user.Email, resetLink);
 
