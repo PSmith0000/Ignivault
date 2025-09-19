@@ -6,6 +6,8 @@ namespace ignivault.Core.Interface
 {
     public interface IHttpService
     {
+        public abstract Task<(bool Success, string? Message)> DisableTwoFactor();
+        public abstract Task<TFALoginModel?>? VerifyTwoFactorAsync(string code, string token);
         public abstract Task<TFALoginModel?>? VerifyTwoFactorAsync(string code);
         public abstract Task<TwoFA.TwoFactorSetupResponse?> GetTwoFactorSetupAsync();
 

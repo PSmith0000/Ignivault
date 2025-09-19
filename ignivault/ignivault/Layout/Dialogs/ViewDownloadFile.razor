@@ -62,7 +62,7 @@
                 return;
             }
 
-            var url = $"{HttpService.ApiBaseUrl}api/vault/getfile?id={_fileItem.Id}";
+            var url = $"{HttpService.ApiBaseUrl}api/vault/download-file?id={_fileItem.Id}";
 
             await HideAsync();
 

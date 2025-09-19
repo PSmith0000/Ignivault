@@ -31,7 +31,8 @@
                     </FormItem>
                     <FormItem Field="@nameof(vItem.Password)" LabelText="Password">
                         <Template>
-                            <SfTextBox @bind-Value="vItem.Password" Type="InputType.Password" />
+                            <SfTextBox @bind-Value="vItem.Password" Type="@(passwordShown == false ? InputType.Password : InputType.Text)" />
+                            <SfCheckBox @bind-Checked="@passwordShown">Show password</SfCheckBox>
                         </Template>
                     </FormItem>
                 </FormItems>
@@ -45,6 +46,7 @@
 </SfDialog>
 
 @code {
+    private bool passwordShown = false;
     private bool _showDialog;
     private VaultItem _vaultItem;
     private RecordTypes.LoginDetail? vItem;

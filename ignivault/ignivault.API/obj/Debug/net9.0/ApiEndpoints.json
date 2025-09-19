@@ -113,6 +113,16 @@
   },
   {
     "ContainingType": "ignivault.API.Controllers.UserController",
+    "Method": "DisableTwoFactor",
+    "RelativePath": "api/User/disable-two-factor",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "ignivault.API.Controllers.UserController",
     "Method": "SetupTwoFactor",
     "RelativePath": "api/User/two-factor-setup",
     "HttpMethod": "POST",
@@ -165,8 +175,8 @@
   },
   {
     "ContainingType": "ignivault.API.Controllers.VaultController",
-    "Method": "DownloadVaultItem",
-    "RelativePath": "api/Vault/getfile",
+    "Method": "DownloadFile",
+    "RelativePath": "api/Vault/download-file",
     "HttpMethod": "GET",
     "IsController": true,
     "Order": 0,

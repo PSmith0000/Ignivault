@@ -12,3 +12,15 @@ window.Downloadhelper = {
         URL.revokeObjectURL(link.href);
     }
 };
+
+
+window.blazorHelpers = {
+    getWidth: function () {
+        return window.innerWidth;
+    },
+    registerResizeCallback: function (dotNetObjRef) {
+        window.addEventListener("resize", () => {
+            dotNetObjRef.invokeMethodAsync("OnBrowserResize", window.innerWidth);
+        });
+    }
+};

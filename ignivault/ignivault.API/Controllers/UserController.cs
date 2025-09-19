@@ -13,7 +13,7 @@ namespace ignivault.API.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    [Authorize(AuthenticationSchemes = Microsoft.AspNetCore.Authentication.JwtBearer.JwtBearerDefaults.AuthenticationScheme)]
+    [Authorize(AuthenticationSchemes = Microsoft.AspNetCore.Authentication.JwtBearer.JwtBearerDefaults.AuthenticationScheme, Policy = "Verified")]
     public class UserController : ControllerBase
     {
         private readonly UserManager<LoginUser> _userManager;
@@ -29,6 +29,24 @@ namespace ignivault.API.Controllers
             _configuration = configuration;
             _db = db;
             _activityService = userActivityService;
+        }
+
+        [HttpPost("disable-two-factor")]
+        public async Task<IActionResult> DisableTwoFactor()
+        {
+            var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+            if (userId == null) return Unauthorized();
+            var user = await _userManager.FindByIdAsync(userId);
+            if (user == null) return Unauthorized();
+            var result = await _userManager.SetTwoFactorEnabledAsync(user, false);
+            var resetresult = await _userManager.ResetAuthenticatorKeyAsync(user);
+            if (!result.Succeeded && !resetresult.Succeeded)
+            {
+                var errors = string.Join("; ", result.Errors.Select(e => e.Description));
+                return BadRequest(new { Success = false, Message = errors });
+            }
+            await _activityService.LogActivityAsync(user.Id, "2FA Disabled", "User disabled two-factor authentication");
+            return Ok(new { Success = true, Message = "Two-factor authentication disabled." });
         }
 
         [HttpPost("two-factor-setup")]

@@ -168,17 +168,19 @@
 
             if (loginResponse.TwoFactorEnabled)
             {
-                var otp = await askOTP.ShowAndWaitAsync(); // Your improved OTP dialog
+                var otp = await askOTP.ShowAndWaitAsync(); //AskOTP
                 if (string.IsNullOrWhiteSpace(otp))
                 {
                     ShowError("2FA verification canceled.");
+                    await AuthService.LogoutAsync();
                     return;
                 }
 
-                var tresult = await HttpService.VerifyTwoFactorAsync(otp);
+                var tresult = await HttpService.VerifyTwoFactorAsync(otp, loginResponse.Token);
                 if (!tresult.Success || tresult.token == null)
                 {
                     ShowError(tresult.Message ?? "2FA verification failed.");
+                    await AuthService.LogoutAsync();
                     return;
                 }
 

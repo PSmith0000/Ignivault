@@ -160,6 +160,18 @@
         }
       }
     },
+    "/api/User/disable-two-factor": {
+      "post": {
+        "tags": [
+          "User"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
     "/api/User/two-factor-setup": {
       "post": {
         "tags": [
@@ -250,7 +262,7 @@
         }
       }
     },
-    "/api/Vault/getfile": {
+    "/api/Vault/download-file": {
       "get": {
         "tags": [
           "Vault"
