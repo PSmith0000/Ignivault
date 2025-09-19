@@ -5,6 +5,7 @@ using ignivault.API.Security;
 using ignivault.API.Security.Auth;
 using ignivault.API.Services;
 using ignivault.API.SQL;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
@@ -12,11 +13,14 @@ using Microsoft.EntityFrameworkCore;
 using SendGrid.Helpers.Mail;
 using System.Security.Claims;
 
+public record VaultItemDto(int Id, string Name, string Type, DateTime CreatedAt, DateTime? UpdatedAt);
+
+// Your controller code:
 namespace ignivault.API.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    [Authorize(AuthenticationSchemes = Microsoft.AspNetCore.Authentication.JwtBearer.JwtBearerDefaults.AuthenticationScheme)]
+    [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme, Policy = "Verified")]
     public class VaultController : ControllerBase
     {
         private readonly AppDbContext _db;
@@ -51,7 +55,7 @@ namespace ignivault.API.Controllers
                         UpdatedAt = v.UpdatedAt,
                         UserId = v.UserId,
                         IV = v.IV,
-                        EncryptedData = v.Type == "File" ? new byte[] {0x0} : v.EncryptedData
+                        EncryptedData = v.Type == "File" ? new byte[] { 0x0 } : v.EncryptedData
                     }).ToListAsync();
 
                 return Ok(new { success = true, data = items });
@@ -63,20 +67,26 @@ namespace ignivault.API.Controllers
             }
         }
 
-        [HttpGet("getfile")]
-        public async Task<IActionResult> DownloadVaultItem([FromQuery] int id)
+        [HttpGet("download-file")]
+        public async Task<IActionResult> DownloadFile([FromQuery] int id)
         {
             var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
             if (userId == null) return Unauthorized();
 
-            var item = await _db.VaultItems.FirstOrDefaultAsync(i => i.Id == id && i.UserId == userId && i.Type == "File");
-            if (item == null) return NotFound();
+            // OPTIMIZED: Select only the fields needed, reducing data transfer from DB.
+            var fileData = await _db.VaultItems
+                .Where(i => i.Id == id && i.UserId == userId && i.Type == "File")
+                .Select(i => new { i.Name, i.EncryptedData })
+                .FirstOrDefaultAsync();
 
-            byte[] recordId = BitConverter.GetBytes(item.Id);
-            byte[] fileBytes = (item.EncryptedData);
-            var data = recordId.Concat(fileBytes).ToArray();
+            if (fileData == null) return NotFound();
 
-            return File(data, "application/octet-stream", item.Name ?? $"vaultfile-{id}");
+            // NOTE: Prepending the item ID to the file bytes is an unusual pattern.
+            // If not strictly required by your client, consider removing it and just returning fileData.EncryptedData.
+            byte[] recordIdBytes = BitConverter.GetBytes(id);
+            byte[] responseData = recordIdBytes.Concat(fileData.EncryptedData).ToArray();
+
+            return File(responseData, "application/octet-stream", fileData.Name ?? $"vaultfile-{id}");
         }
 
         [RequestSizeLimit(60_000_000)]
@@ -89,20 +99,12 @@ namespace ignivault.API.Controllers
             model.UserId = userId;
             model.CreatedAt = DateTime.UtcNow;
 
-            try
-            {
-                await _db.AddAsync(model);
+            _db.Add(model);
+            await _activityService.LogActivityAsync(userId, "Add Item", $"Added vault item '{model.Name}'");
 
-                await _activityService.LogActivityAsync(userId, "Add Item", $"Added vault item with name {model.Name} and type {model.Type}");
+            await _db.SaveChangesAsync();
 
-                await _db.SaveChangesAsync();
-                return Ok("Vault item added successfully.");
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine($"Error adding vault item: {ex.Message}");
-                return StatusCode(500, "Failed to add vault item.");
-            }
+            return Ok(new { success = true, message = "Vault item added successfully.", newItemId = model.Id });
         }
 
         [HttpDelete("delete")]
@@ -111,50 +113,47 @@ namespace ignivault.API.Controllers
             var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
             if (userId == null) return Unauthorized();
 
-            var item = await _db.VaultItems.FirstOrDefaultAsync(v => v.Id == itemId && v.UserId == userId);
-            if (item == null) return NotFound();
+            var rowsAffected = await _db.VaultItems
+                .Where(v => v.Id == itemId && v.UserId == userId)
+                .ExecuteDeleteAsync();
 
-            _db.VaultItems.Remove(item);
-            
-            await _db.UserActivities.AddAsync(new UserActivity
-            {
-                UserId = userId,
-                ActivityType = "Delete Item",
-                ActivityTime = DateTime.UtcNow,
-                Details = $"Deleted vault item with ID {itemId}"
-            });
+            if (rowsAffected == 0) return NotFound();
 
+            await _activityService.LogActivityAsync(userId, "Delete Item", $"Deleted vault item with ID {itemId}");
             await _db.SaveChangesAsync();
 
             return Ok("Vault item deleted.");
         }
 
+        /// <summary>
+        /// Updates a vault item's mutable properties.
+        /// </summary>
         [HttpPut("update")]
         public async Task<IActionResult> UpdateVaultItem([FromBody] VaultItem model)
         {
             var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
             if (userId == null) return Unauthorized();
 
-            var item = await _db.VaultItems.FirstOrDefaultAsync(v => v.Id == model.Id && v.UserId == userId);
-            if (item == null) return NotFound();
+            var rowsAffected = await _db.VaultItems
+                .Where(v => v.Id == model.Id && v.UserId == userId)
+                .ExecuteUpdateAsync(s => s
+                    .SetProperty(v => v.Name, model.Name)
+                    .SetProperty(v => v.IV, model.IV)
+                    .SetProperty(v => v.EncryptedData, model.EncryptedData)
+                    .SetProperty(v => v.UpdatedAt, DateTime.UtcNow)
+                );
 
-            item.Name = model.Name;
-            item.IV = model.IV;
-            item.EncryptedData = model.EncryptedData;
-            item.UpdatedAt = DateTime.UtcNow;
+            if (rowsAffected == 0) return NotFound();
 
-            await _db.UserActivities.AddAsync(new UserActivity
-            {
-                UserId = userId,
-                ActivityType = "Update Item",
-                ActivityTime = DateTime.UtcNow,
-                Details = $"Updated vault item with ID {model.Id}"
-            });
-
+            await _activityService.LogActivityAsync(userId, "Update Item", $"Updated vault item with ID {model.Id}");
             await _db.SaveChangesAsync();
+
             return Ok("Vault item updated successfully.");
         }
 
+        /// <summary>
+        /// Resets the user's vault key, re-encrypting all data or deleting it.
+        /// </summary>
         [HttpPost("vault-key-reset")]
         public async Task<IActionResult> VaultKeyReset([FromBody] KeyResetModel model)
         {
@@ -172,7 +171,6 @@ namespace ignivault.API.Controllers
             var (encryptedMasterKey, masterIv) = _cryptService.Encrypt(newMasterKey, newKhk);
 
             byte[]? currentMasterKey = null;
-
             if (hasCurrentKey)
             {
                 try
@@ -180,76 +178,51 @@ namespace ignivault.API.Controllers
                     var khk = _cryptService.DeriveKey(model.CurrentKey, user.KeySalt);
                     currentMasterKey = _cryptService.Decrypt(user.EncryptedMasterKey, khk, user.MasterIV);
                 }
-                catch
-                {
-                    return BadRequest(new { Success = false, Message = "Vault decryption failed." });
-                }
+                catch { return BadRequest(new { Success = false, Message = "Vault decryption failed." }); }
             }
 
-            await using var tx = await _db.Database.BeginTransactionAsync().ConfigureAwait(false);
+            await using var tx = await _db.Database.BeginTransactionAsync();
 
-            if (hasCurrentKey)
+            if (hasCurrentKey && currentMasterKey != null)
             {
-                var vaultItems = await _db.VaultItems
+                IAsyncEnumerable<VaultItem> vaultItems = _db.VaultItems
                     .Where(v => v.UserId == userId)
-                    .ToListAsync()
-                    .ConfigureAwait(false);
+                    .AsAsyncEnumerable();
 
-                foreach (var item in vaultItems)
+                int processedCount = 0;
+                await foreach (var item in vaultItems)
                 {
-                    try
-                    {
-                        var decrypted = _cryptService.Decrypt(item.EncryptedData, currentMasterKey!, item.IV);
-                        var (newEncrypted, newIv) = _cryptService.Encrypt(decrypted, newMasterKey);
+                    var decrypted = _cryptService.Decrypt(item.EncryptedData, currentMasterKey, item.IV);
+                    var (newEncrypted, newIv) = _cryptService.Encrypt(decrypted, newMasterKey);
+                    item.EncryptedData = newEncrypted;
+                    item.IV = newIv;
 
-                        item.EncryptedData = newEncrypted;
-                        item.IV = newIv;
-                    }
-                    catch
+                    processedCount++;
+                    if (processedCount % 100 == 0)
                     {
-                        return BadRequest(new
-                        {
-                            Success = false,
-                            Message = $"Failed to decrypt vault item '{item.Name}'"
-                        });
+                        await _db.SaveChangesAsync();
                     }
                 }
             }
             else
             {
-                await _db.VaultItems
-                    .Where(v => v.UserId == userId)
-                    .ExecuteDeleteAsync()
-                    .ConfigureAwait(false);
+                await _db.VaultItems.Where(v => v.UserId == userId).ExecuteDeleteAsync();
             }
 
             user.EncryptedMasterKey = encryptedMasterKey;
             user.MasterIV = masterIv;
             user.KeySalt = newSalt;
+            await _userManager.UpdateAsync(user);
 
-            await _userManager.UpdateAsync(user).ConfigureAwait(false);
-            await _db.SaveChangesAsync().ConfigureAwait(false);
-            await tx.CommitAsync().ConfigureAwait(false);
+            await _db.SaveChangesAsync();
+            await tx.CommitAsync();
 
-            var actionMessage = hasCurrentKey
-                ? "Vault key successfully changed."
-                : "Vault key reset. All vault data deleted.";
-
-            await _activityService
-                .LogActivityAsync(userId, "Vault Key Reset", actionMessage)
-                .ConfigureAwait(false);
+            var actionMessage = hasCurrentKey ? "Vault key successfully changed." : "Vault key reset. All vault data deleted.";
+            await _activityService.LogActivityAsync(userId, "Vault Key Reset", actionMessage);
 
             return Ok(new { Success = true, Message = actionMessage });
         }
 
-
-
-
-
-
-        /// <summary>
-        /// Returns vault storage report
-        /// </summary>
         [HttpGet("storage-report")]
         public async Task<ActionResult<IEnumerable<VaultStorageMonthlyDto>>> GetVaultStorageReport()
         {
@@ -258,57 +231,43 @@ namespace ignivault.API.Controllers
 
             DateTime start = new DateTime(DateTime.UtcNow.Year, DateTime.UtcNow.Month, 1).AddMonths(-11);
 
-            //last 12 months
-            var query = await _db.VaultItems
+            var grouped = await _db.VaultItems
                 .Where(v => v.UserId == userId && v.CreatedAt >= start)
+                .GroupBy(v => new { v.CreatedAt.Year, v.CreatedAt.Month })
+                .Select(g => new VaultStorageMonthlyDto
+                {
+                    Year = g.Key.Year,
+                    Month = g.Key.Month,
+                    ItemCount = g.Count(),
+                    TotalSizeKb = g.Sum(v => (double)(v.EncryptedData.Length + v.IV.Length)) / 1024.0,
+                    AverageItemSizeKb = g.Average(v => (double)(v.EncryptedData.Length + v.IV.Length)) / 1024.0
+                })
                 .ToListAsync();
 
-            var grouped = query
-                .GroupBy(v => new { v.CreatedAt.Year, v.CreatedAt.Month })
-                .OrderBy(g => g.Key.Year).ThenBy(g => g.Key.Month)
-                .Select(g =>
-                {
-                    //sizeof (EncryptedData + IV)
-                    double totalSizeKb = g.Sum(v =>
-                    {
-                        int bytes = 0;
-                        if ((v.EncryptedData.Any()))
-                            bytes += (v.EncryptedData.Length);
-                        if ((v.IV.Any()))
-                            bytes += (v.IV.Length);
-                        return bytes / 1024.0;
-                    });
-
-                    double avgKb = g.Any() ? totalSizeKb / g.Count() : 0;
-
-                    return new VaultStorageMonthlyDto
-                    {
-                        Year = g.Key.Year,
-                        Month = g.Key.Month,
-                        TotalSizeKb = Math.Round(totalSizeKb, 2),
-                        AverageItemSizeKb = Math.Round(avgKb, 2),
-                        ItemCount = g.Count()
-                    };
-                })
-                .ToList();
-
+            var groupedDict = grouped.ToDictionary(g => (g.Year, g.Month));
             var results = new List<VaultStorageMonthlyDto>();
             for (int i = 0; i < 12; i++)
             {
                 var month = start.AddMonths(i);
-                var existing = grouped.FirstOrDefault(x => x.Year == month.Year && x.Month == month.Month);
-                results.Add(existing ?? new VaultStorageMonthlyDto
+                if (groupedDict.TryGetValue((month.Year, month.Month), out var existing))
                 {
-                    Year = month.Year,
-                    Month = month.Month,
-                    TotalSizeKb = 0,
-                    AverageItemSizeKb = 0,
-                    ItemCount = 0
-                });
+                    existing.TotalSizeKb = Math.Round(existing.TotalSizeKb, 2);
+                    existing.AverageItemSizeKb = Math.Round(existing.AverageItemSizeKb, 2);
+                    results.Add(existing);
+                }
+                else
+                {
+                    results.Add(new VaultStorageMonthlyDto
+                    {
+                        Year = month.Year,
+                        Month = month.Month,
+                        TotalSizeKb = 0,
+                        AverageItemSizeKb = 0,
+                        ItemCount = 0
+                    });
+                }
             }
-
-            return Ok(results);
+            return Ok(results.OrderBy(r => r.Year).ThenBy(r => r.Month));
         }
     }
-
 }

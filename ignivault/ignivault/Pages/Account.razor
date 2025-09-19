@@ -4,6 +4,7 @@
 @inject NavigationManager Navigation
 @inject AccountService AccountService
 @inject IHttpService HttpService
+@inject VaultService VaultService
 
 <div class="min-h-screen flex items-center justify-center bg-gray-100 p-4">
     <div class="bg-white shadow-lg rounded-2xl p-6 w-full max-w-2xl">
@@ -124,7 +125,7 @@
         {
             qrCodeValue = $"otpauth://totp/Ignivault:{AccountService.LoginUser.Email}?secret={result.SecretKey}&issuer=Ignivault&digits=6";
             secretKey = result.SecretKey;
-           
+
 
             using (QRCodeGenerator qrGenerator = new QRCodeGenerator())
             using (QRCodeData qrCodeData = qrGenerator.CreateQrCode(qrCodeValue, QRCodeGenerator.ECCLevel.L))
@@ -147,28 +148,68 @@
     {
         if (string.IsNullOrWhiteSpace(verificationCode)) return;
 
-        var (success, message, recoveryCodes) = await HttpService.VerifyTwoFactorAsync(verificationCode);
-        UpdateMessage = message;
-        UpdateMessageSeverity = success ? MessageSeverity.Success : MessageSeverity.Error;
+        var model = await HttpService.VerifyTwoFactorAsync(verificationCode);
+        UpdateMessage = model.Message;
+        UpdateMessageSeverity = model.Success ? MessageSeverity.Success : MessageSeverity.Error;
 
-        if (success)
+        if (model.Success)
         {
             AccountService.LoginUser.TwoFactorEnabled = true;
             showQr = false;
             verificationCode = string.Empty;
 
-            if (recoveryCodes != null && recoveryCodes.Length > 0)
+            if (model.Codes != null && model.Codes.Any())
             {
-                UpdateMessage = "2FA Setup Complete.";
-                UpdateMessageSeverity = MessageSeverity.Success;
+                for (int i = 0; i < model.Codes.Count(); i++)
+                {
+                    VaultItem _newVaultItem = new VaultItem
+                    {
+                        Type = "Login",
+                        CreatedAt = DateTime.UtcNow
+                    };
+
+                    RecordTypes.LoginDetail login = new RecordTypes.LoginDetail
+                    {
+                        Name = $"2FA Backup Code {i + 1}",
+                        Username = AccountService.LoginUser.Email,
+                        Password = model.Codes.ElementAt(i),
+                        URL = "https://ignivault.com"
+                    };
+
+                    string jsonData = System.Text.Json.JsonSerializer.Serialize(login);
+                    byte[] jsonBytes = System.Text.Encoding.UTF8.GetBytes(jsonData);
+                    var (ciphertext, iv) = await VaultService.EncryptAsync(jsonBytes, VaultService.GetMasterKey());
+
+                    _newVaultItem.EncryptedData = (ciphertext);
+                    _newVaultItem.Iv = (iv);
+                    _newVaultItem.Name = login.Name;
+                    _newVaultItem.Id = 0;
+                    _newVaultItem.UserId = AccountService.LoginUser.Id;
+                    _newVaultItem.UpdatedAt = DateTime.UtcNow;
+                    _newVaultItem.CreatedAt = DateTime.UtcNow;
+
+                    await HttpService.AddVaultItemAsync(_newVaultItem);
+                }
             }
         }
     }
 
     private async Task Disable2FA()
     {
-        UpdateMessage = "2FA disabled";
-        UpdateMessageSeverity = MessageSeverity.Success;
-        
+        var result = await HttpService.DisableTwoFactor();
+
+        AccountService.SetAccount(await HttpService.FetchUserProfileAsync());
+
+        if(!AccountService.LoginUser.TwoFactorEnabled)
+        {
+            AccountService.LoginUser.TwoFactorEnabled = false;
+            UpdateMessage = "2FA disabled";
+            UpdateMessageSeverity = MessageSeverity.Success;
+        }
+        else
+        {
+            UpdateMessage = "Failed to disable 2FA";
+            UpdateMessageSeverity = MessageSeverity.Error;
+        }
     }
 }

@@ -86,7 +86,11 @@ namespace ignivault.API
     };
 });
 
-            builder.Services.AddAuthorization();
+            builder.Services.AddAuthorization(options => {
+                options.AddPolicy("Verified", policy => {
+                    policy.RequireClaim("Verified", "true");
+                });
+            });
 
             //security stuff
 

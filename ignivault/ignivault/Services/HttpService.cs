@@ -66,7 +66,7 @@ namespace ignivault.Services
 
         public async Task<byte[]?> GetFileData(int itemId)
         {
-            var request = await CreateRequestAsync(HttpMethod.Get, $"api/vault/getfile?itemId={itemId}");
+            var request = await CreateRequestAsync(HttpMethod.Get, $"api/vault/download-file?itemId={itemId}");
             var response = await _http.SendAsync(request);
             return response.IsSuccessStatusCode ? await response.Content.ReadAsByteArrayAsync() : null;
         }
@@ -92,7 +92,16 @@ namespace ignivault.Services
         {
             var request = new HttpRequestMessage(method, url);
 
-            var token = _token == null ? await _sessionStorage.GetItemAsync<string>("authToken") : _token;
+            if(_token != null)
+            {
+                Console.WriteLine("Manual Token: " + _token);
+            }
+            else
+            {
+
+            }
+
+                var token = _token == null ? await _sessionStorage.GetItemAsync<string>("authToken") : _token;
             if (!string.IsNullOrWhiteSpace(token))
                 request.Headers.Authorization = new AuthenticationHeaderValue("Bearer", token);
 
@@ -235,7 +244,8 @@ namespace ignivault.Services
         public async Task<TFALoginModel?>? VerifyTwoFactorAsync(string code)
         {
             var model = new TwoFA.TwoFactorVerifyModel { Code = code };
-            var request = await CreateRequestAsync(HttpMethod.Post, "api/user/two-factor-setup");
+
+            var request = await CreateRequestAsync(HttpMethod.Post, "api/Authentication/two-factor-verify", model);
             var response = await _http.SendAsync(request);
 
             if (!response.IsSuccessStatusCode) return null;
@@ -243,6 +253,40 @@ namespace ignivault.Services
             return await response.Content.ReadFromJsonAsync<TFALoginModel>(
                 new JsonSerializerOptions { PropertyNameCaseInsensitive = true }
             );
+        }
+
+
+        public async Task<TFALoginModel?>? VerifyTwoFactorAsync(string code, string token)
+        {
+            var model = new TwoFA.TwoFactorVerifyModel { Code = code };
+            
+            var request = await CreateRequestAsync(HttpMethod.Post, "api/Authentication/two-factor-verify", model, token);
+            var response = await _http.SendAsync(request);
+
+            if (!response.IsSuccessStatusCode) return null;
+
+            return await response.Content.ReadFromJsonAsync<TFALoginModel>(
+                new JsonSerializerOptions { PropertyNameCaseInsensitive = true }
+            );
+        }
+
+        public async Task<(bool Success, string? Message)> DisableTwoFactor()
+        {
+            try
+            {
+                var request = await CreateRequestAsync(HttpMethod.Post, "api/user/disable-two-factor");
+                var response = await _http.SendAsync(request);
+
+                if (!response.IsSuccessStatusCode) return (false, response.StatusCode.ToString());
+
+                return await response.Content.ReadFromJsonAsync<(bool Success, string? Message)>(
+                    new JsonSerializerOptions { PropertyNameCaseInsensitive = true }
+                );
+            }
+            catch (Exception ex)
+            {
+                return (false, ex.Message);
+            }
         }
     }
 }

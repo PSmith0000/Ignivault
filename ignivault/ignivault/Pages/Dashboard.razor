@@ -18,7 +18,7 @@
     <SfDashboardLayout AllowDragging="false" AllowResizing="true" AllowFloating="true" CellSpacing="@CellSpacing" Columns="@ColumnCount">
         <DashboardLayoutPanels>
             <!-- Vault Items Panel -->
-            <DashboardLayoutPanel Id="vaultPanel" Row="0" Column="0" SizeX="3" SizeY="1">
+            <DashboardLayoutPanel Id="vaultPanel" SizeX="3" SizeY="1">
                 <HeaderTemplate>
                     <div class="e-header-text">Storage</div>
                 </HeaderTemplate>
@@ -130,7 +130,7 @@
             </DashboardLayoutPanel>
 
             <!-- Statistics Panel -->
-            <DashboardLayoutPanel Id="statsPanel" SizeX="1" SizeY="1" Row="3" Column="0">
+            <DashboardLayoutPanel Row="0" Column="0" Id="statsPanel" SizeX="1" SizeY="1">
                 <HeaderTemplate><div class="e-header-text">Record Statistics</div></HeaderTemplate>
                 <ContentTemplate>
                     @if (vaultItems?.Any() == true)
@@ -156,14 +156,14 @@
             </DashboardLayoutPanel>
 
             <!-- Recent Activity Panel -->
-            <DashboardLayoutPanel Id="recentActivityPanel" SizeX="1" SizeY="1" Row="1" Column="2">
+            <DashboardLayoutPanel Row="0" Column="2" Id="recentActivityPanel" SizeX="1" SizeY="1">
                 <ContentTemplate>
                     <div class="h-full p-4 bg-white shadow rounded-2xl">
                         <h3 class="text-lg font-medium mb-2">Recent Activity</h3>
                         <ul class="list-disc pl-5">
-                            @if(recentActivities.Any())
+                            @if (recentActivities.Any())
                             {
-                                foreach(var activity in recentActivities)
+                                foreach (var activity in recentActivities)
                                 {
                                     <li>
                                         <strong>@activity.ActivityType</strong> - @activity.ActivityTime.ToString("dd/MM/yyyy hh:mm tt")
@@ -177,15 +177,6 @@
                                 <li>No recent activity</li>
                             }
                         </ul>
-                    </div>
-                </ContentTemplate>
-            </DashboardLayoutPanel>
-
-            <!-- Data Groups Panel -->
-            <DashboardLayoutPanel Id="dataGroupsPanel" SizeX="1" SizeY="1" Row="1" Column="1">
-                <ContentTemplate>
-                    <div class="h-full p-4 bg-white shadow rounded-2xl">
-                        <h3 class="text-lg font-medium mb-2">Data Groups</h3>
                     </div>
                 </ContentTemplate>
             </DashboardLayoutPanel>
@@ -206,7 +197,7 @@
 
 @code {
     // layout & UI
-    private readonly double[] CellSpacing = { 10, 10 };
+    private readonly double[] CellSpacing = { 40, 40 };
     private const int ColumnCount = 3;
     private TabHeader Logins = new TabHeader() { Text = "Logins" };
     private TabHeader Files = new TabHeader() { Text = "Files" };
@@ -436,7 +427,7 @@
             q = q.Where(item => item.Name?.Contains(s, StringComparison.OrdinalIgnoreCase) ?? false);
         }
 
-        // Date filter (optional)
+        // Date filter
         if (enableDateFilter)
         {
             if (startDate.HasValue)

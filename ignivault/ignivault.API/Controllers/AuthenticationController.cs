@@ -86,7 +86,10 @@ namespace ignivault.API.Controllers
                 var providers = await _userManager.GetValidTwoFactorProvidersAsync(user);
                 if (providers.Contains("Authenticator"))
                 {
-                    return Ok(new { TwoFactorRequired = true, Message = "Two-Factor Authentication code required." });
+                    string twoFactorToken = GenerateTwoFactorJwt(user);
+                    var dto = new LoginUserDto(user);
+                    dto.Token = twoFactorToken;
+                    return Ok(dto);
                 }
             }
 
@@ -180,7 +183,8 @@ namespace ignivault.API.Controllers
             {
                 new Claim(ClaimTypes.NameIdentifier, user.Id),
                 new Claim(JwtRegisteredClaimNames.Sub, user.Email),
-                new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString()),               
+                new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString()),
+                new Claim("Verified", "true")
             };
 
             var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_configuration["Jwt:Key"]));
@@ -196,5 +200,32 @@ namespace ignivault.API.Controllers
 
             return new JwtSecurityTokenHandler().WriteToken(token);
         }
+
+
+
+        private string GenerateTwoFactorJwt(LoginUser user)
+        {
+                var claims = new List<Claim>
+                {
+                     new Claim(ClaimTypes.NameIdentifier, user.Id),
+                     new Claim(JwtRegisteredClaimNames.Sub, user.Email),
+                     new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString()),
+                };
+
+            var key = new SymmetricSecurityKey(
+                Encoding.UTF8.GetBytes(_configuration["Jwt:Key"]));
+            var creds = new SigningCredentials(key, SecurityAlgorithms.HmacSha256);
+
+            var token = new JwtSecurityToken(
+                issuer: _configuration["Jwt:Issuer"],
+                audience: _configuration["Jwt:Audience"],
+                claims: claims,
+                expires: DateTime.UtcNow.AddMinutes(5),
+                signingCredentials: creds
+            );
+
+            return new JwtSecurityTokenHandler().WriteToken(token);
+        }
+
     }
 }
