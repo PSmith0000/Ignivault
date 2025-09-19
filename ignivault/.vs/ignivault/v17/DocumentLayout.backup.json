@@ -322,7 +322,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 69,
+          "SelectedChildIndex": 66,
           "Children": [
             {
               "$type": "Bookmark",
@@ -331,18 +331,6 @@
             {
               "$type": "Bookmark",
               "Name": "ST:0:0:{3ae79031-e1bc-11d0-8f78-00a0c9110057}"
-            },
-            {
-              "$type": "Bookmark",
-              "Name": "ST:0:0:{eefa5220-e298-11d0-8f78-00a0c9110057}"
-            },
-            {
-              "$type": "Bookmark",
-              "Name": "ST:0:0:{d78612c7-9962-4b83-95d9-268046dad23a}"
-            },
-            {
-              "$type": "Bookmark",
-              "Name": "ST:0:0:{34e76e81-ee4a-11d0-ae2e-00a0c90fffc3}"
             },
             {
               "$type": "Document",
@@ -354,8 +342,7 @@
               "RelativeToolTip": "ignivault\\Core\\Interface\\IHttpService.cs",
               "ViewState": "AgIAAAoAAAAAAAAAAAAxwBYAAABUAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-09-11T02:16:40.064Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-09-11T02:16:40.064Z"
             },
             {
               "$type": "Document",
@@ -379,8 +366,7 @@
               "RelativeToolTip": "ignivault.API\\Models\\_2FALoginModel.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAwAAAApAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-09-17T01:45:28.006Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-09-17T01:45:28.006Z"
             },
             {
               "$type": "Document",
@@ -392,8 +378,7 @@
               "RelativeToolTip": "ignivault\\Layout\\Dialogs\\AskOTP.razor",
               "ViewState": "AgIAADAAAAAAAAAAAAAAABgAAAARAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-09-17T01:34:16.92Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-09-17T01:34:16.92Z"
             },
             {
               "$type": "Document",
@@ -417,8 +402,7 @@
               "RelativeToolTip": "ignivault.API\\Models\\2FAModel.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAcAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-09-16T23:26:44.222Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-09-16T23:26:44.222Z"
             },
             {
               "$type": "Document",
@@ -454,8 +438,7 @@
               "RelativeToolTip": "ignivault\\Data\\Models\\Auth\\KeyResetModel.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAwAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-09-16T00:37:33.56Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-09-16T00:37:33.56Z"
             },
             {
               "$type": "Document",
@@ -491,8 +474,7 @@
               "RelativeToolTip": "ignivault\\Pages\\UserReports.razor",
               "ViewState": "AgIAAE4AAAAAAAAAAAAiwGgAAABAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-09-15T22:45:37.262Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-09-15T22:45:37.262Z"
             },
             {
               "$type": "Document",
@@ -588,8 +570,7 @@
               "RelativeToolTip": "ignivault.API\\Models\\ResetPasswordModel.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAkAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-09-14T23:02:34.464Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-09-14T23:02:34.464Z"
             },
             {
               "$type": "Document",
@@ -625,8 +606,7 @@
               "RelativeToolTip": "ignivault.API\\Controllers\\UserController.cs",
               "ViewState": "AgIAAB4AAAAAAAAAAAAAwDAAAAAcAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-09-14T03:43:14.989Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-09-14T03:43:14.989Z"
             },
             {
               "$type": "Document",
@@ -734,8 +714,7 @@
               "RelativeToolTip": "ignivault\\wwwroot\\js\\downloadHelper.js",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAABAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001646|",
-              "WhenOpened": "2025-09-13T17:18:22.179Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-09-13T17:18:22.179Z"
             },
             {
               "$type": "Document",
@@ -747,8 +726,7 @@
               "RelativeToolTip": "ignivault\\Layout\\Dialogs\\ViewDownloadFile.razor",
               "ViewState": "AgIAAEgAAAAAAAAAAAAIwG8AAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-09-13T02:58:50.505Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-09-13T02:58:50.505Z"
             },
             {
               "$type": "Document",
@@ -808,8 +786,7 @@
               "RelativeToolTip": "ignivault\\Services\\AccountService.cs",
               "ViewState": "AgIAAAsAAAAAAAAAAAAxwDEAAAAXAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-09-11T00:11:27.295Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-09-11T00:11:27.295Z"
             },
             {
               "$type": "Document",
@@ -869,8 +846,7 @@
               "RelativeToolTip": "ignivault\\Layout\\Dialogs\\ViewEditLogin.razor",
               "ViewState": "AgIAABUAAAAAAAAAAAAowCkAAAAeAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-09-10T00:18:00.451Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-09-10T00:18:00.451Z"
             },
             {
               "$type": "Document",
@@ -882,8 +858,7 @@
               "RelativeToolTip": "ignivault.API\\Security\\Auth\\LoginUserDto.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAB0AAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-09-09T23:37:18.236Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-09-09T23:37:18.236Z"
             },
             {
               "$type": "Document",
@@ -919,8 +894,7 @@
               "RelativeToolTip": "ignivault.API\\Controllers\\AuthenticationController.cs",
               "ViewState": "AgIAAF0AAAAAAAAAAAAYwHAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-09-06T23:23:20.591Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-09-06T23:23:20.591Z"
             },
             {
               "$type": "Document",
@@ -932,8 +906,7 @@
               "RelativeToolTip": "ignivault\\Layout\\Dialogs\\AddLogin.razor",
               "ViewState": "AgIAAE4AAAAAAAAAAAAAAGoAAAAeAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-09-06T23:13:20.367Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-09-06T23:13:20.367Z"
             },
             {
               "$type": "Document",
@@ -945,8 +918,7 @@
               "RelativeToolTip": "ignivault.API\\SQL\\AppDbContext.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAA0AAAA4AAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-09-05T01:28:24.532Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-09-05T01:28:24.532Z"
             },
             {
               "$type": "Document",
@@ -958,8 +930,7 @@
               "RelativeToolTip": "ignivault.API\\Program.cs",
               "ViewState": "AgIAAEMAAAAAAAAAAAAgwF4AAAAcAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-09-05T00:25:37.601Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-09-05T00:25:37.601Z"
             },
             {
               "$type": "Document",
@@ -971,8 +942,7 @@
               "RelativeToolTip": "ignivault\\Services\\HttpService.cs",
               "ViewState": "AgIAAA4AAAAAAAAAAAAQwCEBAAAJAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-09-05T00:11:51.467Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-09-05T00:11:51.467Z"
             },
             {
               "$type": "Document",
@@ -1008,8 +978,7 @@
               "RelativeToolTip": "ignivault\\Pages\\Login.razor",
               "ViewState": "AgIAAKUAAAAAAAAAAAAowLwAAAANAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-09-04T03:40:44.598Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-09-04T03:40:44.598Z"
             },
             {
               "$type": "Document",
@@ -1033,8 +1002,7 @@
               "RelativeToolTip": "ignivault\\Services\\JwtAuthenticationStateProvider.cs",
               "ViewState": "AgIAABgAAAAAAAAAAAAowC4AAAAJAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-09-04T00:59:57.769Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-09-04T00:59:57.769Z"
             },
             {
               "$type": "Document",
@@ -1106,8 +1074,7 @@
               "RelativeToolTip": "ignivault\\Pages\\Account.razor",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAANcAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-09-03T04:39:26.091Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-09-03T04:39:26.091Z"
             },
             {
               "$type": "Document",
@@ -1192,8 +1159,7 @@
               "RelativeToolTip": "ignivault\\Data\\Models\\Auth\\LoginUser.cs",
               "ViewState": "AgIAAAkAAAAAAAAAAAAmwAoAAAAFAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-09-02T00:03:22.248Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-09-02T00:03:22.248Z"
             },
             {
               "$type": "Document",
@@ -1205,8 +1171,7 @@
               "RelativeToolTip": "ignivault.API\\Controllers\\VaultController.cs",
               "ViewState": "AgIAAH0AAAAAAAAAAAAuwEUAAAASAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-09-01T23:28:48.524Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-09-01T23:28:48.524Z"
             },
             {
               "$type": "Document",
@@ -1254,8 +1219,7 @@
               "RelativeToolTip": "ignivault.API\\Models\\LoginModel.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAA0AAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-09-01T21:20:51.784Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-09-01T21:20:51.784Z"
             },
             {
               "$type": "Document",
@@ -1279,8 +1243,7 @@
               "RelativeToolTip": "ignivault\\Pages\\Register.razor",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAE0AAAAFAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-09-01T21:19:40.449Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-09-01T21:19:40.449Z"
             },
             {
               "$type": "Document",
@@ -1305,6 +1268,18 @@
               "ViewState": "AgIAACoAAAAAAAAAAAAYwFAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-09-01T21:10:02.775Z"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{eefa5220-e298-11d0-8f78-00a0c9110057}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{d78612c7-9962-4b83-95d9-268046dad23a}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{34e76e81-ee4a-11d0-ae2e-00a0c90fffc3}"
             }
           ]
         }
