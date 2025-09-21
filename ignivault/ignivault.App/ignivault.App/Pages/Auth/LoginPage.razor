@@ -1,0 +1,141 @@
+﻿@page "/auth/login"
+@layout LoginLayout
+@inject ignivault.ApiClient.Auth.IAuthApiClient AuthApiClient
+@inject NavigationManager Navigation
+@inject AppState AppState
+<PageTitle>Login</PageTitle>
+
+<SfCard Style="width: 400px;">
+    <CardHeader Title="Login to Ignivault"></CardHeader>
+    <CardContent>
+
+        @if (!is2faStep)
+        {
+            <EditForm Model="@loginModel" OnValidSubmit="HandleLoginAsync">
+                <DataAnnotationsValidator />
+
+                <div class="form-group mb-4">
+                    <SfTextBox @bind-Value="loginModel.Email"
+                               Placeholder="Email"
+                               FloatLabelType="FloatLabelType.Auto"
+                               Type="InputType.Email"></SfTextBox>
+                </div>
+                <div class="form-group mb-3">
+                    <SfTextBox @bind-Value="loginModel.Password"
+                               Placeholder="Password"
+                               FloatLabelType="FloatLabelType.Auto"
+                               Type="InputType.Password"></SfTextBox>
+                </div>
+
+                @if (!string.IsNullOrEmpty(errorMessage))
+                {
+                    <div class="alert alert-danger mt-3" role="alert">
+                        @errorMessage
+                    </div>
+                }
+
+                <div class="mt-4">
+                    <SfButton type="submit" IsPrimary="true" Disabled="@isLoading" Content="@(isLoading ? "" : "Login")">
+                        @if (isLoading)
+                        {
+                            <div class="d-flex align-items-center">
+                                <SfSpinner Visible="true" Size="20" Type="SpinnerType.Tailwind3"></SfSpinner>
+                                <span class="ms-2">Logging In...</span>
+                            </div>
+                        }
+                    </SfButton>
+                </div>
+            </EditForm>
+        }
+        else
+        {
+            <p>An authentication code is required. Please check your authenticator app or use a recovery code.</p>
+            <EditForm Model="@twoFactorModel" OnValidSubmit="Handle2faLoginAsync">
+                <DataAnnotationsValidator />
+                <div class="form-group">
+                    <SfOtpInput @bind-Value="twoFactorModel.Code" Length="6" Type="OtpInputType.Number"></SfOtpInput>
+                </div>
+
+                @if (!string.IsNullOrEmpty(errorMessage))
+                {
+                    <div class="alert alert-danger mt-3" role="alert">
+                        @errorMessage
+                    </div>
+                }
+
+                <div class="mt-3">
+                    <SfButton type="submit" IsPrimary="true" Disabled="@isLoading" Content="@(isLoading ? "" : "Verify")">
+                        @if (isLoading)
+                        {
+                            <SfSpinner Visible="true" Size="20" Type="SpinnerType.Tailwind3"></SfSpinner>
+                        }
+                    </SfButton>
+                </div>
+            </EditForm>
+        }
+    </CardContent>
+    <CardFooter>
+        <div class="d-flex justify-content-between">
+            <a href="/auth/forgot-password">Forgot Password?</a>
+            <a href="/auth/register">Don't have an account?</a>
+        </div>
+    </CardFooter>
+</SfCard>
+
+@code {
+    private readonly LoginRequestDto loginModel = new();
+    private readonly Login2faRequestDto twoFactorModel = new();
+
+    private bool isLoading = false;
+    private bool is2faStep = false;
+    private string? errorMessage;
+
+    private async Task HandleLoginAsync()
+    {
+        isLoading = true;
+        errorMessage = null;
+
+        var response = await AuthApiClient.LoginAsync(loginModel);
+
+        if (response.IsSuccess)
+        {
+            if (response.Data.Is2faRequired)
+            {
+                is2faStep = true;
+                twoFactorModel.Email = loginModel.Email;
+            }
+            else
+            {
+                AppState.UserEmail = loginModel.Email;
+                AppState.SetUserState(response.Data.LoginResponse.KeySalt);
+                Navigation.NavigateTo("/");
+            }
+        }
+        else
+        {
+            errorMessage = response.Message;
+        }
+
+        isLoading = false;
+    }
+
+    private async Task Handle2faLoginAsync()
+    {
+        isLoading = true;
+        errorMessage = null;
+
+        var response = await AuthApiClient.Login2faAsync(twoFactorModel);
+
+        if (response.IsSuccess)
+        {
+            AppState.SetUserState(response.Data.LoginResponse.KeySalt);
+            Navigation.NavigateTo("/");
+        }
+        else
+        {
+            errorMessage = response.Message;
+        }
+
+        isLoading = false;
+    }
+}
