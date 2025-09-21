@@ -1,0 +1,28 @@
+﻿@inherits ErrorBoundary
+@inject NavigationManager Navigation
+
+@if (CurrentException is null)
+{
+    @ChildContent
+}
+else if (ErrorContent is not null)
+{
+    Recover();
+}
+else
+{
+    Recover();
+}
+
+@code {
+    protected override Task OnErrorAsync(Exception exception)
+    {
+        return base.OnErrorAsync(exception);
+    }
+
+    public new void Recover()
+    {
+        base.Recover();
+        Navigation.NavigateTo("/", true);
+    }
+}

@@ -1,0 +1,146 @@
+﻿@page "/tools/decrypt-file"
+@attribute [Authorize]
+
+@using System.Text.Json
+@using ignivault.App.State
+@using System.ComponentModel.DataAnnotations
+@using System.Security.Cryptography
+
+@inject ICryptoService CryptoService
+@inject AppState AppState
+@inject IJSRuntime JSRuntime
+
+<PageTitle>Decrypt File</PageTitle>
+
+<h1>File Decryption Utility</h1>
+<p>Select an encrypted file (.enc) from your computer and enter your master password to decrypt and download it.</p>
+<hr />
+
+<SfCard>
+    <CardContent>
+        <EditForm Model="decryptionModel" OnValidSubmit="HandleDecryptAndDownloadAsync">
+            <DataAnnotationsValidator />
+
+            <div class="form-group mb-4">
+                <label class="form-label">Select Encrypted File:</label>
+                <InputFile OnChange="HandleFileSelected" />
+                @if (decryptionModel.SelectedFile != null)
+                {
+                    <p class="mt-2 text-muted">Selected: <strong>@decryptionModel.SelectedFile.Name</strong></p>
+                }
+            </div>
+
+            <div class="form-group mb-4">
+                <SfTextBox @bind-Value="decryptionModel.MasterPassword"
+                           Type="InputType.Password"
+                           Placeholder="Your Master Password"
+                           FloatLabelType="FloatLabelType.Auto"></SfTextBox>
+            </div>
+
+            <ValidationSummary />
+
+            @if (!string.IsNullOrEmpty(statusMessage))
+            {
+                <div class="alert @messageCssClass mt-3" role="alert">
+                    @statusMessage
+                </div>
+            }
+
+            <div class="mt-4">
+                <SfButton type="submit" IsPrimary="true" Disabled="isProcessing || decryptionModel.SelectedFile == null">
+                    @if (isProcessing)
+                    {
+                        <div class="d-flex align-items-center">
+                            <SfSpinner Visible="true" Size="20"></SfSpinner>
+                            <span class="ms-2">Decrypting...</span>
+                        </div>
+                    }
+                    else
+                    {
+                        <span>Decrypt & Download</span>
+                    }
+                </SfButton>
+            </div>
+        </EditForm>
+    </CardContent>
+</SfCard>
+
+@code {
+    private DecryptionModel decryptionModel = new();
+    private bool isProcessing = false;
+    private string? statusMessage;
+    private MessageType messageType;
+
+    private string messageCssClass => messageType switch
+    {
+        MessageType.Success => "alert-success",
+        MessageType.Error => "alert-danger",
+        _ => "alert-info"
+    };
+
+    private void HandleFileSelected(InputFileChangeEventArgs e)
+    {
+        decryptionModel.SelectedFile = e.File;
+        statusMessage = null;
+    }
+
+    private async Task HandleDecryptAndDownloadAsync()
+    {
+        if (decryptionModel.SelectedFile == null || AppState.KeySalt == null)
+        {
+            statusMessage = "Please select a file and ensure you are logged in.";
+            messageType = MessageType.Error;
+            return;
+        }
+
+        isProcessing = true;
+        statusMessage = "Reading and decrypting file...";
+        messageType = MessageType.Info;
+
+        try
+        {
+            using var memoryStream = new MemoryStream();
+            await decryptionModel.SelectedFile.OpenReadStream(decryptionModel.SelectedFile.Size).CopyToAsync(memoryStream);
+            var fileBytes = memoryStream.ToArray();
+
+            if (fileBytes.Length < 16) throw new InvalidOperationException("Invalid encrypted file format.");
+
+            var iv = fileBytes.Take(16).ToArray();
+            var ciphertext = fileBytes.Skip(16).ToArray();
+
+            var decryptedBase64 = await CryptoService.DecryptFileAsync(ciphertext, iv, AppState.KeySalt, decryptionModel.MasterPassword);
+
+            if (decryptedBase64 == null) throw new Exception("Decryption returned no data.");
+
+            var originalFileName = Path.GetFileNameWithoutExtension(decryptionModel.SelectedFile.Name);
+
+            var previewText = System.Text.Encoding.UTF8.GetString(decryptedBase64.Take(50).ToArray());
+            Console.WriteLine($"DECRYPTED PREVIEW: {previewText}");
+
+            await JSRuntime.InvokeVoidAsync("triggerFileDownload", originalFileName, Convert.ToBase64String(decryptedBase64));
+
+            statusMessage = $"Successfully decrypted and downloaded '{originalFileName}'.";
+            messageType = MessageType.Success;
+        }
+        catch (Exception ex)
+        {
+            statusMessage = $"Error: {ex.Message}";
+            messageType = MessageType.Error;
+        }
+        finally
+        {
+            isProcessing = false;
+        }
+    }
+
+    public class DecryptionModel
+    {
+        [Required(ErrorMessage = "Please select a file to decrypt.")]
+        public IBrowserFile? SelectedFile { get; set; }
+
+        [Required(ErrorMessage = "Your master password is required.")]
+        public string MasterPassword { get; set; } = string.Empty;
+    }
+
+    public enum MessageType { Info, Success, Error }
+}
