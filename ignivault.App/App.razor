@@ -1,0 +1,42 @@
+﻿@using ignivault.App.Layout
+@using Syncfusion.Licensing
+@inject IConfiguration Configuration
+
+<CascadingAuthenticationState>
+    <Router AppAssembly="@typeof(App).Assembly">
+        <Found Context="routeData">
+            <AuthorizeRouteView RouteData="@routeData" DefaultLayout="@typeof(MainLayout)">
+                <NotAuthorized>
+                    @if (context.User.Identity?.IsAuthenticated ?? false)
+                    {
+                        <p class="text-center mt-5">You are not authorized to access this resource.</p>
+                    }
+                    else
+                    {
+                        <RedirectToLogin />
+                    }
+                </NotAuthorized>
+                <Authorizing>
+                    <div class="text-center mt-5">
+                        <p>Checking authentication state...</p>
+                    </div>
+                </Authorizing>
+            </AuthorizeRouteView>
+            <FocusOnNavigate RouteData="@routeData" Selector="h1" />
+        </Found>
+        <NotFound>
+            <PageTitle>Not found</PageTitle>
+            <LayoutView Layout="@typeof(MainLayout)">
+                <p role="alert" class="text-center mt-5">Sorry, there's nothing at this address.</p>
+            </LayoutView>
+        </NotFound>
+    </Router>
+</CascadingAuthenticationState>
+
+@code {
+    protected override void OnInitialized()
+    {
+        var _syncfusionKey = Configuration["Syncfusion:ApiKey"];
+        SyncfusionLicenseProvider.RegisterLicense(_syncfusionKey);
+    }
+}
