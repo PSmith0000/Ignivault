@@ -1,0 +1,6 @@
+C:\Users\prest\Desktop\GitHub\Ignivault\vs\obj\Debug\netstandard1.5\vs.csproj.AssemblyReference.cache
+C:\Users\prest\Desktop\GitHub\Ignivault\vs\obj\Debug\netstandard1.5\vs.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\prest\Desktop\GitHub\Ignivault\vs\obj\Debug\netstandard1.5\vs.AssemblyInfoInputs.cache
+C:\Users\prest\Desktop\GitHub\Ignivault\vs\obj\Debug\netstandard1.5\vs.AssemblyInfo.cs
+C:\Users\prest\Desktop\GitHub\Ignivault\vs\obj\Debug\netstandard1.5\vs.csproj.CoreCompileInputs.cache
+C:\Users\prest\Desktop\GitHub\Ignivault\vs\obj\Debug\netstandard1.5\vs.sourcelink.json

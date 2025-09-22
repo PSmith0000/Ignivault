@@ -1,0 +1,55 @@
+<Project Sdk="Microsoft.NET.Sdk.BlazorWebAssembly">
+
+  <PropertyGroup>
+    <TargetFramework>net9.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Blazored.FormExtensions" Version="1.0.0" />
+    <PackageReference Include="Blazored.SessionStorage" Version="2.4.0" />
+    <PackageReference Include="Blazored.SessionStorage.TestExtensions" Version="2.4.0" />
+    <PackageReference Include="Microsoft.AspNetCore.Components.Authorization" Version="9.0.9" />
+    <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly" Version="9.0.0" />
+    <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly.DevServer" Version="9.0.0" PrivateAssets="all" />
+    <PackageReference Include="Microsoft.Extensions.Http" Version="9.0.9" />
+    <PackageReference Include="QRCoder" Version="1.6.0" />
+	<PackageReference Include="Syncfusion.Blazor.Grid" Version="31.1.20" />
+    <PackageReference Include="Syncfusion.Blazor.Charts" Version="31.1.20" />
+    <PackageReference Include="Syncfusion.Blazor.RangeNavigator" Version="31.1.20" />
+    <PackageReference Include="Syncfusion.Blazor.BarcodeGenerator" Version="31.1.20" />
+    <PackageReference Include="Syncfusion.Blazor.ProgressBar" Version="31.1.20" />
+    <PackageReference Include="Syncfusion.Blazor.RichTextEditor" Version="31.1.20" />
+    <PackageReference Include="Syncfusion.Blazor.InPlaceEditor" Version="31.1.20" />
+    <PackageReference Include="Syncfusion.Blazor.Calendars" Version="31.1.20" />
+    <PackageReference Include="Syncfusion.Blazor.Schedule" Version="31.1.20" />
+    <PackageReference Include="Syncfusion.Blazor.DropDowns" Version="31.1.20" />
+    <PackageReference Include="Syncfusion.Blazor.Popups" Version="31.1.20" />
+    <PackageReference Include="Syncfusion.Blazor.Lists" Version="31.1.20" />
+    <PackageReference Include="Syncfusion.Blazor.Layouts" Version="31.1.20" />
+    <PackageReference Include="Syncfusion.Blazor.Cards" Version="31.1.20" />
+    <PackageReference Include="Syncfusion.Blazor.Inputs" Version="31.1.20" />
+    <PackageReference Include="Syncfusion.Blazor.Buttons" Version="31.1.20" />
+    <PackageReference Include="Syncfusion.Blazor.Navigations" Version="31.1.20" />
+    <PackageReference Include="Syncfusion.Blazor.SplitButtons" Version="31.1.20" />
+    <PackageReference Include="Syncfusion.Blazor.Notifications" Version="31.1.20" />
+    <PackageReference Include="Syncfusion.Blazor.Spinner" Version="31.1.20" />
+    <PackageReference Include="Syncfusion.Blazor.DataForm" Version="31.1.20" />
+    <PackageReference Include="Syncfusion.Blazor.Themes" Version="31.1.20" />
+    <PackageReference Include="System.Net.Http" Version="4.3.4" />
+    <PackageReference Include="System.Net.Http.Json" Version="9.0.9" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Data\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\ignivault.ApiClient\ignivault.ApiClient.csproj" />
+    <ProjectReference Include="..\ignivault.Shared\ignivault.Shared.csproj" />
+  </ItemGroup>
+  
+  
+  
+</Project>

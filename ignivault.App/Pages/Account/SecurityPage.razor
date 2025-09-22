@@ -1,0 +1,203 @@
+﻿@page "/account/security"
+@using QRCoder
+@using Syncfusion.Blazor.BarcodeGenerator
+@inject IAccountApiClient AccountApiClient
+@inject IAuthApiClient AuthApiClient
+@inject NavigationManager Navigation
+@attribute [Authorize]
+
+<PageTitle>Account Security</PageTitle>
+
+@if (profile == null)
+{
+    <p><em>Loading profile...</em></p>
+    <SfSpinner Visible="true"></SfSpinner>
+}
+else
+{
+    <h1>Account Security</h1>
+    <p>Manage your account settings and secure your vault.</p>
+    <hr />
+
+    <!-- Profile Information -->
+    <SfCard class="mt-4">
+        <CardHeader Title="Profile Information"></CardHeader>
+        <CardContent>
+            <div class="form-group row"><label class="col-sm-3 col-form-label">Username</label><div class="col-sm-9"><SfTextBox Value="@profile.Username" Readonly="true"></SfTextBox></div></div>
+            <div class="form-group row mt-3"><label class="col-sm-3 col-form-label">Email</label><div class="col-sm-9"><SfTextBox Value="@profile.Email" Readonly="true"></SfTextBox></div></div>
+        </CardContent>
+    </SfCard>
+
+    <!-- Change Login Password -->
+    <SfCard class="mt-4">
+        <CardHeader Title="Change Login Password"></CardHeader>
+        <CardContent>
+            <EditForm Model="updatePasswordModel" OnValidSubmit="HandleUpdatePasswordAsync">
+                <DataAnnotationsValidator /><div class="form-group mb-3"><SfTextBox @bind-Value="updatePasswordModel.OldPassword" Placeholder="Current Password" Type="InputType.Password"></SfTextBox></div>
+                <div class="form-group mb-3"><SfTextBox @bind-Value="updatePasswordModel.NewPassword" Placeholder="New Password" Type="InputType.Password"></SfTextBox></div>
+                <div class="form-group mb-3"><SfTextBox @bind-Value="updatePasswordModel.ConfirmPassword" Placeholder="Confirm New Password" Type="InputType.Password"></SfTextBox></div>
+                <ValidationSummary />
+                @if (!string.IsNullOrEmpty(passwordMessage)) { <div class="alert @(passwordSuccess ? "alert-success" : "alert-danger")">@passwordMessage</div> }
+                <SfButton type="submit" IsPrimary="true" Disabled="isPasswordLoading">Update Password</SfButton>
+            </EditForm>
+        </CardContent>
+    </SfCard>
+
+    <!-- Two-Factor Authentication -->
+    <SfCard class="mt-4">
+        <CardHeader Title="Two-Factor Authentication (2FA)"></CardHeader>
+        <CardContent>
+            @if (is2faEnabled)
+            {
+                <div class="alert alert-success">2FA is currently enabled on your account.</div>
+                <div class="d-flex gap-2">
+                    <SfButton OnClick="HandleDisable2faAsync" CssClass="e-danger" Disabled="is2faLoading">Disable 2FA</SfButton>
+                    <SfButton OnClick="HandleRegenerateCodesAsync" Disabled="is2faLoading">Regenerate Recovery Codes</SfButton>
+                </div>
+            }
+            else if (!show2faSetup)
+            {
+                <p>Add an additional layer of security to your account by enabling 2FA.</p>
+                <SfButton IsPrimary="true" OnClick="StartEnable2faAsync" Disabled="is2faLoading">Enable 2FA</SfButton>
+            }
+            else
+            {
+                <h5>Set Up Authenticator App</h5>
+                <p>Scan the QR code below with your authenticator app (like Google Authenticator, Microsoft Authenticator, or Authy), then enter the 6-digit code to verify.</p>
+                <div class="text-center my-3"><img src="@GetQR()" style="max-width:300px;" /></div>
+                <p>Or manually enter this key: <strong>@enable2faResponse.SecretKey</strong></p>
+                <EditForm Model="verify2faModel" OnValidSubmit="HandleVerify2faAsync">
+                    <DataAnnotationsValidator />
+                    <SfTextBox @bind-Value="verify2faModel.Code" Placeholder="Enter 6-digit code"></SfTextBox>
+                    @if (!string.IsNullOrEmpty(twoFaErrorMessage)) { <div class="alert alert-danger mt-2">@twoFaErrorMessage</div> }
+                    <SfButton type="submit" IsPrimary="true" Disabled="is2faLoading" CssClass="mt-3">Verify & Enable</SfButton>
+                </EditForm>
+            }
+            @if (!string.IsNullOrEmpty(twoFaGeneralMessage)) { <div class="alert alert-info mt-3">@twoFaGeneralMessage</div> }
+        </CardContent>
+    </SfCard>
+    
+    <!-- Recovery Codes Dialog -->
+    <SfDialog @bind-Visible="showRecoveryCodesDialog" IsModal="true" Width="500px">
+        <DialogTemplates>
+            <Header>Save Your Recovery Codes!</Header>
+            <Content>
+                <div class="alert alert-danger">This is the ONLY time you will see these codes. Save them in a safe place.</div>
+                <p>If you lose access to your authenticator device, you can use these recovery codes to log in.</p>
+                <div class="p-3 bg-light border rounded">
+                    @foreach(var Code in recoveryCodes) { <div class="fs-5 font-monospace">@Code</div> }
+                </div>
+            </Content>
+            <FooterTemplate><SfButton IsPrimary="true" @onclick="@(() => showRecoveryCodesDialog = false)">I have saved my codes</SfButton></FooterTemplate>
+        </DialogTemplates>
+    </SfDialog>
+}
+
+@code {
+    private UserProfileDto? profile;
+    private UpdatePasswordRequestDto updatePasswordModel = new();
+    private bool isPasswordLoading;
+    private string? passwordMessage;
+    private bool passwordSuccess;
+
+    private bool is2faEnabled;
+    private bool is2faLoading;
+    private bool show2faSetup;
+    private string? twoFaErrorMessage;
+    private string? twoFaGeneralMessage;
+    private Enable2faResponseDto enable2faResponse = new();
+    private Verify2faRequestDto verify2faModel = new();
+
+    private bool showRecoveryCodesDialog;
+    private IEnumerable<string> recoveryCodes = Enumerable.Empty<string>();
+
+    private byte[] QRBytes { get; set; }
+
+    protected override async Task OnInitializedAsync()
+    {
+        var response = await AccountApiClient.GetProfileAsync();
+        if (response.IsSuccess)
+        {
+            profile = response.Data;
+            is2faEnabled = profile.Is2faEnabled; 
+        }
+    }
+
+    private async Task HandleUpdatePasswordAsync()
+    {
+        isPasswordLoading = true;
+        passwordMessage = null;
+        var response = await AccountApiClient.UpdatePasswordAsync(updatePasswordModel);
+        passwordSuccess = response.IsSuccess;
+        passwordMessage = response.IsSuccess ? "Your password has been updated successfully." : response.Message;
+        if(response.IsSuccess) updatePasswordModel = new();
+        isPasswordLoading = false;
+    }
+
+    private async Task StartEnable2faAsync()
+    {
+        is2faLoading = true;
+        twoFaGeneralMessage = null;
+        var response = await AuthApiClient.Enable2faAsync();
+        if (response.IsSuccess)
+        {
+            enable2faResponse = response.Data;
+            using (QRCodeGenerator qrGenerator = new QRCodeGenerator())
+            using (QRCodeData qrCodeData = qrGenerator.CreateQrCode(response.Data.QrCodeUrl, QRCodeGenerator.ECCLevel.M))
+            using (PngByteQRCode qrCode = new PngByteQRCode(qrCodeData))
+            {
+                QRBytes = qrCode.GetGraphic(20);
+            }
+
+            show2faSetup = true;
+        } else { twoFaGeneralMessage = response.Message; }
+        is2faLoading = false;
+    }
+
+    private async Task HandleVerify2faAsync()
+    {
+        is2faLoading = true;
+        twoFaErrorMessage = null;
+        var response = await AuthApiClient.Verify2faAsync(verify2faModel);
+        if (response.IsSuccess)
+        {
+            recoveryCodes = response.Data.RecoveryCodes;
+            is2faEnabled = true;
+            show2faSetup = false;
+            showRecoveryCodesDialog = true;
+            verify2faModel = new();
+        } else { twoFaErrorMessage = response.Message; }
+        is2faLoading = false;
+    }
+
+    private async Task HandleDisable2faAsync()
+    {
+        is2faLoading = true;
+        twoFaGeneralMessage = null;
+        var response = await AccountApiClient.Disable2faAsync();
+        if(response.IsSuccess)
+        {
+            is2faEnabled = false;
+            twoFaGeneralMessage = "Two-Factor Authentication has been disabled.";
+        } else { twoFaGeneralMessage = response.Message; }
+        is2faLoading = false;
+    }
+
+    private async Task HandleRegenerateCodesAsync()
+    {
+        is2faLoading = true;
+        twoFaGeneralMessage = null;
+        var response = await AccountApiClient.RegenerateRecoveryCodesAsync();
+        if(response.IsSuccess)
+        {
+            recoveryCodes = response.Data;
+            showRecoveryCodesDialog = true;
+        } else { twoFaGeneralMessage = response.Message; }
+        is2faLoading = false;
+    }
+
+    private string GetQR()
+    {
+        return $"data:image/png;base64,{Convert.ToBase64String(QRBytes)}";
+    }
+}
