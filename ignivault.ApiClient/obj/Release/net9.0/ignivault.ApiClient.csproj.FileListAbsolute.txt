@@ -1,0 +1,16 @@
+C:\Users\prest\Desktop\GitHub\Ignivault\ignivault.ApiClient\bin\Release\net9.0\ignivault.ApiClient.deps.json
+C:\Users\prest\Desktop\GitHub\Ignivault\ignivault.ApiClient\bin\Release\net9.0\ignivault.ApiClient.dll
+C:\Users\prest\Desktop\GitHub\Ignivault\ignivault.ApiClient\bin\Release\net9.0\ignivault.ApiClient.pdb
+C:\Users\prest\Desktop\GitHub\Ignivault\ignivault.ApiClient\bin\Release\net9.0\ignivault.Shared.dll
+C:\Users\prest\Desktop\GitHub\Ignivault\ignivault.ApiClient\bin\Release\net9.0\ignivault.Shared.pdb
+C:\Users\prest\Desktop\GitHub\Ignivault\ignivault.ApiClient\obj\Release\net9.0\ignivault.ApiClient.csproj.AssemblyReference.cache
+C:\Users\prest\Desktop\GitHub\Ignivault\ignivault.ApiClient\obj\Release\net9.0\ignivault.ApiClient.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\prest\Desktop\GitHub\Ignivault\ignivault.ApiClient\obj\Release\net9.0\ignivault.ApiClient.AssemblyInfoInputs.cache
+C:\Users\prest\Desktop\GitHub\Ignivault\ignivault.ApiClient\obj\Release\net9.0\ignivault.ApiClient.AssemblyInfo.cs
+C:\Users\prest\Desktop\GitHub\Ignivault\ignivault.ApiClient\obj\Release\net9.0\ignivault.ApiClient.csproj.CoreCompileInputs.cache
+C:\Users\prest\Desktop\GitHub\Ignivault\ignivault.ApiClient\obj\Release\net9.0\ignivault.ApiClient.sourcelink.json
+C:\Users\prest\Desktop\GitHub\Ignivault\ignivault.ApiClient\obj\Release\net9.0\ignivaul.24E996B8.Up2Date
+C:\Users\prest\Desktop\GitHub\Ignivault\ignivault.ApiClient\obj\Release\net9.0\ignivault.ApiClient.dll
+C:\Users\prest\Desktop\GitHub\Ignivault\ignivault.ApiClient\obj\Release\net9.0\refint\ignivault.ApiClient.dll
+C:\Users\prest\Desktop\GitHub\Ignivault\ignivault.ApiClient\obj\Release\net9.0\ignivault.ApiClient.pdb
+C:\Users\prest\Desktop\GitHub\Ignivault\ignivault.ApiClient\obj\Release\net9.0\ref\ignivault.ApiClient.dll

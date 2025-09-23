@@ -50,6 +50,7 @@ else if (reportData != null)
             <SfButton OnClick="@(() => ExportToCsv(reportData.VaultSizeReport.MonthlyData, "vault-size-history.csv"))">Export as CSV</SfButton>
             <SfChart>
                 <ChartPrimaryXAxis ValueType="Syncfusion.Blazor.Charts.ValueType.Category"></ChartPrimaryXAxis>
+                <ChartPrimaryYAxis ValueType="Syncfusion.Blazor.Charts.ValueType.Double" Title="Size (MB)"></ChartPrimaryYAxis>
                 <ChartSeriesCollection>
                     <ChartSeries DataSource="@reportData.VaultSizeReport.MonthlyData" XName="Month" YName="SizeInMB" Type="ChartSeriesType.Line"></ChartSeries>
                 </ChartSeriesCollection>

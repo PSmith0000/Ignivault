@@ -1,4 +1,6 @@
-﻿[ApiController]
+﻿using Microsoft.AspNetCore.Http.Timeouts;
+
+[ApiController]
 [Route(ApiEndpoints.Vault.Base)]
 [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
 public class VaultController : ControllerBase
@@ -74,6 +76,7 @@ public class VaultController : ControllerBase
 
     [HttpPost(ApiEndpoints.Vault.Files)]
     [RequestSizeLimit(104_857_600)]
+    [RequestTimeout(600000)]
     public async Task<IActionResult> UploadFile([FromForm] FileUploadRequestDto request)
     {
         if (request.File == null || request.File.Length == 0)
@@ -94,6 +97,7 @@ public class VaultController : ControllerBase
     }
 
     [HttpGet(ApiEndpoints.Vault.DownloadFile)]
+    [RequestTimeout(600000)]
     public async Task<IActionResult> DownloadFile(int id)
     {
         var userId = GetCurrentUserId();

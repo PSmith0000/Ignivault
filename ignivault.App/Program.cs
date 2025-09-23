@@ -12,6 +12,7 @@ using Microsoft.AspNetCore.Components.Authorization;
 using Microsoft.AspNetCore.Components.Web;
 using Microsoft.AspNetCore.Components.WebAssembly.Hosting;
 using Syncfusion.Blazor;
+using Syncfusion.Blazor.Charts.Chart.Internal;
 using Syncfusion.Licensing;
 using System.Net.Http;
 var builder = WebAssemblyHostBuilder.CreateDefault(args);
@@ -46,30 +47,36 @@ builder.Services.AddScoped<AuthHeaderHandler>();
 builder.Services.AddHttpClient("ApiClient", client =>
 {
     client.BaseAddress = new Uri(_webApiBase ?? "NULL");
+    client.Timeout = TimeSpan.FromMinutes(5);
 }).AddHttpMessageHandler<AuthHeaderHandler>();
 builder.Services.AddHttpClient<IAuthApiClient, AuthApiClient>(client =>
 {
     client.BaseAddress = new Uri(_webApiBase!);
+    client.Timeout = TimeSpan.FromMinutes(5);
 }).AddHttpMessageHandler<AuthHeaderHandler>();
 
 builder.Services.AddHttpClient<IAccountApiClient, AccountApiClient>(client =>
 {
     client.BaseAddress = new Uri(_webApiBase!);
+    client.Timeout = TimeSpan.FromMinutes(5);
 }).AddHttpMessageHandler<AuthHeaderHandler>();
 
 builder.Services.AddHttpClient<IVaultApiClient, VaultApiClient>(client =>
 {
     client.BaseAddress = new Uri(_webApiBase!);
+    client.Timeout = TimeSpan.FromMinutes(10);
 }).AddHttpMessageHandler<AuthHeaderHandler>();
 
 builder.Services.AddHttpClient<IAdminApiClient, AdminApiClient>(client =>
 {
     client.BaseAddress = new Uri(_webApiBase!);
+    client.Timeout = TimeSpan.FromMinutes(5);
 }).AddHttpMessageHandler<AuthHeaderHandler>();
 
 builder.Services.AddHttpClient<IReportsApiClient, ReportsApiClient>(client =>
 {
     client.BaseAddress = new Uri(_webApiBase!);
+    client.Timeout = TimeSpan.FromMinutes(5);
 }).AddHttpMessageHandler<AuthHeaderHandler>();
 
 //Register all the API clients
