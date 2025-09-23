@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+This file is used by the publish/package process of your Web project. You can customize the behavior of this process
+by editing this MSBuild file. In order to learn more about this please visit https://go.microsoft.com/fwlink/?LinkID=208121. 
+-->
+<Project>
+  <PropertyGroup>
+    <TimeStampOfAssociatedLegacyPublishXmlFile />
+    <History>True|2025-09-23T01:16:20.7157444Z||;True|2025-09-22T20:11:11.4740867-04:00||;True|2025-09-22T19:40:34.2557024-04:00||;True|2025-09-22T19:09:07.3476207-04:00||;</History>
+    <LastFailureDetails />
+  </PropertyGroup>
+  <ItemGroup>
+    <DestinationConnectionStrings Include="DefaultConnection">
+      <Value>Server=tcp:ignivault-sql-server.database.windows.net,1433%3bInitial Catalog=ignivault-db%3bPersist Security Info=False%3bUser ID=sqladmin%3bPassword=!Ignivault325#%3bMultipleActiveResultSets=False%3bEncrypt=True%3bTrustServerCertificate=False%3bConnection Timeout=30%3b</Value>
+    </DestinationConnectionStrings>
+  </ItemGroup>
+</Project>

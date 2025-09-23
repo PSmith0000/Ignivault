@@ -205,8 +205,10 @@ else
                 <DataAnnotationsValidator />
 
                 <div class="form-group mb-4">
-                    <label class="form-label">Select File to Encrypt and Upload:</label>
-                    <InputFile OnChange="HandleFileSelected" />
+                    <label class="form-label">Select File to Encrypt and Upload (10MB Limit):</label>
+                    <SfUploader MaxFileSize="10500000" ShowProgressBar="true" AllowMultiple="false">
+                        <UploaderEvents  ValueChange="HandleFileSelected"></UploaderEvents>
+                    </SfUploader>
                     @if (fileCreateModel.File != null)
                     {
                         <p class="mt-2 text-muted">Selected: <strong>@fileCreateModel.File.Name</strong> (@(fileCreateModel.File.Size / 1024) KB)</p>
@@ -352,15 +354,16 @@ else
         isFileUploadDialogOpen = true;
     }
 
-    private void HandleFileSelected(InputFileChangeEventArgs e)
+    //InputFileChangeEventArgs
+    private void HandleFileSelected(UploadChangeEventArgs e)
     {
-        const long maxFileSize = 1024 * 1024 * 100;
-        if (e.File.Size > maxFileSize)
+        const long maxFileSize = 1024 * 1024 * 11;
+        if (e.Files.FirstOrDefault().FileInfo.Size > maxFileSize)
         {
-            errorMessage = "File size exceeds the 100MB limit.";
+            errorMessage = "File size exceeds the 10MB limit.";
             return;
         }
-        fileCreateModel.File = e.File;
+        fileCreateModel.File = e.Files.FirstOrDefault().File;
         errorMessage = null;
     }
 

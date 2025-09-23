@@ -3,16 +3,60 @@
   "WorkspaceRootPath": "C:\\Users\\prest\\Desktop\\GitHub\\Ignivault\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{32FAF320-1660-BC81-BA19-1642742B2D58}|ignivault.WebAPI\\ignivault.WebAPI.csproj|c:\\users\\prest\\desktop\\github\\ignivault\\ignivault.webapi\\controllers\\authcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{32FAF320-1660-BC81-BA19-1642742B2D58}|ignivault.WebAPI\\ignivault.WebAPI.csproj|solutionrelative:ignivault.webapi\\controllers\\authcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{9D7F2750-CC50-ECEE-AB52-692D190FFA70}|ignivault.App\\ignivault.App.csproj|c:\\users\\prest\\desktop\\github\\ignivault\\ignivault.app\\pages\\vault\\dashboardpage.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{9D7F2750-CC50-ECEE-AB52-692D190FFA70}|ignivault.App\\ignivault.App.csproj|solutionrelative:ignivault.app\\pages\\vault\\dashboardpage.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{32FAF320-1660-BC81-BA19-1642742B2D58}|ignivault.WebAPI\\ignivault.WebAPI.csproj|c:\\users\\prest\\desktop\\github\\ignivault\\ignivault.webapi\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
       "RelativeMoniker": "D:0:0:{32FAF320-1660-BC81-BA19-1642742B2D58}|ignivault.WebAPI\\ignivault.WebAPI.csproj|solutionrelative:ignivault.webapi\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{32FAF320-1660-BC81-BA19-1642742B2D58}|ignivault.WebAPI\\ignivault.WebAPI.csproj|c:\\users\\prest\\desktop\\github\\ignivault\\ignivault.webapi\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{32FAF320-1660-BC81-BA19-1642742B2D58}|ignivault.WebAPI\\ignivault.WebAPI.csproj|solutionrelative:ignivault.webapi\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{32FAF320-1660-BC81-BA19-1642742B2D58}|ignivault.WebAPI\\ignivault.WebAPI.csproj|c:\\users\\prest\\desktop\\github\\ignivault\\ignivault.webapi\\extensions\\servicecollectionextensions.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{32FAF320-1660-BC81-BA19-1642742B2D58}|ignivault.WebAPI\\ignivault.WebAPI.csproj|solutionrelative:ignivault.webapi\\extensions\\servicecollectionextensions.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{32FAF320-1660-BC81-BA19-1642742B2D58}|ignivault.WebAPI\\ignivault.WebAPI.csproj|c:\\users\\prest\\desktop\\github\\ignivault\\ignivault.webapi\\controllers\\authcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{32FAF320-1660-BC81-BA19-1642742B2D58}|ignivault.WebAPI\\ignivault.WebAPI.csproj|solutionrelative:ignivault.webapi\\controllers\\authcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{32FAF320-1660-BC81-BA19-1642742B2D58}|ignivault.WebAPI\\ignivault.WebAPI.csproj|c:\\users\\prest\\desktop\\github\\ignivault\\ignivault.webapi\\controllers\\vaultcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{32FAF320-1660-BC81-BA19-1642742B2D58}|ignivault.WebAPI\\ignivault.WebAPI.csproj|solutionrelative:ignivault.webapi\\controllers\\vaultcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{9D7F2750-CC50-ECEE-AB52-692D190FFA70}|ignivault.App\\ignivault.App.csproj|c:\\users\\prest\\desktop\\github\\ignivault\\ignivault.app\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{9D7F2750-CC50-ECEE-AB52-692D190FFA70}|ignivault.App\\ignivault.App.csproj|solutionrelative:ignivault.app\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{9D7F2750-CC50-ECEE-AB52-692D190FFA70}|ignivault.App\\ignivault.App.csproj|c:\\users\\prest\\desktop\\github\\ignivault\\ignivault.app\\pages\\auth\\loginpage.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{9D7F2750-CC50-ECEE-AB52-692D190FFA70}|ignivault.App\\ignivault.App.csproj|solutionrelative:ignivault.app\\pages\\auth\\loginpage.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{32FAF320-1660-BC81-BA19-1642742B2D58}|ignivault.WebAPI\\ignivault.WebAPI.csproj|c:\\users\\prest\\desktop\\github\\ignivault\\ignivault.webapi\\controllers\\accountcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{32FAF320-1660-BC81-BA19-1642742B2D58}|ignivault.WebAPI\\ignivault.WebAPI.csproj|solutionrelative:ignivault.webapi\\controllers\\accountcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{9D7F2750-CC50-ECEE-AB52-692D190FFA70}|ignivault.App\\ignivault.App.csproj|c:\\users\\prest\\desktop\\github\\ignivault\\ignivault.app\\pages\\tools\\reportspage.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{9D7F2750-CC50-ECEE-AB52-692D190FFA70}|ignivault.App\\ignivault.App.csproj|solutionrelative:ignivault.app\\pages\\tools\\reportspage.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{9D7F2750-CC50-ECEE-AB52-692D190FFA70}|ignivault.App\\ignivault.App.csproj|c:\\users\\prest\\desktop\\github\\ignivault\\ignivault.app\\pages\\admin\\manageuserspage.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{9D7F2750-CC50-ECEE-AB52-692D190FFA70}|ignivault.App\\ignivault.App.csproj|solutionrelative:ignivault.app\\pages\\admin\\manageuserspage.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{EE962B6C-0937-33C4-1393-BCF5FFF93DC4}|ignivault.ApiClient\\ignivault.ApiClient.csproj|c:\\users\\prest\\desktop\\github\\ignivault\\ignivault.apiclient\\vault\\vaultapiclient.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{EE962B6C-0937-33C4-1393-BCF5FFF93DC4}|ignivault.ApiClient\\ignivault.ApiClient.csproj|solutionrelative:ignivault.apiclient\\vault\\vaultapiclient.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{EE962B6C-0937-33C4-1393-BCF5FFF93DC4}|ignivault.ApiClient\\ignivault.ApiClient.csproj|c:\\users\\prest\\desktop\\github\\ignivault\\ignivault.apiclient\\apiresponse.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{EE962B6C-0937-33C4-1393-BCF5FFF93DC4}|ignivault.ApiClient\\ignivault.ApiClient.csproj|solutionrelative:ignivault.apiclient\\apiresponse.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{EE962B6C-0937-33C4-1393-BCF5FFF93DC4}|ignivault.ApiClient\\ignivault.ApiClient.csproj|c:\\users\\prest\\desktop\\github\\ignivault\\ignivault.apiclient\\authheaderhandler.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{EE962B6C-0937-33C4-1393-BCF5FFF93DC4}|ignivault.ApiClient\\ignivault.ApiClient.csproj|solutionrelative:ignivault.apiclient\\authheaderhandler.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{32FAF320-1660-BC81-BA19-1642742B2D58}|ignivault.WebAPI\\ignivault.WebAPI.csproj|c:\\users\\prest\\desktop\\github\\ignivault\\ignivault.webapi\\controllers\\admincontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -21,10 +65,6 @@
     {
       "AbsoluteMoniker": "D:0:0:{9D7F2750-CC50-ECEE-AB52-692D190FFA70}|ignivault.App\\ignivault.App.csproj|c:\\users\\prest\\desktop\\github\\ignivault\\ignivault.app\\layout\\mainlayout.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}",
       "RelativeMoniker": "D:0:0:{9D7F2750-CC50-ECEE-AB52-692D190FFA70}|ignivault.App\\ignivault.App.csproj|solutionrelative:ignivault.app\\layout\\mainlayout.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{9D7F2750-CC50-ECEE-AB52-692D190FFA70}|ignivault.App\\ignivault.App.csproj|c:\\users\\prest\\desktop\\github\\ignivault\\ignivault.app\\pages\\admin\\manageuserspage.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{9D7F2750-CC50-ECEE-AB52-692D190FFA70}|ignivault.App\\ignivault.App.csproj|solutionrelative:ignivault.app\\pages\\admin\\manageuserspage.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     }
   ],
   "DocumentGroupContainers": [
@@ -34,7 +74,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 5,
+          "SelectedChildIndex": 16,
           "Children": [
             {
               "$type": "Bookmark",
@@ -42,49 +82,167 @@
             },
             {
               "$type": "Bookmark",
-              "Name": "ST:0:0:{eefa5220-e298-11d0-8f78-00a0c9110057}"
-            },
-            {
-              "$type": "Bookmark",
               "Name": "ST:0:0:{3ae79031-e1bc-11d0-8f78-00a0c9110057}"
             },
             {
-              "$type": "Bookmark",
-              "Name": "ST:0:0:{d78612c7-9962-4b83-95d9-268046dad23a}"
-            },
-            {
-              "$type": "Bookmark",
-              "Name": "ST:0:0:{34e76e81-ee4a-11d0-ae2e-00a0c90fffc3}"
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "Program.cs",
+              "DocumentMoniker": "C:\\Users\\prest\\Desktop\\GitHub\\Ignivault\\ignivault.App\\Program.cs",
+              "RelativeDocumentMoniker": "ignivault.App\\Program.cs",
+              "ToolTip": "C:\\Users\\prest\\Desktop\\GitHub\\Ignivault\\ignivault.App\\Program.cs",
+              "RelativeToolTip": "ignivault.App\\Program.cs",
+              "ViewState": "AgIAACgAAAAAAAAAAAAAAE4AAAArAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-09-23T01:05:39.639Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "appsettings.json",
-              "DocumentMoniker": "C:\\Users\\prest\\Desktop\\GitHub\\Ignivault\\ignivault.WebAPI\\appsettings.json",
-              "RelativeDocumentMoniker": "ignivault.WebAPI\\appsettings.json",
-              "ToolTip": "C:\\Users\\prest\\Desktop\\GitHub\\Ignivault\\ignivault.WebAPI\\appsettings.json",
-              "RelativeToolTip": "ignivault.WebAPI\\appsettings.json",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAC4AAAAfAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
-              "WhenOpened": "2025-09-22T22:18:39.12Z",
+              "DocumentIndex": 8,
+              "Title": "AccountController.cs",
+              "DocumentMoniker": "C:\\Users\\prest\\Desktop\\GitHub\\Ignivault\\ignivault.WebAPI\\Controllers\\AccountController.cs",
+              "RelativeDocumentMoniker": "ignivault.WebAPI\\Controllers\\AccountController.cs",
+              "ToolTip": "C:\\Users\\prest\\Desktop\\GitHub\\Ignivault\\ignivault.WebAPI\\Controllers\\AccountController.cs",
+              "RelativeToolTip": "ignivault.WebAPI\\Controllers\\AccountController.cs",
+              "ViewState": "AgIAAE8AAAAAAAAAAAAcwAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-09-23T00:54:55.692Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "Program.cs",
+              "DocumentMoniker": "C:\\Users\\prest\\Desktop\\GitHub\\Ignivault\\ignivault.WebAPI\\Program.cs",
+              "RelativeDocumentMoniker": "ignivault.WebAPI\\Program.cs",
+              "ToolTip": "C:\\Users\\prest\\Desktop\\GitHub\\Ignivault\\ignivault.WebAPI\\Program.cs",
+              "RelativeToolTip": "ignivault.WebAPI\\Program.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAUAAAAlAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-09-23T00:43:26.056Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 1,
+              "Title": "DashboardPage.razor",
+              "DocumentMoniker": "C:\\Users\\prest\\Desktop\\GitHub\\Ignivault\\ignivault.App\\Pages\\Vault\\DashboardPage.razor",
+              "RelativeDocumentMoniker": "ignivault.App\\Pages\\Vault\\DashboardPage.razor",
+              "ToolTip": "C:\\Users\\prest\\Desktop\\GitHub\\Ignivault\\ignivault.App\\Pages\\Vault\\DashboardPage.razor",
+              "RelativeToolTip": "ignivault.App\\Pages\\Vault\\DashboardPage.razor",
+              "ViewState": "AgIAAFkBAAAAAAAAAAAAAHABAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-09-23T00:29:12.901Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
+              "Title": "ReportsPage.razor",
+              "DocumentMoniker": "C:\\Users\\prest\\Desktop\\GitHub\\Ignivault\\ignivault.App\\Pages\\Tools\\ReportsPage.razor",
+              "RelativeDocumentMoniker": "ignivault.App\\Pages\\Tools\\ReportsPage.razor",
+              "ToolTip": "C:\\Users\\prest\\Desktop\\GitHub\\Ignivault\\ignivault.App\\Pages\\Tools\\ReportsPage.razor",
+              "RelativeToolTip": "ignivault.App\\Pages\\Tools\\ReportsPage.razor",
+              "ViewState": "AgIAAB4AAAAAAAAAAAAAADQAAAB/AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-09-23T00:17:46.979Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "VaultController.cs",
+              "DocumentMoniker": "C:\\Users\\prest\\Desktop\\GitHub\\Ignivault\\ignivault.WebAPI\\Controllers\\VaultController.cs",
+              "RelativeDocumentMoniker": "ignivault.WebAPI\\Controllers\\VaultController.cs",
+              "ToolTip": "C:\\Users\\prest\\Desktop\\GitHub\\Ignivault\\ignivault.WebAPI\\Controllers\\VaultController.cs",
+              "RelativeToolTip": "ignivault.WebAPI\\Controllers\\VaultController.cs",
+              "ViewState": "AgIAAD8AAAAAAAAAAAAcwFoAAAAoAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-09-23T00:09:25.055Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 11,
+              "Title": "VaultApiClient.cs",
+              "DocumentMoniker": "C:\\Users\\prest\\Desktop\\GitHub\\Ignivault\\ignivault.ApiClient\\Vault\\VaultApiClient.cs",
+              "RelativeDocumentMoniker": "ignivault.ApiClient\\Vault\\VaultApiClient.cs",
+              "ToolTip": "C:\\Users\\prest\\Desktop\\GitHub\\Ignivault\\ignivault.ApiClient\\Vault\\VaultApiClient.cs",
+              "RelativeToolTip": "ignivault.ApiClient\\Vault\\VaultApiClient.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-09-22T23:53:30.094Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 12,
+              "Title": "ApiResponse.cs",
+              "DocumentMoniker": "C:\\Users\\prest\\Desktop\\GitHub\\Ignivault\\ignivault.ApiClient\\ApiResponse.cs",
+              "RelativeDocumentMoniker": "ignivault.ApiClient\\ApiResponse.cs",
+              "ToolTip": "C:\\Users\\prest\\Desktop\\GitHub\\Ignivault\\ignivault.ApiClient\\ApiResponse.cs",
+              "RelativeToolTip": "ignivault.ApiClient\\ApiResponse.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-09-22T23:53:21.896Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 13,
+              "Title": "AuthHeaderHandler.cs",
+              "DocumentMoniker": "C:\\Users\\prest\\Desktop\\GitHub\\Ignivault\\ignivault.ApiClient\\AuthHeaderHandler.cs",
+              "RelativeDocumentMoniker": "ignivault.ApiClient\\AuthHeaderHandler.cs",
+              "ToolTip": "C:\\Users\\prest\\Desktop\\GitHub\\Ignivault\\ignivault.ApiClient\\AuthHeaderHandler.cs",
+              "RelativeToolTip": "ignivault.ApiClient\\AuthHeaderHandler.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-09-22T23:53:18.648Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "appsettings.json",
+              "DocumentMoniker": "C:\\Users\\prest\\Desktop\\GitHub\\Ignivault\\ignivault.WebAPI\\appsettings.json",
+              "RelativeDocumentMoniker": "ignivault.WebAPI\\appsettings.json",
+              "ToolTip": "C:\\Users\\prest\\Desktop\\GitHub\\Ignivault\\ignivault.WebAPI\\appsettings.json",
+              "RelativeToolTip": "ignivault.WebAPI\\appsettings.json",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAACgAAAATAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
+              "WhenOpened": "2025-09-22T23:43:48.266Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "LoginPage.razor",
+              "DocumentMoniker": "C:\\Users\\prest\\Desktop\\GitHub\\Ignivault\\ignivault.App\\Pages\\Auth\\LoginPage.razor",
+              "RelativeDocumentMoniker": "ignivault.App\\Pages\\Auth\\LoginPage.razor",
+              "ToolTip": "C:\\Users\\prest\\Desktop\\GitHub\\Ignivault\\ignivault.App\\Pages\\Auth\\LoginPage.razor",
+              "RelativeToolTip": "ignivault.App\\Pages\\Auth\\LoginPage.razor",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAGIAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-09-22T23:37:30.801Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
               "Title": "ServiceCollectionExtensions.cs",
               "DocumentMoniker": "C:\\Users\\prest\\Desktop\\GitHub\\Ignivault\\ignivault.WebAPI\\Extensions\\ServiceCollectionExtensions.cs",
               "RelativeDocumentMoniker": "ignivault.WebAPI\\Extensions\\ServiceCollectionExtensions.cs",
               "ToolTip": "C:\\Users\\prest\\Desktop\\GitHub\\Ignivault\\ignivault.WebAPI\\Extensions\\ServiceCollectionExtensions.cs",
               "RelativeToolTip": "ignivault.WebAPI\\Extensions\\ServiceCollectionExtensions.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABsAAAA5AAAAAAAAAA==",
+              "ViewState": "AgIAAA8AAAAAAAAAAAAowBsAAAA5AAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-09-22T22:16:15.243Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 15,
               "Title": "MainLayout.razor",
               "DocumentMoniker": "C:\\Users\\prest\\Desktop\\GitHub\\Ignivault\\ignivault.App\\Layout\\MainLayout.razor",
               "RelativeDocumentMoniker": "ignivault.App\\Layout\\MainLayout.razor",
@@ -92,38 +250,37 @@
               "RelativeToolTip": "ignivault.App\\Layout\\MainLayout.razor",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAEAAAAkAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-09-22T22:04:32.972Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-09-22T22:04:32.972Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
+              "DocumentIndex": 10,
               "Title": "ManageUsersPage.razor",
               "DocumentMoniker": "C:\\Users\\prest\\Desktop\\GitHub\\Ignivault\\ignivault.App\\Pages\\Admin\\ManageUsersPage.razor",
               "RelativeDocumentMoniker": "ignivault.App\\Pages\\Admin\\ManageUsersPage.razor",
               "ToolTip": "C:\\Users\\prest\\Desktop\\GitHub\\Ignivault\\ignivault.App\\Pages\\Admin\\ManageUsersPage.razor",
               "RelativeToolTip": "ignivault.App\\Pages\\Admin\\ManageUsersPage.razor",
-              "ViewState": "AgIAAB0AAAAAAAAAAAAcwBYAAAA4AAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABYAAAA4AAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
               "WhenOpened": "2025-09-22T22:03:09.931Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 0,
               "Title": "AuthController.cs",
               "DocumentMoniker": "C:\\Users\\prest\\Desktop\\GitHub\\Ignivault\\ignivault.WebAPI\\Controllers\\AuthController.cs",
               "RelativeDocumentMoniker": "ignivault.WebAPI\\Controllers\\AuthController.cs",
               "ToolTip": "C:\\Users\\prest\\Desktop\\GitHub\\Ignivault\\ignivault.WebAPI\\Controllers\\AuthController.cs",
               "RelativeToolTip": "ignivault.WebAPI\\Controllers\\AuthController.cs",
-              "ViewState": "AgIAAEQAAAAAAAAAAAArwGoAAABBAAAAAAAAAA==",
+              "ViewState": "AgIAALwAAAAAAAAAAAAAwGoAAABBAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-09-22T21:56:13.376Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 14,
               "Title": "AdminController.cs",
               "DocumentMoniker": "C:\\Users\\prest\\Desktop\\GitHub\\Ignivault\\ignivault.WebAPI\\Controllers\\AdminController.cs",
               "RelativeDocumentMoniker": "ignivault.WebAPI\\Controllers\\AdminController.cs",
@@ -133,6 +290,18 @@
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-09-22T21:56:13.594Z",
               "EditorCaption": ""
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{eefa5220-e298-11d0-8f78-00a0c9110057}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{d78612c7-9962-4b83-95d9-268046dad23a}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{34e76e81-ee4a-11d0-ae2e-00a0c90fffc3}"
             }
           ]
         }
