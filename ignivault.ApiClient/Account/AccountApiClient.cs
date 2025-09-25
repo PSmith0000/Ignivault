@@ -3,11 +3,43 @@
 
     public interface IAccountApiClient
     {
+        /// <summary>
+        /// Gets the non-sensitive profile information for the currently authenticated user.
+        /// </summary>
+        /// <returns></returns>
         Task<ApiResponse<UserProfileDto>> GetProfileAsync();
+
+        /// <summary>
+        /// Updates the user's login password after verifying their current password.
+        /// </summary>
+        /// <param name="request"></param>
+        /// <returns></returns>
         Task<ApiResponse> UpdatePasswordAsync(UpdatePasswordRequestDto request);
+
+        /// <summary>
+        /// Updates the user's master password after verifying their current password and receiving re-encrypted vault items.
+        /// </summary>
+        /// <param name="request"></param>
+        /// <returns></returns>
         Task<ApiResponse> UpdateMasterPasswordAsync(UpdateMasterPasswordRequestDto request);
+
+        /// <summary>
+        /// Gets the most recent user activities, limited by the specified number.
+        /// </summary>
+        /// <param name="limit"></param>
+        /// <returns></returns>
         Task<ApiResponse<IEnumerable<UserActivityDto>>> GetRecentActivityAsync(int limit = 10);
+
+        /// <summary>
+        /// Disables Two-Factor Authentication (2FA) for the currently authenticated user.
+        /// </summary>
+        /// <returns></returns>
         Task<ApiResponse> Disable2faAsync();
+
+        /// <summary>
+        /// Regenerates a new set of 2FA recovery codes for the currently authenticated user, invalidating any old ones.
+        /// </summary>
+        /// <returns></returns>
         Task<ApiResponse<IEnumerable<string>>> RegenerateRecoveryCodesAsync();
     }
     public class AccountApiClient : IAccountApiClient

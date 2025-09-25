@@ -12,6 +12,11 @@ public class AccountController : ControllerBase
         _activityRepository = activityRepository;
     }
 
+
+    /// <summary>
+    /// Gets the profile information of the currently authenticated user.
+    /// </summary>
+    /// <returns></returns>
     [HttpGet(ApiEndpoints.Account.Profile)]
     public async Task<IActionResult> GetProfile()
     {
@@ -24,6 +29,11 @@ public class AccountController : ControllerBase
         return Ok(profile);
     }
 
+    /// <summary>
+    /// Updates the user's login password after verifying their current password.
+    /// </summary>
+    /// <param name="passwordDto"></param>
+    /// <returns></returns>
     [HttpPut(ApiEndpoints.Account.Password)]
     public async Task<IActionResult> UpdatePassword([FromBody] UpdatePasswordRequestDto passwordDto)
     {
@@ -42,6 +52,12 @@ public class AccountController : ControllerBase
         return NoContent(); // Success
     }
 
+
+    /// <summary>
+    /// Updates the user's master password after verifying their current password and receiving re-encrypted vault items.
+    /// </summary>
+    /// <param name="request"></param>
+    /// <returns></returns>
     [HttpPut(ApiEndpoints.Account.MasterPassword)]
     public async Task<IActionResult> UpdateMasterPassword([FromBody] UpdateMasterPasswordRequestDto request)
     {
@@ -61,6 +77,11 @@ public class AccountController : ControllerBase
         return NoContent(); 
     }
 
+    /// <summary>
+    /// Gets recent user activities for the current user.
+    /// </summary>
+    /// <param name="limit"></param>
+    /// <returns></returns>
     [HttpGet(ApiEndpoints.Account.Activity)]
     public async Task<IActionResult> GetRecentActivity([FromQuery] int limit = 10)
     {
@@ -79,11 +100,15 @@ public class AccountController : ControllerBase
         return Ok(activityDtos);
     }
 
+    /// <summary>
+    /// Disables two-factor authentication for the current user.
+    /// </summary>
+    /// <returns></returns>
     [HttpPost(ApiEndpoints.Account.Disable2fa)]
-    public async Task<IActionResult> Disable2fa()
+    public async Task<IActionResult> Disable2Fa()
     {
         var userId = GetCurrentUserId();
-        var result = await _accountService.Disable2faAsync(userId);
+        var result = await _accountService.Disable2FaAsync(userId);
         if (!result.Succeeded)
         {
             return BadRequest(new { Message = "Failed to disable 2FA.", Errors = result.Errors });
@@ -91,6 +116,11 @@ public class AccountController : ControllerBase
         return Ok(new { Message = "2FA has been disabled successfully." });
     }
 
+
+    /// <summary>
+    /// Regenerates new recovery codes for the current user.
+    /// </summary>
+    /// <returns></returns>
     [HttpPost(ApiEndpoints.Account.RegenerateRecoveryCodes)]
     public async Task<IActionResult> RegenerateRecoveryCodes()
     {
@@ -103,7 +133,11 @@ public class AccountController : ControllerBase
         return Ok(codes);
     }
 
-
+    /// <summary>
+    /// Gets the current user's ID from the JWT token.
+    /// </summary>
+    /// <returns></returns>
+    /// <exception cref="InvalidOperationException"></exception>
     private string GetCurrentUserId()
     {
         var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);

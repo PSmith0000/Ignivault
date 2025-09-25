@@ -5,6 +5,9 @@ using System.ComponentModel.DataAnnotations;
 
 namespace ignivault.Shared.DTOs.Vault
 {
+    /// <summary>
+    /// ReEncryptedItemDto is used when re-encrypting existing vault items with new encryption keys.
+    /// </summary>
     public class ReEncryptedItemDto
     {
         public int ItemId { get; set; }
@@ -14,6 +17,9 @@ namespace ignivault.Shared.DTOs.Vault
         public byte[] Iv { get; set; }
     }
 
+    /// <summary>
+    /// VaultItemSummaryDto provides a summary view of a vault item, excluding sensitive encrypted data.
+    /// </summary>
     public class VaultItemSummaryDto
     {
         public int Id { get; set; }
@@ -22,6 +28,9 @@ namespace ignivault.Shared.DTOs.Vault
         public DateTime UpdatedAt { get; set; }
     }
 
+    /// <summary>
+    /// VaultItemDetailDto provides detailed information about a vault item, including its encrypted data and metadata.
+    /// </summary>
     public class VaultItemDetailDto
     {
         public int Id { get; set; }
@@ -34,6 +43,9 @@ namespace ignivault.Shared.DTOs.Vault
         public DateTime UpdatedAt { get; set; }
     }
 
+    /// <summary>
+    /// CreateVaultItemDto is used to create a new vault item with a pre-encrypted payload.
+    /// </summary>
     public class CreateVaultItemDto
     {
         [Required, StringLength(100)]
@@ -46,6 +58,9 @@ namespace ignivault.Shared.DTOs.Vault
         public byte[] Iv { get; set; }
     }
 
+    /// <summary>
+    /// UpdateVaultItemDto is used to update an existing vault item's name and optionally its encrypted data.
+    /// </summary>
     public class UpdateVaultItemDto
     {
         [Required, StringLength(100)]
@@ -54,6 +69,9 @@ namespace ignivault.Shared.DTOs.Vault
         public byte[]? Iv { get; set; }
     }
 
+    /// <summary>
+    /// FileDownloadDto encapsulates the data needed for a user to download an encrypted file from the vault.
+    /// </summary>
     public class FileDownloadDto
     {
         public string FileName { get; set; }
@@ -61,6 +79,9 @@ namespace ignivault.Shared.DTOs.Vault
         public byte[] EncryptedData { get; set; }
     }
 
+    /// <summary>
+    /// VaultItemType defines the types of items that can be stored in the vault.
+    /// </summary>
     public enum VaultItemType
     {
         [Display(Name = "File / Document")]
@@ -73,6 +94,9 @@ namespace ignivault.Shared.DTOs.Vault
         Credential
     }
 
+    /// <summary>
+    /// FileUploadRequestDto is used to encapsulate the file upload along with its associated IV for encryption purposes.
+    /// </summary>
     public class FileUploadRequestDto
     {
         [Required]

@@ -2,6 +2,13 @@
 {
     public static class ServiceCollectionExtensions
     {
+
+        /// <summary>
+        /// Adds and configures the database context using SQL Server.
+        /// </summary>
+        /// <param name="services"></param>
+        /// <param name="configuration"></param>
+        /// <returns></returns>
         public static IServiceCollection AddDatabaseServices(this IServiceCollection services, IConfiguration configuration)
         {
             services.AddDbContext<AppDbContext>(options =>
@@ -10,6 +17,12 @@
             return services;
         }
 
+        /// <summary>
+        /// Adds and configures Identity and JWT authentication services.
+        /// </summary>
+        /// <param name="services"></param>
+        /// <param name="configuration"></param>
+        /// <returns></returns>
         public static IServiceCollection AddIdentityAndAuthentication(this IServiceCollection services, IConfiguration configuration)
         {
             services.AddIdentity<LoginUser, IdentityRole>(options =>
@@ -54,6 +67,12 @@
             return services;
         }
 
+        /// <summary>
+        /// Adds CORS policies to allow requests from specified origins.
+        /// </summary>
+        /// <param name="services"></param>
+        /// <param name="configuration"></param>
+        /// <returns></returns>
         public static IServiceCollection AddCorsPolicies(this IServiceCollection services, IConfiguration configuration)
         {
             var allowedOrigins = configuration.GetSection("Cors:AllowedOrigins").Get<string[]>();

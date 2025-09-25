@@ -43,16 +43,23 @@ else if (reportData != null)
                  </SfGrid>
         </CardContent>
     </SfCard>
-    
+
     <SfCard class="mt-4">
-        <CardHeader Title="Vault Size Over Last 12 Months" SubTitle="@($"Current Size: {reportData.VaultSizeReport.CurrentSizeInMB:F2} MB | Monthly Avg: {reportData.VaultSizeReport.MonthlyAverageInMB:F2} MB")"></CardHeader>
+        <CardHeader Title="Storage Size Over Last 12 Months" SubTitle="@($"Current Size: {reportData.VaultSizeReport.CurrentSizeInMB:F2} MB | Monthly Avg: {reportData.VaultSizeReport.MonthlyAverageInMB:F2} MB")"></CardHeader>
         <CardContent>
-            <SfButton OnClick="@(() => ExportToCsv(reportData.VaultSizeReport.MonthlyData, "vault-size-history.csv"))">Export as CSV</SfButton>
+            <SfButton OnClick="@(() => ExportToCsv(reportData.VaultSizeReport.MonthlyData, "storage-size-history.csv"))">Export as CSV</SfButton>
             <SfChart>
-                <ChartPrimaryXAxis ValueType="Syncfusion.Blazor.Charts.ValueType.Category"></ChartPrimaryXAxis>
-                <ChartPrimaryYAxis ValueType="Syncfusion.Blazor.Charts.ValueType.Double" Title="Size (MB)"></ChartPrimaryYAxis>
+                <ChartPrimaryXAxis ValueType="Syncfusion.Blazor.Charts.ValueType.Category" />
+                <ChartPrimaryYAxis ValueType="Syncfusion.Blazor.Charts.ValueType.Double" Title="Size (MB)" />
+                <ChartTooltipSettings Enable="true" />
                 <ChartSeriesCollection>
-                    <ChartSeries DataSource="@reportData.VaultSizeReport.MonthlyData" XName="Month" YName="SizeInMB" Type="ChartSeriesType.Line"></ChartSeries>
+                    <ChartSeries DataSource="@reportData.VaultSizeReport.MonthlyData"
+                                 XName="Month"
+                                 YName="SizeInMB"
+                                 Name="Storage Size"
+                                 Type="ChartSeriesType.Column">
+                        <ChartMarker Visible="true" />
+                    </ChartSeries>
                 </ChartSeriesCollection>
             </SfChart>
         </CardContent>

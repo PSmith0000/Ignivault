@@ -8,6 +8,9 @@ namespace ignivault.Shared
     {
         private const string ApiBase = "api";
 
+        /// <summary>
+        /// Authentication and user management endpoints.
+        /// </summary>
         public static class Auth
         {
             public const string Base = $"{ApiBase}/auth";
@@ -28,6 +31,9 @@ namespace ignivault.Shared
             public const string ResetPasswordEndpoint = $"{Base}/{ResetPassword}";
         }
 
+        /// <summary>
+        /// Account management endpoints for profile, password, 2FA, and activity.
+        /// </summary>
         public static class Account
         {
             public const string Base = $"{ApiBase}/account";
@@ -46,6 +52,9 @@ namespace ignivault.Shared
             public const string RegenerateRecoveryCodesEndpoint = $"{Base}/{RegenerateRecoveryCodes}";
         }
 
+        /// <summary>
+        /// Vault management endpoints for items and file handling.
+        /// </summary>
         public static class Vault
         {
             public const string Base = $"{ApiBase}/vault";
@@ -60,23 +69,9 @@ namespace ignivault.Shared
             public const string DownloadFileEndpoint = $"{Base}/{DownloadFile}";
         }
 
-        //public static class Admin
-        //{
-        //    public const string Base = $"{ApiBase}/admin";
-
-        //   public const string Users = "users";
-        //   public const string Roles = "roles";
-        //   public const string UserRoles = "roles/{id}";
-        //   public const string LockUser = "users/{id}/lock";
-        //   public const string UnlockUser = "users/{id}/unlock";
-
-        //   public const string UsersEndpoint = $"{Base}/{Users}";
-        //   public const string RolesEndpoint = $"{Base}/{Roles}";
-        //   public const string UserRolesEndpoint = $"{Base}/{UserRoles}";
-        //   public const string LockUserEndpoint = $"{Base}/{LockUser}";
-        //   public const string UnlockUserEndpoint = $"{Base}/{UnlockUser}";
-        //}
-
+        /// <summary>
+        /// Administrative endpoints for user and role management.
+        /// </summary>
         public static class Admin
         {
             private const string ApiBase = "api";

@@ -1,7 +1,7 @@
 {
   "mainAssemblyName": "ignivault.App",
   "resources": {
-    "hash": "sha256-zbR72VkEuAuXR7L/HqRyolqg6Os15qf1Tgu/PLhPMtk=",
+    "hash": "sha256-aGxtSa6jnXO3nzocQCX/NaazE3hDMDH6VweoydLxup0=",
     "fingerprinting": {
       "Blazored.FormExtensions.w2gm1no7s2.wasm": "Blazored.FormExtensions.wasm",
       "Blazored.SessionStorage.34xr2ein7y.wasm": "Blazored.SessionStorage.wasm",
@@ -246,8 +246,8 @@
       "ignivault.Shared.od4hb3y9pd.wasm": "ignivault.Shared.wasm",
       "ignivault.ApiClient.wq10uf4o09.pdb": "ignivault.ApiClient.pdb",
       "ignivault.Shared.cyey3ki54v.pdb": "ignivault.Shared.pdb",
-      "ignivault.App.sfjr25fefb.wasm": "ignivault.App.wasm",
-      "ignivault.App.ozklb89rbi.pdb": "ignivault.App.pdb"
+      "ignivault.App.pqxv511hes.wasm": "ignivault.App.wasm",
+      "ignivault.App.girl3gifa7.pdb": "ignivault.App.pdb"
     },
     "jsModuleNative": {
       "dotnet.native.50iqa8w3ys.js": "sha256-pQdXuxfVeqYHOwd5HUM2ERd7OnXirj9JTF37b6OdTAc="
@@ -500,12 +500,12 @@
       "netstandard.lp03u0xxi4.wasm": "sha256-WVQsxULiAiEbyXLKolS7txnWVT82SsvsuMe4jJ+SqqI=",
       "ignivault.ApiClient.4br8jvg73o.wasm": "sha256-wDQhpFnOKOuEwUu7prKwUd5bcg1R4l7rHz+inO377Mo=",
       "ignivault.Shared.od4hb3y9pd.wasm": "sha256-bGcTS3XJjyUx19b4jcMBLkih7OQzk3PWG0yBJtKKV14=",
-      "ignivault.App.sfjr25fefb.wasm": "sha256-KIFQwDErTQwzEAuX6rlKojFhIi3OlVU7A/Uh6pJd15o="
+      "ignivault.App.pqxv511hes.wasm": "sha256-bypvASHxngTfsmHrXv2ataaaUjUyzeqwSBsv6c9c7Ps="
     },
     "pdb": {
       "ignivault.ApiClient.wq10uf4o09.pdb": "sha256-KD3pVqreV3bvT2ye6Jo0mQ2fDvELTHi/E7yp4ymfXKU=",
       "ignivault.Shared.cyey3ki54v.pdb": "sha256-NJPwccPQ+x9WsqHzyfL+VHeOJJF82iAeEUHI9PIxS8k=",
-      "ignivault.App.ozklb89rbi.pdb": "sha256-fEf2X2sTg1bTnhxqnVAZwfgxQKsv/0zK8Ex5/lXKzdM="
+      "ignivault.App.girl3gifa7.pdb": "sha256-eH5e+JwDo2esgbLVEFKz320/3UR4XWgdyMl93HTP4co="
     }
   },
   "cacheBootResources": true,

@@ -11,6 +11,13 @@
             _env = env;
         }
 
+        /// <summary>
+        /// Attempts to handle an exception by logging it and returning a standardized error response.
+        /// </summary>
+        /// <param name="httpContext"></param>
+        /// <param name="exception"></param>
+        /// <param name="cancellationToken"></param>
+        /// <returns></returns>
         public async ValueTask<bool> TryHandleAsync(HttpContext httpContext, Exception exception, CancellationToken cancellationToken)
         {
             _logger.LogError(exception, "An unhandled exception occurred.");

@@ -2,6 +2,11 @@
 {
     public interface IEmailService
     {
+        /// <summary>
+        /// Sends a password reset email to the specified user.
+        /// </summary>
+        /// <param name="toEmail">The recipient's email address.</param>
+        /// <param name="resetLink">The unique, single-use link the user will click to reset their password.</param>
         Task SendPasswordResetEmailAsync(string toEmail, string resetLink);
     }
 

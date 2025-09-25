@@ -10,6 +10,11 @@ namespace ignivault.Shared
 {
     public static class EnumExtensions
     {
+        /// <summary>
+        /// Gets the display name of an enum value, using the Display attribute if present; otherwise, returns the enum's string representation.
+        /// </summary>
+        /// <param name="enumValue"></param>
+        /// <returns></returns>
         public static string GetDisplayName(this Enum enumValue)
         {
             return enumValue.GetType()

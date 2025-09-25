@@ -6,6 +6,9 @@ using System.Threading.Tasks;
 
 namespace ignivault.Shared.DTOs
 {
+    /// <summary>
+    /// User Data Transfer Object (DTO) for transferring user information.
+    /// </summary>
     public class UserDto
     {
         public string Id { get; set; }
@@ -15,6 +18,9 @@ namespace ignivault.Shared.DTOs
         public bool IsLocked => LockoutEnd.HasValue && LockoutEnd.Value > DateTimeOffset.UtcNow;
     }
 
+    /// <summary>
+    /// Represents a request to assign or modify a role for a user.
+    /// </summary>
     public class RoleRequestDto
     {
         public string RoleName { get; set; }

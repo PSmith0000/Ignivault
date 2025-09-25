@@ -18,8 +18,6 @@ using System.Net.Http;
 var builder = WebAssemblyHostBuilder.CreateDefault(args);
 //Get required configuration properties
 var _webApiBase = builder.Configuration["Http:ApiBase"];
-//var _syncfusionKey = builder.Configuration["Syncfusion:ApiKey"];
-//SyncfusionLicenseProvider.RegisterLicense(_syncfusionKey);
 
 
 

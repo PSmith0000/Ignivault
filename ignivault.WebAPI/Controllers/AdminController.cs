@@ -26,6 +26,11 @@ namespace ignivault.WebAPI.Controllers
             _signInManager = signInManager;
         }
 
+
+        /// <summary>
+        /// Gets a list of all users with their basic information.
+        /// </summary>
+        /// <returns></returns>
         [HttpGet("users")]
         public async Task<IActionResult> GetUsers()
         {
@@ -41,6 +46,10 @@ namespace ignivault.WebAPI.Controllers
             return Ok(users);
         }
 
+        /// <summary>
+        /// Gets a list of all available roles.
+        /// </summary>
+        /// <returns></returns>
         [HttpGet("roles")]
         public async Task<IActionResult> GetRoles()
         {
@@ -48,6 +57,11 @@ namespace ignivault.WebAPI.Controllers
             return Ok(roles);
         }
 
+        /// <summary>
+        /// Gets the roles assigned to a specific user.
+        /// </summary>
+        /// <param name="userId"></param>
+        /// <returns></returns>
         [HttpGet("users/{userId}/roles")]
         public async Task<IActionResult> GetUserRoles([FromRoute] string userId) // FIX 5: Added [FromRoute]
         {
@@ -58,6 +72,13 @@ namespace ignivault.WebAPI.Controllers
             return Ok(roles);
         }
 
+
+        /// <summary>
+        /// Adds a role to a specific user.
+        /// </summary>
+        /// <param name="userId"></param>
+        /// <param name="request"></param>
+        /// <returns></returns>
         [HttpPost("users/{userId}/roles")]
         public async Task<IActionResult> AddRoleToUser([FromRoute] string userId, [FromBody] RoleRequestDto request) // FIX 5: Added [FromRoute]
         {
@@ -72,6 +93,12 @@ namespace ignivault.WebAPI.Controllers
             return Ok();
         }
 
+        /// <summary>
+        /// Removes a role from a specific user.
+        /// </summary>
+        /// <param name="userId"></param>
+        /// <param name="request"></param>
+        /// <returns></returns>
         [HttpDelete("users/{userId}/roles")]
         public async Task<IActionResult> RemoveRoleFromUser([FromRoute] string userId, [FromBody] RoleRequestDto request) // FIX 5: Added [FromRoute]
         {
@@ -86,6 +113,12 @@ namespace ignivault.WebAPI.Controllers
             return Ok();
         }
 
+
+        /// <summary>
+        /// Locks a user account, preventing them from logging in.
+        /// </summary>
+        /// <param name="userId"></param>
+        /// <returns></returns>
         [HttpPost("users/{userId}/lock")]
         public async Task<IActionResult> LockUser([FromRoute] string userId)
         {
@@ -109,6 +142,12 @@ namespace ignivault.WebAPI.Controllers
             return Ok(new { Message = $"User {user.UserName} has been locked." });
         }
 
+
+        /// <summary>
+        /// Unlocks a user account, allowing them to log in again.
+        /// </summary>
+        /// <param name="userId"></param>
+        /// <returns></returns>
         [HttpPost("users/{userId}/unlock")]
         public async Task<IActionResult> UnlockUser([FromRoute] string userId)
         {

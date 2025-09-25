@@ -2,7 +2,22 @@
 {
     public interface IFileService
     {
+        /// <summary>
+        /// Creates a new file vault item, including its metadata and encrypted blob, within a single transaction.
+        /// </summary>
+        /// <param name="fileName">The original name of the file being uploaded.</param>
+        /// <param name="encryptedStream">The stream containing the client-side encrypted file data.</param>
+        /// <param name="iv">The unique Initialization Vector (IV) used to encrypt the file.</param>
+        /// <param name="userId">The ID of the user uploading the file.</param>
+        /// <returns>A summary DTO of the newly created vault item record.</returns>
         Task<VaultItemSummaryDto> CreateFileAsync(string fileName, Stream encryptedStream, byte[] iv, string userId);
+
+        /// <summary>
+        /// Retrieves an encrypted file's data for a user to download.
+        /// </summary>
+        /// <param name="itemId">The ID of the vault item representing the file.</param>
+        /// <param name="userId">The ID of the user requesting the download, for authorization.</param>
+        /// <returns>A DTO containing the file's name, content type, and the encrypted data payload, or null if not found or not authorized.</returns>
         Task<FileDownloadDto?> GetFileForDownloadAsync(int itemId, string userId);
     }
 

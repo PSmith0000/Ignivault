@@ -1,0 +1,7 @@
+var searchData=
+[
+  ['name_0',['Name',['../classignivault_1_1_shared_1_1_d_t_os_1_1_vault_1_1_vault_item_summary_dto.html#a19f3d55dd27cee90c3610c8521af2b6a',1,'ignivault.Shared.DTOs.Vault.VaultItemSummaryDto.Name'],['../classignivault_1_1_shared_1_1_d_t_os_1_1_vault_1_1_vault_item_detail_dto.html#a06d13c2400274b17bbaeca4355868af2',1,'ignivault.Shared.DTOs.Vault.VaultItemDetailDto.Name'],['../classignivault_1_1_shared_1_1_d_t_os_1_1_vault_1_1_create_vault_item_dto.html#aea6daa0578f83197e521dfbd4ff843c5',1,'ignivault.Shared.DTOs.Vault.CreateVaultItemDto.Name'],['../classignivault_1_1_shared_1_1_d_t_os_1_1_vault_1_1_update_vault_item_dto.html#afd1af378ecd01962f9079db73dc7f7c4',1,'ignivault.Shared.DTOs.Vault.UpdateVaultItemDto.Name'],['../classignivault_1_1_web_a_p_i_1_1_data_1_1_entities_1_1_vault_entity.html#a990bf424e1212a1902819bacc037d66a',1,'ignivault.WebAPI.Data.Entities.VaultEntity.Name']]],
+  ['newpassword_1',['NewPassword',['../classignivault_1_1_shared_1_1_d_t_os_1_1_auth_1_1_update_password_request_dto.html#a21b0308ac4399be9b547b2367da6d5f8',1,'ignivault::Shared::DTOs::Auth::UpdatePasswordRequestDto']]],
+  ['newsalt_2',['NewSalt',['../classignivault_1_1_shared_1_1_d_t_os_1_1_auth_1_1_update_master_password_request_dto.html#a0f2b6b930df8eef5a4eede18c0203926',1,'ignivault::Shared::DTOs::Auth::UpdateMasterPasswordRequestDto']]],
+  ['notetype_3',['NoteType',['../classignivault_1_1_shared_1_1_models_1_1_vault_models.html#a77bb228eee387b07b9bab5aab7adef24',1,'ignivault::Shared::Models::VaultModels']]]
+];
