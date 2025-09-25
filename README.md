@@ -1,108 +1,118 @@
-Ignivault 🔑
-Ignivault is a secure, full-stack zero-knowledge password and file vault built with .NET, Blazor WebAssembly, and Syncfusion components. The core security principle is that all user data is encrypted and decrypted exclusively on the client-side, ensuring the server never has access to user secrets.
+<p align="center">
+  <img src="https://path-to-your-logo.svg" alt="Ignivault Logo" width="150">
+</p>
 
-Core Concept: Zero-Knowledge Architecture
-The security of this vault relies on a zero-knowledge model. The user's master password is never sent to the server. Instead, it is combined with a unique salt (fetched from the server) to derive a master encryption key directly in the user's browser using the Web Crypto API. This key is used to encrypt and decrypt vault items with AES-GCM and is discarded when the session ends. The server only ever stores opaque, encrypted blobs of data.
+<h1 align="center">Ignivault 🔑</h1>
 
-✨ Features
-Secure User Authentication:
+<p align="center">
+  A secure, full-stack <strong>zero-knowledge</strong> password and file vault built with .NET, Blazor WebAssembly, and Syncfusion components.
+</p>
 
-Registration and a multi-step login flow.
+## Core Concept: Zero-Knowledge Architecture
 
-Two-Factor Authentication (2FA) with TOTP and single-use recovery codes.
+The security of this vault relies on a zero-knowledge model. The user's master password is never sent to the server. Instead, it is combined with a unique salt to derive a master encryption key directly in the user's browser using the Web Crypto API. This key is used to encrypt and decrypt vault items with **AES-GCM**. The server only ever stores opaque, encrypted blobs of data.
 
-Password reset via secure email links (using SendGrid).
+---
+## ✨ Features
 
-Vault Management Dashboard:
+- **Secure User Authentication:**
+    - Registration and a multi-step login flow.
+    - **Two-Factor Authentication (2FA)** with TOTP and recovery codes.
+    - Password reset via secure email links.
+- **Vault Management Dashboard:**
+    - A central dashboard with **Syncfusion Charts and Grids**.
+    - Client-side search and date-range filtering.
+- **Client-Side Cryptography:**
+    - Full CRUD (Create, Read, Update, Delete) with end-to-end encryption.
+    - Secure, streaming uploads and downloads of large files.
+    - A standalone utility page for decrypting downloaded files.
+- **Role-Based Access Control (RBAC):**
+    - A clear distinction between `User` and `Admin` roles.
+- **Admin-Only Features:**
+    - A **Reports Page** for application-wide statistics.
+    - A **User Management Page** to view, lock, unlock, and manage roles.
+    - A detailed audit trail of significant user actions.
 
-A central dashboard with Syncfusion Charts and Grids to view all vault items.
+---
+## 💻 Technology Stack
 
-Items are categorized into tabs for Credentials, Notes, and Files.
+<table>
+  <thead>
+    <tr>
+      <th>Area</th>
+      <th>Technology</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><strong>Backend</strong></td>
+      <td>ASP.NET Core Web API (.NET 9)</td>
+    </tr>
+    <tr>
+      <td><strong>Frontend</strong></td>
+      <td>Blazor WebAssembly (.NET 9)</td>
+    </tr>
+    <tr>
+      <td><strong>UI Components</strong></td>
+      <td>Syncfusion Blazor</td>
+    </tr>
+    <tr>
+      <td><strong>Database</strong></td>
+      <td>Entity Framework Core & SQL Server</td>
+    </tr>
+    <tr>
+      <td><strong>Authentication</strong></td>
+      <td>ASP.NET Core Identity & JWT</td>
+    </tr>
+     <tr>
+      <td><strong>Email</strong></td>
+      <td>SendGrid</td>
+    </tr>
+    <tr>
+      <td><strong>Deployment</strong></td>
+      <td>Microsoft Azure</td>
+    </tr>
+  </tbody>
+</table>
 
-Client-side search and date-range filtering.
+---
+## 🚀 Getting Started
 
-Client-Side Cryptography:
+<details>
+  <summary><strong>Click to view setup instructions</strong></summary>
+  
+  ### Prerequisites
+  - .NET 9 SDK
+  - Visual Studio 2022 or later
+  - SQL Server (LocalDB, Express, or full version)
 
-Full CRUD (Create, Read, Update, Delete) for all vault items with end-to-end encryption.
+  ### Configuration
+  1. Clone the repository.
+  2. In the `ignivault.WebAPI` project, rename `appsettings.Example.json` to `appsettings.Development.json`.
+  3. Fill in the required values:
+      - `ConnectionStrings:DefaultConnection`
+      - `Jwt:Key`
+      - `SendGrid:ApiKey`
+      - `AdminUsers`
+  4. In the `ignivault.App` project's `wwwroot` folder, rename `appsettings.Example.json` to `appsettings.Development.json`.
+  5. Fill in the required values:
+      - `ApiBaseAddress`
+      - `SyncfusionLicenseKey`
 
-Secure, streaming uploads and downloads of large (up to 100MB) encrypted files.
+  ### Running the Application
+  1. Open the solution (`.sln`) in Visual Studio.
+  2. In the **Package Manager Console**, set the "Default project" to `ignivault.WebAPI`.
+  3. Run the command `Update-Database`.
+  4. Set `ignivault.WebAPI` as the startup project and run the application (F5).
 
-A standalone utility page for decrypting downloaded files.
+</details>
 
-Role-Based Access Control (RBAC):
+---
+## ☁️ Deployment
 
-A clear distinction between User and Admin roles, enforced by JWT claims.
+The application is designed to be deployed to **Microsoft Azure**. The process involves creating an **Azure SQL Database** and an **Azure App Service**, and configuring all production secrets in the App Service Configuration.
 
-Admin-Only Features:
+---
+## 📜 License
 
-A Reports Page to view application-wide statistics.
-
-A User Management Page to view, lock, unlock, and manage roles.
-
-A detailed audit trail of all significant user actions.
-
-💻 Technology Stack
-Area	Technology
-Backend	ASP.NET Core Web API (.NET 9)
-Frontend	Blazor WebAssembly (.NET 9)
-UI Components	Syncfusion Blazor
-Database	Entity Framework Core & SQL Server
-Authentication	ASP.NET Core Identity & JWT
-Email	SendGrid
-Deployment	Microsoft Azure (App Service & SQL Database)
-
-🚀 Getting Started
-Prerequisites
-.NET 9 SDK
-
-Visual Studio 2022 or later
-
-SQL Server (LocalDB, Express, or full version)
-
-Configuration
-Clone the repository.
-
-In the ignivault.WebAPI project, rename appsettings.Example.json to appsettings.Development.json.
-
-Fill in the required values:
-
-ConnectionStrings:DefaultConnection: Your local SQL server connection string.
-
-Jwt:Key: A long, random, secret string for signing JWTs.
-
-SendGrid:ApiKey: Your SendGrid API key.
-
-AdminUsers: Configure at least one default admin account.
-
-In the ignivault.App project's wwwroot folder, rename appsettings.Example.json to appsettings.Development.json.
-
-Fill in the required values:
-
-ApiBaseAddress: The local URL of your Web API (e.g., https://localhost:7269).
-
-SyncfusionLicenseKey: Your Syncfusion license key.
-
-Running the Application
-Open the solution (.sln) in Visual Studio.
-
-Open the Package Manager Console.
-
-Set the "Default project" to ignivault.WebAPI.
-
-Run the command Update-Database. This will create the database and run all migrations.
-
-Set ignivault.WebAPI as the startup project and run the application (F5).
-
-☁️ Deployment
-The application is designed to be deployed to Microsoft Azure. The process involves:
-
-Creating an Azure SQL Database.
-
-Creating an Azure App Service.
-
-Publishing the ignivault.WebAPI project from Visual Studio.
-
-Configuring all secrets (Connection String, JWT Key, SendGrid Key) in the App Service Configuration for a secure production environment.
-
-📜 License
 This project is licensed under the MIT License.
