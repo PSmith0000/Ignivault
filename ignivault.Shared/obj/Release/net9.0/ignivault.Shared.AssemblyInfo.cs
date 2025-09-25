@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("ignivault.Shared")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Release")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+390398f712886a4e1940c7d98f3a30baab629074")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+bfebee4c4e9ea29b7af0354cfe9dfeb108c894d9")]
 [assembly: System.Reflection.AssemblyProductAttribute("ignivault.Shared")]
 [assembly: System.Reflection.AssemblyTitleAttribute("ignivault.Shared")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
