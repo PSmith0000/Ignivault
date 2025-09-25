@@ -5,6 +5,9 @@ using System.Text;
 
 namespace ignivault.Shared.DTOs.Auth
 {
+    /// <summary>
+    /// UserProfileDto represents a user's profile information including username, email, and 2FA status.
+    /// </summary>
     public class UserProfileDto
     {
         public string Username { get; set; }
@@ -13,6 +16,9 @@ namespace ignivault.Shared.DTOs.Auth
         public bool Is2faEnabled { get; set; }
     }
 
+    /// <summary>
+    /// UpdatePasswordRequestDto is used to change a user's login password by verifying the old password and providing a new one.
+    /// </summary>
     public class UpdatePasswordRequestDto
     {
         [Required]
@@ -26,6 +32,9 @@ namespace ignivault.Shared.DTOs.Auth
         public string ConfirmPassword { get; set; }
     }
 
+    /// <summary>
+    /// ReEncryptedItemDto represents a vault item that has been re-encrypted with a new master password.
+    /// </summary>
     public class ReEncryptedItemDto
     {
         public int ItemId { get; set; }
@@ -35,6 +44,9 @@ namespace ignivault.Shared.DTOs.Auth
         public byte[] Iv { get; set; }
     }
 
+    /// <summary>
+    /// UpdateMasterPasswordRequestDto is used to securely update a user's master password.
+    /// </summary>
     public class UpdateMasterPasswordRequestDto
     {
         [Required]
@@ -47,6 +59,9 @@ namespace ignivault.Shared.DTOs.Auth
         public List<ReEncryptedItemDto> ReEncryptedItems { get; set; }
     }
 
+    /// <summary>
+    /// UserActivityDto represents a log entry for significant actions performed by users or the system for auditing and monitoring purposes.
+    /// </summary>
     public class UserActivityDto
     {
         public string ActivityType { get; set; }

@@ -1,14 +1,14 @@
 {
   "mainAssemblyName": "ignivault.App",
   "resources": {
-    "hash": "sha256-WNZmjwOXvcGUer1EDvwumeyPJ0zhHS9RT9GbE+VQkNE=",
+    "hash": "sha256-TEFZKdBKPEr8aUlAmmgT6PURrgVTT5nFVtb+hizTYMM=",
     "fingerprinting": {
       "Blazored.FormExtensions.w2gm1no7s2.wasm": "Blazored.FormExtensions.wasm",
       "Blazored.SessionStorage.TestExtensions.5a2bvtdib9.wasm": "Blazored.SessionStorage.TestExtensions.wasm",
       "Blazored.SessionStorage.34xr2ein7y.wasm": "Blazored.SessionStorage.wasm",
       "Bunit.Core.qwz2bdcqxl.wasm": "Bunit.Core.wasm",
       "ignivault.ApiClient.4br8jvg73o.wasm": "ignivault.ApiClient.wasm",
-      "ignivault.App.sfjr25fefb.wasm": "ignivault.App.wasm",
+      "ignivault.App.pqxv511hes.wasm": "ignivault.App.wasm",
       "ignivault.Shared.od4hb3y9pd.wasm": "ignivault.Shared.wasm",
       "Microsoft.AspNetCore.Authorization.2rscti1pmg.wasm": "Microsoft.AspNetCore.Authorization.wasm",
       "Microsoft.AspNetCore.Components.Authorization.ayz0yo3tra.wasm": "Microsoft.AspNetCore.Components.Authorization.wasm",
@@ -150,7 +150,7 @@
       "Blazored.SessionStorage.34xr2ein7y.wasm": "sha256-nQXuCGHos7iwp2WxRUgarKmWgJYChaVQp2NajgNU3V8=",
       "Bunit.Core.qwz2bdcqxl.wasm": "sha256-SqHS5pBmqrs7LtE8qRHnJ8qypdu2BHW1NTRHA//OAoM=",
       "ignivault.ApiClient.4br8jvg73o.wasm": "sha256-wDQhpFnOKOuEwUu7prKwUd5bcg1R4l7rHz+inO377Mo=",
-      "ignivault.App.sfjr25fefb.wasm": "sha256-KIFQwDErTQwzEAuX6rlKojFhIi3OlVU7A/Uh6pJd15o=",
+      "ignivault.App.pqxv511hes.wasm": "sha256-bypvASHxngTfsmHrXv2ataaaUjUyzeqwSBsv6c9c7Ps=",
       "ignivault.Shared.od4hb3y9pd.wasm": "sha256-bGcTS3XJjyUx19b4jcMBLkih7OQzk3PWG0yBJtKKV14=",
       "Microsoft.AspNetCore.Authorization.2rscti1pmg.wasm": "sha256-jjE52SV8LA4IwFCZBcocTbuBQUV2Ik+UdeKN0HV9KV4=",
       "Microsoft.AspNetCore.Components.Authorization.ayz0yo3tra.wasm": "sha256-AujkfxFR+JJUIzq4RYrsEOqvfMTbKtVw0MOdgX2cqzE=",

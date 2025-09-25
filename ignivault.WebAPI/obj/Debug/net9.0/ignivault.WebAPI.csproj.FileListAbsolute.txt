@@ -539,3 +539,5 @@ C:\Users\prest\Desktop\GitHub\Ignivault\ignivault.WebAPI\obj\Debug\net9.0\refint
 C:\Users\prest\Desktop\GitHub\Ignivault\ignivault.WebAPI\obj\Debug\net9.0\ignivault.WebAPI.pdb
 C:\Users\prest\Desktop\GitHub\Ignivault\ignivault.WebAPI\obj\Debug\net9.0\ignivault.WebAPI.genruntimeconfig.cache
 C:\Users\prest\Desktop\GitHub\Ignivault\ignivault.WebAPI\obj\Debug\net9.0\ref\ignivault.WebAPI.dll
+C:\Users\prest\Desktop\GitHub\Ignivault\ignivault.WebAPI\bin\Debug\net9.0\web.config
+C:\Users\prest\Desktop\GitHub\Ignivault\ignivault.WebAPI\obj\Debug\net9.0\staticwebassets.upToDateCheck.txt

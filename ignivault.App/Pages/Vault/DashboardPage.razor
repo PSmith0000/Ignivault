@@ -282,6 +282,10 @@ else
         await LoadData();
     }
 
+    /// <summary>
+    /// Loads vault items and recent activities from the API.
+    /// </summary>
+    /// <returns></returns>
     private async Task LoadData()
     {
         isLoading = true;
@@ -306,6 +310,9 @@ else
     #endregion
 
     #region Search & Filtering
+    /// <summary>
+    /// Applies search and date filters to the list of vault items.
+    /// </summary>
     private void ApplyFilters()
     {
         IEnumerable<VaultItemSummaryDto> filteredItems = allItems;
@@ -385,6 +392,10 @@ else
     #endregion
 
     #region Decryption & File Handling
+    //// <summary>
+    /// Handles the submission of the master password for decryption.
+    /// </summary>
+    /// <returns></returns>
     private async Task HandlePasswordSubmitAsync()
     {
         if (selectedItem == null || AppState.KeySalt == null) return;
@@ -406,6 +417,11 @@ else
         finally { isProcessing = false; }
     }
 
+    //// <summary>
+    /// Handles decryption and viewing of an item.
+    /// </summary>
+    /// <returns></returns>
+
     private async Task HandleViewDecryptionAsync()
     {
         var detailedItem = await GetItemDetails(selectedItem.Id);
@@ -422,6 +438,11 @@ else
         isDetailDialogOpen = true;
     }
 
+
+    //// <summary>
+    /// Handles decryption and preparation for editing an item.
+    /// </summary>
+    /// <returns></returns>
     private async Task HandleEditDecryptionAsync()
     {
         var detailedItem = await GetItemDetails(selectedItem.Id);
@@ -439,6 +460,11 @@ else
         isEditDialogOpen = true;
     }
 
+
+    //// <summary>
+    /// Handles decryption and download of a file.
+    /// </summary>
+    /// <returns></returns>
     private async Task HandleFileDecryptionAsync()
     {
         var detailedItem = await GetItemDetails(selectedItem.Id);
@@ -453,6 +479,10 @@ else
         }
     }
 
+    //// <summary>
+    /// Handles downloading the encrypted version of a file.
+    /// </summary>
+    /// <returns></returns>
     private async Task HandleEncryptedDownloadAsync()
     {
         if (selectedItem == null) return;
@@ -471,6 +501,12 @@ else
     #endregion
 
     #region CRUD Operations
+
+    //// <summary>
+    /// Handles saving (creating or updating) a vault item.
+    /// </summary>
+    /// <returns></returns>
+    /// <exception cref="CryptographicException"></exception>
     private async Task HandleSaveItemAsync()
     {
         if (AppState.KeySalt == null) { errorMessage = "User session is invalid."; return; }
@@ -509,6 +545,12 @@ else
         finally { isProcessing = false; }
     }
 
+
+    //// <summary>
+    /// Handles saving (encrypting and uploading) a file.
+    /// </summary>
+    /// <returns></returns>
+    /// <exception cref="CryptographicException"></exception>
     private async Task HandleSaveFileAsync()
     {
         if (fileCreateModel.File == null || AppState.KeySalt == null)

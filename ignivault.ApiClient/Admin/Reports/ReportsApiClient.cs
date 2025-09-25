@@ -17,6 +17,10 @@ namespace ignivault.ApiClient.Admin.Reports
         private readonly HttpClient _httpClient;
         public ReportsApiClient(HttpClient httpClient) { _httpClient = httpClient; }
 
+        /// <summary>
+        /// Gets the full reports data from the API.
+        /// </summary>
+        /// <returns></returns>
         public async Task<ApiResponse<FullReportDto>> GetReportsAsync()
         {
             var report = await _httpClient.GetFromJsonAsync<FullReportDto>("api/reports");

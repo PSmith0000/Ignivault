@@ -9,6 +9,12 @@
             _tokenManager = tokenManager;
         }
 
+        /// <summary>
+        /// Sends an HTTP request with an Authorization header containing a Bearer token.
+        /// </summary>
+        /// <param name="request"></param>
+        /// <param name="cancellationToken"></param>
+        /// <returns></returns>
         protected override async Task<HttpResponseMessage> SendAsync(HttpRequestMessage request, CancellationToken cancellationToken)
         {
             var token = await _tokenManager.GetTokenAsync();

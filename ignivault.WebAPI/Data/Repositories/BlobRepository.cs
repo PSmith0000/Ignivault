@@ -2,11 +2,46 @@
 {
     public interface IStoredBlobRepository : IRepository<StoredBlob>
     {
+        /// <summary>
+        /// Adds a new blob to the repository.
+        /// </summary>
+        /// <param name="blob"></param>
+        /// <returns></returns>
         Task AddBlobAsync(StoredBlob blob);
+
+        /// <summary>
+        /// GEts a blob by its unique GUID identifier.
+        /// </summary>
+        /// <param name="guid"></param>
+        /// <returns></returns>
         Task<StoredBlob?> GetByGuidAsync(Guid guid);
+
+        /// <summary>
+        /// Gets all blobs associated with a specific user ID.
+        /// </summary>
+        /// <param name="userId"></param>
+        /// <returns></returns>
         Task<IEnumerable<StoredBlob>> GetAllByUserId(string userId);
+
+        /// <summary>
+        /// Updates an existing blob in the repository.
+        /// </summary>
+        /// <param name="blob"></param>
+        /// <returns></returns>
         Task<bool> UpdateBlobAsync(StoredBlob blob);
+
+        /// <summary>
+        /// Deletes a blob by its unique GUID identifier.
+        /// </summary>
+        /// <param name="guid"></param>
+        /// <returns></returns>
         Task<bool> DeleteByGuidAsync(Guid guid);
+
+        /// <summary>
+        /// BlobExistsAsync checks if a blob with the specified GUID exists in the repository.
+        /// </summary>
+        /// <param name="guid"></param>
+        /// <returns></returns>
         Task<bool> BlobExistsAsync(Guid guid);
     }
 

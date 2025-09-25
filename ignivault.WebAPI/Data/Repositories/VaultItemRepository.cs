@@ -2,10 +2,34 @@
 {
     public interface IVaultItemRepository : IRepository<VaultEntity>
     {
+        /// <summary>
+        /// Gets all vault items for a specific user.
+        /// </summary>
+        /// <param name="userId"></param>
+        /// <returns></returns>
         Task<IEnumerable<VaultEntity>> GetItemsByUserIdAsync(string userId);
+
+        /// <summary>
+        /// Adds a new vault item.
+        /// </summary>
+        /// <param name="item"></param>
+        /// <returns></returns>
         Task<bool> AddItemAsync(VaultEntity item);
         Task<VaultEntity?> GetItemByIdAndUserIdAsync(int itemId, string userId);
+
+        /// <summary>
+        /// Updates an existing vault item.
+        /// </summary>
+        /// <param name="itemToUpdate"></param>
+        /// <returns></returns>
         Task<bool> UpdateItemAsync(VaultEntity itemToUpdate);
+
+        /// <summary>
+        /// Deletes a vault item by its ID and user ID.
+        /// </summary>
+        /// <param name="itemId"></param>
+        /// <param name="userId"></param>
+        /// <returns></returns>
         Task<bool> DeleteItemAsync(int itemId, string userId);
     }
 

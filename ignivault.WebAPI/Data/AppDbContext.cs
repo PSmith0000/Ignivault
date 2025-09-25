@@ -8,6 +8,10 @@
         public DbSet<StoredBlob> StoredBlobs { get; set; }
         public DbSet<UserActivity> UserActivities { get; set; }
 
+        /// <summary>
+        /// OnModelCreating is used to configure the EF Core model.
+        /// </summary>
+        /// <param name="builder"></param>
         protected override void OnModelCreating(ModelBuilder builder)
         {
             base.OnModelCreating(builder);

@@ -14,6 +14,11 @@ public class VaultController : ControllerBase
         _fileService = fileService;
     }
 
+
+    /// <summary>
+    /// Gets a summary list of all vault items for the current user.
+    /// </summary>
+    /// <returns></returns>
     [HttpGet(ApiEndpoints.Vault.Items)]
     public async Task<IActionResult> GetItems()
     {
@@ -22,6 +27,12 @@ public class VaultController : ControllerBase
         return Ok(items);
     }
 
+
+    /// <summary>
+    /// Gets a single, detailed vault item by its ID for the current user.
+    /// </summary>
+    /// <param name="id"></param>
+    /// <returns></returns>
     [HttpGet(ApiEndpoints.Vault.ItemById)]
     public async Task<IActionResult> GetItem(int id)
     {
@@ -34,6 +45,11 @@ public class VaultController : ControllerBase
         return Ok(item);
     }
 
+    /// <summary>
+    /// Creates a new vault item with a pre-encrypted payload.
+    /// </summary>
+    /// <param name="itemDto"></param>
+    /// <returns></returns>
     [HttpPost(ApiEndpoints.Vault.Items)]
     public async Task<IActionResult> CreateItem([FromBody] CreateVaultItemDto itemDto)
     {
@@ -46,6 +62,13 @@ public class VaultController : ControllerBase
         return CreatedAtAction(nameof(GetItem), new { id = newItem.Id }, newItem);
     }
 
+
+    /// <summary>
+    /// Updates an existing vault item's name and optionally its encrypted data.
+    /// </summary>
+    /// <param name="id"></param>
+    /// <param name="itemDto"></param>
+    /// <returns></returns>
     [HttpPut(ApiEndpoints.Vault.ItemById)]
     public async Task<IActionResult> UpdateItem(int id, [FromBody] UpdateVaultItemDto itemDto)
     {
@@ -62,6 +85,12 @@ public class VaultController : ControllerBase
         return NoContent();
     }
 
+
+    /// <summary>
+    /// Deletes a vault item by its ID for the current user.
+    /// </summary>
+    /// <param name="id"></param>
+    /// <returns></returns>
     [HttpDelete(ApiEndpoints.Vault.ItemById)]
     public async Task<IActionResult> DeleteItem(int id)
     {
@@ -74,6 +103,12 @@ public class VaultController : ControllerBase
         return NoContent();
     }
 
+
+    /// <summary>
+    /// Uploads a file to be stored as a vault item. The file must be pre-encrypted client-side.
+    /// </summary>
+    /// <param name="request"></param>
+    /// <returns></returns>
     [HttpPost(ApiEndpoints.Vault.Files)]
     [RequestSizeLimit(104_857_600)]
     [RequestTimeout(600000)]
@@ -96,6 +131,12 @@ public class VaultController : ControllerBase
         return CreatedAtAction(nameof(GetItem), new { id = newFileItem.Id }, newFileItem);
     }
 
+    /// <summary>
+    /// Downloads a file vault item by its ID for the current user.
+    /// </summary>
+    /// <param name="id"></param>
+    /// <returns></returns>
+
     [HttpGet(ApiEndpoints.Vault.DownloadFile)]
     [RequestTimeout(600000)]
     public async Task<IActionResult> DownloadFile(int id)
@@ -110,6 +151,11 @@ public class VaultController : ControllerBase
         return File(fileDto.EncryptedData, fileDto.ContentType, fileDto.FileName);
     }
 
+
+    /// <summary>
+    /// Gets the current authenticated user's ID from the JWT claims.
+    /// </summary>
+    /// <returns></returns>
     private string GetCurrentUserId()
     {
         return User.FindFirstValue(ClaimTypes.NameIdentifier)!;

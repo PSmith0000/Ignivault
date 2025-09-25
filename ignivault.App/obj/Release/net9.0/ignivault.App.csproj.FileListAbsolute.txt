@@ -1412,10 +1412,10 @@ C:\Users\prest\Desktop\GitHub\Ignivault\ignivault.App\obj\Release\net9.0\ignivau
 C:\Users\prest\Desktop\GitHub\Ignivault\ignivault.App\obj\Release\net9.0\refint\ignivault.App.dll
 C:\Users\prest\Desktop\GitHub\Ignivault\ignivault.App\obj\Release\net9.0\ignivault.App.pdb
 C:\Users\prest\Desktop\GitHub\Ignivault\ignivault.App\obj\Release\net9.0\ref\ignivault.App.dll
-C:\Users\prest\Desktop\GitHub\Ignivault\ignivault.App\bin\Release\net9.0\wwwroot\_framework\ignivault.App.ozklb89rbi.pdb
-C:\Users\prest\Desktop\GitHub\Ignivault\ignivault.App\bin\Release\net9.0\wwwroot\_framework\ignivault.App.sfjr25fefb.wasm
-C:\Users\prest\Desktop\GitHub\Ignivault\ignivault.App\bin\Release\net9.0\wwwroot\_framework\ignivault.App.sfjr25fefb.wasm.gz
-C:\Users\prest\Desktop\GitHub\Ignivault\ignivault.App\bin\Release\net9.0\wwwroot\_framework\ignivault.App.ozklb89rbi.pdb.gz
-C:\Users\prest\Desktop\GitHub\Ignivault\ignivault.App\obj\Release\net9.0\compressed\5pc6pcduze-sfjr25fefb.gz
-C:\Users\prest\Desktop\GitHub\Ignivault\ignivault.App\obj\Release\net9.0\compressed\6zxcujx5vp-ozklb89rbi.gz
-C:\Users\prest\Desktop\GitHub\Ignivault\ignivault.App\obj\Release\net9.0\compressed\c9x58o9sjk-u29bu7pjjg.gz
+C:\Users\prest\Desktop\GitHub\Ignivault\ignivault.App\bin\Release\net9.0\wwwroot\_framework\ignivault.App.girl3gifa7.pdb
+C:\Users\prest\Desktop\GitHub\Ignivault\ignivault.App\bin\Release\net9.0\wwwroot\_framework\ignivault.App.pqxv511hes.wasm
+C:\Users\prest\Desktop\GitHub\Ignivault\ignivault.App\bin\Release\net9.0\wwwroot\_framework\ignivault.App.pqxv511hes.wasm.gz
+C:\Users\prest\Desktop\GitHub\Ignivault\ignivault.App\bin\Release\net9.0\wwwroot\_framework\ignivault.App.girl3gifa7.pdb.gz
+C:\Users\prest\Desktop\GitHub\Ignivault\ignivault.App\obj\Release\net9.0\compressed\5pc6pcduze-pqxv511hes.gz
+C:\Users\prest\Desktop\GitHub\Ignivault\ignivault.App\obj\Release\net9.0\compressed\6zxcujx5vp-girl3gifa7.gz
+C:\Users\prest\Desktop\GitHub\Ignivault\ignivault.App\obj\Release\net9.0\compressed\c9x58o9sjk-2oq7u57c30.gz
