@@ -3,7 +3,12 @@
 <p align="center">
   A secure, full-stack <strong>zero-knowledge</strong> password and file vault built with .NET, Blazor WebAssembly, and Syncfusion components.
 </p>
-
+<div>
+  <h1 align="center">Doxygen Docs</h1>
+  <p align="center">
+  https://psmith0000.github.io/ignivault-docs/
+  </p>
+</div>
 ## Core Concept: Zero-Knowledge Architecture
 
 The security of this vault relies on a zero-knowledge model. The user's master password is never sent to the server. Instead, it is combined with a unique salt to derive a master encryption key directly in the user's browser using the Web Crypto API. This key is used to encrypt and decrypt vault items with **AES-GCM**. The server only ever stores opaque, encrypted blobs of data.
