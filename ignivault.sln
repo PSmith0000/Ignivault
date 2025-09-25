@@ -11,6 +11,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ignivault.WebAPI", "ignivau
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ignivault.Shared", "ignivault.Shared\ignivault.Shared.csproj", "{F9674513-D437-7E08-97F1-510AC619C293}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ignivault.WebAPI.Tests", "ignivault.WebAPI.Tests\ignivault.WebAPI.Tests.csproj", "{561F6EB2-D559-4CC5-8D3B-7514A0E28553}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -33,6 +35,10 @@ Global
 		{F9674513-D437-7E08-97F1-510AC619C293}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F9674513-D437-7E08-97F1-510AC619C293}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F9674513-D437-7E08-97F1-510AC619C293}.Release|Any CPU.Build.0 = Release|Any CPU
+		{561F6EB2-D559-4CC5-8D3B-7514A0E28553}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{561F6EB2-D559-4CC5-8D3B-7514A0E28553}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{561F6EB2-D559-4CC5-8D3B-7514A0E28553}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{561F6EB2-D559-4CC5-8D3B-7514A0E28553}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

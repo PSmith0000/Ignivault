@@ -1,0 +1,28 @@
+var ignivault_8_app_2_program_8cs =
+[
+    [ "Add< App >", "ignivault_8_app_2_program_8cs.html#a40d549968a84d91d5a5eb9ecf29daae9", null ],
+    [ "Add< HeadOutlet >", "ignivault_8_app_2_program_8cs.html#ad6782a94a41c3712e4b16f5e5e37f781", null ],
+    [ "AddAuthorizationCore", "ignivault_8_app_2_program_8cs.html#a132436af72e3dd61feb02e04db9a13a6", null ],
+    [ "AddBlazoredSessionStorage", "ignivault_8_app_2_program_8cs.html#a91cab63bf6fc0b343c80cf57988e7e64", null ],
+    [ "AddHttpClient", "ignivault_8_app_2_program_8cs.html#a4c98e492dde9a743dc1d1d1f33cfa07f", null ],
+    [ "AddHttpClient< IAccountApiClient, AccountApiClient >", "ignivault_8_app_2_program_8cs.html#a194ef9a757293e29c51259efc24821a9", null ],
+    [ "AddHttpClient< IAdminApiClient, AdminApiClient >", "ignivault_8_app_2_program_8cs.html#a8be82814d03a0d110fc035b66fa796e3", null ],
+    [ "AddHttpClient< IAuthApiClient, AuthApiClient >", "ignivault_8_app_2_program_8cs.html#a61d3b2e7a50a8713d8f4da38d3726874", null ],
+    [ "AddHttpClient< IReportsApiClient, ReportsApiClient >", "ignivault_8_app_2_program_8cs.html#a17cc30fd2500ecb132c67714da5143f5", null ],
+    [ "AddHttpClient< IVaultApiClient, VaultApiClient >", "ignivault_8_app_2_program_8cs.html#a93be1681833fc4af3ef75950c6ff3b89", null ],
+    [ "AddScoped", "ignivault_8_app_2_program_8cs.html#a82bd3fc8b07cebf2332581d9c959df8b", null ],
+    [ "AddScoped< AuthenticationStateProvider, ApiAuthenticationStateProvider >", "ignivault_8_app_2_program_8cs.html#a4fca35600adb9fd50c64f058a08c635a", null ],
+    [ "AddScoped< AuthHeaderHandler >", "ignivault_8_app_2_program_8cs.html#a130d32314152883e4ac2a73d2bbd44cf", null ],
+    [ "AddScoped< IAccountApiClient, AccountApiClient >", "ignivault_8_app_2_program_8cs.html#a800b44526d066b3abb1e3bd165f08755", null ],
+    [ "AddScoped< IAdminApiClient, AdminApiClient >", "ignivault_8_app_2_program_8cs.html#a5c1b7faee89f321643ae8c192f24bb9c", null ],
+    [ "AddScoped< IAuthApiClient, AuthApiClient >", "ignivault_8_app_2_program_8cs.html#a46c0b7e9f5d054a36a9faa534b33f765", null ],
+    [ "AddScoped< ICryptoService, CryptoService >", "ignivault_8_app_2_program_8cs.html#a950c2d8cf1eb76c548ef10b11ddba8b8", null ],
+    [ "AddScoped< IReportsApiClient, ReportsApiClient >", "ignivault_8_app_2_program_8cs.html#a3754c26db949382f70a7575b85069d4c", null ],
+    [ "AddScoped< ITokenManager, TokenManager >", "ignivault_8_app_2_program_8cs.html#af6ea407f880804883891f1b35139512c", null ],
+    [ "AddScoped< IVaultApiClient, VaultApiClient >", "ignivault_8_app_2_program_8cs.html#ac590cd75b53b77dc66bd51eae06d6184", null ],
+    [ "AddSingleton< AppState >", "ignivault_8_app_2_program_8cs.html#aab303bd9f1f982a86d6c212098222981", null ],
+    [ "AddSyncfusionBlazor", "ignivault_8_app_2_program_8cs.html#a85361331163c27ce3f2ba561098ecda7", null ],
+    [ "Build", "ignivault_8_app_2_program_8cs.html#a103eab9352a5901779f62f6c98b53f7b", null ],
+    [ "_webApiBase", "ignivault_8_app_2_program_8cs.html#a2dad35c489b9ef02c3aba2f5d5902b88", null ],
+    [ "builder", "ignivault_8_app_2_program_8cs.html#a2f78352277081c620fd4cf92a5ce15e5", null ]
+];

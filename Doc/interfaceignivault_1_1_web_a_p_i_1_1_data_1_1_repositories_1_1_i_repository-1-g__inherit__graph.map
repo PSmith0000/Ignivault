@@ -1,0 +1,20 @@
+<map id="ignivault.WebAPI.Data.Repositories.IRepository&lt; T &gt;" name="ignivault.WebAPI.Data.Repositories.IRepository&lt; T &gt;">
+<area shape="rect" id="Node000001" title=" " alt="" coords="5,105,240,148"/>
+<area shape="rect" id="Node000002" href="$interfaceignivault_1_1_web_a_p_i_1_1_data_1_1_repositories_1_1_i_stored_blob_repository.html" title=" " alt="" coords="288,5,522,48"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="187,96,287,57,323,46,324,51,289,63,189,101"/>
+<area shape="rect" id="Node000004" href="$interfaceignivault_1_1_web_a_p_i_1_1_data_1_1_repositories_1_1_i_user_activity_repository.html" title=" " alt="" coords="288,139,522,181"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="255,140,288,143,287,149,255,145"/>
+<area shape="rect" id="Node000006" href="$interfaceignivault_1_1_web_a_p_i_1_1_data_1_1_repositories_1_1_i_vault_item_repository.html" title=" " alt="" coords="288,205,522,248"/>
+<area shape="poly" id="edge5_Node000001_Node000006" title=" " alt="" coords="189,152,289,191,324,202,323,207,287,196,187,157"/>
+<area shape="rect" id="Node000008" href="$classignivault_1_1_web_a_p_i_1_1_data_1_1_repositories_1_1_repository-1-g.html" title=" " alt="" coords="288,72,522,115"/>
+<area shape="poly" id="edge7_Node000001_Node000008" title=" " alt="" coords="255,108,287,105,288,110,255,114"/>
+<area shape="rect" id="Node000003" href="$classignivault_1_1_web_a_p_i_1_1_data_1_1_repositories_1_1_blob_repository.html" title=" " alt="" coords="570,23,804,65"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="538,32,570,34,569,39,537,37"/>
+<area shape="rect" id="Node000005" href="$classignivault_1_1_web_a_p_i_1_1_data_1_1_repositories_1_1_user_activity_repository.html" title=" " alt="" coords="570,105,804,148"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="537,142,569,138,570,143,538,147"/>
+<area shape="rect" id="Node000007" href="$classignivault_1_1_web_a_p_i_1_1_data_1_1_repositories_1_1_vault_item_repository.html" title=" " alt="" coords="570,188,804,231"/>
+<area shape="poly" id="edge6_Node000006_Node000007" title=" " alt="" coords="537,216,569,214,570,219,538,221"/>
+<area shape="poly" id="edge8_Node000008_Node000003" title=" " alt="" coords="537,68,569,62,570,67,538,73"/>
+<area shape="poly" id="edge9_Node000008_Node000005" title=" " alt="" coords="538,106,570,110,569,115,537,112"/>
+<area shape="poly" id="edge10_Node000008_Node000007" title=" " alt="" coords="509,118,523,124,548,141,571,158,629,185,627,190,569,162,545,145,521,129,507,123"/>
+</map>

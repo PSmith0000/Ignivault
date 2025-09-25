@@ -6,8 +6,15 @@ using static ignivault.Shared.DTOs.Reports;
 
 namespace ignivault.WebAPI.Services
 {
+    /// <summary>
+    /// Defines the business logic for generating administrative reports.
+    /// </summary>
     public interface IReportsService
     {
+        /// <summary>
+        /// Generates a comprehensive report including item distribution, user activity, and vault size history.
+        /// </summary>
+        /// <returns>A DTO containing all the data for the main reports page.</returns>
         Task<FullReportDto> GenerateFullReportAsync();
     }
 
@@ -50,6 +57,10 @@ namespace ignivault.WebAPI.Services
             };
         }
 
+        /// <summary>
+        /// Generates a specific report on the vault's storage size over the last 12 months.
+        /// </summary>
+        /// <returns>A DTO containing historical vault size data and current statistics.</returns>
         private async Task<VaultSizeReportDto> GenerateVaultSizeReportAsync()
         {
             var twelveMonthsAgo = DateTime.UtcNow.AddMonths(-12);

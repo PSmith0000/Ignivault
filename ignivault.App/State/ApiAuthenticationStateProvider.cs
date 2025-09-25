@@ -19,6 +19,10 @@ namespace ignivault.App.State
             _authApiClient.OnLogout += NotifyUserLogout;
         }
 
+        /// <summary>
+        /// Gets the current authentication state by checking for a valid JWT token.
+        /// </summary>
+        /// <returns></returns>
         public override async Task<AuthenticationState> GetAuthenticationStateAsync()
         {
             var token = await _tokenManager.GetTokenAsync();
@@ -40,12 +44,20 @@ namespace ignivault.App.State
             return new AuthenticationState(new ClaimsPrincipal(identity));
         }
 
+        /// <summary>
+        /// Notifies the application that the user has been authenticated.
+        /// </summary>
+        /// <returns></returns>
         public Task NotifyUserAuthentication()
         {
             NotifyAuthenticationStateChanged(GetAuthenticationStateAsync());
             return Task.CompletedTask;
         }
 
+        /// <summary>
+        /// Notifies the application that the user has logged out.
+        /// </summary>
+        /// <returns></returns>
         public Task NotifyUserLogout()
         {
             var identity = new ClaimsIdentity();
@@ -54,6 +66,11 @@ namespace ignivault.App.State
             return Task.CompletedTask;
         }
 
+        /// <summary>
+        /// Parses claims from a JWT token.
+        /// </summary>
+        /// <param name="jwt"></param>
+        /// <returns></returns>
         private static IEnumerable<Claim> ParseClaimsFromJwt(string jwt)
         {
             var payload = jwt.Split('.')[1];
@@ -62,6 +79,11 @@ namespace ignivault.App.State
             return keyValuePairs!.Select(kvp => new Claim(kvp.Key, kvp.Value.ToString()!));
         }
 
+        /// <summary>
+        /// Parses a base64 string that may be missing padding.
+        /// </summary>
+        /// <param name="base64"></param>
+        /// <returns></returns>
         private static byte[] ParseBase64WithoutPadding(string base64)
         {
             switch (base64.Length % 4)

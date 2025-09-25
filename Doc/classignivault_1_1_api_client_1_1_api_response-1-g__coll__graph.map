@@ -1,0 +1,5 @@
+<map id="ignivault.ApiClient.ApiResponse&lt; T &gt;" name="ignivault.ApiClient.ApiResponse&lt; T &gt;">
+<area shape="rect" id="Node000001" title="ApiResponse with a data payload of type T." alt="" coords="5,80,245,107"/>
+<area shape="rect" id="Node000002" href="$classignivault_1_1_api_client_1_1_api_response.html" title="ApiResponse represents a standard response structure for API calls, indicating success or failure and..." alt="" coords="21,5,229,32"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="128,48,128,80,122,80,122,48"/>
+</map>

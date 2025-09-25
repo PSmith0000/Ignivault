@@ -19,6 +19,12 @@
             _userActivityLogger = userActivityLogger;
         }
 
+
+        /// <summary>
+        /// Registers a new user with the provided email and password.
+        /// </summary>
+        /// <param name="model"></param>
+        /// <returns></returns>
         [HttpPost(ApiEndpoints.Auth.Register)]
         public async Task<IActionResult> Register([FromBody] RegisterRequestDto model)
         {
@@ -38,6 +44,12 @@
             return Ok(new { Message = "User created successfully! Please log in." });
         }
 
+
+        /// <summary>
+        /// Logs in a user with the provided email and password.
+        /// </summary>
+        /// <param name="model"></param>
+        /// <returns></returns>
         [HttpPost(ApiEndpoints.Auth.Login)]
         public async Task<IActionResult> Login([FromBody] LoginRequestDto model)
         {
@@ -75,9 +87,15 @@
             });
         }
 
+
+        /// <summary>
+        /// Logs in a user using 2FA code.
+        /// </summary>
+        /// <param name="model"></param>
+        /// <returns></returns>
         [HttpPost(ApiEndpoints.Auth.Login2fa)]
         [AllowAnonymous]
-        public async Task<IActionResult> Login2fa([FromBody] Login2faRequestDto model)
+        public async Task<IActionResult> Login2Fa([FromBody] Login2faRequestDto model)
         {
             if (!ModelState.IsValid) return BadRequest(ModelState);
 
@@ -114,9 +132,13 @@
             });
         }
 
+        /// <summary>
+        /// Enables 2FA for the authenticated user and returns the secret key and QR code URL.
+        /// </summary>
+        /// <returns></returns>
         [Authorize]
         [HttpGet(ApiEndpoints.Auth.Enable2fa)]
-        public async Task<IActionResult> Enable2fa()
+        public async Task<IActionResult> Enable2Fa()
         {
             var user = await _userManager.GetUserAsync(User);
 
@@ -141,9 +163,15 @@
             });
         }
 
+
+        /// <summary>
+        /// Verifies the provided 2FA code and enables 2FA for the authenticated user.
+        /// </summary>
+        /// <param name="model"></param>
+        /// <returns></returns>
         [Authorize]
         [HttpPost(ApiEndpoints.Auth.Verify2fa)]
-        public async Task<IActionResult> VerifyAndEnable2fa([FromBody] Verify2faRequestDto model)
+        public async Task<IActionResult> VerifyAndEnable2Fa([FromBody] Verify2faRequestDto model)
         {
             var user = await _userManager.GetUserAsync(User);
 
@@ -155,6 +183,8 @@
             await _userManager.SetTwoFactorEnabledAsync(user, true);
             var recoveryCodes = await _userManager.GenerateNewTwoFactorRecoveryCodesAsync(user, 10);
 
+            await _userActivityLogger.LogActivityAsync(user.Id, ActivityType.TwoFactorEnabled, true, "2FA enabled successfully.");
+
             return Ok(new Verify2faResponseDto
             {
                 Message = "2FA has been enabled successfully.",
@@ -162,6 +192,12 @@
             });
         }
 
+
+        /// <summary>
+        /// Forgot password - sends a password reset link to the user's email if the account exists.
+        /// </summary>
+        /// <param name="model"></param>
+        /// <returns></returns>
         [HttpPost(ApiEndpoints.Auth.ForgotPassword)]
         public async Task<IActionResult> ForgotPassword([FromBody] ForgotPasswordRequestDto model)
         {
@@ -178,6 +214,12 @@
             return Ok(new { Message = "If an account with this email exists, a password reset link has been sent." });
         }
 
+
+        /// <summary>
+        /// Resets the user's password using the provided token and new password.
+        /// </summary>
+        /// <param name="model"></param>
+        /// <returns></returns>
         [HttpPost(ApiEndpoints.Auth.ResetPassword)]
         public async Task<IActionResult> ResetPassword([FromBody] ResetPasswordRequestDto model)
         {
@@ -187,9 +229,16 @@
 
             var result = await _userManager.ResetPasswordAsync(user, model.Token, model.Password);
             if (!result.Succeeded) return BadRequest(new ErrorResponseDto { Message = "Password reset failed.", Errors = result.Errors.Select(e => e.Description) });
+            await _userActivityLogger.LogActivityAsync(user.Id, ActivityType.PasswordChanged, true, "Password reset successfully.");
             return Ok(new { Message = "Your password has been reset successfully." });
         }
 
+
+        /// <summary>
+        /// Generates a JWT token for the authenticated user including their roles.
+        /// </summary>
+        /// <param name="user"></param>
+        /// <returns></returns>
         private async Task<string> GenerateJwtToken(LoginUser user)
         {
             var userRoles = await _userManager.GetRolesAsync(user);

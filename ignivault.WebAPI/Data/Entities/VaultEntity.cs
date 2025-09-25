@@ -1,5 +1,8 @@
 ﻿namespace ignivault.WebAPI.Data.Entities
 {
+    /// <summary>
+    /// VaultEntity represents a single item stored in a user's secure vault, such as passwords, notes, or files.
+    /// </summary>
     public class VaultEntity
     {
         [Key]

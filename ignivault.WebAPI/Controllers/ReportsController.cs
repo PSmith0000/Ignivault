@@ -13,7 +13,10 @@ namespace ignivault.WebAPI.Controllers
         {
             _reportsService = reportsService;
         }
-
+        /// <summary>
+        /// Gets the full administrative report including item distribution, user activity, and vault size history.
+        /// </summary>
+        /// <returns></returns>
         [HttpGet]
         public async Task<IActionResult> GetReports()
         {

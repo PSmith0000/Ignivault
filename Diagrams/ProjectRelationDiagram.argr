@@ -1,0 +1,13 @@
+<ArchitectureGraph>
+  <Module Identifier="EE962B6C-0937-33C4-1393-BCF5FFF93DC4" Name="ignivault.ApiClient" />
+  <Module Identifier="F9674513-D437-7E08-97F1-510AC619C293" Name="ignivault.Shared" />
+  <Module Identifier="9D7F2750-CC50-ECEE-AB52-692D190FFA70" Name="ignivault.App" />
+  <Module Identifier="32FAF320-1660-BC81-BA19-1642742B2D58" Name="ignivault.WebAPI" />
+  <Module Identifier="561F6EB2-D559-4CC5-8D3B-7514A0E28553" Name="ignivault.WebAPI.Tests" />
+  <Reference Identifier="EE962B6C-0937-33C4-1393-BCF5FFF93DC4/r:ignivault.Shared" SourceId="EE962B6C-0937-33C4-1393-BCF5FFF93DC4" Name="ignivault.Shared" TargetId="F9674513-D437-7E08-97F1-510AC619C293" />
+  <Reference Identifier="9D7F2750-CC50-ECEE-AB52-692D190FFA70/r:ignivault.ApiClient" SourceId="9D7F2750-CC50-ECEE-AB52-692D190FFA70" Name="ignivault.ApiClient" TargetId="EE962B6C-0937-33C4-1393-BCF5FFF93DC4" />
+  <Reference Identifier="9D7F2750-CC50-ECEE-AB52-692D190FFA70/r:ignivault.Shared" SourceId="9D7F2750-CC50-ECEE-AB52-692D190FFA70" Name="ignivault.Shared" TargetId="F9674513-D437-7E08-97F1-510AC619C293" />
+  <Reference Identifier="32FAF320-1660-BC81-BA19-1642742B2D58/r:ignivault.Shared" SourceId="32FAF320-1660-BC81-BA19-1642742B2D58" Name="ignivault.Shared" TargetId="F9674513-D437-7E08-97F1-510AC619C293" />
+  <Reference Identifier="561F6EB2-D559-4CC5-8D3B-7514A0E28553/r:ignivault.Shared" SourceId="561F6EB2-D559-4CC5-8D3B-7514A0E28553" Name="ignivault.Shared" TargetId="F9674513-D437-7E08-97F1-510AC619C293" />
+  <Reference Identifier="561F6EB2-D559-4CC5-8D3B-7514A0E28553/r:ignivault.WebAPI" SourceId="561F6EB2-D559-4CC5-8D3B-7514A0E28553" Name="ignivault.WebAPI" TargetId="32FAF320-1660-BC81-BA19-1642742B2D58" />
+</ArchitectureGraph>

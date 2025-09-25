@@ -1,5 +1,8 @@
 ﻿namespace ignivault.WebAPI.Data.Entities
 {
+    /// <summary>
+    /// UserActivity logs significant actions performed by users or the system for auditing and monitoring purposes.
+    /// </summary>
     public class UserActivity
     {
         [Key]

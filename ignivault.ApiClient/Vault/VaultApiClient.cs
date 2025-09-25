@@ -2,12 +2,55 @@
 {
     public interface IVaultApiClient
     {
+        /// <summary>
+        /// Gets all vault items for the authenticated user.
+        /// </summary>
+        /// <returns></returns>
         Task<ApiResponse<IEnumerable<VaultItemSummaryDto>>> GetItemsAsync();
+
+        /// <summary>
+        /// Gets a specific vault item by its ID.
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         Task<ApiResponse<VaultItemDetailDto>> GetItemByIdAsync(int id);
+
+        /// <summary>
+        /// Creates a new vault item.
+        /// </summary>
+        /// <param name="request"></param>
+        /// <returns></returns>
         Task<ApiResponse<VaultItemSummaryDto>> CreateItemAsync(CreateVaultItemDto request);
+
+        /// <summary>
+        /// Deletes a vault item by its ID.
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         Task<ApiResponse> DeleteItemAsync(int id);
+
+        /// <summary>
+        /// Uploads a file to the vault.
+        /// </summary>
+        /// <param name="fileStream"></param>
+        /// <param name="fileName"></param>
+        /// <param name="iv"></param>
+        /// <returns></returns>
         Task<ApiResponse<VaultItemSummaryDto>> UploadFileAsync(Stream fileStream, string fileName, byte[] iv);
+
+        /// <summary>
+        /// Downloads a file from the vault by its ID.
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         Task<ApiResponse<Stream>> DownloadFileAsync(int id);
+
+        /// <summary>
+        /// Updates an existing vault item.
+        /// </summary>
+        /// <param name="id"></param>
+        /// <param name="request"></param>
+        /// <returns></returns>
 
         Task<ApiResponse> UpdateItemAsync(int id, UpdateVaultItemDto request);
     }

@@ -205,8 +205,10 @@ else
                 <DataAnnotationsValidator />
 
                 <div class="form-group mb-4">
-                    <label class="form-label">Select File to Encrypt and Upload:</label>
-                    <InputFile OnChange="HandleFileSelected" />
+                    <label class="form-label">Select File to Encrypt and Upload (10MB Limit):</label>
+                    <SfUploader MaxFileSize="10500000" ShowProgressBar="true" AllowMultiple="false">
+                        <UploaderEvents  ValueChange="HandleFileSelected"></UploaderEvents>
+                    </SfUploader>
                     @if (fileCreateModel.File != null)
                     {
                         <p class="mt-2 text-muted">Selected: <strong>@fileCreateModel.File.Name</strong> (@(fileCreateModel.File.Size / 1024) KB)</p>
@@ -280,6 +282,10 @@ else
         await LoadData();
     }
 
+    /// <summary>
+    /// Loads vault items and recent activities from the API.
+    /// </summary>
+    /// <returns></returns>
     private async Task LoadData()
     {
         isLoading = true;
@@ -304,6 +310,9 @@ else
     #endregion
 
     #region Search & Filtering
+    /// <summary>
+    /// Applies search and date filters to the list of vault items.
+    /// </summary>
     private void ApplyFilters()
     {
         IEnumerable<VaultItemSummaryDto> filteredItems = allItems;
@@ -352,15 +361,16 @@ else
         isFileUploadDialogOpen = true;
     }
 
-    private void HandleFileSelected(InputFileChangeEventArgs e)
+    //InputFileChangeEventArgs
+    private void HandleFileSelected(UploadChangeEventArgs e)
     {
-        const long maxFileSize = 1024 * 1024 * 100;
-        if (e.File.Size > maxFileSize)
+        const long maxFileSize = 1024 * 1024 * 11;
+        if (e.Files.FirstOrDefault().FileInfo.Size > maxFileSize)
         {
-            errorMessage = "File size exceeds the 100MB limit.";
+            errorMessage = "File size exceeds the 10MB limit.";
             return;
         }
-        fileCreateModel.File = e.File;
+        fileCreateModel.File = e.Files.FirstOrDefault().File;
         errorMessage = null;
     }
 
@@ -382,6 +392,10 @@ else
     #endregion
 
     #region Decryption & File Handling
+    //// <summary>
+    /// Handles the submission of the master password for decryption.
+    /// </summary>
+    /// <returns></returns>
     private async Task HandlePasswordSubmitAsync()
     {
         if (selectedItem == null || AppState.KeySalt == null) return;
@@ -403,6 +417,11 @@ else
         finally { isProcessing = false; }
     }
 
+    //// <summary>
+    /// Handles decryption and viewing of an item.
+    /// </summary>
+    /// <returns></returns>
+
     private async Task HandleViewDecryptionAsync()
     {
         var detailedItem = await GetItemDetails(selectedItem.Id);
@@ -419,6 +438,11 @@ else
         isDetailDialogOpen = true;
     }
 
+
+    //// <summary>
+    /// Handles decryption and preparation for editing an item.
+    /// </summary>
+    /// <returns></returns>
     private async Task HandleEditDecryptionAsync()
     {
         var detailedItem = await GetItemDetails(selectedItem.Id);
@@ -436,6 +460,11 @@ else
         isEditDialogOpen = true;
     }
 
+
+    //// <summary>
+    /// Handles decryption and download of a file.
+    /// </summary>
+    /// <returns></returns>
     private async Task HandleFileDecryptionAsync()
     {
         var detailedItem = await GetItemDetails(selectedItem.Id);
@@ -450,6 +479,10 @@ else
         }
     }
 
+    //// <summary>
+    /// Handles downloading the encrypted version of a file.
+    /// </summary>
+    /// <returns></returns>
     private async Task HandleEncryptedDownloadAsync()
     {
         if (selectedItem == null) return;
@@ -468,6 +501,12 @@ else
     #endregion
 
     #region CRUD Operations
+
+    //// <summary>
+    /// Handles saving (creating or updating) a vault item.
+    /// </summary>
+    /// <returns></returns>
+    /// <exception cref="CryptographicException"></exception>
     private async Task HandleSaveItemAsync()
     {
         if (AppState.KeySalt == null) { errorMessage = "User session is invalid."; return; }
@@ -506,6 +545,12 @@ else
         finally { isProcessing = false; }
     }
 
+
+    //// <summary>
+    /// Handles saving (encrypting and uploading) a file.
+    /// </summary>
+    /// <returns></returns>
+    /// <exception cref="CryptographicException"></exception>
     private async Task HandleSaveFileAsync()
     {
         if (fileCreateModel.File == null || AppState.KeySalt == null)

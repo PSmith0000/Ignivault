@@ -9,12 +9,53 @@ namespace ignivault.ApiClient.Admin
 {
     public interface IAdminApiClient
     {
+        /// <summary>
+        /// Gets a list of all users.
+        /// </summary>
+        /// <returns></returns>
         Task<ApiResponse<IEnumerable<UserDto>>> GetUsersAsync();
+
+        /// <summary>
+        /// Locks a user account, preventing them from logging in.
+        /// </summary>
+        /// <param name="userId"></param>
+        /// <returns></returns>
         Task<ApiResponse> LockUserAsync(string userId);
+
+        /// <summary>
+        /// Unlocks a user account, allowing them to log in again.
+        /// </summary>
+        /// <param name="userId"></param>
+        /// <returns></returns>
         Task<ApiResponse> UnlockUserAsync(string userId);
+
+        /// <summary>
+        /// Gets a list of all available roles.
+        /// </summary>
+        /// <returns></returns>
         Task<ApiResponse<IEnumerable<string>>> GetRolesAsync();
+
+        /// <summary>
+        /// Gets the roles assigned to a specific user.
+        /// </summary>
+        /// <param name="userId"></param>
+        /// <returns></returns>
         Task<ApiResponse<IEnumerable<string>>> GetUserRolesAsync(string userId);
+
+        /// <summary>
+        /// Adds a role to a specific user.
+        /// </summary>
+        /// <param name="userId"></param>
+        /// <param name="roleName"></param>
+        /// <returns></returns>
         Task<ApiResponse> AddRoleToUserAsync(string userId, string roleName);
+
+        /// <summary>
+        /// Removes a role from a specific user.
+        /// </summary>
+        /// <param name="userId"></param>
+        /// <param name="roleName"></param>
+        /// <returns></returns>
         Task<ApiResponse> RemoveRoleFromUserAsync(string userId, string roleName);
     }
 

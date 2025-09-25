@@ -2,13 +2,41 @@
 {
     public interface IAccountService
     {
+        /// <summary>
+        /// Retrieves the non-sensitive profile information for a user.
+        /// </summary>
+        /// <param name="userId">The ID of the user whose profile is being requested.</param>
+        /// <returns>A DTO with the user's profile information, or null if the user is not found.</returns>
         Task<UserProfileDto?> GetProfileAsync(string userId);
 
+        /// <summary>
+        /// Updates the user's login password after verifying their old password.
+        /// </summary>
+        /// <param name="userId">The ID of the user changing their password.</param>
+        /// <param name="passwordDto">The DTO containing the old and new passwords.</param>
+        /// <returns>An `IdentityResult` indicating the outcome of the operation.</returns>
         Task<IdentityResult> UpdatePasswordAsync(string userId, UpdatePasswordRequestDto passwordDto);
 
+        /// <summary>
+        /// Securely updates the user's master password after receiving a payload of re-encrypted vault items from the client.
+        /// </summary>
+        /// <param name="userId">The ID of the user changing their master password.</param>
+        /// <param name="request">The DTO containing the verification password, new salt, and re-encrypted items.</param>
+        /// <returns>An `IdentityResult` indicating the outcome of the operation.</returns>
         Task<IdentityResult> UpdateMasterPasswordAsync(string userId, UpdateMasterPasswordRequestDto request);
 
-        Task<IdentityResult> Disable2faAsync(string userId);
+        /// <summary>
+        /// Disables Two-Factor Authentication for the specified user.
+        /// </summary>
+        /// <param name="userId">The ID of the user.</param>
+        /// <returns>An `IdentityResult` indicating the outcome of the operation.</returns>
+        Task<IdentityResult> Disable2FaAsync(string userId);
+
+        /// <summary>
+        /// Generates a new set of 2FA recovery codes for a user, invalidating any old ones.
+        /// </summary>
+        /// <param name="userId">The ID of the user.</param>
+        /// <returns>A collection of new recovery codes, or null if 2FA is not enabled for the user.</returns>
         Task<IEnumerable<string>?> RegenerateRecoveryCodesAsync(string userId);
     }
 
@@ -45,7 +73,7 @@
             };
         }
 
-        public async Task<IdentityResult> Disable2faAsync(string userId)
+        public async Task<IdentityResult> Disable2FaAsync(string userId)
         {
             var user = await _userManager.FindByIdAsync(userId);
             if (user == null) return IdentityResult.Failed(new IdentityError { Description = "User not found." });

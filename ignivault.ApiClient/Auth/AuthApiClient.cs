@@ -4,16 +4,68 @@ namespace ignivault.ApiClient.Auth
 {
     public interface IAuthApiClient
     {
+        /// <summary>
+        /// Occurs when a user successfully logs in.
+        /// </summary>
         event Func<Task>? OnLoginSuccess;
+
+        /// <summary>
+        /// Occurs when a user logs out.
+        /// </summary>
         event Func<Task>? OnLogout;
 
+        /// <summary>
+        /// Registers a new user with the provided registration details.
+        /// </summary>
+        /// <param name="request"></param>
+        /// <returns></returns>
         Task<ApiResponse> RegisterAsync(RegisterRequestDto request);
+
+        /// <summary>
+        /// Logs in a user with the provided credentials.
+        /// </summary>
+        /// <param name="request"></param>
+        /// <returns></returns>
         Task<ApiResponse<LoginResponseDto>> LoginAsync(ignivault.Shared.DTOs.Auth.LoginRequestDto request);
+
+        /// <summary>
+        /// Logs in a user with 2FA code after initial login indicates 2FA is required.
+        /// </summary>
+        /// <param name="request"></param>
+        /// <returns></returns>
         Task<ApiResponse<LoginResponseDto>> Login2faAsync(Login2faRequestDto request);
+
+        /// <summary>
+        /// Forgot password - initiates the password reset process by sending a reset email.
+        /// </summary>
+        /// <param name="request"></param>
+        /// <returns></returns>
         Task<ApiResponse> ForgotPasswordAsync(ForgotPasswordRequestDto request);
+
+        /// <summary>
+        /// Resets the user's password using the token and new password provided.
+        /// </summary>
+        /// <param name="request"></param>
+        /// <returns></returns>
         Task<ApiResponse> ResetPasswordAsync(ResetPasswordRequestDto request);
+
+        /// <summary>
+        /// Enables two-factor authentication for the current user, returning the setup details.
+        /// </summary>
+        /// <returns></returns>
         Task<ApiResponse<Enable2faResponseDto>> Enable2faAsync();
+
+        /// <summary>
+        /// Verifies the 2FA code provided by the user to complete the 2FA setup process.
+        /// </summary>
+        /// <param name="request"></param>
+        /// <returns></returns>
         Task<ApiResponse<Verify2faResponseDto>> Verify2faAsync(Verify2faRequestDto request);
+
+        /// <summary>
+        /// Logs out the current user by clearing the stored authentication token.
+        /// </summary>
+        /// <returns></returns>
         Task LogoutAsync();
     }
     public class AuthApiClient : IAuthApiClient
