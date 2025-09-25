@@ -1,7 +1,3 @@
-<p align="center">
-  <img src="https://path-to-your-logo.svg" alt="Ignivault Logo" width="150">
-</p>
-
 <h1 align="center">Ignivault 🔑</h1>
 
 <p align="center">
