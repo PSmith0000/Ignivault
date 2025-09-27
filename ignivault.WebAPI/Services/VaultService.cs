@@ -95,7 +95,7 @@ namespace ignivault.WebAPI.Services
 
         public async Task<IEnumerable<VaultItemSummaryDto>> GetItemsAsync(string userId, string? searchText = null, DateTime? startDate = null, DateTime? endDate = null)
         {
-            var entities = await _vaultItemRepository.GetItemsByUserIdAsync(userId, searchText, startDate, endDate);
+            var entities = await _vaultItemRepository.GetItemsByUserIdAsync(userId);
 
             return entities.Select(e => new VaultItemSummaryDto
             {
