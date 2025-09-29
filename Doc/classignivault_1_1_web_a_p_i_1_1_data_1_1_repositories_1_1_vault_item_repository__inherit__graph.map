@@ -1,0 +1,10 @@
+<map id="ignivault.WebAPI.Data.Repositories.VaultItemRepository" name="ignivault.WebAPI.Data.Repositories.VaultItemRepository">
+<area shape="rect" id="Node000001" title=" " alt="" coords="570,39,804,81"/>
+<area shape="rect" id="Node000002" href="$classignivault_1_1_web_a_p_i_1_1_data_1_1_repositories_1_1_repository-1-g.html" title=" " alt="" coords="288,5,522,48"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="538,40,570,43,569,49,537,45"/>
+<area shape="rect" id="Node000003" href="$interfaceignivault_1_1_web_a_p_i_1_1_data_1_1_repositories_1_1_i_repository-1-g.html" title=" " alt="" coords="5,39,240,81"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="255,42,287,38,288,43,255,47"/>
+<area shape="rect" id="Node000004" href="$interfaceignivault_1_1_web_a_p_i_1_1_data_1_1_repositories_1_1_i_vault_item_repository.html" title=" " alt="" coords="288,72,522,115"/>
+<area shape="poly" id="edge4_Node000004_Node000003" title=" " alt="" coords="255,73,288,77,287,82,255,78"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="537,75,569,71,570,77,538,80"/>
+</map>

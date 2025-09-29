@@ -1,0 +1,9 @@
+<map id="ignivault.WebAPI.Data.Repositories.Repository&lt; T &gt;" name="ignivault.WebAPI.Data.Repositories.Repository&lt; T &gt;">
+<area shape="rect" id="Node000001" title=" " alt="" coords="561,39,796,81"/>
+<area shape="rect" id="Node000002" href="$interfaceignivault_1_1_web_a_p_i_1_1_data_1_1_repositories_1_1_i_repository-1-g.html" title=" " alt="" coords="221,5,455,48"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="471,37,561,46,560,51,470,42"/>
+<area shape="rect" id="Node000003" href="$classignivault_1_1_web_a_p_i_1_1_data_1_1_app_db_context.html" title=" " alt="" coords="248,72,428,115"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="443,81,537,72,561,70,561,75,538,77,444,86"/>
+<area shape="rect" id="Node000004" title=" " alt="" coords="5,64,172,123"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="187,91,248,91,248,96,187,96"/>
+</map>

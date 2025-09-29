@@ -1,0 +1,25 @@
+﻿@page "/"
+@using Syncfusion.Blazor.Buttons
+
+<PageTitle>Welcome</PageTitle>
+
+<div class="container">
+    <div class="text-center">
+        <h1 class="display-4">Welcome to Ignivault</h1>
+        <p class="lead">Your secure, personal vault.</p>
+        <hr />
+        <AuthorizeView>
+            <Authorized>
+                <p>You are logged in. You can now manage your vault items.</p>
+                <SfButton IsPrimary="true" OnClick="@(() => Navigation.NavigateTo("/vault/dashboard"))">Go to Dashboard</SfButton>
+            </Authorized>
+            <NotAuthorized>
+                <p>To get started, please log in or create an account.</p>
+                <SfButton CssClass="e-success" OnClick="@(() => Navigation.NavigateTo("/auth/login"))">Login</SfButton>
+                <SfButton CssClass="e-info" OnClick="@(() => Navigation.NavigateTo("/auth/register"))">Register</SfButton>
+            </NotAuthorized>
+        </AuthorizeView>
+    </div>
+</div>
+
+@inject NavigationManager Navigation

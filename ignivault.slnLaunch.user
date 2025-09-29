@@ -1,0 +1,17 @@
+[
+  {
+    "Name": "Launch",
+    "Projects": [
+      {
+        "Path": "ignivault.App\\ignivault.App.csproj",
+        "Action": "Start",
+        "DebugTarget": "https"
+      },
+      {
+        "Path": "ignivault.WebAPI\\ignivault.WebAPI.csproj",
+        "Action": "Start",
+        "DebugTarget": "https"
+      }
+    ]
+  }
+]

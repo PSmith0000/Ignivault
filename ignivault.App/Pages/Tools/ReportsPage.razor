@@ -1,0 +1,102 @@
+﻿@page "/tools/reports"
+@attribute [Authorize(Roles = "Admin")]
+@inject IReportsApiClient ReportsApiClient
+@inject IJSRuntime JSRuntime
+
+<PageTitle>Admin Reports</PageTitle>
+
+<h1>Application Reports</h1>
+
+@if (isLoading)
+{
+    <p><em>Generating reports...</em></p>
+    <SfSpinner Visible="true"></SfSpinner>
+}
+else if (reportData != null)
+{
+    <SfCard class="mt-4">
+        <CardHeader Title="Vault Item Distribution"></CardHeader>
+        <CardContent>
+            <SfButton OnClick="@(() => ExportToCsv(reportData.ItemDistribution, "item-distribution.csv"))">Export as CSV</SfButton>
+            <SfGrid DataSource="@reportData.ItemDistribution" class="mt-3">
+                <GridColumns>
+                    <GridColumn Field=@nameof(ItemDistributionDto.ItemType) HeaderText="Item Type"></GridColumn>
+                    <GridColumn Field=@nameof(ItemDistributionDto.Count) HeaderText="Count"></GridColumn>
+                </GridColumns>
+            </SfGrid>
+        </CardContent>
+    </SfCard>
+
+    <SfCard class="mt-4">
+        <CardHeader Title="User Activity Summary & Log"></CardHeader>
+        <CardContent>
+             <SfButton OnClick="@(() => ExportToCsv(reportData.ActivitySummary, "activity-summary.csv"))">Export Summary as CSV</SfButton>
+             <SfGrid DataSource="@reportData.ActivitySummary" class="mt-3 mb-4">
+                <GridColumns>
+                    <GridColumn Field=@nameof(ActivitySummaryDto.ActivityType) HeaderText="Activity Type"></GridColumn>
+                    <GridColumn Field=@nameof(ActivitySummaryDto.Count) HeaderText="Count"></GridColumn>
+                </GridColumns>
+            </SfGrid>
+
+             <SfButton OnClick="@(() => ExportToCsv(reportData.AllUserActivity, "full-activity-log.csv"))">Export Full Log as CSV</SfButton>
+             <SfGrid DataSource="@reportData.AllUserActivity" class="mt-3" AllowPaging="true">
+                 </SfGrid>
+        </CardContent>
+    </SfCard>
+
+    <SfCard class="mt-4">
+        <CardHeader Title="Storage Size Over Last 12 Months" SubTitle="@($"Current Size: {reportData.VaultSizeReport.CurrentSizeInMB:F2} MB | Monthly Avg: {reportData.VaultSizeReport.MonthlyAverageInMB:F2} MB")"></CardHeader>
+        <CardContent>
+            <SfButton OnClick="@(() => ExportToCsv(reportData.VaultSizeReport.MonthlyData, "storage-size-history.csv"))">Export as CSV</SfButton>
+            <SfChart>
+                <ChartPrimaryXAxis ValueType="Syncfusion.Blazor.Charts.ValueType.Category" />
+                <ChartPrimaryYAxis ValueType="Syncfusion.Blazor.Charts.ValueType.Double" Title="Size (MB)" />
+                <ChartTooltipSettings Enable="true" />
+                <ChartSeriesCollection>
+                    <ChartSeries DataSource="@reportData.VaultSizeReport.MonthlyData"
+                                 XName="Month"
+                                 YName="SizeInMB"
+                                 Name="Storage Size"
+                                 Type="ChartSeriesType.Column">
+                        <ChartMarker Visible="true" />
+                    </ChartSeries>
+                </ChartSeriesCollection>
+            </SfChart>
+        </CardContent>
+    </SfCard>
+}
+
+@code {
+    private bool isLoading = true;
+    private FullReportDto? reportData;
+
+    protected override async Task OnInitializedAsync()
+    {
+        var response = await ReportsApiClient.GetReportsAsync();
+        if (response.IsSuccess)
+        {
+            reportData = response.Data;
+        }
+        isLoading = false;
+    }
+
+    private async Task ExportToCsv<T>(List<T> data, string fileName)
+    {
+        if (data == null || !data.Any()) return;
+
+        var sb = new StringBuilder();
+        var properties = typeof(T).GetProperties();
+        
+        // Header
+        sb.AppendLine(string.Join(",", properties.Select(p => p.Name)));
+
+        // Rows
+        foreach (var item in data)
+        {
+            sb.AppendLine(string.Join(",", properties.Select(p => p.GetValue(item)?.ToString() ?? "")));
+        }
+        
+        var base64Data = Convert.ToBase64String(Encoding.UTF8.GetBytes(sb.ToString()));
+        await JSRuntime.InvokeVoidAsync("triggerFileDownload", fileName, base64Data);
+    }
+}

@@ -1,0 +1,99 @@
+﻿@page "/auth/register"
+@layout LoginLayout
+@inject IAuthApiClient AuthApiClient
+@inject NavigationManager Navigation
+
+<PageTitle>Register</PageTitle>
+
+<SfCard Style="width: 400px;">
+    <CardHeader Title="Create a New Account"></CardHeader>
+    <CardContent>
+
+        @if (string.IsNullOrEmpty(successMessage))
+        {
+            <EditForm Model="@registerModel" OnValidSubmit="HandleRegistrationAsync">
+                <DataAnnotationsValidator />
+
+                <div class="form-group mb-4">
+                    <SfTextBox @bind-Value="registerModel.Email"
+                               Placeholder="Email"
+                               FloatLabelType="FloatLabelType.Auto"
+                               Type="InputType.Email"></SfTextBox>
+                </div>
+                <div class="form-group mb-4">
+                    <SfTextBox @bind-Value="registerModel.Password"
+                               Placeholder="Password"
+                               FloatLabelType="FloatLabelType.Auto"
+                               Type="InputType.Password"></SfTextBox>
+                </div>
+                <div class="form-group mb-3">
+                    <SfTextBox @bind-Value="registerModel.ConfirmPassword"
+                               Placeholder="Confirm Password"
+                               FloatLabelType="FloatLabelType.Auto"
+                               Type="InputType.Password"></SfTextBox>
+                </div>
+
+                <ValidationSummary />
+
+                @if (!string.IsNullOrEmpty(errorMessage))
+                {
+                    <div class="alert alert-danger mt-3" role="alert">
+                        @errorMessage
+                    </div>
+                }
+
+                <div class="mt-4">
+                    <SfButton type="submit" IsPrimary="true" Disabled="@isLoading" Content="@(isLoading ? "" : "Register")">
+                        @if (isLoading)
+                        {
+                            <div class="d-flex align-items-center">
+                                <SfSpinner Visible="true" Size="20" Type="SpinnerType.Tailwind3"></SfSpinner>
+                                <span class="ms-2">Creating Account...</span>
+                            </div>
+                        }
+                    </SfButton>
+                </div>
+            </EditForm>
+        }
+        else
+        {
+            <div class="alert alert-success" role="alert">
+                @successMessage
+            </div>
+            <a href="/auth/login">Click here to Login</a>
+        }
+    </CardContent>
+    <CardFooter>
+        <div class="d-flex justify-content-end">
+            <a href="/auth/login">Already have an account?</a>
+        </div>
+    </CardFooter>
+</SfCard>
+
+@code {
+    private readonly RegisterRequestDto registerModel = new();
+
+    private bool isLoading = false;
+    private string? errorMessage;
+    private string? successMessage;
+
+    private async Task HandleRegistrationAsync()
+    {
+        isLoading = true;
+        errorMessage = null;
+        successMessage = null;
+
+        var response = await AuthApiClient.RegisterAsync(registerModel);
+
+        if (response.IsSuccess)
+        {
+            successMessage = "Registration successful! Please log in to continue.";
+        }
+        else
+        {
+            errorMessage = response.Message;
+        }
+
+        isLoading = false;
+    }
+}

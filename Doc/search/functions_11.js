@@ -1,0 +1,7 @@
+var searchData=
+[
+  ['wasm_5fnative_5fto_5finterp_5finternal_5fruntime_5finteropservices_5fsystem_5fprivate_5fcorelib_5fcomponentactivator_5fgetfunctionpointer_0',['wasm_native_to_interp_Internal_Runtime_InteropServices_System_Private_CoreLib_ComponentActivator_GetFunctionPointer',['../pinvoke-table_8h.html#a4a66bd231463dcebeaba37dcc4d63e82',1,'pinvoke-table.h']]],
+  ['wasm_5fnative_5fto_5finterp_5fsystem_5fglobalization_5fsystem_5fprivate_5fcorelib_5fcalendardata_5fenumcalendarinfocallback_1',['wasm_native_to_interp_System_Globalization_System_Private_CoreLib_CalendarData_EnumCalendarInfoCallback',['../pinvoke-table_8h.html#af1b4ce727c32a01c57ffb6977b8febfd',1,'pinvoke-table.h']]],
+  ['wasm_5fnative_5fto_5finterp_5fsystem_5fthreading_5fsystem_5fprivate_5fcorelib_5fthreadpool_5fbackgroundjobhandler_2',['wasm_native_to_interp_System_Threading_System_Private_CoreLib_ThreadPool_BackgroundJobHandler',['../pinvoke-table_8h.html#a5700a7f9e7f834dddb1794972b698883',1,'pinvoke-table.h']]],
+  ['wasm_5fnative_5fto_5finterp_5fsystem_5fthreading_5fsystem_5fprivate_5fcorelib_5ftimerqueue_5ftimerhandler_3',['wasm_native_to_interp_System_Threading_System_Private_CoreLib_TimerQueue_TimerHandler',['../pinvoke-table_8h.html#aa3f8625786e9bf11f392b8003f46bfdf',1,'pinvoke-table.h']]]
+];

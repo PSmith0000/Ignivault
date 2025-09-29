@@ -1,0 +1,267 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--Created by yFiles WPF 3.4.0.0-->
+<graphml xmlns:x="http://www.yworks.com/xml/yfiles-common/markup/3.0" xmlns:y="http://www.yworks.com/xml/yfiles-common/3.0" xmlns:sys="http://www.yworks.com/xml/yfiles-common/markup/primitives/2.0" xsi:schemaLocation="http://graphml.graphdrawing.org/xmlns http://www.yworks.com/xml/schema/graphml.wpf/3.0/ygraphml.xsd " xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://graphml.graphdrawing.org/xmlns">
+  <key id="d0" attr.type="boolean" attr.name="Expanded" for="node" y:attr.uri="http://www.yworks.com/xml/yfiles-common/2.0/folding/Expanded">
+    <default>true</default>
+  </key>
+  <key id="d1" attr.name="metadata" for="node">
+    <default>
+      <x:Null />
+    </default>
+  </key>
+  <key id="d2" attr.type="boolean" attr.name="is_group_node" for="node">
+    <default>false</default>
+  </key>
+  <key id="d3" attr.type="string" attr.name="type_node" for="node" />
+  <key id="d4" attr.name="path" for="node">
+    <default>
+      <x:Null />
+    </default>
+  </key>
+  <key id="d5" attr.type="boolean" attr.name="is_static" for="node">
+    <default>false</default>
+  </key>
+  <key id="d6" attr.type="string" attr.name="type_element" for="node" />
+  <key id="d7" attr.type="string" attr.name="type" for="node" />
+  <key id="d8" attr.type="string" attr.name="access" for="node" />
+  <key id="d9" attr.type="string" attr.name="fqn" for="node" />
+  <key id="d10" attr.type="string" attr.name="display_name" for="node" />
+  <key id="d11" attr.name="NodeLabels" for="node" y:attr.uri="http://www.yworks.com/xml/yfiles-common/2.0/NodeLabels" />
+  <key id="d12" attr.name="NodeGeometry" for="node" y:attr.uri="http://www.yworks.com/xml/yfiles-common/2.0/NodeGeometry" />
+  <key id="d13" attr.name="UserTags" for="all" y:attr.uri="http://www.yworks.com/xml/yfiles-common/2.0/UserTags" />
+  <key id="d14" attr.name="NodeViewState" for="node" y:attr.uri="http://www.yworks.com/xml/yfiles-common/2.0/folding/1.1/NodeViewState" />
+  <key id="d15" attr.type="string" attr.name="target" for="edge" />
+  <key id="d16" attr.type="string" attr.name="source" for="edge" />
+  <key id="d17" attr.type="string" attr.name="dependency_type" for="edge" />
+  <key id="d18" attr.name="EdgeLabels" for="edge" y:attr.uri="http://www.yworks.com/xml/yfiles-common/2.0/EdgeLabels" />
+  <key id="d19" attr.name="EdgeGeometry" for="edge" y:attr.uri="http://www.yworks.com/xml/yfiles-common/2.0/EdgeGeometry" />
+  <key id="d20" attr.name="EdgeViewState" for="edge" y:attr.uri="http://www.yworks.com/xml/yfiles-common/2.0/folding/1.1/EdgeViewState" />
+  <key id="d21" attr.name="PortLabels" for="port" y:attr.uri="http://www.yworks.com/xml/yfiles-common/2.0/PortLabels" />
+  <key id="d22" attr.name="PortLocationParameter" for="port" y:attr.uri="http://www.yworks.com/xml/yfiles-common/2.0/PortLocationParameter">
+    <default>
+      <x:Static Member="y:FreeNodePortLocationModel.NodeCenterAnchored" />
+    </default>
+  </key>
+  <key id="d23" attr.name="PortViewState" for="port" y:attr.uri="http://www.yworks.com/xml/yfiles-common/2.0/folding/1.1/PortViewState" />
+  <key id="d24" attr.name="SharedData" y:attr.uri="http://www.yworks.com/xml/yfiles-common/2.0/SharedData" />
+  <key id="d25" attr.name="layouting" />
+  <key id="d26" attr.name="graph_control_center" />
+  <key id="d27" attr.name="graph_control_zoom" />
+  <key id="d28" attr.name="grouping_depth" />
+  <key id="d29" attr.name="grouping_id" />
+  <data key="d24">
+    <y:SharedData />
+  </data>
+  <data key="d25">Organic</data>
+  <data key="d26">
+    <y:PointD X="778.74067293952612" Y="711.47374803729042" />
+  </data>
+  <data key="d27">0.497492742148324</data>
+  <data key="d28">0</data>
+  <data key="d29">None</data>
+  <graph id="G">
+    <node id="n0">
+      <data key="d1">
+        <sys:Dictionary x:TypeArguments="sys:String,sys:String" />
+      </data>
+      <data key="d3"><![CDATA[Unknown]]></data>
+      <data key="d4">
+        <x:Array Type="sys:String">
+          <sys:String>C:\Users\prest\Desktop\GitHub\Ignivault\ignivault.App\Services\CryptoService.cs</sys:String>
+        </x:Array>
+      </data>
+      <data key="d6"><![CDATA[9d7f2750-cc50-ecee-ab52-692d190ffa70%28ignivault.App%29-7BEC0BF9%5Bnet9.0%5D/T%3Aignivault.App.Services.EncryptionResult]]></data>
+      <data key="d7"><![CDATA[record]]></data>
+      <data key="d8"><![CDATA[public]]></data>
+      <data key="d9"><![CDATA[ignivault.App.Services.EncryptionResult]]></data>
+      <data key="d10"><![CDATA[EncryptionResult]]></data>
+      <data key="d12">
+        <y:RectD X="0" Y="578" Width="349.70666666666671" Height="88" />
+      </data>
+      <port name="p0">
+        <data key="d22">
+          <y:FreeNodePortLocationModelParameter Ratio="0.5,1" />
+        </data>
+      </port>
+      <port name="p1">
+        <data key="d22">
+          <y:FreeNodePortLocationModelParameter Ratio="0,0.5" />
+        </data>
+      </port>
+      <port name="p2">
+        <data key="d22">
+          <y:FreeNodePortLocationModelParameter Ratio="0.438720070154034,0" />
+        </data>
+      </port>
+      <port name="p3">
+        <data key="d22">
+          <y:FreeNodePortLocationModelParameter Ratio="0.832850388897362,0" />
+        </data>
+      </port>
+    </node>
+    <node id="n1">
+      <data key="d1">
+        <sys:Dictionary x:TypeArguments="sys:String,sys:String" />
+      </data>
+      <data key="d3"><![CDATA[Interface]]></data>
+      <data key="d4">
+        <x:Array Type="sys:String">
+          <sys:String>C:\Users\prest\Desktop\GitHub\Ignivault\ignivault.App\Services\CryptoService.cs</sys:String>
+        </x:Array>
+      </data>
+      <data key="d6"><![CDATA[9d7f2750-cc50-ecee-ab52-692d190ffa70%28ignivault.App%29-7BEC0BF9%5Bnet9.0%5D/T%3Aignivault.App.Services.ICryptoService]]></data>
+      <data key="d7"><![CDATA[interface]]></data>
+      <data key="d8"><![CDATA[public]]></data>
+      <data key="d9"><![CDATA[ignivault.App.Services.ICryptoService]]></data>
+      <data key="d10"><![CDATA[ICryptoService]]></data>
+      <data key="d12">
+        <y:RectD X="99.046666666666681" Y="0" Width="317.61333333333334" Height="88" />
+      </data>
+      <port name="p0">
+        <data key="d22">
+          <y:FreeNodePortLocationModelParameter Ratio="0.171203979681793,1" />
+        </data>
+      </port>
+      <port name="p1">
+        <data key="d22">
+          <y:FreeNodePortLocationModelParameter Ratio="0.710560010075144,1" />
+        </data>
+      </port>
+    </node>
+    <node id="n2">
+      <data key="d1">
+        <sys:Dictionary x:TypeArguments="sys:String,sys:String" />
+      </data>
+      <data key="d3"><![CDATA[LogicOwner]]></data>
+      <data key="d4">
+        <x:Array Type="sys:String">
+          <sys:String>C:\Users\prest\Desktop\GitHub\Ignivault\ignivault.App\Services\CryptoService.cs</sys:String>
+        </x:Array>
+      </data>
+      <data key="d6"><![CDATA[9d7f2750-cc50-ecee-ab52-692d190ffa70%28ignivault.App%29-7BEC0BF9%5Bnet9.0%5D/T%3Aignivault.App.Services.CryptoService]]></data>
+      <data key="d7"><![CDATA[class]]></data>
+      <data key="d8"><![CDATA[public]]></data>
+      <data key="d9"><![CDATA[ignivault.App.Services.CryptoService]]></data>
+      <data key="d10"><![CDATA[CryptoService]]></data>
+      <data key="d12">
+        <y:RectD X="232.8" Y="289" Width="308.10666666666668" Height="88" />
+      </data>
+      <port name="p0">
+        <data key="d22">
+          <y:FreeNodePortLocationModelParameter Ratio="0.189717846633201,1" />
+        </data>
+      </port>
+      <port name="p1">
+        <data key="d22">
+          <y:FreeNodePortLocationModelParameter Ratio="0.298370694131902,0" />
+        </data>
+      </port>
+    </node>
+    <node id="n3">
+      <data key="d1">
+        <sys:Dictionary x:TypeArguments="sys:String,sys:String" />
+      </data>
+      <data key="d3"><![CDATA[LogicOwner]]></data>
+      <data key="d4">
+        <x:Array Type="sys:String">
+          <sys:String>C:\Users\prest\Desktop\GitHub\Ignivault\ignivault.App\Services\TokenManager.cs</sys:String>
+        </x:Array>
+      </data>
+      <data key="d6"><![CDATA[9d7f2750-cc50-ecee-ab52-692d190ffa70%28ignivault.App%29-7BEC0BF9%5Bnet9.0%5D/T%3Aignivault.App.Services.TokenManager]]></data>
+      <data key="d7"><![CDATA[class]]></data>
+      <data key="d8"><![CDATA[public]]></data>
+      <data key="d9"><![CDATA[ignivault.App.Services.TokenManager]]></data>
+      <data key="d10"><![CDATA[TokenManager]]></data>
+      <data key="d12">
+        <y:RectD X="760.80333333333328" Y="887" Width="319.84000000000003" Height="88" />
+      </data>
+    </node>
+    <node id="n4">
+      <data key="d1">
+        <sys:Dictionary x:TypeArguments="sys:String,sys:String" />
+      </data>
+      <data key="d3"><![CDATA[LogicOwner]]></data>
+      <data key="d4">
+        <x:Array Type="sys:String">
+          <sys:String>C:\Users\prest\Desktop\GitHub\Ignivault\ignivault.App\State\ApiAuthenticationStateProvider.cs</sys:String>
+        </x:Array>
+      </data>
+      <data key="d6"><![CDATA[9d7f2750-cc50-ecee-ab52-692d190ffa70%28ignivault.App%29-7BEC0BF9%5Bnet9.0%5D/T%3Aignivault.App.State.ApiAuthenticationStateProvider]]></data>
+      <data key="d7"><![CDATA[class]]></data>
+      <data key="d8"><![CDATA[public]]></data>
+      <data key="d9"><![CDATA[ignivault.App.State.ApiAuthenticationStateProvider]]></data>
+      <data key="d10"><![CDATA[ApiAuthenticationStateProvider]]></data>
+      <data key="d12">
+        <y:RectD X="0" Y="887" Width="560.80333333333328" Height="88" />
+      </data>
+    </node>
+    <node id="n5">
+      <data key="d1">
+        <sys:Dictionary x:TypeArguments="sys:String,sys:String" />
+      </data>
+      <data key="d3"><![CDATA[Unknown]]></data>
+      <data key="d4">
+        <x:Array Type="sys:String">
+          <sys:String>C:\Users\prest\Desktop\GitHub\Ignivault\ignivault.App\State\AppState.cs</sys:String>
+        </x:Array>
+      </data>
+      <data key="d6"><![CDATA[9d7f2750-cc50-ecee-ab52-692d190ffa70%28ignivault.App%29-7BEC0BF9%5Bnet9.0%5D/T%3Aignivault.App.State.AppState]]></data>
+      <data key="d7"><![CDATA[class]]></data>
+      <data key="d8"><![CDATA[public]]></data>
+      <data key="d9"><![CDATA[ignivault.App.State.AppState]]></data>
+      <data key="d10"><![CDATA[AppState]]></data>
+      <data key="d12">
+        <y:RectD X="0" Y="1175" Width="239.97333333333333" Height="88" />
+      </data>
+    </node>
+    <node id="n6">
+      <data key="d1">
+        <sys:Dictionary x:TypeArguments="sys:String,sys:String" />
+      </data>
+      <data key="d4">
+        <x:Array Type="sys:String">
+          <sys:String>C:\Users\prest\Desktop\GitHub\Ignivault\ignivault.App\FileUtils.cs</sys:String>
+        </x:Array>
+      </data>
+      <data key="d5">true</data>
+      <data key="d6"><![CDATA[9d7f2750-cc50-ecee-ab52-692d190ffa70%28ignivault.App%29-7BEC0BF9%5Bnet9.0%5D/T%3Aignivault.App.FileUtils]]></data>
+      <data key="d7"><![CDATA[class]]></data>
+      <data key="d8"><![CDATA[public]]></data>
+      <data key="d9"><![CDATA[ignivault.App.FileUtils]]></data>
+      <data key="d10"><![CDATA[FileUtils]]></data>
+      <data key="d12">
+        <y:RectD X="439.97333333333336" Y="1175" Width="222.5" Height="88" />
+      </data>
+    </node>
+    <edge id="e0" source="n0" target="n0" sourceport="p0" targetport="p1">
+      <data key="d15"><![CDATA[9d7f2750-cc50-ecee-ab52-692d190ffa70%28ignivault.App%29-7BEC0BF9%5Bnet9.0%5D/T%3Aignivault.App.Services.EncryptionResult]]></data>
+      <data key="d16"><![CDATA[9d7f2750-cc50-ecee-ab52-692d190ffa70%28ignivault.App%29-7BEC0BF9%5Bnet9.0%5D/T%3Aignivault.App.Services.EncryptionResult]]></data>
+      <data key="d17"><![CDATA[Usages]]></data>
+      <data key="d19">
+        <x:List>
+          <y:Bend Location="174.853333333333,692.146666666667" />
+          <y:Bend Location="171,696" />
+          <y:Bend Location="-19,696" />
+          <y:Bend Location="-30,685" />
+          <y:Bend Location="-30,626" />
+          <y:Bend Location="-26,622" />
+        </x:List>
+      </data>
+    </edge>
+    <edge id="e1" source="n1" target="n0" sourceport="p0" targetport="p2">
+      <data key="d15"><![CDATA[9d7f2750-cc50-ecee-ab52-692d190ffa70%28ignivault.App%29-7BEC0BF9%5Bnet9.0%5D/T%3Aignivault.App.Services.EncryptionResult]]></data>
+      <data key="d16"><![CDATA[9d7f2750-cc50-ecee-ab52-692d190ffa70%28ignivault.App%29-7BEC0BF9%5Bnet9.0%5D/T%3Aignivault.App.Services.ICryptoService]]></data>
+      <data key="d17"><![CDATA[Usages]]></data>
+    </edge>
+    <edge id="e2" source="n2" target="n0" sourceport="p0" targetport="p3">
+      <data key="d15"><![CDATA[9d7f2750-cc50-ecee-ab52-692d190ffa70%28ignivault.App%29-7BEC0BF9%5Bnet9.0%5D/T%3Aignivault.App.Services.EncryptionResult]]></data>
+      <data key="d16"><![CDATA[9d7f2750-cc50-ecee-ab52-692d190ffa70%28ignivault.App%29-7BEC0BF9%5Bnet9.0%5D/T%3Aignivault.App.Services.CryptoService]]></data>
+      <data key="d17"><![CDATA[Usages]]></data>
+    </edge>
+    <edge id="e3" source="n2" target="n1" sourceport="p1" targetport="p1">
+      <data key="d15"><![CDATA[9d7f2750-cc50-ecee-ab52-692d190ffa70%28ignivault.App%29-7BEC0BF9%5Bnet9.0%5D/T%3Aignivault.App.Services.ICryptoService]]></data>
+      <data key="d16"><![CDATA[9d7f2750-cc50-ecee-ab52-692d190ffa70%28ignivault.App%29-7BEC0BF9%5Bnet9.0%5D/T%3Aignivault.App.Services.CryptoService]]></data>
+      <data key="d17"><![CDATA[Inheritance]]></data>
+    </edge>
+  </graph>
+</graphml>

@@ -1,0 +1,665 @@
+﻿@page "/vault/dashboard"
+@using Syncfusion.Blazor.Calendars
+@attribute [Authorize]
+@inject IVaultApiClient VaultApiClient
+@inject IAccountApiClient AccountApiClient
+@inject IJSRuntime JSRuntime
+@inject ICryptoService CryptoService
+@inject AppState AppState
+
+<PageTitle>Dashboard</PageTitle>
+
+<SfCard class="mb-4">
+    <CardContent>
+        <div class="row">
+            <div class="col-md-6">
+                <SfTextBox Placeholder="Search by name..." @bind-Value="searchText"></SfTextBox>
+            </div>
+            <div class="col-md-4">
+                <SfDateRangePicker TValue="DateTime?" Placeholder="Filter by date..." @bind-StartDate="startDate" @bind-EndDate="endDate"></SfDateRangePicker>
+            </div>
+            <div class="col-md-2 d-flex gap-2">
+                <SfButton IsPrimary="true" OnClick="ApplyFilters">Search</SfButton>
+                <SfButton OnClick="ClearFilters">Clear</SfButton>
+            </div>
+        </div>
+    </CardContent>
+</SfCard>
+
+@if (isLoading)
+{
+    <div class="text-center">
+        <p><em>Loading your vault...</em></p>
+        <SfSpinner Visible="true" Size="40"></SfSpinner>
+    </div>
+}
+else
+{
+    <div class="d-flex justify-content-between align-items-center mb-3">
+        <h1>Vault Dashboard</h1>
+        <div class="d-flex gap-2">
+            <SfButton OnClick="OnAddFileClicked" IconCss="e-icons e-plus">Add File</SfButton>
+            <SfButton OnClick="OnAddItemClicked" IsPrimary="true" IconCss="e-icons e-plus">Add Item</SfButton>
+        </div>
+    </div>
+
+    <div class="row mb-4">
+        <div class="col-lg-7 col-md-12 mb-4">
+            <SfCard><CardHeader Title="Item Distribution"></CardHeader><CardContent><SfAccumulationChart Height="300px"><AccumulationChartSeriesCollection><AccumulationChartSeries DataSource="@chartData" XName="ItemType" YName="Count" InnerRadius="40%"></AccumulationChartSeries></AccumulationChartSeriesCollection><AccumulationChartLegendSettings Visible="true"></AccumulationChartLegendSettings><AccumulationChartTooltipSettings Enable="true"></AccumulationChartTooltipSettings></SfAccumulationChart></CardContent></SfCard>
+        </div>
+        <div class="col-lg-5 col-md-12 mb-4">
+            <SfCard>
+                <CardHeader Title="Recent Activity"></CardHeader>
+                <CardContent>
+                    <SfListView DataSource="@recentActivities" Height="300px">
+                        <ListViewFieldSettings  TValue="UserActivityDto" Text="DisplayText"></ListViewFieldSettings>
+                    </SfListView>
+                </CardContent>
+            </SfCard>
+        </div>
+    </div>
+
+    <SfTab>
+        <TabItems>
+            <TabItem>
+                <ChildContent><TabHeader Text="Credentials"></TabHeader></ChildContent>
+                <ContentTemplate><VaultGrid Items="@credentialItems" OnEdit="OnEditItemClicked" OnView="OnViewItemClicked" OnDelete="OnDeleteItemClicked" /></ContentTemplate>
+            </TabItem>
+            <TabItem>
+                <ChildContent><TabHeader Text="Notes"></TabHeader></ChildContent>
+                <ContentTemplate><VaultGrid Items="@noteItems" OnEdit="OnEditItemClicked" OnView="OnViewItemClicked" OnDelete="OnDeleteItemClicked" /></ContentTemplate>
+            </TabItem>
+            <TabItem>
+                <ChildContent><TabHeader Text="Files"></TabHeader></ChildContent>
+                <ContentTemplate><VaultGrid Items="@fileItems" IsFileGrid="true" OnDownload="OnDownloadFileClicked" OnDelete="OnDeleteItemClicked" /></ContentTemplate>
+            </TabItem>
+        </TabItems>
+    </SfTab>
+}
+
+
+<SfDialog @bind-Visible="isPasswordDialogOpen" IsModal="true" Width="400px" ShowCloseIcon="true" Header="Master Password Required">
+    <DialogTemplates>
+        <Content>
+            <p>Please enter the encrpytion password to continue.</p>
+            <EditForm Model="passwordModel" OnValidSubmit="HandlePasswordSubmitAsync">
+                <DataAnnotationsValidator /><SfTextBox @bind-Value="@passwordModel.MasterPassword" Placeholder="Master Password" Type="InputType.Password" FloatLabelType="FloatLabelType.Auto"></SfTextBox>
+                @if (!string.IsNullOrEmpty(errorMessage))
+                {
+                    <div class="alert alert-danger mt-2">@errorMessage</div>
+                }
+                <div class="mt-3 d-flex justify-content-end">
+                    <SfButton OnClick="@(() => isPasswordDialogOpen = false)" CssClass="me-2">Cancel</SfButton>
+                    <SfButton type="submit" IsPrimary="true" Disabled="isProcessing">@(isProcessing ? "Working..." : "Submit")</SfButton>
+                </div>
+            </EditForm>
+        </Content>
+    </DialogTemplates>
+</SfDialog>
+
+<SfDialog @bind-Visible="isDetailDialogOpen" IsModal="true" Width="500px" ShowCloseIcon="true" Header="@selectedItem?.Name">
+   <DialogTemplates>
+       <Content>
+            @if (decryptedCredential != null)
+            {
+                <div><strong>URL:</strong> @decryptedCredential.Url</div>
+                <div><strong>Username:</strong> @decryptedCredential.Username</div>
+
+                <div><strong>Password:</strong> @decryptedCredential.Password</div>
+            }
+            @if (decryptedNote != null)
+            {
+                <h5>@decryptedNote.Title</h5>
+                <p>@decryptedNote.Content</p>
+            }
+       </Content>
+   </DialogTemplates>
+</SfDialog>
+
+<SfDialog @bind-Visible="isFileDownloadConfirmOpen" IsModal="true" Width="500px" ShowCloseIcon="true" Header="Download Encrypted File">
+    <DialogTemplates>
+        <Content>
+            <p>You are about to download the encrypted version of the file "@selectedItem?.Name". This file is encrypted and can only be decrypted using your master password. Do you want to proceed?</p>
+            <DialogButtons>
+                <SfButton OnClick="@(() => isFileDownloadConfirmOpen = false)" CssClass="me-2">Cancel</SfButton>
+                <SfButton OnClick="HandleEncryptedDownloadAsync" IsPrimary="true" Disabled="isProcessing">Download Encrypted File</SfButton>
+            </DialogButtons>
+        </Content>
+    </DialogTemplates>
+</SfDialog>
+
+<SfDialog @bind-Visible="isDeleteDialogOpen" IsModal="true" Width="400px" ShowCloseIcon="true" Header="Confirm Deletion">
+    <DialogTemplates >
+         <Content>
+            <p>Are you sure you want to delete the item "@itemToDelete?.Name"? This action cannot be undone.</p>
+            <DialogButtons>
+                <SfButton OnClick="@(() => isDeleteDialogOpen = false)" CssClass="me-2">Cancel</SfButton>
+                <SfButton OnClick="HandleDeleteItemConfirmAsync" IsPrimary="true" CssClass="e-danger">Delete</SfButton>
+            </DialogButtons>
+         </Content>
+    </DialogTemplates>
+</SfDialog>
+
+<SfDialog @bind-Visible="isEditDialogOpen" IsModal="true" Width="600px" ShowCloseIcon="true" Header="@(editingItemModel.Id == 0 ? "Add New Item" : "Edit Item")">
+    <DialogTemplates>
+        <Content>
+            <EditForm Model="editingItemModel" OnValidSubmit="HandleSaveItemAsync">
+                <DataAnnotationsValidator />
+                <ValidationSummary />
+
+                <div class="form-group mb-3">
+                    <SfTextBox @bind-Value="@editingItemModel.Name" Placeholder="Item Name" FloatLabelType="FloatLabelType.Auto"></SfTextBox>
+                </div>
+                <div class="form-group mb-3">
+                    <SfComboBox TValue="string" TItem="string"
+                                DataSource="@(Enum.GetNames<VaultItemType>().Where(t => t != "File"))"
+                                Value="@editingItemModel.ItemType.ToString()"
+                                ValueChanged="OnItemTypeChanged"
+                                Placeholder="Item Type" FloatLabelType="FloatLabelType.Auto">
+                    </SfComboBox>
+                </div>
+                <hr />
+
+                @if (editingItemModel.ItemType == VaultItemType.Credential)
+                {
+                    <div class="form-group mb-3"><SfTextBox @bind-Value="@editingItemModel.CredentialData.Url" Placeholder="URL" FloatLabelType="FloatLabelType.Auto"></SfTextBox></div>
+                    <div class="form-group mb-3"><SfTextBox @bind-Value="@editingItemModel.CredentialData.Username" Placeholder="Username" FloatLabelType="FloatLabelType.Auto"></SfTextBox></div>
+                    <div class="form-group mb-3"><SfTextBox @bind-Value="@editingItemModel.CredentialData.Password" Placeholder="Password" Type="InputType.Password" FloatLabelType="FloatLabelType.Auto"></SfTextBox></div>
+                    <div class="form-group mb-3"><SfTextBox @bind-Value="@editingItemModel.CredentialData.Notes" Multiline="true" Placeholder="Notes" FloatLabelType="FloatLabelType.Auto"></SfTextBox></div>
+                }
+                else if (editingItemModel.ItemType == VaultItemType.Note)
+                {
+                    <div class="form-group mb-3"><SfTextBox @bind-Value="@editingItemModel.NoteData.Title" Placeholder="Title" FloatLabelType="FloatLabelType.Auto"></SfTextBox></div>
+                    <div class="form-group mb-3">
+                        <SfRichTextEditor Height="450px" @bind-Value="@editingItemModel.NoteData.Content" EditorMode="EditorMode.Markdown" EnableHtmlEncode="false" EnableHtmlSanitizer="true">
+
+                        </SfRichTextEditor>
+                    </div>
+                }
+
+                <hr />
+                <div class="form-group mb-3">
+                    <p class="text-muted small">Enter a encrpytion password to encrypt and save this item.</p>
+                    <SfTextBox @bind-Value="@editingItemModel.MasterPassword" Placeholder="Master Password" Type="InputType.Password" FloatLabelType="FloatLabelType.Auto"></SfTextBox>
+                    <SfTextBox @bind-Value="@editingItemModel.MasterConfirm" Placeholder="Confirm Password" Type="InputType.Password" FloatLabelType="FloatLabelType.Auto"></SfTextBox>
+                </div>
+
+                @if (!string.IsNullOrEmpty(errorMessage))
+                {
+                    <div class="alert alert-danger">@errorMessage</div>
+                }
+
+                <div class="mt-4 d-flex justify-content-end">
+                    <SfButton OnClick="@(() => isEditDialogOpen = false)" CssClass="me-2">Cancel</SfButton>
+                    <SfButton type="submit" IsPrimary="true" Disabled="isProcessing">@(isProcessing ? "Saving..." : "Save")</SfButton>
+                </div>
+            </EditForm>
+        </Content>
+    </DialogTemplates>
+</SfDialog>
+
+<SfDialog @bind-Visible="isFileUploadDialogOpen" IsModal="true" Width="500px" ShowCloseIcon="true" Header="Add New File">
+   <DialogTemplates>
+       <Content>
+            <EditForm Model="fileCreateModel" OnValidSubmit="HandleSaveFileAsync">
+                <DataAnnotationsValidator />
+
+                <div class="form-group mb-4">
+                    <label class="form-label">Select File to Encrypt and Upload (10MB Limit):</label>
+                    <SfUploader MaxFileSize="10500000" ShowProgressBar="true" AllowMultiple="false">
+                        <UploaderEvents  ValueChange="HandleFileSelected"></UploaderEvents>
+                    </SfUploader>
+                    @if (fileCreateModel.File != null)
+                    {
+                        <p class="mt-2 text-muted">Selected: <strong>@fileCreateModel.File.Name</strong> (@(fileCreateModel.File.Size / 1024) KB)</p>
+                    }
+                </div>
+
+                <div class="form-group mb-3">
+                    <p class="text-muted small">Enter a Encrpytion password to encrypt and upload this file.</p>
+                    <SfTextBox @bind-Value="fileCreateModel.MasterPassword" Placeholder="Encrpytion Password" Type="InputType.Password" FloatLabelType="FloatLabelType.Auto"></SfTextBox>
+                    <SfTextBox @bind-Value="fileCreateModel.MasterConfirm" Placeholder="Confirm Password" Type="InputType.Password" FloatLabelType="FloatLabelType.Auto"></SfTextBox>
+                </div>
+
+                <ValidationSummary />
+
+                @if (!string.IsNullOrEmpty(errorMessage))
+                {
+                    <div class="alert alert-danger mt-2">@errorMessage</div>
+                }
+
+                <div class="mt-4 d-flex justify-content-end">
+                    <SfButton OnClick="@(() => isFileUploadDialogOpen = false)" CssClass="me-2">Cancel</SfButton>
+                    <SfButton type="submit" IsPrimary="true" Disabled="isProcessing || fileCreateModel.File == null">@(isProcessing ? "Uploading..." : "Encrypt & Upload")</SfButton>
+                </div>
+            </EditForm>
+       </Content>
+   </DialogTemplates>
+</SfDialog>
+
+@code {
+    #region State Properties
+    private List<VaultItemSummaryDto> displayedItems = new();
+    private List<VaultItemSummaryDto> allItems = new();
+    private List<VaultItemSummaryDto> credentialItems = new();
+    private List<VaultItemSummaryDto> noteItems = new();
+    private List<VaultItemSummaryDto> fileItems = new();
+    private List<UserActivityDto> recentActivities = new();
+    private List<ChartDataPoint> chartData = new();
+    private FileCreateModel fileCreateModel = new();
+
+    private bool isLoading = true;
+    private bool isProcessing = false;
+
+    private string? searchText;
+    private DateTime? startDate;
+    private DateTime? endDate;
+
+
+    private VaultItemSummaryDto? selectedItem;
+    private VaultItemSummaryDto? itemToDelete;
+    private string? currentAction;
+    private string? errorMessage;
+
+    private bool isPasswordDialogOpen;
+    private bool isDetailDialogOpen;
+    private bool isDeleteDialogOpen;
+    private bool isFileDownloadConfirmOpen;
+    private bool isEditDialogOpen;
+    private bool isFileUploadDialogOpen;
+
+    private bool isValidConfirm = true;
+
+    private PasswordModel passwordModel = new();
+    private VaultItemEditModel editingItemModel = new();
+    private CredentialType? decryptedCredential;
+    private NoteType? decryptedNote;
+    #endregion
+
+    #region Data Loading
+    protected override async Task OnInitializedAsync()
+    {
+        await LoadData();
+    }
+
+    /// <summary>
+    /// Loads vault items and recent activities from the API.
+    /// </summary>
+    /// <returns></returns>
+    private async Task LoadData()
+    {
+        isLoading = true;
+        var vaultTask = VaultApiClient.GetItemsAsync();
+        var activityTask = AccountApiClient.GetRecentActivityAsync();
+        await Task.WhenAll(vaultTask, activityTask);
+
+        var vaultResponse = vaultTask.Result;
+        if (vaultResponse.IsSuccess)
+        {
+            allItems = vaultResponse.Data.ToList();
+            credentialItems = allItems.Where(i => i.ItemType == VaultItemType.Credential).ToList();
+            noteItems = allItems.Where(i => i.ItemType == VaultItemType.Note).ToList();
+            fileItems = allItems.Where(i => i.ItemType == VaultItemType.File).ToList();
+            ProcessChartData();
+        }
+        var activityResponse = activityTask.Result;
+        if (activityResponse.IsSuccess) recentActivities = activityResponse.Data.ToList();
+        isLoading = false;
+        StateHasChanged();
+    }
+    #endregion
+
+    #region Search & Filtering
+    /// <summary>
+    /// Applies search and date filters to the list of vault items.
+    /// </summary>
+    private void ApplyFilters()
+    {
+        IEnumerable<VaultItemSummaryDto> filteredItems = allItems;
+
+        if (!string.IsNullOrWhiteSpace(searchText))
+        {
+            filteredItems = filteredItems.Where(item =>
+                item.Name.Contains(searchText, StringComparison.OrdinalIgnoreCase));
+        }
+
+        if (startDate.HasValue)
+        {
+            filteredItems = filteredItems.Where(item => item.UpdatedAt.Date >= startDate.Value.Date);
+        }
+
+        if (endDate.HasValue)
+        {
+            filteredItems = filteredItems.Where(item => item.UpdatedAt.Date <= endDate.Value.Date);
+        }
+
+        var filteredList = filteredItems.ToList();
+        credentialItems = filteredList.Where(i => i.ItemType == VaultItemType.Credential).ToList();
+        noteItems = filteredList.Where(i => i.ItemType == VaultItemType.Note).ToList();
+        fileItems = filteredList.Where(i => i.ItemType == VaultItemType.File).ToList();
+    }
+
+    private void ClearFilters()
+    {
+        searchText = null;
+        startDate = null;
+        endDate = null;
+        ApplyFilters();
+    }
+    #endregion
+
+    #region UI Action Handlers
+    private void OnViewItemClicked(VaultItemSummaryDto item) => PromptForPassword(item, "View");
+    private void OnEditItemClicked(VaultItemSummaryDto item) => PromptForPassword(item, "Edit");
+    private void OnDeleteItemClicked(VaultItemSummaryDto item) { itemToDelete = item; isDeleteDialogOpen = true; }
+    private void OnDownloadFileClicked(VaultItemSummaryDto item) { selectedItem = item; isFileDownloadConfirmOpen = true; }
+
+    private void OnAddFileClicked()
+    {
+        fileCreateModel = new();
+        errorMessage = null;
+        isFileUploadDialogOpen = true;
+    }
+
+    //InputFileChangeEventArgs
+    private void HandleFileSelected(UploadChangeEventArgs e)
+    {
+        const long maxFileSize = 1024 * 1024 * 11;
+        if (e.Files.FirstOrDefault().FileInfo.Size > maxFileSize)
+        {
+            errorMessage = "File size exceeds the 10MB limit.";
+            return;
+        }
+        fileCreateModel.File = e.Files.FirstOrDefault().File;
+        errorMessage = null;
+    }
+
+    private void OnAddItemClicked()
+    {
+        editingItemModel = new VaultItemEditModel();
+        errorMessage = null;
+        isEditDialogOpen = true;
+    }
+
+    private void PromptForPassword(VaultItemSummaryDto item, string action)
+    {
+        selectedItem = item;
+        currentAction = action;
+        passwordModel = new();
+        errorMessage = null;
+        isPasswordDialogOpen = true;
+    }
+    #endregion
+
+    #region Decryption & File Handling
+    //// <summary>
+    /// Handles the submission of the master password for decryption.
+    /// </summary>
+    /// <returns></returns>
+    private async Task HandlePasswordSubmitAsync()
+    {
+        if (selectedItem == null || AppState.KeySalt == null) return;
+        isProcessing = true;
+        errorMessage = null;
+        StateHasChanged();
+
+        try
+        {
+            switch (currentAction)
+            {
+                case "View": await HandleViewDecryptionAsync(); break;
+                case "Edit": await HandleEditDecryptionAsync(); break;
+                case "DecryptFile": await HandleFileDecryptionAsync(); break;
+            }
+        }
+        catch (CryptographicException ex) { errorMessage = ex.Message; }
+        catch (Exception) { errorMessage = "An unexpected error occurred."; }
+        finally { isProcessing = false; }
+    }
+
+    //// <summary>
+    /// Handles decryption and viewing of an item.
+    /// </summary>
+    /// <returns></returns>
+
+    private async Task HandleViewDecryptionAsync()
+    {
+        var detailedItem = await GetItemDetails(selectedItem.Id);
+        switch (detailedItem.ItemType)
+        {
+            case VaultItemType.Credential:
+                decryptedCredential = await CryptoService.DecryptAsync<CredentialType>(detailedItem.EncryptedData, detailedItem.Iv, AppState.KeySalt, passwordModel.MasterPassword);
+                break;
+            case VaultItemType.Note:
+                decryptedNote = await CryptoService.DecryptAsync<NoteType>(detailedItem.EncryptedData, detailedItem.Iv, AppState.KeySalt, passwordModel.MasterPassword);
+                break;
+        }
+        isPasswordDialogOpen = false;
+        isDetailDialogOpen = true;
+    }
+
+
+    //// <summary>
+    /// Handles decryption and preparation for editing an item.
+    /// </summary>
+    /// <returns></returns>
+    private async Task HandleEditDecryptionAsync()
+    {
+        var detailedItem = await GetItemDetails(selectedItem.Id);
+        editingItemModel = new VaultItemEditModel { Id = detailedItem.Id, Name = detailedItem.Name, ItemType = detailedItem.ItemType };
+        switch (detailedItem.ItemType)
+        {
+            case VaultItemType.Credential:
+                editingItemModel.CredentialData = await CryptoService.DecryptAsync<CredentialType>(detailedItem.EncryptedData, detailedItem.Iv, AppState.KeySalt, passwordModel.MasterPassword);
+                break;
+            case VaultItemType.Note:
+                editingItemModel.NoteData = await CryptoService.DecryptAsync<NoteType>(detailedItem.EncryptedData, detailedItem.Iv, AppState.KeySalt, passwordModel.MasterPassword);
+                break;
+        }
+        isPasswordDialogOpen = false;
+        isEditDialogOpen = true;
+    }
+
+
+    //// <summary>
+    /// Handles decryption and download of a file.
+    /// </summary>
+    /// <returns></returns>
+    private async Task HandleFileDecryptionAsync()
+    {
+        var detailedItem = await GetItemDetails(selectedItem.Id);
+        var fileDownloadResponse = await VaultApiClient.DownloadFileAsync(selectedItem.Id);
+        if (fileDownloadResponse.IsSuccess && fileDownloadResponse.Data != null)
+        {
+            using var ms = new MemoryStream();
+            await fileDownloadResponse.Data.CopyToAsync(ms);
+            var decryptedBytes = await CryptoService.DecryptFileAsync(ms.ToArray(), detailedItem.Iv, AppState.KeySalt, passwordModel.MasterPassword);
+            if (decryptedBytes != null) await JSRuntime.InvokeVoidAsync("triggerFileDownload", detailedItem.Name, Convert.ToBase64String(decryptedBytes));
+            isPasswordDialogOpen = false;
+        }
+    }
+
+    //// <summary>
+    /// Handles downloading the encrypted version of a file.
+    /// </summary>
+    /// <returns></returns>
+    private async Task HandleEncryptedDownloadAsync()
+    {
+        if (selectedItem == null) return;
+        isProcessing = true;
+        var fileDownloadResponse = await VaultApiClient.DownloadFileAsync(selectedItem.Id);
+        if (fileDownloadResponse.IsSuccess && fileDownloadResponse.Data != null)
+        {
+            using var ms = new MemoryStream();
+            await fileDownloadResponse.Data.CopyToAsync(ms);
+            var encryptedFileName = $"{selectedItem.Name}.enc";
+            await JSRuntime.InvokeVoidAsync("triggerFileDownload", encryptedFileName, Convert.ToBase64String(ms.ToArray()));
+        }
+        isFileDownloadConfirmOpen = false;
+        isProcessing = false;
+    }
+    #endregion
+
+    #region CRUD Operations
+
+    //// <summary>
+    /// Handles saving (creating or updating) a vault item.
+    /// </summary>
+    /// <returns></returns>
+    /// <exception cref="CryptographicException"></exception>
+    private async Task HandleSaveItemAsync()
+    {
+        if (AppState.KeySalt == null) { errorMessage = "User session is invalid."; return; }
+        isProcessing = true;
+        errorMessage = null;
+        try
+        {
+            object dataToEncrypt = editingItemModel.ItemType == VaultItemType.Credential ? editingItemModel.CredentialData : editingItemModel.NoteData;
+            Console.WriteLine(dataToEncrypt.GetType().Name);
+            var encryptionResult = await CryptoService.EncryptAsync(dataToEncrypt, AppState.KeySalt, editingItemModel.MasterPassword);
+
+
+
+            if (encryptionResult == null) throw new CryptographicException("Encryption failed.");
+
+            if (editingItemModel.Id == 0) // Create new item
+            {
+                var createDto = new CreateVaultItemDto { Name = editingItemModel.Name, ItemType = editingItemModel.ItemType, EncryptedData = encryptionResult.EncryptedData, Iv = encryptionResult.Iv };
+                var response = await VaultApiClient.CreateItemAsync(createDto);
+                if (!response.IsSuccess) throw new Exception(response.Message);
+            }
+            else // Update existing item
+            {
+                var updateDto = new UpdateVaultItemDto { Name = editingItemModel.Name, EncryptedData = encryptionResult.EncryptedData, Iv = encryptionResult.Iv };
+                var response = await VaultApiClient.UpdateItemAsync(editingItemModel.Id, updateDto);
+                if (!response.IsSuccess) throw new Exception(response.Message);
+            }
+
+            isEditDialogOpen = false;
+            await LoadData();
+        }
+        catch (Exception ex) 
+        {
+            errorMessage = ex.Message;
+        }
+        finally { isProcessing = false; }
+    }
+
+
+    //// <summary>
+    /// Handles saving (encrypting and uploading) a file.
+    /// </summary>
+    /// <returns></returns>
+    /// <exception cref="CryptographicException"></exception>
+    private async Task HandleSaveFileAsync()
+    {
+        if (fileCreateModel.File == null || AppState.KeySalt == null)
+        {
+            errorMessage = "Please select a file and ensure you are logged in.";
+            return;
+        }
+
+        isProcessing = true;
+        errorMessage = null;
+        StateHasChanged();
+
+        try
+        {
+            await using var fileStream = fileCreateModel.File.OpenReadStream(fileCreateModel.File.Size);
+            using var memoryStream = new MemoryStream();
+            await fileStream.CopyToAsync(memoryStream);
+            var plaintextBytes = memoryStream.ToArray();
+
+            var encryptionResult = await CryptoService.EncryptFileAsync(plaintextBytes, AppState.KeySalt, fileCreateModel.MasterPassword);
+            if (encryptionResult == null)
+            {
+                throw new CryptographicException("Encryption failed. Please check your master password.");
+            }
+
+            await using var encryptedStream = new MemoryStream(encryptionResult.EncryptedData);
+
+            var response = await VaultApiClient.UploadFileAsync(encryptedStream, fileCreateModel.File.Name, encryptionResult.Iv);
+            if (!response.IsSuccess)
+            {
+                throw new Exception(response.Message ?? "File upload failed at the API.");
+            }
+
+            isFileUploadDialogOpen = false;
+            await LoadData();
+        }
+        catch (Exception ex)
+        {
+            errorMessage = ex.Message;
+        }
+        finally
+        {
+            isProcessing = false;
+            StateHasChanged();
+        }
+    }
+
+
+    private async Task HandleDeleteItemConfirmAsync()
+    {
+        if (itemToDelete == null) return;
+        await VaultApiClient.DeleteItemAsync(itemToDelete.Id);
+        isDeleteDialogOpen = false;
+        await LoadData();
+    }
+    #endregion
+
+    #region Helpers
+    private async Task<VaultItemDetailDto> GetItemDetails(int id)
+    {
+        var response = await VaultApiClient.GetItemByIdAsync(id);
+        if (!response.IsSuccess) throw new Exception("Could not fetch item details.");
+        return response.Data;
+    }
+    private void ProcessChartData()
+    {
+        chartData = allItems.GroupBy(item => item.ItemType.ToString()).Select(g => new ChartDataPoint { ItemType = g.Key, Count = g.Count() }).ToList();
+    }
+
+
+    
+
+    public class ChartDataPoint { public string ItemType { get; set; } public double Count { get; set; } }
+    public class PasswordModel { [Required] public string MasterPassword { get; set; } }
+    public class VaultItemEditModel
+    {
+        public int Id { get; set; }
+        [Required, StringLength(100)]
+        public string Name { get; set; } = string.Empty;
+        [Required]
+        public VaultItemType ItemType { get; set; } = VaultItemType.Credential;
+
+        public CredentialType CredentialData { get; set; } = new();
+        public NoteType NoteData { get; set; } = new();
+
+        [Required(ErrorMessage = "Your master password is required to save.")]
+        public string MasterPassword { get; set; } = string.Empty;
+
+        [Compare("MasterPassword", ErrorMessage = "The passwords do not match.")]
+        public string MasterConfirm { get; set; } = string.Empty;
+    }
+
+    private void OnItemTypeChanged(string item)
+    {
+        editingItemModel.ItemType = Enum.Parse<VaultItemType>(item);
+        Console.WriteLine(editingItemModel.ItemType.ToString());
+        StateHasChanged();
+    }
+    public class FileCreateModel
+    {
+        [Required(ErrorMessage = "Please select a file.")]
+        public IBrowserFile? File { get; set; }
+
+        [Required(ErrorMessage = "Your master password is required.")]
+        public string MasterPassword { get; set; } = string.Empty;
+
+        [Compare("MasterPassword", ErrorMessage = "The passwords do not match.")]
+        public string MasterConfirm { get; set; } = string.Empty;
+    }
+
+    #endregion
+}

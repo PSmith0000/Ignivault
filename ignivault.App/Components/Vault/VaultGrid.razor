@@ -1,0 +1,57 @@
+﻿@using ignivault.Shared.DTOs.Vault
+@using Syncfusion.Blazor.Grids
+@using Syncfusion.Blazor.Buttons
+@if (Items == null || !Items.Any())
+{
+    <p><em>No items to display in this category.</em></p>
+}
+else
+{
+    <SfGrid DataSource="@Items" AllowPaging="true" AllowSorting="true">
+        <GridPageSettings PageSize="10"></GridPageSettings>
+        <GridColumns>
+            <GridColumn Field=@nameof(VaultItemSummaryDto.Name) HeaderText="Name" Width="300px"></GridColumn>
+            <GridColumn Field=@nameof(VaultItemSummaryDto.UpdatedAt) HeaderText="Last Modified" Format="g" TextAlign="TextAlign.Right"></GridColumn>
+            <GridColumn HeaderText="Actions" Width="240px" TextAlign="TextAlign.Center">
+                <Template>
+                    @{
+                        var item = (context as VaultItemSummaryDto);
+                    }
+                    <div class="d-flex justify-content-center">
+                        @if (IsFileGrid)
+                        {
+                            <SfButton OnClick="@(() => OnDownload.InvokeAsync(item))" IconCss="e-icons e-download" CssClass="e-flat">Download</SfButton>
+                        }
+                        else
+                        {
+                            <SfButton OnClick="@(() => OnView.InvokeAsync(item))" IconCss="e-icons e-eye" CssClass="e-flat">View</SfButton>
+                            <SfButton OnClick="@(() => OnEdit.InvokeAsync(item))" IconCss="e-icons e-edit" CssClass="e-flat">Edit</SfButton>
+                        }
+                        <SfButton OnClick="@(() => OnDelete.InvokeAsync(item))" IconCss="e-icons e-delete" CssClass="e-flat e-danger">Delete</SfButton>
+                    </div>
+                </Template>
+            </GridColumn>
+        </GridColumns>
+    </SfGrid>
+}
+
+
+@code {
+    [Parameter]
+    public List<VaultItemSummaryDto> Items { get; set; } = new();
+
+    [Parameter]
+    public bool IsFileGrid { get; set; } = false;
+
+    [Parameter]
+    public EventCallback<VaultItemSummaryDto> OnView { get; set; }
+
+    [Parameter]
+    public EventCallback<VaultItemSummaryDto> OnEdit { get; set; }
+
+    [Parameter]
+    public EventCallback<VaultItemSummaryDto> OnDelete { get; set; }
+
+    [Parameter]
+    public EventCallback<VaultItemSummaryDto> OnDownload { get; set; }
+}

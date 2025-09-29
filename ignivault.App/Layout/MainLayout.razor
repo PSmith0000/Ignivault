@@ -1,0 +1,49 @@
+﻿@inherits LayoutComponentBase
+@using Syncfusion.Blazor.Navigations
+@inject NavigationManager Navigation
+
+<div class="main-container">
+    <SfSidebar @ref="Sidebar" Type="SidebarType.Push" Target=".main-content" Width="250px" @bind-IsOpen="isSidebarOpen">
+        <div class="sidebar-content">
+            <NavMenu />
+        </div>
+    </SfSidebar>
+
+    <div class="main-content">
+        <SfAppBar ColorMode="AppBarColor.Primary" IsSticky="true">
+            <button class="e-btn e-inherit" @onclick="ToggleSidebar">
+                <span class="e-icons e-menu"></span>
+            </button>
+            <span class="e-appbar-spacer"></span>
+            <span>Ignivault</span>
+            <span class="e-appbar-spacer"></span>
+        </SfAppBar>
+        
+        <main class="content px-4 py-4">
+            @Body
+        </main>
+    </div>
+</div>
+
+@code {
+    SfSidebar? Sidebar;
+
+    protected override void OnAfterRender(bool firstRender)
+    {
+           Navigation.LocationChanged += (sender, args) =>
+           {
+               if (isSidebarOpen)
+               {
+                   isSidebarOpen = false;
+                   StateHasChanged();
+               }
+           };
+    }
+
+    private bool isSidebarOpen = false;
+
+    private void ToggleSidebar()
+    {
+        isSidebarOpen = !isSidebarOpen;
+    }
+}

@@ -1,0 +1,69 @@
+﻿@inject AppState AppState
+@inject IAuthApiClient AuthApiClient
+@inject NavigationManager Navigation
+@inject AuthenticationStateProvider AuthenticationStateProvider
+
+
+<ErrorHandler>
+    <div class="p-2">
+        <AuthorizeView>
+            <Authorized>
+                <h5>Hello, @AppState.UserEmail</h5>
+                <hr />
+                <SfMenu TValue="MenuItem" Orientation="Syncfusion.Blazor.Navigations.Orientation.Vertical">
+                    <MenuEvents TValue="MenuItem" ItemSelected="OnMenuItemSelected"></MenuEvents>
+                    <MenuItems>
+                        <MenuItem Text="Dashboard" IconCss="e-icons e-home" Url="/vault/dashboard"></MenuItem>
+                        <MenuItem Text="Account" IconCss="e-icons e-user" Url="/account/security"></MenuItem>
+                        <MenuItem Text="File Decryption" IconCss="e-icons e-file" Url="/tools/decrypt-file"></MenuItem>
+                        <MenuItem Text="Logout" IconCss="e-icons e-export" Id="logout-btn" Url="#"></MenuItem>
+                        @if (IsAdmin)
+                        {
+                            <MenuItem Text="Application Reports" IconCss="e-icons e-export" Id="Reports-btn" Url="/tools/reports"></MenuItem>
+                            <MenuItem Text="Admin Area" IconCss="e-icons e-export" Id="admin-btn" Url="/admin/users"></MenuItem>
+                        }
+                    </MenuItems>
+                </SfMenu>
+            </Authorized>
+            <NotAuthorized>
+                <h5>Welcome</h5>
+                <hr />
+                <SfMenu TValue="MenuItem" Orientation="Syncfusion.Blazor.Navigations.Orientation.Vertical">
+                    <MenuEvents TValue="MenuItem" ItemSelected="OnMenuItemSelected"></MenuEvents>
+                    <MenuItems>
+                        <MenuItem Text="Home" IconCss="e-icons e-home" Url="/"></MenuItem>
+                        <MenuItem Text="Login" IconCss="e-icons e-user" Url="/auth/login"></MenuItem>
+                        <MenuItem Text="Register" IconCss="e-icons e-add" Url="/auth/register"></MenuItem>
+                    </MenuItems>
+                </SfMenu>
+            </NotAuthorized>
+        </AuthorizeView>
+    </div>
+</ErrorHandler>
+
+@code {
+    bool IsAdmin = false;
+
+    protected override async Task OnInitializedAsync()
+    {
+        var authState = await AuthenticationStateProvider.GetAuthenticationStateAsync();
+        var user = authState.User;
+
+        IsAdmin = user.Claims.Any(c => c.Value == "Admin");
+    }
+
+
+    private async Task OnMenuItemSelected(MenuEventArgs<MenuItem> args)
+    {
+        if (args.Item.Id == "logout-btn")
+        {
+            AppState.ClearUserState();
+            await AuthApiClient.LogoutAsync();
+        }
+    }
+
+    public void HandleError()
+    {
+        Navigation.NavigateTo("/", true); //exception is a known bug with SF menu, only solution is instantly navigate
+    }
+}

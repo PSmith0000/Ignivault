@@ -1,0 +1,4 @@
+var searchData=
+[
+  ['view_20the_20collection_0',['View the collection',['../C:/Users/prest/Desktop/GitHub/Ignivault/ignivault.App/obj/Release/net9.0/browser-wasm/PubTmp/Out/wwwroot/css/open-iconic/README.md#autotoc_md0',1,'Open Iconic is the open source sibling of <a href="https://github.com/iconic/open-iconic">Iconic</a>. It is a hyper-legible collection of 223 icons with a tiny footprint&mdash;ready to use with Bootstrap and Foundation. <a href="https://github.com/iconic/open-iconic">View the collection</a>'],['../C:/Users/prest/Desktop/GitHub/Ignivault/ignivault.App/wwwroot/css/open-iconic/README.md#autotoc_md14',1,'Open Iconic is the open source sibling of <a href="https://github.com/iconic/open-iconic">Iconic</a>. It is a hyper-legible collection of 223 icons with a tiny footprint&mdash;ready to use with Bootstrap and Foundation. <a href="https://github.com/iconic/open-iconic">View the collection</a>']]]
+];

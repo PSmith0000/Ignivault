@@ -1,0 +1,22 @@
+var searchData=
+[
+  ['iaccountapiclient_0',['IAccountApiClient',['../interfaceignivault_1_1_api_client_1_1_account_1_1_i_account_api_client.html',1,'ignivault::ApiClient::Account']]],
+  ['iaccountservice_1',['IAccountService',['../interfaceignivault_1_1_web_a_p_i_1_1_services_1_1_i_account_service.html',1,'ignivault::WebAPI::Services']]],
+  ['iadminapiclient_2',['IAdminApiClient',['../interfaceignivault_1_1_api_client_1_1_admin_1_1_i_admin_api_client.html',1,'ignivault::ApiClient::Admin']]],
+  ['iauthapiclient_3',['IAuthApiClient',['../interfaceignivault_1_1_api_client_1_1_auth_1_1_i_auth_api_client.html',1,'ignivault::ApiClient::Auth']]],
+  ['icryptoservice_4',['ICryptoService',['../interfaceignivault_1_1_app_1_1_services_1_1_i_crypto_service.html',1,'ignivault::App::Services']]],
+  ['iemailservice_5',['IEmailService',['../interfaceignivault_1_1_web_a_p_i_1_1_services_1_1_i_email_service.html',1,'ignivault::WebAPI::Services']]],
+  ['ifileservice_6',['IFileService',['../interfaceignivault_1_1_web_a_p_i_1_1_services_1_1_i_file_service.html',1,'ignivault::WebAPI::Services']]],
+  ['init_7',['Init',['../classvs_1_1_init.html',1,'vs']]],
+  ['ireportsapiclient_8',['IReportsApiClient',['../interfaceignivault_1_1_api_client_1_1_admin_1_1_reports_1_1_i_reports_api_client.html',1,'ignivault::ApiClient::Admin::Reports']]],
+  ['ireportsservice_9',['IReportsService',['../interfaceignivault_1_1_web_a_p_i_1_1_services_1_1_i_reports_service.html',1,'ignivault::WebAPI::Services']]],
+  ['irepository_2d1_2dg_10',['IRepository-1-g',['../interfaceignivault_1_1_web_a_p_i_1_1_data_1_1_repositories_1_1_i_repository-1-g.html',1,'ignivault::WebAPI::Data::Repositories']]],
+  ['istoredblobrepository_11',['IStoredBlobRepository',['../interfaceignivault_1_1_web_a_p_i_1_1_data_1_1_repositories_1_1_i_stored_blob_repository.html',1,'ignivault::WebAPI::Data::Repositories']]],
+  ['itemdistributiondto_12',['ItemDistributionDto',['../classignivault_1_1_shared_1_1_d_t_os_1_1_reports_1_1_item_distribution_dto.html',1,'ignivault::Shared::DTOs::Reports']]],
+  ['itokenmanager_13',['ITokenManager',['../interfaceignivault_1_1_api_client_1_1_i_token_manager.html',1,'ignivault::ApiClient']]],
+  ['iuseractivitylogger_14',['IUserActivityLogger',['../interfaceignivault_1_1_web_a_p_i_1_1_services_1_1_i_user_activity_logger.html',1,'ignivault::WebAPI::Services']]],
+  ['iuseractivityrepository_15',['IUserActivityRepository',['../interfaceignivault_1_1_web_a_p_i_1_1_data_1_1_repositories_1_1_i_user_activity_repository.html',1,'ignivault::WebAPI::Data::Repositories']]],
+  ['ivaultapiclient_16',['IVaultApiClient',['../interfaceignivault_1_1_api_client_1_1_vault_1_1_i_vault_api_client.html',1,'ignivault::ApiClient::Vault']]],
+  ['ivaultitemrepository_17',['IVaultItemRepository',['../interfaceignivault_1_1_web_a_p_i_1_1_data_1_1_repositories_1_1_i_vault_item_repository.html',1,'ignivault::WebAPI::Data::Repositories']]],
+  ['ivaultservice_18',['IVaultService',['../interfaceignivault_1_1_web_a_p_i_1_1_services_1_1_i_vault_service.html',1,'ignivault::WebAPI::Services']]]
+];

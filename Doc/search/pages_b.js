@@ -1,0 +1,4 @@
+var searchData=
+[
+  ['need_20to_20get_20started_20with_20open_20iconic_20check_20out_20our_20icons_20and_20reference_20sections_0',['need to get started with Open Iconic check out our Icons and Reference sections',['../C:/Users/prest/Desktop/GitHub/Ignivault/ignivault.App/obj/Release/net9.0/browser-wasm/PubTmp/Out/wwwroot/css/open-iconic/README.md#autotoc_md3',1,'For code samples and everything else you need to get started with Open Iconic, check out our <a href="https://github.com/iconic/open-iconic">Icons</a> and <a href="https://github.com/iconic/open-iconic">Reference</a> sections.'],['../C:/Users/prest/Desktop/GitHub/Ignivault/ignivault.App/wwwroot/css/open-iconic/README.md#autotoc_md17',1,'For code samples and everything else you need to get started with Open Iconic, check out our <a href="https://github.com/iconic/open-iconic">Icons</a> and <a href="https://github.com/iconic/open-iconic">Reference</a> sections.']]]
+];

@@ -1,0 +1,12 @@
+﻿global using global::System;
+global using global::System.Collections.Generic;
+global using global::System.Linq;
+global using global::System.Text;
+global using global::System.Threading.Tasks;
+global using global::System.Net.Http.Headers;
+global using global::ignivault.Shared.DTOs.Vault;
+global using global::ignivault.Shared;
+global using global::ignivault.Shared.DTOs;
+global using global::ignivault.Shared.DTOs.Auth;
+global using global::System.Net.Http;
+global using global::System.Net.Http.Json;

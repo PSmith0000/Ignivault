@@ -1,0 +1,148 @@
+﻿@page "/admin/users"
+@attribute [Authorize(Roles = "Admin")]
+@using ignivault.ApiClient.Admin
+@inject IAdminApiClient AdminApiClient
+
+<PageTitle>Manage Users</PageTitle>
+
+<h1>User Management</h1>
+
+@if (isLoading)
+{
+    <p><em>Loading Admin Area...</em></p>
+    <SfSpinner Visible="true"></SfSpinner>
+}
+else
+{
+    <SfGrid DataSource="@users" AllowPaging="true">
+        <GridColumns>
+            <GridColumn Field=@nameof(UserDto.Email) HeaderText="User Email" TextAlign="TextAlign.Left"></GridColumn>
+            <GridColumn HeaderText="Actions" Width="300px" TextAlign="TextAlign.Center">
+                <Template>
+                    @{
+                        var user = (context as UserDto);
+                        <div class="d-flex gap-2 justify-content-center">
+                            
+                            @if (user.IsLocked)
+                            {
+                                <SfButton OnClick="@(() => UnlockUser(user.Id))" CssClass="e-success">Unlock</SfButton>
+                            }
+                            else
+                            {
+                                <SfButton OnClick="@(() => LockUser(user.Id))" CssClass="e-danger">Lock</SfButton>
+                            }
+                            <SfButton OnClick="@(() => OpenManageRolesDialog(user))">Manage Roles</SfButton>
+                        </div>
+                    }
+                </Template>
+            </GridColumn>
+        </GridColumns>
+    </SfGrid>
+}
+
+<SfDialog @bind-Visible="isRolesDialogOpen" IsModal="true" Width="500px" ShowCloseIcon="true" Header="@($"Manage Roles for {selectedUser?.Username}")">
+   <DialogTemplates>
+       <Content>
+            @if (selectedUser != null)
+            {
+                <h5>Current Roles</h5>
+                @if (currentUserRoles.Any())
+                {
+                    foreach (var role in currentUserRoles)
+                    {
+                        <div class="d-flex justify-content-between align-items-center mb-2">
+                            <span>@role</span>
+                            <SfButton OnClick="@(() => HandleRemoveRoleAsync(role))" CssClass="e-danger e-small e-round" IconCss="e-icons e-delete"></SfButton>
+                        </div>
+                    }
+                }
+                else
+                {
+
+                    <p><em>No roles assigned.</em></p>
+                }
+
+                <hr />
+                <h5>Add Role</h5>
+                <div class="d-flex gap-2">
+                    <SfComboBox TValue="string" TItem="string" DataSource="@availableRoles" @bind-Value="roleToAdd" Placeholder="Select a role" CssClass="flex-grow-1"></SfComboBox>
+                    <SfButton OnClick="HandleAddRoleAsync" IsPrimary="true" Disabled="@string.IsNullOrEmpty(roleToAdd)">Add</SfButton>
+                </div>
+            }
+       </Content>
+   </DialogTemplates>
+</SfDialog>
+
+@code {
+    private bool isLoading = true;
+    private List<UserDto> users = new();
+    
+    private bool isRolesDialogOpen;
+    private UserDto? selectedUser;
+    private List<string> currentUserRoles = new();
+    private List<string> allSystemRoles = new();
+    private List<string> availableRoles => allSystemRoles.Except(currentUserRoles).ToList();
+    private string? roleToAdd;
+
+    protected override async Task OnInitializedAsync()
+    {
+        await LoadUsers();
+        var rolesResponse = await AdminApiClient.GetRolesAsync();
+        if(rolesResponse.IsSuccess) allSystemRoles = rolesResponse.Data.ToList();
+    }
+
+    private async Task LoadUsers()
+    {
+        isLoading = true;
+        var response = await AdminApiClient.GetUsersAsync();
+        if (response.IsSuccess)
+        {
+            users = response.Data.ToList();
+        }
+        isLoading = false;
+    }
+
+    private async Task LockUser(string userId)
+    {
+        var response = await AdminApiClient.LockUserAsync(userId);
+        if (response.IsSuccess)
+        {
+            await LoadUsers();
+        }
+    }
+
+    private async Task UnlockUser(string userId)
+    {
+        var response = await AdminApiClient.UnlockUserAsync(userId);
+        if (response.IsSuccess)
+        {
+            await LoadUsers(); 
+        }    
+    }
+
+    private async Task OpenManageRolesDialog(UserDto user)
+    {
+        selectedUser = user;
+        roleToAdd = null;
+        var rolesResponse = await AdminApiClient.GetUserRolesAsync(user.Id);
+        if (rolesResponse.IsSuccess)
+        {
+            currentUserRoles = rolesResponse.Data.ToList();
+        }
+        isRolesDialogOpen = true;
+    }
+
+    private async Task HandleAddRoleAsync()
+    {
+        if (selectedUser == null || string.IsNullOrEmpty(roleToAdd)) return;
+        await AdminApiClient.AddRoleToUserAsync(selectedUser.Id, roleToAdd);
+        await OpenManageRolesDialog(selectedUser);
+    }
+    
+    private async Task HandleRemoveRoleAsync(string roleName)
+    {
+        if (selectedUser == null) return;
+        await AdminApiClient.RemoveRoleFromUserAsync(selectedUser.Id, roleName);
+        await OpenManageRolesDialog(selectedUser);
+    }
+}

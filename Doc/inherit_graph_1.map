@@ -1,0 +1,13 @@
+<map id="Graphical Class Hierarchy" name="Graphical Class Hierarchy">
+<area shape="rect" id="Node000000" title=" " alt="" coords="5,115,113,141"/>
+<area shape="rect" id="Node000001" href="$class_account_controller.html" title=" " alt="" coords="194,5,320,32"/>
+<area shape="poly" id="edge2_Node000000_Node000001" title=" " alt="" coords="81,102,116,71,159,42,193,28,195,33,162,46,120,75,85,106"/>
+<area shape="rect" id="Node000002" href="$class_vault_controller.html" title=" " alt="" coords="204,56,310,83"/>
+<area shape="poly" id="edge3_Node000000_Node000002" title=" " alt="" coords="114,107,160,92,202,80,204,85,161,97,115,112"/>
+<area shape="rect" id="Node000003" href="$classignivault_1_1_web_a_p_i_1_1_controllers_1_1_admin_controller.html" title=" " alt="" coords="161,107,353,149"/>
+<area shape="poly" id="edge4_Node000000_Node000003" title=" " alt="" coords="128,125,160,125,160,131,128,131"/>
+<area shape="rect" id="Node000004" href="$classignivault_1_1_web_a_p_i_1_1_controllers_1_1_auth_controller.html" title=" " alt="" coords="161,173,353,216"/>
+<area shape="poly" id="edge5_Node000000_Node000004" title=" " alt="" coords="117,144,192,170,190,175,115,149"/>
+<area shape="rect" id="Node000005" href="$classignivault_1_1_web_a_p_i_1_1_controllers_1_1_reports_controller.html" title=" " alt="" coords="161,240,353,283"/>
+<area shape="poly" id="edge6_Node000000_Node000005" title=" " alt="" coords="82,152,117,190,162,226,184,237,181,242,159,230,114,194,79,156"/>
+</map>

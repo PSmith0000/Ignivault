@@ -1,0 +1,3135 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--Created by yFiles WPF 3.4.0.0-->
+<graphml xmlns:x="http://www.yworks.com/xml/yfiles-common/markup/3.0" xmlns:y="http://www.yworks.com/xml/yfiles-common/3.0" xmlns:sys="http://www.yworks.com/xml/yfiles-common/markup/primitives/2.0" xsi:schemaLocation="http://graphml.graphdrawing.org/xmlns http://www.yworks.com/xml/schema/graphml.wpf/3.0/ygraphml.xsd " xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://graphml.graphdrawing.org/xmlns">
+  <key id="d0" attr.type="boolean" attr.name="Expanded" for="node" y:attr.uri="http://www.yworks.com/xml/yfiles-common/2.0/folding/Expanded">
+    <default>true</default>
+  </key>
+  <key id="d1" attr.name="metadata" for="node">
+    <default>
+      <x:Null />
+    </default>
+  </key>
+  <key id="d2" attr.type="boolean" attr.name="is_group_node" for="node">
+    <default>false</default>
+  </key>
+  <key id="d3" attr.type="string" attr.name="type_node" for="node" />
+  <key id="d4" attr.name="path" for="node">
+    <default>
+      <x:Null />
+    </default>
+  </key>
+  <key id="d5" attr.type="boolean" attr.name="is_static" for="node">
+    <default>false</default>
+  </key>
+  <key id="d6" attr.type="string" attr.name="type_element" for="node" />
+  <key id="d7" attr.type="string" attr.name="type" for="node" />
+  <key id="d8" attr.type="string" attr.name="access" for="node" />
+  <key id="d9" attr.type="string" attr.name="fqn" for="node" />
+  <key id="d10" attr.type="string" attr.name="display_name" for="node" />
+  <key id="d11" attr.name="NodeLabels" for="node" y:attr.uri="http://www.yworks.com/xml/yfiles-common/2.0/NodeLabels" />
+  <key id="d12" attr.name="NodeGeometry" for="node" y:attr.uri="http://www.yworks.com/xml/yfiles-common/2.0/NodeGeometry" />
+  <key id="d13" attr.name="UserTags" for="all" y:attr.uri="http://www.yworks.com/xml/yfiles-common/2.0/UserTags" />
+  <key id="d14" attr.name="NodeViewState" for="node" y:attr.uri="http://www.yworks.com/xml/yfiles-common/2.0/folding/1.1/NodeViewState" />
+  <key id="d15" attr.type="string" attr.name="target" for="edge" />
+  <key id="d16" attr.type="string" attr.name="source" for="edge" />
+  <key id="d17" attr.type="string" attr.name="dependency_type" for="edge" />
+  <key id="d18" attr.name="EdgeLabels" for="edge" y:attr.uri="http://www.yworks.com/xml/yfiles-common/2.0/EdgeLabels" />
+  <key id="d19" attr.name="EdgeGeometry" for="edge" y:attr.uri="http://www.yworks.com/xml/yfiles-common/2.0/EdgeGeometry" />
+  <key id="d20" attr.name="EdgeViewState" for="edge" y:attr.uri="http://www.yworks.com/xml/yfiles-common/2.0/folding/1.1/EdgeViewState" />
+  <key id="d21" attr.name="PortLabels" for="port" y:attr.uri="http://www.yworks.com/xml/yfiles-common/2.0/PortLabels" />
+  <key id="d22" attr.name="PortLocationParameter" for="port" y:attr.uri="http://www.yworks.com/xml/yfiles-common/2.0/PortLocationParameter">
+    <default>
+      <x:Static Member="y:FreeNodePortLocationModel.NodeCenterAnchored" />
+    </default>
+  </key>
+  <key id="d23" attr.name="PortViewState" for="port" y:attr.uri="http://www.yworks.com/xml/yfiles-common/2.0/folding/1.1/PortViewState" />
+  <key id="d24" attr.name="SharedData" y:attr.uri="http://www.yworks.com/xml/yfiles-common/2.0/SharedData" />
+  <key id="d25" attr.name="layouting" />
+  <key id="d26" attr.name="graph_control_center" />
+  <key id="d27" attr.name="graph_control_zoom" />
+  <key id="d28" attr.name="grouping_depth" />
+  <key id="d29" attr.name="grouping_id" />
+  <data key="d24">
+    <y:SharedData>
+      <y:EdgeSegmentLabelModelParameter x:Key="1" SegmentIndex="1">
+        <y:EdgeSegmentLabelModelParameter.Model>
+          <y:EdgeSegmentLabelModel Distance="10" AutoRotationEnabled="False" />
+        </y:EdgeSegmentLabelModelParameter.Model>
+      </y:EdgeSegmentLabelModelParameter>
+    </y:SharedData>
+  </data>
+  <data key="d25">Organic</data>
+  <data key="d26">
+    <y:PointD X="2135.3836993238092" Y="599.62502472097333" />
+  </data>
+  <data key="d27">0.570464172972973</data>
+  <data key="d28">0</data>
+  <data key="d29">None</data>
+  <graph id="G">
+    <node id="n0">
+      <data key="d1">
+        <sys:Dictionary x:TypeArguments="sys:String,sys:String" />
+      </data>
+      <data key="d3"><![CDATA[LogicOwner]]></data>
+      <data key="d4">
+        <x:Array Type="sys:String">
+          <sys:String>C:\Users\prest\Desktop\GitHub\Ignivault\ignivault.WebAPI\Controllers\AccountController.cs</sys:String>
+        </x:Array>
+      </data>
+      <data key="d6"><![CDATA[32faf320-1660-bc81-ba19-1642742b2d58%28ignivault.WebAPI%29-16EFFD6E%5Bnet9.0%5D/T%3AAccountController]]></data>
+      <data key="d7"><![CDATA[class]]></data>
+      <data key="d8"><![CDATA[public]]></data>
+      <data key="d9"><![CDATA[AccountController]]></data>
+      <data key="d10"><![CDATA[AccountController]]></data>
+      <data key="d12">
+        <y:RectD X="2870.02" Y="0" Width="368.47333333333336" Height="88" />
+      </data>
+      <port name="p0">
+        <data key="d22">
+          <y:FreeNodePortLocationModelParameter Ratio="0.248966456188597,1" />
+        </data>
+      </port>
+      <port name="p1">
+        <data key="d22">
+          <y:FreeNodePortLocationModelParameter Ratio="0.0920351540590904,1" />
+        </data>
+      </port>
+      <port name="p2">
+        <data key="d22">
+          <y:FreeNodePortLocationModelParameter Ratio="0.71976036257712,1" />
+        </data>
+      </port>
+      <port name="p3">
+        <data key="d22">
+          <y:FreeNodePortLocationModelParameter Ratio="0.562829060447613,1" />
+        </data>
+      </port>
+      <port name="p4">
+        <data key="d22">
+          <y:FreeNodePortLocationModelParameter Ratio="0.405897758318105,1" />
+        </data>
+      </port>
+    </node>
+    <node id="n1">
+      <data key="d1">
+        <sys:Dictionary x:TypeArguments="sys:String,sys:String" />
+      </data>
+      <data key="d3"><![CDATA[Interface]]></data>
+      <data key="d4">
+        <x:Array Type="sys:String">
+          <sys:String>C:\Users\prest\Desktop\GitHub\Ignivault\ignivault.WebAPI\Services\AccountService.cs</sys:String>
+        </x:Array>
+      </data>
+      <data key="d6"><![CDATA[32faf320-1660-bc81-ba19-1642742b2d58%28ignivault.WebAPI%29-16EFFD6E%5Bnet9.0%5D/T%3Aignivault.WebAPI.Services.IAccountService]]></data>
+      <data key="d7"><![CDATA[interface]]></data>
+      <data key="d8"><![CDATA[public]]></data>
+      <data key="d9"><![CDATA[ignivault.WebAPI.Services.IAccountService]]></data>
+      <data key="d10"><![CDATA[IAccountService]]></data>
+      <data key="d12">
+        <y:RectD X="2136.0983333333334" Y="439" Width="337.31666666666672" Height="88" />
+      </data>
+      <port name="p0">
+        <data key="d22">
+          <y:FreeNodePortLocationModelParameter Ratio="1,0.570454545454545" />
+        </data>
+      </port>
+      <port name="p1">
+        <data key="d22">
+          <y:FreeNodePortLocationModelParameter Ratio="1,0.0568181818181818" />
+        </data>
+      </port>
+      <port name="p2">
+        <data key="d22">
+          <y:FreeNodePortLocationModelParameter Ratio="0.77027027027027,1" />
+        </data>
+      </port>
+      <port name="p3">
+        <data key="d22">
+          <y:FreeNodePortLocationModelParameter Ratio="0,0.5" />
+        </data>
+      </port>
+    </node>
+    <node id="n2">
+      <data key="d1">
+        <sys:Dictionary x:TypeArguments="sys:String,sys:String" />
+      </data>
+      <data key="d3"><![CDATA[Interface]]></data>
+      <data key="d4">
+        <x:Array Type="sys:String">
+          <sys:String>C:\Users\prest\Desktop\GitHub\Ignivault\ignivault.WebAPI\Data\Repositories\IUserActivityRepository.cs</sys:String>
+        </x:Array>
+      </data>
+      <data key="d6"><![CDATA[32faf320-1660-bc81-ba19-1642742b2d58%28ignivault.WebAPI%29-16EFFD6E%5Bnet9.0%5D/T%3Aignivault.WebAPI.Data.Repositories.IUserActivityRepository]]></data>
+      <data key="d7"><![CDATA[interface]]></data>
+      <data key="d8"><![CDATA[public]]></data>
+      <data key="d9"><![CDATA[ignivault.WebAPI.Data.Repositories.IUserActivityRepository]]></data>
+      <data key="d10"><![CDATA[IUserActivityRepository]]></data>
+      <data key="d12">
+        <y:RectD X="2725.3683333333333" Y="837" Width="443.7766666666667" Height="88" />
+      </data>
+      <port name="p0">
+        <data key="d22">
+          <y:FreeNodePortLocationModelParameter Ratio="0.923582057040704,0" />
+        </data>
+      </port>
+      <port name="p1">
+        <data key="d22">
+          <y:FreeNodePortLocationModelParameter Ratio="0.793280028242435,0" />
+        </data>
+      </port>
+      <port name="p2">
+        <data key="d22">
+          <y:FreeNodePortLocationModelParameter Ratio="0.0112669285601616,1" />
+        </data>
+      </port>
+      <port name="p3">
+        <data key="d22">
+          <y:FreeNodePortLocationModelParameter Ratio="0.0771671937085468,1" />
+        </data>
+      </port>
+      <port name="p4">
+        <data key="d22">
+          <y:FreeNodePortLocationModelParameter Ratio="0.924485289146943,1" />
+        </data>
+      </port>
+      <port name="p5">
+        <data key="d22">
+          <y:FreeNodePortLocationModelParameter Ratio="0.122234907949193,1" />
+        </data>
+      </port>
+      <port name="p6">
+        <data key="d22">
+          <y:FreeNodePortLocationModelParameter Ratio="0,0.5" />
+        </data>
+      </port>
+    </node>
+    <node id="n3">
+      <data key="d1">
+        <sys:Dictionary x:TypeArguments="sys:String,sys:String" />
+      </data>
+      <data key="d3"><![CDATA[Unknown]]></data>
+      <data key="d4">
+        <x:Array Type="sys:String">
+          <sys:String>C:\Users\prest\Desktop\GitHub\Ignivault\ignivault.WebAPI\Data\Entities\UserActivity.cs</sys:String>
+        </x:Array>
+      </data>
+      <data key="d6"><![CDATA[32faf320-1660-bc81-ba19-1642742b2d58%28ignivault.WebAPI%29-16EFFD6E%5Bnet9.0%5D/T%3Aignivault.WebAPI.Data.Entities.UserActivity]]></data>
+      <data key="d7"><![CDATA[class]]></data>
+      <data key="d8"><![CDATA[public]]></data>
+      <data key="d9"><![CDATA[ignivault.WebAPI.Data.Entities.UserActivity]]></data>
+      <data key="d10"><![CDATA[UserActivity]]></data>
+      <data key="d12">
+        <y:RectD X="2408.5783333333334" Y="1235" Width="281.35666666666668" Height="88" />
+      </data>
+      <port name="p0">
+        <data key="d22">
+          <y:FreeNodePortLocationModelParameter Ratio="0.820939021645123,0" />
+        </data>
+      </port>
+      <port name="p1">
+        <data key="d22">
+          <y:FreeNodePortLocationModelParameter Ratio="0,0.670454545454545" />
+        </data>
+      </port>
+      <port name="p2">
+        <data key="d22">
+          <y:FreeNodePortLocationModelParameter Ratio="0.498359140829552,0" />
+        </data>
+      </port>
+      <port name="p3">
+        <data key="d22">
+          <y:FreeNodePortLocationModelParameter Ratio="1,0.167613636363636" />
+        </data>
+      </port>
+      <port name="p4">
+        <data key="d22">
+          <y:FreeNodePortLocationModelParameter Ratio="1,0.394886363636364" />
+        </data>
+      </port>
+      <port name="p5">
+        <data key="d22">
+          <y:FreeNodePortLocationModelParameter Ratio="0.98222896205291,1" />
+        </data>
+      </port>
+      <port name="p6">
+        <data key="d22">
+          <y:FreeNodePortLocationModelParameter Ratio="1,0.622159090909091" />
+        </data>
+      </port>
+      <port name="p7">
+        <data key="d22">
+          <y:FreeNodePortLocationModelParameter Ratio="0,0.294034090909091" />
+        </data>
+      </port>
+    </node>
+    <node id="n4">
+      <data key="d1">
+        <sys:Dictionary x:TypeArguments="sys:String,sys:String" />
+      </data>
+      <data key="d3"><![CDATA[LogicOwner]]></data>
+      <data key="d4">
+        <x:Array Type="sys:String">
+          <sys:String>C:\Users\prest\Desktop\GitHub\Ignivault\ignivault.WebAPI\Controllers\AdminController.cs</sys:String>
+        </x:Array>
+      </data>
+      <data key="d6"><![CDATA[32faf320-1660-bc81-ba19-1642742b2d58%28ignivault.WebAPI%29-16EFFD6E%5Bnet9.0%5D/T%3Aignivault.WebAPI.Controllers.AdminController]]></data>
+      <data key="d7"><![CDATA[class]]></data>
+      <data key="d8"><![CDATA[public]]></data>
+      <data key="d9"><![CDATA[ignivault.WebAPI.Controllers.AdminController]]></data>
+      <data key="d10"><![CDATA[AdminController]]></data>
+      <data key="d12">
+        <y:RectD X="413.21166666666659" Y="1946" Width="346.09000000000003" Height="88" />
+      </data>
+      <port name="p0">
+        <data key="d22">
+          <y:FreeNodePortLocationModelParameter Ratio="1,0.659090909090909" />
+        </data>
+      </port>
+    </node>
+    <node id="n5">
+      <data key="d1">
+        <sys:Dictionary x:TypeArguments="sys:String,sys:String" />
+      </data>
+      <data key="d3"><![CDATA[Unknown]]></data>
+      <data key="d4">
+        <x:Array Type="sys:String">
+          <sys:String>C:\Users\prest\Desktop\GitHub\Ignivault\ignivault.WebAPI\Data\Entities\LoginUser.cs</sys:String>
+        </x:Array>
+      </data>
+      <data key="d6"><![CDATA[32faf320-1660-bc81-ba19-1642742b2d58%28ignivault.WebAPI%29-16EFFD6E%5Bnet9.0%5D/T%3Aignivault.WebAPI.Data.Entities.LoginUser]]></data>
+      <data key="d7"><![CDATA[class]]></data>
+      <data key="d8"><![CDATA[public]]></data>
+      <data key="d9"><![CDATA[ignivault.WebAPI.Data.Entities.LoginUser]]></data>
+      <data key="d10"><![CDATA[LoginUser]]></data>
+      <data key="d12">
+        <y:RectD X="1147.2633333333333" Y="1861" Width="251.98666666666668" Height="88" />
+      </data>
+      <port name="p0">
+        <data key="d22">
+          <y:FreeNodePortLocationModelParameter Ratio="0.5,1" />
+        </data>
+      </port>
+      <port name="p1">
+        <data key="d22">
+          <y:FreeNodePortLocationModelParameter Ratio="0.751236837927933,0" />
+        </data>
+      </port>
+      <port name="p2">
+        <data key="d22">
+          <y:FreeNodePortLocationModelParameter Ratio="0.980157680300545,0" />
+        </data>
+      </port>
+      <port name="p3">
+        <data key="d22">
+          <y:FreeNodePortLocationModelParameter Ratio="1,0.849431818181818" />
+        </data>
+      </port>
+      <port name="p4">
+        <data key="d22">
+          <y:FreeNodePortLocationModelParameter Ratio="1,0.394886363636364" />
+        </data>
+      </port>
+      <port name="p5">
+        <data key="d22">
+          <y:FreeNodePortLocationModelParameter Ratio="1,0.622159090909091" />
+        </data>
+      </port>
+      <port name="p6">
+        <data key="d22">
+          <y:FreeNodePortLocationModelParameter Ratio="1,0.167613636363636" />
+        </data>
+      </port>
+    </node>
+    <node id="n6">
+      <data key="d1">
+        <sys:Dictionary x:TypeArguments="sys:String,sys:String" />
+      </data>
+      <data key="d3"><![CDATA[LogicOwner]]></data>
+      <data key="d4">
+        <x:Array Type="sys:String">
+          <sys:String>C:\Users\prest\Desktop\GitHub\Ignivault\ignivault.WebAPI\Controllers\AuthController.cs</sys:String>
+        </x:Array>
+      </data>
+      <data key="d6"><![CDATA[32faf320-1660-bc81-ba19-1642742b2d58%28ignivault.WebAPI%29-16EFFD6E%5Bnet9.0%5D/T%3Aignivault.WebAPI.Controllers.AuthController]]></data>
+      <data key="d7"><![CDATA[class]]></data>
+      <data key="d8"><![CDATA[public]]></data>
+      <data key="d9"><![CDATA[ignivault.WebAPI.Controllers.AuthController]]></data>
+      <data key="d10"><![CDATA[AuthController]]></data>
+      <data key="d12">
+        <y:RectD X="326.135" Y="958" Width="321.24333333333334" Height="88" />
+      </data>
+      <port name="p0">
+        <data key="d22">
+          <y:FreeNodePortLocationModelParameter Ratio="1,0.488636363636364" />
+        </data>
+      </port>
+      <port name="p1">
+        <data key="d22">
+          <y:FreeNodePortLocationModelParameter Ratio="0.54435241198261,1" />
+        </data>
+      </port>
+      <port name="p2">
+        <data key="d22">
+          <y:FreeNodePortLocationModelParameter Ratio="0.837741120438297,1" />
+        </data>
+      </port>
+      <port name="p3">
+        <data key="d22">
+          <y:FreeNodePortLocationModelParameter Ratio="1,0.715909090909091" />
+        </data>
+      </port>
+      <port name="p4">
+        <data key="d22">
+          <y:FreeNodePortLocationModelParameter Ratio="1,0.943181818181818" />
+        </data>
+      </port>
+      <port name="p5">
+        <data key="d22">
+          <y:FreeNodePortLocationModelParameter Ratio="0.5,0" />
+        </data>
+      </port>
+    </node>
+    <node id="n7">
+      <data key="d1">
+        <sys:Dictionary x:TypeArguments="sys:String,sys:String" />
+      </data>
+      <data key="d3"><![CDATA[Interface]]></data>
+      <data key="d4">
+        <x:Array Type="sys:String">
+          <sys:String>C:\Users\prest\Desktop\GitHub\Ignivault\ignivault.WebAPI\Services\EmailService.cs</sys:String>
+        </x:Array>
+      </data>
+      <data key="d6"><![CDATA[32faf320-1660-bc81-ba19-1642742b2d58%28ignivault.WebAPI%29-16EFFD6E%5Bnet9.0%5D/T%3Aignivault.WebAPI.Services.IEmailService]]></data>
+      <data key="d7"><![CDATA[interface]]></data>
+      <data key="d8"><![CDATA[public]]></data>
+      <data key="d9"><![CDATA[ignivault.WebAPI.Services.IEmailService]]></data>
+      <data key="d10"><![CDATA[IEmailService]]></data>
+      <data key="d12">
+        <y:RectD X="448.88000000000011" Y="1657" Width="297.75333333333333" Height="88" />
+      </data>
+      <port name="p0">
+        <data key="d22">
+          <y:FreeNodePortLocationModelParameter Ratio="0.175059613102568,0" />
+        </data>
+      </port>
+      <port name="p1">
+        <data key="d22">
+          <y:FreeNodePortLocationModelParameter Ratio="0.491593992790453,0" />
+        </data>
+      </port>
+      <port name="p2">
+        <data key="d22">
+          <y:FreeNodePortLocationModelParameter Ratio="1,0.397727272727273" />
+        </data>
+      </port>
+      <port name="p3">
+        <data key="d22">
+          <y:FreeNodePortLocationModelParameter Ratio="0,0.5" />
+        </data>
+      </port>
+    </node>
+    <node id="n8">
+      <data key="d1">
+        <sys:Dictionary x:TypeArguments="sys:String,sys:String" />
+      </data>
+      <data key="d3"><![CDATA[Interface]]></data>
+      <data key="d4">
+        <x:Array Type="sys:String">
+          <sys:String>C:\Users\prest\Desktop\GitHub\Ignivault\ignivault.WebAPI\Services\UserActivityLogger.cs</sys:String>
+        </x:Array>
+      </data>
+      <data key="d6"><![CDATA[32faf320-1660-bc81-ba19-1642742b2d58%28ignivault.WebAPI%29-16EFFD6E%5Bnet9.0%5D/T%3Aignivault.WebAPI.Services.IUserActivityLogger]]></data>
+      <data key="d7"><![CDATA[interface]]></data>
+      <data key="d8"><![CDATA[public]]></data>
+      <data key="d9"><![CDATA[ignivault.WebAPI.Services.IUserActivityLogger]]></data>
+      <data key="d10"><![CDATA[IUserActivityLogger]]></data>
+      <data key="d12">
+        <y:RectD X="1057.8283333333334" Y="874" Width="389.85666666666668" Height="88" />
+      </data>
+      <port name="p0">
+        <data key="d22">
+          <y:FreeNodePortLocationModelParameter Ratio="0.420975230212813,1" />
+        </data>
+      </port>
+      <port name="p1">
+        <data key="d22">
+          <y:FreeNodePortLocationModelParameter Ratio="0.16672794274819,1" />
+        </data>
+      </port>
+      <port name="p2">
+        <data key="d22">
+          <y:FreeNodePortLocationModelParameter Ratio="1,0.943181818181818" />
+        </data>
+      </port>
+      <port name="p3">
+        <data key="d22">
+          <y:FreeNodePortLocationModelParameter Ratio="1,0.295454545454545" />
+        </data>
+      </port>
+      <port name="p4">
+        <data key="d22">
+          <y:FreeNodePortLocationModelParameter Ratio="1,0.0681818181818182" />
+        </data>
+      </port>
+      <port name="p5">
+        <data key="d22">
+          <y:FreeNodePortLocationModelParameter Ratio="0.716331643253503,0" />
+        </data>
+      </port>
+      <port name="p6">
+        <data key="d22">
+          <y:FreeNodePortLocationModelParameter Ratio="1,0.522727272727273" />
+        </data>
+      </port>
+      <port name="p7">
+        <data key="d22">
+          <y:FreeNodePortLocationModelParameter Ratio="0.0128252263652453,1" />
+        </data>
+      </port>
+      <port name="p8">
+        <data key="d22">
+          <y:FreeNodePortLocationModelParameter Ratio="0.0641261318262267,1" />
+        </data>
+      </port>
+    </node>
+    <node id="n9">
+      <data key="d1">
+        <sys:Dictionary x:TypeArguments="sys:String,sys:String" />
+      </data>
+      <data key="d3"><![CDATA[Unknown]]></data>
+      <data key="d4">
+        <x:Array Type="sys:String">
+          <sys:String>C:\Users\prest\Desktop\GitHub\Ignivault\ignivault.WebAPI\Data\Enums\ActivityType.cs</sys:String>
+        </x:Array>
+      </data>
+      <data key="d6"><![CDATA[32faf320-1660-bc81-ba19-1642742b2d58%28ignivault.WebAPI%29-16EFFD6E%5Bnet9.0%5D/T%3Aignivault.WebAPI.Data.Enums.ActivityType]]></data>
+      <data key="d7"><![CDATA[enum]]></data>
+      <data key="d8"><![CDATA[public]]></data>
+      <data key="d9"><![CDATA[ignivault.WebAPI.Data.Enums.ActivityType]]></data>
+      <data key="d10"><![CDATA[ActivityType]]></data>
+      <data key="d12">
+        <y:RectD X="1226.505" Y="477" Width="285.50333333333333" Height="88" />
+      </data>
+      <port name="p0">
+        <data key="d22">
+          <y:FreeNodePortLocationModelParameter Ratio="0,0.5" />
+        </data>
+      </port>
+      <port name="p1">
+        <data key="d22">
+          <y:FreeNodePortLocationModelParameter Ratio="0.5,0" />
+        </data>
+      </port>
+      <port name="p2">
+        <data key="d22">
+          <y:FreeNodePortLocationModelParameter Ratio="1,0.9375" />
+        </data>
+      </port>
+      <port name="p3">
+        <data key="d22">
+          <y:FreeNodePortLocationModelParameter Ratio="0.387350994150681,1" />
+        </data>
+      </port>
+      <port name="p4">
+        <data key="d22">
+          <y:FreeNodePortLocationModelParameter Ratio="1,0.918560606060607" />
+        </data>
+      </port>
+      <port name="p5">
+        <data key="d22">
+          <y:FreeNodePortLocationModelParameter Ratio="0.879779570582947,1" />
+        </data>
+      </port>
+    </node>
+    <node id="n10">
+      <data key="d1">
+        <sys:Dictionary x:TypeArguments="sys:String,sys:String" />
+      </data>
+      <data key="d3"><![CDATA[LogicOwner]]></data>
+      <data key="d4">
+        <x:Array Type="sys:String">
+          <sys:String>C:\Users\prest\Desktop\GitHub\Ignivault\ignivault.WebAPI\Controllers\ReportsController.cs</sys:String>
+        </x:Array>
+      </data>
+      <data key="d6"><![CDATA[32faf320-1660-bc81-ba19-1642742b2d58%28ignivault.WebAPI%29-16EFFD6E%5Bnet9.0%5D/T%3Aignivault.WebAPI.Controllers.ReportsController]]></data>
+      <data key="d7"><![CDATA[class]]></data>
+      <data key="d8"><![CDATA[public]]></data>
+      <data key="d9"><![CDATA[ignivault.WebAPI.Controllers.ReportsController]]></data>
+      <data key="d10"><![CDATA[ReportsController]]></data>
+      <data key="d12">
+        <y:RectD X="4374.2816666666668" Y="2147" Width="361.95000000000005" Height="88" />
+      </data>
+      <port name="p0">
+        <data key="d22">
+          <y:FreeNodePortLocationModelParameter Ratio="0.256907031357923,1" />
+        </data>
+      </port>
+      <port name="p1">
+        <data key="d22">
+          <y:FreeNodePortLocationModelParameter Ratio="0.743092968642077,1" />
+        </data>
+      </port>
+    </node>
+    <node id="n11">
+      <data key="d1">
+        <sys:Dictionary x:TypeArguments="sys:String,sys:String" />
+      </data>
+      <data key="d3"><![CDATA[Interface]]></data>
+      <data key="d4">
+        <x:Array Type="sys:String">
+          <sys:String>C:\Users\prest\Desktop\GitHub\Ignivault\ignivault.WebAPI\Services\ReportsService.cs</sys:String>
+        </x:Array>
+      </data>
+      <data key="d6"><![CDATA[32faf320-1660-bc81-ba19-1642742b2d58%28ignivault.WebAPI%29-16EFFD6E%5Bnet9.0%5D/T%3Aignivault.WebAPI.Services.IReportsService]]></data>
+      <data key="d7"><![CDATA[interface]]></data>
+      <data key="d8"><![CDATA[public]]></data>
+      <data key="d9"><![CDATA[ignivault.WebAPI.Services.IReportsService]]></data>
+      <data key="d10"><![CDATA[IReportsService]]></data>
+      <data key="d12">
+        <y:RectD X="3634.8599999999997" Y="2229" Width="330.79333333333335" Height="88" />
+      </data>
+      <port name="p0">
+        <data key="d22">
+          <y:FreeNodePortLocationModelParameter Ratio="1,0.542613636363636" Offset="1.70530256582424E-13,0" />
+        </data>
+      </port>
+      <port name="p1">
+        <data key="d22">
+          <y:FreeNodePortLocationModelParameter Ratio="1,0.809659090909091" Offset="1.70530256582424E-13,0" />
+        </data>
+      </port>
+      <port name="p2">
+        <data key="d22">
+          <y:FreeNodePortLocationModelParameter Ratio="0,0.375" />
+        </data>
+      </port>
+      <port name="p3">
+        <data key="d22">
+          <y:FreeNodePortLocationModelParameter Ratio="0,0.147727272727273" />
+        </data>
+      </port>
+    </node>
+    <node id="n12">
+      <data key="d1">
+        <sys:Dictionary x:TypeArguments="sys:String,sys:String" />
+      </data>
+      <data key="d3"><![CDATA[LogicOwner]]></data>
+      <data key="d4">
+        <x:Array Type="sys:String">
+          <sys:String>C:\Users\prest\Desktop\GitHub\Ignivault\ignivault.WebAPI\Controllers\VaultController.cs</sys:String>
+        </x:Array>
+      </data>
+      <data key="d6"><![CDATA[32faf320-1660-bc81-ba19-1642742b2d58%28ignivault.WebAPI%29-16EFFD6E%5Bnet9.0%5D/T%3AVaultController]]></data>
+      <data key="d7"><![CDATA[class]]></data>
+      <data key="d8"><![CDATA[public]]></data>
+      <data key="d9"><![CDATA[VaultController]]></data>
+      <data key="d10"><![CDATA[VaultController]]></data>
+      <data key="d12">
+        <y:RectD X="0" Y="4034" Width="324.51333333333332" Height="88" />
+      </data>
+      <port name="p0">
+        <data key="d22">
+          <y:FreeNodePortLocationModelParameter Ratio="0.966303387636872,0" />
+        </data>
+      </port>
+      <port name="p1">
+        <data key="d22">
+          <y:FreeNodePortLocationModelParameter Ratio="0.694618901857433,0" />
+        </data>
+      </port>
+      <port name="p2">
+        <data key="d22">
+          <y:FreeNodePortLocationModelParameter Ratio="0.151249930298557,0" />
+        </data>
+      </port>
+      <port name="p3">
+        <data key="d22">
+          <y:FreeNodePortLocationModelParameter Ratio="0.422934416077995,0" />
+        </data>
+      </port>
+    </node>
+    <node id="n13">
+      <data key="d1">
+        <sys:Dictionary x:TypeArguments="sys:String,sys:String" />
+      </data>
+      <data key="d3"><![CDATA[Interface]]></data>
+      <data key="d4">
+        <x:Array Type="sys:String">
+          <sys:String>C:\Users\prest\Desktop\GitHub\Ignivault\ignivault.WebAPI\Services\VaultService.cs</sys:String>
+        </x:Array>
+      </data>
+      <data key="d6"><![CDATA[32faf320-1660-bc81-ba19-1642742b2d58%28ignivault.WebAPI%29-16EFFD6E%5Bnet9.0%5D/T%3Aignivault.WebAPI.Services.IVaultService]]></data>
+      <data key="d7"><![CDATA[interface]]></data>
+      <data key="d8"><![CDATA[public]]></data>
+      <data key="d9"><![CDATA[ignivault.WebAPI.Services.IVaultService]]></data>
+      <data key="d10"><![CDATA[IVaultService]]></data>
+      <data key="d12">
+        <y:RectD X="308.57833333333338" Y="3065" Width="293.35666666666668" Height="88" />
+      </data>
+      <port name="p0">
+        <data key="d22">
+          <y:FreeNodePortLocationModelParameter Ratio="0.017044098764871,1" />
+        </data>
+      </port>
+      <port name="p1">
+        <data key="d22">
+          <y:FreeNodePortLocationModelParameter Ratio="0,0.5" />
+        </data>
+      </port>
+      <port name="p2">
+        <data key="d22">
+          <y:FreeNodePortLocationModelParameter Ratio="1,0.278409090909091" />
+        </data>
+      </port>
+      <port name="p3">
+        <data key="d22">
+          <y:FreeNodePortLocationModelParameter Ratio="1,0.721590909090909" />
+        </data>
+      </port>
+    </node>
+    <node id="n14">
+      <data key="d1">
+        <sys:Dictionary x:TypeArguments="sys:String,sys:String" />
+      </data>
+      <data key="d3"><![CDATA[Interface]]></data>
+      <data key="d4">
+        <x:Array Type="sys:String">
+          <sys:String>C:\Users\prest\Desktop\GitHub\Ignivault\ignivault.WebAPI\Services\FileService.cs</sys:String>
+        </x:Array>
+      </data>
+      <data key="d6"><![CDATA[32faf320-1660-bc81-ba19-1642742b2d58%28ignivault.WebAPI%29-16EFFD6E%5Bnet9.0%5D/T%3Aignivault.WebAPI.Services.IFileService]]></data>
+      <data key="d7"><![CDATA[interface]]></data>
+      <data key="d8"><![CDATA[public]]></data>
+      <data key="d9"><![CDATA[ignivault.WebAPI.Services.IFileService]]></data>
+      <data key="d10"><![CDATA[IFileService]]></data>
+      <data key="d12">
+        <y:RectD X="926.26" Y="3675" Width="269.99333333333334" Height="88" />
+      </data>
+      <port name="p0">
+        <data key="d22">
+          <y:FreeNodePortLocationModelParameter Ratio="0,0.721590909090909" />
+        </data>
+      </port>
+      <port name="p1">
+        <data key="d22">
+          <y:FreeNodePortLocationModelParameter Ratio="0,0.278409090909091" />
+        </data>
+      </port>
+      <port name="p2">
+        <data key="d22">
+          <y:FreeNodePortLocationModelParameter Ratio="0.343446751771649,0" />
+        </data>
+      </port>
+      <port name="p3">
+        <data key="d22">
+          <y:FreeNodePortLocationModelParameter Ratio="0.768802933405763,0" />
+        </data>
+      </port>
+    </node>
+    <node id="n15">
+      <data key="d1">
+        <sys:Dictionary x:TypeArguments="sys:String,sys:String" />
+      </data>
+      <data key="d3"><![CDATA[Unknown]]></data>
+      <data key="d4">
+        <x:Array Type="sys:String">
+          <sys:String>C:\Users\prest\Desktop\GitHub\Ignivault\ignivault.WebAPI\Data\Entities\StoredBlob.cs</sys:String>
+        </x:Array>
+      </data>
+      <data key="d6"><![CDATA[32faf320-1660-bc81-ba19-1642742b2d58%28ignivault.WebAPI%29-16EFFD6E%5Bnet9.0%5D/T%3Aignivault.WebAPI.Data.Entities.StoredBlob]]></data>
+      <data key="d7"><![CDATA[class]]></data>
+      <data key="d8"><![CDATA[public]]></data>
+      <data key="d9"><![CDATA[ignivault.WebAPI.Data.Entities.StoredBlob]]></data>
+      <data key="d10"><![CDATA[StoredBlob]]></data>
+      <data key="d12">
+        <y:RectD X="2631.61" Y="4330" Width="267.29333333333335" Height="88" />
+      </data>
+      <port name="p0">
+        <data key="d22">
+          <y:FreeNodePortLocationModelParameter Ratio="0,0.5" />
+        </data>
+      </port>
+      <port name="p1">
+        <data key="d22">
+          <y:FreeNodePortLocationModelParameter Ratio="0,0.204545454545455" />
+        </data>
+      </port>
+      <port name="p2">
+        <data key="d22">
+          <y:FreeNodePortLocationModelParameter Ratio="0.196419663790093,0" />
+        </data>
+      </port>
+      <port name="p3">
+        <data key="d22">
+          <y:FreeNodePortLocationModelParameter Ratio="0.98129395919589,0" />
+        </data>
+      </port>
+      <port name="p4">
+        <data key="d22">
+          <y:FreeNodePortLocationModelParameter Ratio="1,0.5" Offset="1.70530256582424E-13,0" />
+        </data>
+      </port>
+      <port name="p5">
+        <data key="d22">
+          <y:FreeNodePortLocationModelParameter Ratio="0,0.795454545454545" />
+        </data>
+      </port>
+      <port name="p6">
+        <data key="d22">
+          <y:FreeNodePortLocationModelParameter Ratio="0.633838604279941,0" />
+        </data>
+      </port>
+    </node>
+    <node id="n16">
+      <data key="d1">
+        <sys:Dictionary x:TypeArguments="sys:String,sys:String" />
+      </data>
+      <data key="d3"><![CDATA[Unknown]]></data>
+      <data key="d4">
+        <x:Array Type="sys:String">
+          <sys:String>C:\Users\prest\Desktop\GitHub\Ignivault\ignivault.WebAPI\Data\Entities\VaultEntity.cs</sys:String>
+        </x:Array>
+      </data>
+      <data key="d6"><![CDATA[32faf320-1660-bc81-ba19-1642742b2d58%28ignivault.WebAPI%29-16EFFD6E%5Bnet9.0%5D/T%3Aignivault.WebAPI.Data.Entities.VaultEntity]]></data>
+      <data key="d7"><![CDATA[class]]></data>
+      <data key="d8"><![CDATA[public]]></data>
+      <data key="d9"><![CDATA[ignivault.WebAPI.Data.Entities.VaultEntity]]></data>
+      <data key="d10"><![CDATA[VaultEntity]]></data>
+      <data key="d12">
+        <y:RectD X="1861.0666666666666" Y="2915" Width="264.38" Height="88" />
+      </data>
+      <port name="p0">
+        <data key="d22">
+          <y:FreeNodePortLocationModelParameter Ratio="0.380794479326895,1" />
+        </data>
+      </port>
+      <port name="p1">
+        <data key="d22">
+          <y:FreeNodePortLocationModelParameter Ratio="0.62091181884661,1" />
+        </data>
+      </port>
+      <port name="p2">
+        <data key="d22">
+          <y:FreeNodePortLocationModelParameter Ratio="0.383765791663515,0" />
+        </data>
+      </port>
+      <port name="p3">
+        <data key="d22">
+          <y:FreeNodePortLocationModelParameter Ratio="0.861029158366326,1" />
+        </data>
+      </port>
+      <port name="p4">
+        <data key="d22">
+          <y:FreeNodePortLocationModelParameter Ratio="0,0.189393939393938" />
+        </data>
+      </port>
+      <port name="p5">
+        <data key="d22">
+          <y:FreeNodePortLocationModelParameter Ratio="1,0.278409090909091" Offset="1.13686837721616E-13,0" />
+        </data>
+      </port>
+      <port name="p6">
+        <data key="d22">
+          <y:FreeNodePortLocationModelParameter Ratio="0.870237284716443,0" />
+        </data>
+      </port>
+      <port name="p7">
+        <data key="d22">
+          <y:FreeNodePortLocationModelParameter Ratio="0.627001538189979,0" />
+        </data>
+      </port>
+      <port name="p8">
+        <data key="d22">
+          <y:FreeNodePortLocationModelParameter Ratio="0.0736313891620648,1" />
+        </data>
+      </port>
+      <port name="p9">
+        <data key="d22">
+          <y:FreeNodePortLocationModelParameter Ratio="1,0.721590909090909" Offset="1.13686837721616E-13,0" />
+        </data>
+      </port>
+      <port name="p10">
+        <data key="d22">
+          <y:FreeNodePortLocationModelParameter Ratio="0.140530045137051,0" />
+        </data>
+      </port>
+    </node>
+    <node id="n17">
+      <data key="d1">
+        <sys:Dictionary x:TypeArguments="sys:String,sys:String" />
+      </data>
+      <data key="d3"><![CDATA[Interface]]></data>
+      <data key="d4">
+        <x:Array Type="sys:String">
+          <sys:String>C:\Users\prest\Desktop\GitHub\Ignivault\ignivault.WebAPI\Data\Repositories\BlobRepository.cs</sys:String>
+        </x:Array>
+      </data>
+      <data key="d6"><![CDATA[32faf320-1660-bc81-ba19-1642742b2d58%28ignivault.WebAPI%29-16EFFD6E%5Bnet9.0%5D/T%3Aignivault.WebAPI.Data.Repositories.IStoredBlobRepository]]></data>
+      <data key="d7"><![CDATA[interface]]></data>
+      <data key="d8"><![CDATA[public]]></data>
+      <data key="d9"><![CDATA[ignivault.WebAPI.Data.Repositories.IStoredBlobRepository]]></data>
+      <data key="d10"><![CDATA[IStoredBlobRepository]]></data>
+      <data key="d12">
+        <y:RectD X="2306.9" Y="3986" Width="429.71333333333337" Height="88" />
+      </data>
+      <port name="p0">
+        <data key="d22">
+          <y:FreeNodePortLocationModelParameter Ratio="0.877821648540888,1" />
+        </data>
+      </port>
+      <port name="p1">
+        <data key="d22">
+          <y:FreeNodePortLocationModelParameter Ratio="0.317743698210521,0" />
+        </data>
+      </port>
+      <port name="p2">
+        <data key="d22">
+          <y:FreeNodePortLocationModelParameter Ratio="1,0.5" Offset="2.27373675443232E-13,0" />
+        </data>
+      </port>
+      <port name="p3">
+        <data key="d22">
+          <y:FreeNodePortLocationModelParameter Ratio="0,0.204545454545455" />
+        </data>
+      </port>
+      <port name="p4">
+        <data key="d22">
+          <y:FreeNodePortLocationModelParameter Ratio="0,0.795454545454545" />
+        </data>
+      </port>
+      <port name="p5">
+        <data key="d22">
+          <y:FreeNodePortLocationModelParameter Ratio="0,0.5" />
+        </data>
+      </port>
+    </node>
+    <node id="n18">
+      <data key="d1">
+        <sys:Dictionary x:TypeArguments="sys:String,sys:String" />
+      </data>
+      <data key="d3"><![CDATA[Interface]]></data>
+      <data key="d4">
+        <x:Array Type="sys:String">
+          <sys:String>C:\Users\prest\Desktop\GitHub\Ignivault\ignivault.WebAPI\Data\Repositories\IRepository.cs</sys:String>
+        </x:Array>
+      </data>
+      <data key="d6"><![CDATA[32faf320-1660-bc81-ba19-1642742b2d58%28ignivault.WebAPI%29-16EFFD6E%5Bnet9.0%5D/T%3Aignivault.WebAPI.Data.Repositories.IRepository%601]]></data>
+      <data key="d7"><![CDATA[interface]]></data>
+      <data key="d8"><![CDATA[public]]></data>
+      <data key="d9"><![CDATA[ignivault.WebAPI.Data.Repositories.IRepository<T>]]></data>
+      <data key="d10"><![CDATA[IRepository]]></data>
+      <data key="d12">
+        <y:RectD X="2188.5466666666666" Y="1722" Width="272.42" Height="88" />
+      </data>
+      <port name="p0">
+        <data key="d22">
+          <y:FreeNodePortLocationModelParameter Ratio="0.935658310832674,1" />
+        </data>
+      </port>
+      <port name="p1">
+        <data key="d22">
+          <y:FreeNodePortLocationModelParameter Ratio="1,0.201704545454545" Offset="5.6843418860808E-14,0" />
+        </data>
+      </port>
+      <port name="p2">
+        <data key="d22">
+          <y:FreeNodePortLocationModelParameter Ratio="1,0.491477272727273" Offset="5.6843418860808E-14,0" />
+        </data>
+      </port>
+      <port name="p3">
+        <data key="d22">
+          <y:FreeNodePortLocationModelParameter Ratio="0.776042757144244,1" />
+        </data>
+      </port>
+      <port name="p4">
+        <data key="d22">
+          <y:FreeNodePortLocationModelParameter Ratio="0.293055453588822,1" />
+        </data>
+      </port>
+      <port name="p5">
+        <data key="d22">
+          <y:FreeNodePortLocationModelParameter Ratio="0.0805887967109617,0" />
+        </data>
+      </port>
+      <port name="p6">
+        <data key="d22">
+          <y:FreeNodePortLocationModelParameter Ratio="0.696234980300028,1" />
+        </data>
+      </port>
+    </node>
+    <node id="n19">
+      <data key="d1">
+        <sys:Dictionary x:TypeArguments="sys:String,sys:String" />
+      </data>
+      <data key="d3"><![CDATA[Unknown]]></data>
+      <data key="d4">
+        <x:Array Type="sys:String">
+          <sys:String>C:\Users\prest\Desktop\GitHub\Ignivault\ignivault.WebAPI\Data\Repositories\BlobRepository.cs</sys:String>
+        </x:Array>
+      </data>
+      <data key="d6"><![CDATA[32faf320-1660-bc81-ba19-1642742b2d58%28ignivault.WebAPI%29-16EFFD6E%5Bnet9.0%5D/T%3Aignivault.WebAPI.Data.Repositories.BlobRepository]]></data>
+      <data key="d7"><![CDATA[class]]></data>
+      <data key="d8"><![CDATA[public]]></data>
+      <data key="d9"><![CDATA[ignivault.WebAPI.Data.Repositories.BlobRepository]]></data>
+      <data key="d10"><![CDATA[BlobRepository]]></data>
+      <data key="d12">
+        <y:RectD X="2865.4483333333333" Y="3643" Width="327.61666666666667" Height="88" />
+      </data>
+      <port name="p0">
+        <data key="d22">
+          <y:FreeNodePortLocationModelParameter Ratio="1,0.721590909090909" Offset="1.13686837721616E-13,0" />
+        </data>
+      </port>
+      <port name="p1">
+        <data key="d22">
+          <y:FreeNodePortLocationModelParameter Ratio="1,0.278409090909091" Offset="1.13686837721616E-13,0" />
+        </data>
+      </port>
+      <port name="p2">
+        <data key="d22">
+          <y:FreeNodePortLocationModelParameter Ratio="0.0868545556290392,1" />
+        </data>
+      </port>
+      <port name="p3">
+        <data key="d22">
+          <y:FreeNodePortLocationModelParameter Ratio="0,0.686363636363637" />
+        </data>
+      </port>
+      <port name="p4">
+        <data key="d22">
+          <y:FreeNodePortLocationModelParameter Ratio="0.0258076003459339,1" />
+        </data>
+      </port>
+      <port name="p5">
+        <data key="d22">
+          <y:FreeNodePortLocationModelParameter Ratio="0,0.172727272727271" />
+        </data>
+      </port>
+    </node>
+    <node id="n20">
+      <data key="d1">
+        <sys:Dictionary x:TypeArguments="sys:String,sys:String" />
+      </data>
+      <data key="d3"><![CDATA[Unknown]]></data>
+      <data key="d4">
+        <x:Array Type="sys:String">
+          <sys:String>C:\Users\prest\Desktop\GitHub\Ignivault\ignivault.WebAPI\Data\AppDbContext.cs</sys:String>
+        </x:Array>
+      </data>
+      <data key="d6"><![CDATA[32faf320-1660-bc81-ba19-1642742b2d58%28ignivault.WebAPI%29-16EFFD6E%5Bnet9.0%5D/T%3Aignivault.WebAPI.Data.AppDbContext]]></data>
+      <data key="d7"><![CDATA[class]]></data>
+      <data key="d8"><![CDATA[public]]></data>
+      <data key="d9"><![CDATA[ignivault.WebAPI.Data.AppDbContext]]></data>
+      <data key="d10"><![CDATA[AppDbContext]]></data>
+      <data key="d12">
+        <y:RectD X="2604.1266666666666" Y="2433" Width="320.26" Height="88" />
+      </data>
+      <port name="p0">
+        <data key="d22">
+          <y:FreeNodePortLocationModelParameter Ratio="0.735298403380587,0" />
+        </data>
+      </port>
+      <port name="p1">
+        <data key="d22">
+          <y:FreeNodePortLocationModelParameter Ratio="0,0.5" />
+        </data>
+      </port>
+      <port name="p2">
+        <data key="d22">
+          <y:FreeNodePortLocationModelParameter Ratio="0.999999999999999,0.204545454545455" />
+        </data>
+      </port>
+      <port name="p3">
+        <data key="d22">
+          <y:FreeNodePortLocationModelParameter Ratio="0.252321030829118,0" />
+        </data>
+      </port>
+      <port name="p4">
+        <data key="d22">
+          <y:FreeNodePortLocationModelParameter Ratio="0.0913268386102962,0" />
+        </data>
+      </port>
+      <port name="p5">
+        <data key="d22">
+          <y:FreeNodePortLocationModelParameter Ratio="0,0.204545454545455" />
+        </data>
+      </port>
+      <port name="p6">
+        <data key="d22">
+          <y:FreeNodePortLocationModelParameter Ratio="0.999999999999999,0.795454545454545" />
+        </data>
+      </port>
+      <port name="p7">
+        <data key="d22">
+          <y:FreeNodePortLocationModelParameter Ratio="0.999999999999999,0.5" />
+        </data>
+      </port>
+      <port name="p8">
+        <data key="d22">
+          <y:FreeNodePortLocationModelParameter Ratio="0.189871770852849,0" />
+        </data>
+      </port>
+      <port name="p9">
+        <data key="d22">
+          <y:FreeNodePortLocationModelParameter Ratio="0,0.795454545454545" />
+        </data>
+      </port>
+      <port name="p10">
+        <data key="d22">
+          <y:FreeNodePortLocationModelParameter Ratio="0.891185633894683,0" />
+        </data>
+      </port>
+      <port name="p11">
+        <data key="d22">
+          <y:FreeNodePortLocationModelParameter Ratio="0.984387685005932,0" />
+        </data>
+      </port>
+    </node>
+    <node id="n21">
+      <data key="d1">
+        <sys:Dictionary x:TypeArguments="sys:String,sys:String" />
+      </data>
+      <data key="d3"><![CDATA[Unknown]]></data>
+      <data key="d4">
+        <x:Array Type="sys:String">
+          <sys:String>C:\Users\prest\Desktop\GitHub\Ignivault\ignivault.WebAPI\Data\Repositories\Repository.cs</sys:String>
+        </x:Array>
+      </data>
+      <data key="d6"><![CDATA[32faf320-1660-bc81-ba19-1642742b2d58%28ignivault.WebAPI%29-16EFFD6E%5Bnet9.0%5D/T%3Aignivault.WebAPI.Data.Repositories.Repository%601]]></data>
+      <data key="d7"><![CDATA[class]]></data>
+      <data key="d8"><![CDATA[public]]></data>
+      <data key="d9"><![CDATA[ignivault.WebAPI.Data.Repositories.Repository<T>]]></data>
+      <data key="d10"><![CDATA[Repository]]></data>
+      <data key="d12">
+        <y:RectD X="2996.3" Y="1746" Width="262.91333333333336" Height="88" />
+      </data>
+      <port name="p0">
+        <data key="d22">
+          <y:FreeNodePortLocationModelParameter Ratio="1,0.278409090909091" Offset="5.6843418860808E-14,0" />
+        </data>
+      </port>
+      <port name="p1">
+        <data key="d22">
+          <y:FreeNodePortLocationModelParameter Ratio="1,0.721590909090909" Offset="5.6843418860808E-14,0" />
+        </data>
+      </port>
+      <port name="p2">
+        <data key="d22">
+          <y:FreeNodePortLocationModelParameter Ratio="0,0.798295454545455" />
+        </data>
+      </port>
+      <port name="p3">
+        <data key="d22">
+          <y:FreeNodePortLocationModelParameter Ratio="0,0.21875" />
+        </data>
+      </port>
+      <port name="p4">
+        <data key="d22">
+          <y:FreeNodePortLocationModelParameter Ratio="0.561381126860563,0" />
+        </data>
+      </port>
+      <port name="p5">
+        <data key="d22">
+          <y:FreeNodePortLocationModelParameter Ratio="0.841115259781423,0" />
+        </data>
+      </port>
+      <port name="p6">
+        <data key="d22">
+          <y:FreeNodePortLocationModelParameter Ratio="0.980982326241854,1" />
+        </data>
+      </port>
+      <port name="p7">
+        <data key="d22">
+          <y:FreeNodePortLocationModelParameter Ratio="0.904911631209271,1" />
+        </data>
+      </port>
+      <port name="p8">
+        <data key="d22">
+          <y:FreeNodePortLocationModelParameter Ratio="0,0.508522727272727" />
+        </data>
+      </port>
+    </node>
+    <node id="n22">
+      <data key="d1">
+        <sys:Dictionary x:TypeArguments="sys:String,sys:String" />
+      </data>
+      <data key="d3"><![CDATA[Unknown]]></data>
+      <data key="d4">
+        <x:Array Type="sys:String">
+          <sys:String>C:\Users\prest\Desktop\GitHub\Ignivault\ignivault.WebAPI\Data\Repositories\UserActivityRepository.cs</sys:String>
+        </x:Array>
+      </data>
+      <data key="d6"><![CDATA[32faf320-1660-bc81-ba19-1642742b2d58%28ignivault.WebAPI%29-16EFFD6E%5Bnet9.0%5D/T%3Aignivault.WebAPI.Data.Repositories.UserActivityRepository]]></data>
+      <data key="d7"><![CDATA[class]]></data>
+      <data key="d8"><![CDATA[public]]></data>
+      <data key="d9"><![CDATA[ignivault.WebAPI.Data.Repositories.UserActivityRepository]]></data>
+      <data key="d10"><![CDATA[UserActivityRepository]]></data>
+      <data key="d12">
+        <y:RectD X="3102.1216666666669" Y="1235" Width="434.27000000000004" Height="88" />
+      </data>
+      <port name="p0">
+        <data key="d22">
+          <y:FreeNodePortLocationModelParameter Ratio="0.096191117661056,1" />
+        </data>
+      </port>
+      <port name="p1">
+        <data key="d22">
+          <y:FreeNodePortLocationModelParameter Ratio="0.265546203974486,1" />
+        </data>
+      </port>
+      <port name="p2">
+        <data key="d22">
+          <y:FreeNodePortLocationModelParameter Ratio="0,0.394886363636364" />
+        </data>
+      </port>
+      <port name="p3">
+        <data key="d22">
+          <y:FreeNodePortLocationModelParameter Ratio="0.0771678141862581,0" />
+        </data>
+      </port>
+      <port name="p4">
+        <data key="d22">
+          <y:FreeNodePortLocationModelParameter Ratio="0,0.849431818181818" />
+        </data>
+      </port>
+    </node>
+    <node id="n23">
+      <data key="d1">
+        <sys:Dictionary x:TypeArguments="sys:String,sys:String" />
+      </data>
+      <data key="d3"><![CDATA[Interface]]></data>
+      <data key="d4">
+        <x:Array Type="sys:String">
+          <sys:String>C:\Users\prest\Desktop\GitHub\Ignivault\ignivault.WebAPI\Data\Repositories\VaultItemRepository.cs</sys:String>
+        </x:Array>
+      </data>
+      <data key="d6"><![CDATA[32faf320-1660-bc81-ba19-1642742b2d58%28ignivault.WebAPI%29-16EFFD6E%5Bnet9.0%5D/T%3Aignivault.WebAPI.Data.Repositories.IVaultItemRepository]]></data>
+      <data key="d7"><![CDATA[interface]]></data>
+      <data key="d8"><![CDATA[public]]></data>
+      <data key="d9"><![CDATA[ignivault.WebAPI.Data.Repositories.IVaultItemRepository]]></data>
+      <data key="d10"><![CDATA[IVaultItemRepository]]></data>
+      <data key="d12">
+        <y:RectD X="1049.0366666666666" Y="2907" Width="409.44" Height="88" />
+      </data>
+      <port name="p0">
+        <data key="d22">
+          <y:FreeNodePortLocationModelParameter Ratio="1,0.280303030303029" Offset="5.6843418860808E-14,0" />
+        </data>
+      </port>
+      <port name="p1">
+        <data key="d22">
+          <y:FreeNodePortLocationModelParameter Ratio="0.912659160479354,0" />
+        </data>
+      </port>
+      <port name="p2">
+        <data key="d22">
+          <y:FreeNodePortLocationModelParameter Ratio="0.982182981633451,0" />
+        </data>
+      </port>
+      <port name="p3">
+        <data key="d22">
+          <y:FreeNodePortLocationModelParameter Ratio="0.142377393513091,0" />
+        </data>
+      </port>
+      <port name="p4">
+        <data key="d22">
+          <y:FreeNodePortLocationModelParameter Ratio="0.131378630975642,0" />
+        </data>
+      </port>
+      <port name="p5">
+        <data key="d22">
+          <y:FreeNodePortLocationModelParameter Ratio="0.0336842190960012,0" />
+        </data>
+      </port>
+      <port name="p6">
+        <data key="d22">
+          <y:FreeNodePortLocationModelParameter Ratio="1,0.810606060606062" Offset="5.6843418860808E-14,0" />
+        </data>
+      </port>
+      <port name="p7">
+        <data key="d22">
+          <y:FreeNodePortLocationModelParameter Ratio="1,0.545454545454545" Offset="5.6843418860808E-14,0" />
+        </data>
+      </port>
+      <port name="p8">
+        <data key="d22">
+          <y:FreeNodePortLocationModelParameter Ratio="0.422312589553211,0" />
+        </data>
+      </port>
+      <port name="p9">
+        <data key="d22">
+          <y:FreeNodePortLocationModelParameter Ratio="0.702247785593331,0" />
+        </data>
+      </port>
+    </node>
+    <node id="n24">
+      <data key="d1">
+        <sys:Dictionary x:TypeArguments="sys:String,sys:String" />
+      </data>
+      <data key="d3"><![CDATA[Unknown]]></data>
+      <data key="d4">
+        <x:Array Type="sys:String">
+          <sys:String>C:\Users\prest\Desktop\GitHub\Ignivault\ignivault.WebAPI\Data\Repositories\VaultItemRepository.cs</sys:String>
+        </x:Array>
+      </data>
+      <data key="d6"><![CDATA[32faf320-1660-bc81-ba19-1642742b2d58%28ignivault.WebAPI%29-16EFFD6E%5Bnet9.0%5D/T%3Aignivault.WebAPI.Data.Repositories.VaultItemRepository]]></data>
+      <data key="d7"><![CDATA[class]]></data>
+      <data key="d8"><![CDATA[public]]></data>
+      <data key="d9"><![CDATA[ignivault.WebAPI.Data.Repositories.VaultItemRepository]]></data>
+      <data key="d10"><![CDATA[VaultItemRepository]]></data>
+      <data key="d12">
+        <y:RectD X="2526.79" Y="2776" Width="399.93333333333334" Height="88" />
+      </data>
+      <port name="p0">
+        <data key="d22">
+          <y:FreeNodePortLocationModelParameter Ratio="1,0.721590909090909" Offset="5.6843418860808E-14,0" />
+        </data>
+      </port>
+      <port name="p1">
+        <data key="d22">
+          <y:FreeNodePortLocationModelParameter Ratio="1,0.278409090909091" Offset="5.6843418860808E-14,0" />
+        </data>
+      </port>
+      <port name="p2">
+        <data key="d22">
+          <y:FreeNodePortLocationModelParameter Ratio="0.5,1" />
+        </data>
+      </port>
+      <port name="p3">
+        <data key="d22">
+          <y:FreeNodePortLocationModelParameter Ratio="0,0.765909090909092" />
+        </data>
+      </port>
+      <port name="p4">
+        <data key="d22">
+          <y:FreeNodePortLocationModelParameter Ratio="0,0.0568181818181818" />
+        </data>
+      </port>
+    </node>
+    <node id="n25">
+      <data key="d1">
+        <sys:Dictionary x:TypeArguments="sys:String,sys:String" />
+      </data>
+      <data key="d4">
+        <x:Array Type="sys:String">
+          <sys:String>C:\Users\prest\Desktop\GitHub\Ignivault\ignivault.WebAPI\Extensions\ServiceCollectionExtensions.cs</sys:String>
+        </x:Array>
+      </data>
+      <data key="d5">true</data>
+      <data key="d6"><![CDATA[32faf320-1660-bc81-ba19-1642742b2d58%28ignivault.WebAPI%29-16EFFD6E%5Bnet9.0%5D/T%3Aignivault.WebAPI.Extensions.ServiceCollectionExtensions]]></data>
+      <data key="d7"><![CDATA[class]]></data>
+      <data key="d8"><![CDATA[public]]></data>
+      <data key="d9"><![CDATA[ignivault.WebAPI.Extensions.ServiceCollectionExtensions]]></data>
+      <data key="d10"><![CDATA[ServiceCollectionExtensions]]></data>
+      <data key="d12">
+        <y:RectD X="1845.2983333333332" Y="2120" Width="502.91666666666669" Height="88" />
+      </data>
+      <port name="p0">
+        <data key="d22">
+          <y:FreeNodePortLocationModelParameter Ratio="0.950289975144988,1" />
+        </data>
+      </port>
+      <port name="p1">
+        <data key="d22">
+          <y:FreeNodePortLocationModelParameter Ratio="0.0262429163214583,0" />
+        </data>
+      </port>
+      <port name="p2">
+        <data key="d22">
+          <y:FreeNodePortLocationModelParameter Ratio="0.841257663628833,0" />
+        </data>
+      </port>
+      <port name="p3">
+        <data key="d22">
+          <y:FreeNodePortLocationModelParameter Ratio="1,0.136363636363636" />
+        </data>
+      </port>
+      <port name="p4">
+        <data key="d22">
+          <y:FreeNodePortLocationModelParameter Ratio="0,0.849431818181818" />
+        </data>
+      </port>
+      <port name="p5">
+        <data key="d22">
+          <y:FreeNodePortLocationModelParameter Ratio="0.905671361502348,1" />
+        </data>
+      </port>
+      <port name="p6">
+        <data key="d22">
+          <y:FreeNodePortLocationModelParameter Ratio="0.737448218724109,1" />
+        </data>
+      </port>
+      <port name="p7">
+        <data key="d22">
+          <y:FreeNodePortLocationModelParameter Ratio="0.858197183098592,1" />
+        </data>
+      </port>
+      <port name="p8">
+        <data key="d22">
+          <y:FreeNodePortLocationModelParameter Ratio="1,0.825757575757574" />
+        </data>
+      </port>
+      <port name="p9">
+        <data key="d22">
+          <y:FreeNodePortLocationModelParameter Ratio="1,0.363636363636364" />
+        </data>
+      </port>
+      <port name="p10">
+        <data key="d22">
+          <y:FreeNodePortLocationModelParameter Ratio="0.622863297431649,0" />
+        </data>
+      </port>
+      <port name="p11">
+        <data key="d22">
+          <y:FreeNodePortLocationModelParameter Ratio="0.213316984258492,0" />
+        </data>
+      </port>
+      <port name="p12">
+        <data key="d22">
+          <y:FreeNodePortLocationModelParameter Ratio="0,0.394886363636364" />
+        </data>
+      </port>
+      <port name="p13">
+        <data key="d22">
+          <y:FreeNodePortLocationModelParameter Ratio="0.488831814415907,1" />
+        </data>
+      </port>
+      <port name="p14">
+        <data key="d22">
+          <y:FreeNodePortLocationModelParameter Ratio="0,0.622159090909091" />
+        </data>
+      </port>
+      <port name="p15">
+        <data key="d22">
+          <y:FreeNodePortLocationModelParameter Ratio="0.616699254349628,1" />
+        </data>
+      </port>
+      <port name="p16">
+        <data key="d22">
+          <y:FreeNodePortLocationModelParameter Ratio="0.471881715633166,0" />
+        </data>
+      </port>
+      <port name="p17">
+        <data key="d22">
+          <y:FreeNodePortLocationModelParameter Ratio="0.562825058950991,0" />
+        </data>
+      </port>
+      <port name="p18">
+        <data key="d22">
+          <y:FreeNodePortLocationModelParameter Ratio="0.119779950289975,0" />
+        </data>
+      </port>
+      <port name="p19">
+        <data key="d22">
+          <y:FreeNodePortLocationModelParameter Ratio="0,0.167613636363636" />
+        </data>
+      </port>
+      <port name="p20">
+        <data key="d22">
+          <y:FreeNodePortLocationModelParameter Ratio="0.990057995028998,1" />
+        </data>
+      </port>
+      <port name="p21">
+        <data key="d22">
+          <y:FreeNodePortLocationModelParameter Ratio="1,0.590909090909091" />
+        </data>
+      </port>
+    </node>
+    <node id="n26">
+      <data key="d1">
+        <sys:Dictionary x:TypeArguments="sys:String,sys:String" />
+      </data>
+      <data key="d3"><![CDATA[LogicOwner]]></data>
+      <data key="d4">
+        <x:Array Type="sys:String">
+          <sys:String>C:\Users\prest\Desktop\GitHub\Ignivault\ignivault.WebAPI\Services\AccountService.cs</sys:String>
+        </x:Array>
+      </data>
+      <data key="d6"><![CDATA[32faf320-1660-bc81-ba19-1642742b2d58%28ignivault.WebAPI%29-16EFFD6E%5Bnet9.0%5D/T%3Aignivault.WebAPI.Services.AccountService]]></data>
+      <data key="d7"><![CDATA[class]]></data>
+      <data key="d8"><![CDATA[public]]></data>
+      <data key="d9"><![CDATA[ignivault.WebAPI.Services.AccountService]]></data>
+      <data key="d10"><![CDATA[AccountService]]></data>
+      <data key="d12">
+        <y:RectD X="1688.8516666666667" Y="1324" Width="327.81" Height="88" />
+      </data>
+      <port name="p0">
+        <data key="d22">
+          <y:FreeNodePortLocationModelParameter Ratio="0.804512776710086,1" />
+        </data>
+      </port>
+      <port name="p1">
+        <data key="d22">
+          <y:FreeNodePortLocationModelParameter Ratio="0.0870036504885957,1" />
+        </data>
+      </port>
+      <port name="p2">
+        <data key="d22">
+          <y:FreeNodePortLocationModelParameter Ratio="0.0729782495958025,0" />
+        </data>
+      </port>
+      <port name="p3">
+        <data key="d22">
+          <y:FreeNodePortLocationModelParameter Ratio="0.230505475732894,1" />
+        </data>
+      </port>
+      <port name="p4">
+        <data key="d22">
+          <y:FreeNodePortLocationModelParameter Ratio="1,0.329545454545455" />
+        </data>
+      </port>
+      <port name="p5">
+        <data key="d22">
+          <y:FreeNodePortLocationModelParameter Ratio="0.948014601954384,1" />
+        </data>
+      </port>
+      <port name="p6">
+        <data key="d22">
+          <y:FreeNodePortLocationModelParameter Ratio="1,0.705965909090909" />
+        </data>
+      </port>
+      <port name="p7">
+        <data key="d22">
+          <y:FreeNodePortLocationModelParameter Ratio="0.303880296513224,0" />
+        </data>
+      </port>
+      <port name="p8">
+        <data key="d22">
+          <y:FreeNodePortLocationModelParameter Ratio="0.188429273054513,0" />
+        </data>
+      </port>
+      <port name="p9">
+        <data key="d22">
+          <y:FreeNodePortLocationModelParameter Ratio="0.419331319971935,0" />
+        </data>
+      </port>
+      <port name="p10">
+        <data key="d22">
+          <y:FreeNodePortLocationModelParameter Ratio="0.374007300977192,1" />
+        </data>
+      </port>
+      <port name="p11">
+        <data key="d22">
+          <y:FreeNodePortLocationModelParameter Ratio="0.534782343430646,0" />
+        </data>
+      </port>
+    </node>
+    <node id="n27">
+      <data key="d1">
+        <sys:Dictionary x:TypeArguments="sys:String,sys:String" />
+      </data>
+      <data key="d3"><![CDATA[LogicOwner]]></data>
+      <data key="d4">
+        <x:Array Type="sys:String">
+          <sys:String>C:\Users\prest\Desktop\GitHub\Ignivault\ignivault.WebAPI\Services\VaultService.cs</sys:String>
+        </x:Array>
+      </data>
+      <data key="d6"><![CDATA[32faf320-1660-bc81-ba19-1642742b2d58%28ignivault.WebAPI%29-16EFFD6E%5Bnet9.0%5D/T%3Aignivault.WebAPI.Services.VaultService]]></data>
+      <data key="d7"><![CDATA[class]]></data>
+      <data key="d8"><![CDATA[public]]></data>
+      <data key="d9"><![CDATA[ignivault.WebAPI.Services.VaultService]]></data>
+      <data key="d10"><![CDATA[VaultService]]></data>
+      <data key="d12">
+        <y:RectD X="1137.3316666666667" Y="2259" Width="283.85" Height="88" />
+      </data>
+      <port name="p0">
+        <data key="d22">
+          <y:FreeNodePortLocationModelParameter Ratio="1,0.715909090909091" Offset="1.13686837721616E-13,0" />
+        </data>
+      </port>
+      <port name="p1">
+        <data key="d22">
+          <y:FreeNodePortLocationModelParameter Ratio="0.298103458399389,1" />
+        </data>
+      </port>
+      <port name="p2">
+        <data key="d22">
+          <y:FreeNodePortLocationModelParameter Ratio="0.701896541600611,1" />
+        </data>
+      </port>
+      <port name="p3">
+        <data key="d22">
+          <y:FreeNodePortLocationModelParameter Ratio="0,0.5" />
+        </data>
+      </port>
+      <port name="p4">
+        <data key="d22">
+          <y:FreeNodePortLocationModelParameter Ratio="0,0.204545454545455" />
+        </data>
+      </port>
+      <port name="p5">
+        <data key="d22">
+          <y:FreeNodePortLocationModelParameter Ratio="1,0.0568181818181818" Offset="1.13686837721616E-13,0" />
+        </data>
+      </port>
+      <port name="p6">
+        <data key="d22">
+          <y:FreeNodePortLocationModelParameter Ratio="1,0.943181818181818" Offset="1.13686837721616E-13,0" />
+        </data>
+      </port>
+      <port name="p7">
+        <data key="d22">
+          <y:FreeNodePortLocationModelParameter Ratio="1,0.943181818181818" Offset="1.13686837721616E-13,0" />
+        </data>
+      </port>
+      <port name="p8">
+        <data key="d22">
+          <y:FreeNodePortLocationModelParameter Ratio="0,0.795454545454545" />
+        </data>
+      </port>
+    </node>
+    <node id="n28">
+      <data key="d1">
+        <sys:Dictionary x:TypeArguments="sys:String,sys:String" />
+      </data>
+      <data key="d3"><![CDATA[LogicOwner]]></data>
+      <data key="d4">
+        <x:Array Type="sys:String">
+          <sys:String>C:\Users\prest\Desktop\GitHub\Ignivault\ignivault.WebAPI\Services\FileService.cs</sys:String>
+        </x:Array>
+      </data>
+      <data key="d6"><![CDATA[32faf320-1660-bc81-ba19-1642742b2d58%28ignivault.WebAPI%29-16EFFD6E%5Bnet9.0%5D/T%3Aignivault.WebAPI.Services.FileService]]></data>
+      <data key="d7"><![CDATA[class]]></data>
+      <data key="d8"><![CDATA[public]]></data>
+      <data key="d9"><![CDATA[ignivault.WebAPI.Services.FileService]]></data>
+      <data key="d10"><![CDATA[FileService]]></data>
+      <data key="d12">
+        <y:RectD X="1639.5133333333333" Y="3577" Width="260.48666666666668" Height="88" />
+      </data>
+      <port name="p0">
+        <data key="d22">
+          <y:FreeNodePortLocationModelParameter Ratio="1,0.181818181818182" />
+        </data>
+      </port>
+      <port name="p1">
+        <data key="d22">
+          <y:FreeNodePortLocationModelParameter Ratio="0.198237913648811,0" />
+        </data>
+      </port>
+      <port name="p2">
+        <data key="d22">
+          <y:FreeNodePortLocationModelParameter Ratio="0.556324060092647,0" />
+        </data>
+      </port>
+      <port name="p3">
+        <data key="d22">
+          <y:FreeNodePortLocationModelParameter Ratio="0.5,1" />
+        </data>
+      </port>
+      <port name="p4">
+        <data key="d22">
+          <y:FreeNodePortLocationModelParameter Ratio="0.820536773048738,1" />
+        </data>
+      </port>
+      <port name="p5">
+        <data key="d22">
+          <y:FreeNodePortLocationModelParameter Ratio="1,0.409090909090909" />
+        </data>
+      </port>
+      <port name="p6">
+        <data key="d22">
+          <y:FreeNodePortLocationModelParameter Ratio="0.179463226951262,1" />
+        </data>
+      </port>
+      <port name="p7">
+        <data key="d22">
+          <y:FreeNodePortLocationModelParameter Ratio="0.925268087937962,0" />
+        </data>
+      </port>
+      <port name="p8">
+        <data key="d22">
+          <y:FreeNodePortLocationModelParameter Ratio="0,0.414772727272727" />
+        </data>
+      </port>
+    </node>
+    <node id="n29">
+      <data key="d1">
+        <sys:Dictionary x:TypeArguments="sys:String,sys:String" />
+      </data>
+      <data key="d3"><![CDATA[Unknown]]></data>
+      <data key="d4">
+        <x:Array Type="sys:String">
+          <sys:String>C:\Users\prest\Desktop\GitHub\Ignivault\ignivault.WebAPI\Services\UserActivityLogger.cs</sys:String>
+        </x:Array>
+      </data>
+      <data key="d6"><![CDATA[32faf320-1660-bc81-ba19-1642742b2d58%28ignivault.WebAPI%29-16EFFD6E%5Bnet9.0%5D/T%3Aignivault.WebAPI.Services.UserActivityLogger]]></data>
+      <data key="d7"><![CDATA[class]]></data>
+      <data key="d8"><![CDATA[public]]></data>
+      <data key="d9"><![CDATA[ignivault.WebAPI.Services.UserActivityLogger]]></data>
+      <data key="d10"><![CDATA[UserActivityLogger]]></data>
+      <data key="d12">
+        <y:RectD X="1913.0816666666667" Y="837" Width="380.35" Height="88" />
+      </data>
+      <port name="p0">
+        <data key="d22">
+          <y:FreeNodePortLocationModelParameter Ratio="0.565980726254159,1" />
+        </data>
+      </port>
+      <port name="p1">
+        <data key="d22">
+          <y:FreeNodePortLocationModelParameter Ratio="1,0.5" Offset="1.13686837721616E-13,0" />
+        </data>
+      </port>
+      <port name="p2">
+        <data key="d22">
+          <y:FreeNodePortLocationModelParameter Ratio="0.5,0" />
+        </data>
+      </port>
+      <port name="p3">
+        <data key="d22">
+          <y:FreeNodePortLocationModelParameter Ratio="0.918556592612068,1" />
+        </data>
+      </port>
+      <port name="p4">
+        <data key="d22">
+          <y:FreeNodePortLocationModelParameter Ratio="0.781961351386881,1" />
+        </data>
+      </port>
+      <port name="p5">
+        <data key="d22">
+          <y:FreeNodePortLocationModelParameter Ratio="0,0.943181818181818" />
+        </data>
+      </port>
+    </node>
+    <node id="n30">
+      <data key="d1">
+        <sys:Dictionary x:TypeArguments="sys:String,sys:String" />
+      </data>
+      <data key="d3"><![CDATA[LogicOwner]]></data>
+      <data key="d4">
+        <x:Array Type="sys:String">
+          <sys:String>C:\Users\prest\Desktop\GitHub\Ignivault\ignivault.WebAPI\Services\EmailService.cs</sys:String>
+        </x:Array>
+      </data>
+      <data key="d6"><![CDATA[32faf320-1660-bc81-ba19-1642742b2d58%28ignivault.WebAPI%29-16EFFD6E%5Bnet9.0%5D/T%3Aignivault.WebAPI.Services.SendGridEmailService]]></data>
+      <data key="d7"><![CDATA[class]]></data>
+      <data key="d8"><![CDATA[public]]></data>
+      <data key="d9"><![CDATA[ignivault.WebAPI.Services.SendGridEmailService]]></data>
+      <data key="d10"><![CDATA[SendGridEmailService]]></data>
+      <data key="d12">
+        <y:RectD X="310.00666666666666" Y="2436" Width="418.5" Height="88" />
+      </data>
+      <port name="p0">
+        <data key="d22">
+          <y:FreeNodePortLocationModelParameter Ratio="0.717009159697332,0" />
+        </data>
+      </port>
+      <port name="p1">
+        <data key="d22">
+          <y:FreeNodePortLocationModelParameter Ratio="0.5,1" />
+        </data>
+      </port>
+      <port name="p2">
+        <data key="d22">
+          <y:FreeNodePortLocationModelParameter Ratio="1,0.5" />
+        </data>
+      </port>
+      <port name="p3">
+        <data key="d22">
+          <y:FreeNodePortLocationModelParameter Ratio="0.174922341696535,0" />
+        </data>
+      </port>
+    </node>
+    <node id="n31">
+      <data key="d1">
+        <sys:Dictionary x:TypeArguments="sys:String,sys:String" />
+      </data>
+      <data key="d3"><![CDATA[LogicOwner]]></data>
+      <data key="d4">
+        <x:Array Type="sys:String">
+          <sys:String>C:\Users\prest\Desktop\GitHub\Ignivault\ignivault.WebAPI\Services\ReportsService.cs</sys:String>
+        </x:Array>
+      </data>
+      <data key="d6"><![CDATA[32faf320-1660-bc81-ba19-1642742b2d58%28ignivault.WebAPI%29-16EFFD6E%5Bnet9.0%5D/T%3Aignivault.WebAPI.Services.ReportsService]]></data>
+      <data key="d7"><![CDATA[class]]></data>
+      <data key="d8"><![CDATA[public]]></data>
+      <data key="d9"><![CDATA[ignivault.WebAPI.Services.ReportsService]]></data>
+      <data key="d10"><![CDATA[ReportsService]]></data>
+      <data key="d12">
+        <y:RectD X="2869.6133333333332" Y="2089" Width="321.28666666666669" Height="88" />
+      </data>
+      <port name="p0">
+        <data key="d22">
+          <y:FreeNodePortLocationModelParameter Ratio="0,0.943181818181818" />
+        </data>
+      </port>
+      <port name="p1">
+        <data key="d22">
+          <y:FreeNodePortLocationModelParameter Ratio="0.0620145387642739,1" />
+        </data>
+      </port>
+      <port name="p2">
+        <data key="d22">
+          <y:FreeNodePortLocationModelParameter Ratio="0.15491876413587,1" />
+        </data>
+      </port>
+      <port name="p3">
+        <data key="d22">
+          <y:FreeNodePortLocationModelParameter Ratio="0.350897433237192,1" />
+        </data>
+      </port>
+      <port name="p4">
+        <data key="d22">
+          <y:FreeNodePortLocationModelParameter Ratio="0.16949902821295,0" />
+        </data>
+      </port>
+      <port name="p5">
+        <data key="d22">
+          <y:FreeNodePortLocationModelParameter Ratio="0.742854771439837,1" />
+        </data>
+      </port>
+      <port name="p6">
+        <data key="d22">
+          <y:FreeNodePortLocationModelParameter Ratio="0.938833440541158,1" />
+        </data>
+      </port>
+    </node>
+    <node id="n32">
+      <data key="d1">
+        <sys:Dictionary x:TypeArguments="sys:String,sys:String" />
+      </data>
+      <data key="d3"><![CDATA[Unknown]]></data>
+      <data key="d4">
+        <x:Array Type="sys:String">
+          <sys:String>C:\Users\prest\Desktop\GitHub\Ignivault\ignivault.WebAPI\Middleware\ExceptionHandler.cs</sys:String>
+        </x:Array>
+      </data>
+      <data key="d6"><![CDATA[32faf320-1660-bc81-ba19-1642742b2d58%28ignivault.WebAPI%29-16EFFD6E%5Bnet9.0%5D/T%3Aignivault.WebAPI.Middleware.ExceptionHandler]]></data>
+      <data key="d7"><![CDATA[class]]></data>
+      <data key="d8"><![CDATA[public]]></data>
+      <data key="d9"><![CDATA[ignivault.WebAPI.Middleware.ExceptionHandler]]></data>
+      <data key="d10"><![CDATA[ExceptionHandler]]></data>
+      <data key="d12">
+        <y:RectD X="0" Y="4618" Width="360.49" Height="88" />
+      </data>
+      <port name="p0">
+        <data key="d22">
+          <y:FreeNodePortLocationModelParameter Ratio="0.5,1" />
+        </data>
+      </port>
+      <port name="p1">
+        <data key="d22">
+          <y:FreeNodePortLocationModelParameter Ratio="0,0.5" />
+        </data>
+      </port>
+    </node>
+    <node id="n33">
+      <data key="d1">
+        <sys:Dictionary x:TypeArguments="sys:String,sys:String" />
+      </data>
+      <data key="d3"><![CDATA[Unknown]]></data>
+      <data key="d4">
+        <x:Array Type="sys:String">
+          <sys:String>C:\Users\prest\Desktop\GitHub\Ignivault\ignivault.WebAPI\Migrations\20250920041032_ApiSchema.Designer.cs</sys:String>
+          <sys:String>C:\Users\prest\Desktop\GitHub\Ignivault\ignivault.WebAPI\Migrations\20250920041032_ApiSchema.cs</sys:String>
+        </x:Array>
+      </data>
+      <data key="d6"><![CDATA[32faf320-1660-bc81-ba19-1642742b2d58%28ignivault.WebAPI%29-16EFFD6E%5Bnet9.0%5D/T%3Aignivault.WebAPI.Migrations.ApiSchema]]></data>
+      <data key="d7"><![CDATA[class]]></data>
+      <data key="d8"><![CDATA[public]]></data>
+      <data key="d9"><![CDATA[ignivault.WebAPI.Migrations.ApiSchema]]></data>
+      <data key="d10"><![CDATA[ApiSchema]]></data>
+      <data key="d12">
+        <y:RectD X="2640.58" Y="3065" Width="267.35333333333335" Height="88" />
+      </data>
+      <port name="p0">
+        <data key="d22">
+          <y:FreeNodePortLocationModelParameter Ratio="1,0.5" Offset="1.13686837721616E-13,0" />
+        </data>
+      </port>
+    </node>
+    <node id="n34">
+      <data key="d1">
+        <sys:Dictionary x:TypeArguments="sys:String,sys:String" />
+      </data>
+      <data key="d3"><![CDATA[Unknown]]></data>
+      <data key="d4">
+        <x:Array Type="sys:String">
+          <sys:String>C:\Users\prest\Desktop\GitHub\Ignivault\ignivault.WebAPI\Migrations\AppDbContextModelSnapshot.cs</sys:String>
+        </x:Array>
+      </data>
+      <data key="d6"><![CDATA[32faf320-1660-bc81-ba19-1642742b2d58%28ignivault.WebAPI%29-16EFFD6E%5Bnet9.0%5D/T%3Aignivault.WebAPI.Migrations.AppDbContextModelSnapshot]]></data>
+      <data key="d7"><![CDATA[class]]></data>
+      <data key="d8"><![CDATA[internal]]></data>
+      <data key="d9"><![CDATA[ignivault.WebAPI.Migrations.AppDbContextModelSnapshot]]></data>
+      <data key="d10"><![CDATA[AppDbContextModelSnapshot]]></data>
+      <data key="d12">
+        <y:RectD X="2903.9449999999997" Y="3354" Width="541.62333333333333" Height="88" />
+      </data>
+      <port name="p0">
+        <data key="d22">
+          <y:FreeNodePortLocationModelParameter Ratio="0.86250079493539,0" />
+        </data>
+      </port>
+    </node>
+    <node id="n35">
+      <data key="d1">
+        <sys:Dictionary x:TypeArguments="sys:String,sys:String" />
+      </data>
+      <data key="d3"><![CDATA[Unknown]]></data>
+      <data key="d4">
+        <x:Array Type="sys:String">
+          <sys:String>C:\Users\prest\Desktop\GitHub\Ignivault\ignivault.WebAPI\Program.cs</sys:String>
+        </x:Array>
+      </data>
+      <data key="d6"><![CDATA[32faf320-1660-bc81-ba19-1642742b2d58%28ignivault.WebAPI%29-16EFFD6E%5Bnet9.0%5D/T%3AAdminUserConfig]]></data>
+      <data key="d7"><![CDATA[class]]></data>
+      <data key="d8"><![CDATA[internal]]></data>
+      <data key="d9"><![CDATA[AdminUserConfig]]></data>
+      <data key="d10"><![CDATA[AdminUserConfig]]></data>
+      <data key="d12">
+        <y:RectD X="581.49" Y="4618" Width="360.69333333333338" Height="88" />
+      </data>
+    </node>
+    <edge id="e0" source="n0" target="n1" sourceport="p0" targetport="p0">
+      <data key="d15"><![CDATA[32faf320-1660-bc81-ba19-1642742b2d58%28ignivault.WebAPI%29-16EFFD6E%5Bnet9.0%5D/T%3Aignivault.WebAPI.Services.IAccountService]]></data>
+      <data key="d16"><![CDATA[32faf320-1660-bc81-ba19-1642742b2d58%28ignivault.WebAPI%29-16EFFD6E%5Bnet9.0%5D/T%3AAccountController]]></data>
+      <data key="d17"><![CDATA[Aggregation]]></data>
+      <data key="d18">
+        <x:List>
+          <y:Label LayoutParameter="{y:GraphMLReference 1}" PreferredSize="148,23">
+            <y:Label.Text>_accountService</y:Label.Text>
+          </y:Label>
+        </x:List>
+      </data>
+      <data key="d19">
+        <x:List>
+          <y:Bend Location="2961.7575,429.4425" />
+          <y:Bend Location="2902,489.2" />
+        </x:List>
+      </data>
+    </edge>
+    <edge id="e1" source="n0" target="n1" sourceport="p1" targetport="p1">
+      <data key="d15"><![CDATA[32faf320-1660-bc81-ba19-1642742b2d58%28ignivault.WebAPI%29-16EFFD6E%5Bnet9.0%5D/T%3Aignivault.WebAPI.Services.IAccountService]]></data>
+      <data key="d16"><![CDATA[32faf320-1660-bc81-ba19-1642742b2d58%28ignivault.WebAPI%29-16EFFD6E%5Bnet9.0%5D/T%3AAccountController]]></data>
+      <data key="d17"><![CDATA[Usages]]></data>
+      <data key="d19">
+        <x:List>
+          <y:Bend Location="2903.9325,391.0675" />
+          <y:Bend Location="2851,444" />
+        </x:List>
+      </data>
+    </edge>
+    <edge id="e2" source="n0" target="n2" sourceport="p2" targetport="p0">
+      <data key="d15"><![CDATA[32faf320-1660-bc81-ba19-1642742b2d58%28ignivault.WebAPI%29-16EFFD6E%5Bnet9.0%5D/T%3Aignivault.WebAPI.Data.Repositories.IUserActivityRepository]]></data>
+      <data key="d16"><![CDATA[32faf320-1660-bc81-ba19-1642742b2d58%28ignivault.WebAPI%29-16EFFD6E%5Bnet9.0%5D/T%3AAccountController]]></data>
+      <data key="d17"><![CDATA[Aggregation]]></data>
+      <data key="d18">
+        <x:List>
+          <y:Label LayoutParameter="{y:GraphMLReference 1}" PreferredSize="168,23">
+            <y:Label.Text>_activityRepository</y:Label.Text>
+          </y:Label>
+        </x:List>
+      </data>
+    </edge>
+    <edge id="e3" source="n0" target="n2" sourceport="p3" targetport="p1">
+      <data key="d15"><![CDATA[32faf320-1660-bc81-ba19-1642742b2d58%28ignivault.WebAPI%29-16EFFD6E%5Bnet9.0%5D/T%3Aignivault.WebAPI.Data.Repositories.IUserActivityRepository]]></data>
+      <data key="d16"><![CDATA[32faf320-1660-bc81-ba19-1642742b2d58%28ignivault.WebAPI%29-16EFFD6E%5Bnet9.0%5D/T%3AAccountController]]></data>
+      <data key="d17"><![CDATA[Usages]]></data>
+    </edge>
+    <edge id="e4" source="n0" target="n3" sourceport="p4" targetport="p0">
+      <data key="d15"><![CDATA[32faf320-1660-bc81-ba19-1642742b2d58%28ignivault.WebAPI%29-16EFFD6E%5Bnet9.0%5D/T%3Aignivault.WebAPI.Data.Entities.UserActivity]]></data>
+      <data key="d16"><![CDATA[32faf320-1660-bc81-ba19-1642742b2d58%28ignivault.WebAPI%29-16EFFD6E%5Bnet9.0%5D/T%3AAccountController]]></data>
+      <data key="d17"><![CDATA[Usages]]></data>
+      <data key="d19">
+        <x:List>
+          <y:Bend Location="3019.5825,477.8175" />
+          <y:Bend Location="2963,534.4" />
+          <y:Bend Location="2676,534.4" />
+          <y:Bend Location="2639.555,570.845" />
+        </x:List>
+      </data>
+    </edge>
+    <edge id="e5" source="n4" target="n5" sourceport="p0" targetport="p0">
+      <data key="d15"><![CDATA[32faf320-1660-bc81-ba19-1642742b2d58%28ignivault.WebAPI%29-16EFFD6E%5Bnet9.0%5D/T%3Aignivault.WebAPI.Data.Entities.LoginUser]]></data>
+      <data key="d16"><![CDATA[32faf320-1660-bc81-ba19-1642742b2d58%28ignivault.WebAPI%29-16EFFD6E%5Bnet9.0%5D/T%3Aignivault.WebAPI.Controllers.AdminController]]></data>
+      <data key="d17"><![CDATA[Usages]]></data>
+      <data key="d19">
+        <x:List>
+          <y:Bend Location="1266,2004" />
+          <y:Bend Location="1273.25666666667,1996.74333333333" />
+        </x:List>
+      </data>
+    </edge>
+    <edge id="e6" source="n6" target="n5" sourceport="p0" targetport="p1">
+      <data key="d15"><![CDATA[32faf320-1660-bc81-ba19-1642742b2d58%28ignivault.WebAPI%29-16EFFD6E%5Bnet9.0%5D/T%3Aignivault.WebAPI.Data.Entities.LoginUser]]></data>
+      <data key="d16"><![CDATA[32faf320-1660-bc81-ba19-1642742b2d58%28ignivault.WebAPI%29-16EFFD6E%5Bnet9.0%5D/T%3Aignivault.WebAPI.Controllers.AuthController]]></data>
+      <data key="d17"><![CDATA[Usages]]></data>
+      <data key="d19">
+        <x:List>
+          <y:Bend Location="1272,1001" />
+          <y:Bend Location="1336.565,1065.565" />
+        </x:List>
+      </data>
+    </edge>
+    <edge id="e7" source="n6" target="n7" sourceport="p1" targetport="p0">
+      <data key="d15"><![CDATA[32faf320-1660-bc81-ba19-1642742b2d58%28ignivault.WebAPI%29-16EFFD6E%5Bnet9.0%5D/T%3Aignivault.WebAPI.Services.IEmailService]]></data>
+      <data key="d16"><![CDATA[32faf320-1660-bc81-ba19-1642742b2d58%28ignivault.WebAPI%29-16EFFD6E%5Bnet9.0%5D/T%3Aignivault.WebAPI.Controllers.AuthController]]></data>
+      <data key="d17"><![CDATA[Aggregation]]></data>
+      <data key="d18">
+        <x:List>
+          <y:Label LayoutParameter="{y:GraphMLReference 1}" PreferredSize="126,23">
+            <y:Label.Text>_emailService</y:Label.Text>
+          </y:Label>
+        </x:List>
+      </data>
+    </edge>
+    <edge id="e8" source="n6" target="n7" sourceport="p2" targetport="p1">
+      <data key="d15"><![CDATA[32faf320-1660-bc81-ba19-1642742b2d58%28ignivault.WebAPI%29-16EFFD6E%5Bnet9.0%5D/T%3Aignivault.WebAPI.Services.IEmailService]]></data>
+      <data key="d16"><![CDATA[32faf320-1660-bc81-ba19-1642742b2d58%28ignivault.WebAPI%29-16EFFD6E%5Bnet9.0%5D/T%3Aignivault.WebAPI.Controllers.AuthController]]></data>
+      <data key="d17"><![CDATA[Usages]]></data>
+    </edge>
+    <edge id="e9" source="n6" target="n8" sourceport="p3" targetport="p0">
+      <data key="d15"><![CDATA[32faf320-1660-bc81-ba19-1642742b2d58%28ignivault.WebAPI%29-16EFFD6E%5Bnet9.0%5D/T%3Aignivault.WebAPI.Services.IUserActivityLogger]]></data>
+      <data key="d16"><![CDATA[32faf320-1660-bc81-ba19-1642742b2d58%28ignivault.WebAPI%29-16EFFD6E%5Bnet9.0%5D/T%3Aignivault.WebAPI.Controllers.AuthController]]></data>
+      <data key="d17"><![CDATA[Aggregation]]></data>
+      <data key="d18">
+        <x:List>
+          <y:Label LayoutParameter="{y:GraphMLReference 1}" PreferredSize="176,23">
+            <y:Label.Text>_userActivityLogger</y:Label.Text>
+          </y:Label>
+        </x:List>
+      </data>
+      <data key="d19">
+        <x:List>
+          <y:Bend Location="1214,1021" />
+          <y:Bend Location="1221.94833333333,1013.05166666667" />
+        </x:List>
+      </data>
+    </edge>
+    <edge id="e10" source="n6" target="n8" sourceport="p4" targetport="p1">
+      <data key="d15"><![CDATA[32faf320-1660-bc81-ba19-1642742b2d58%28ignivault.WebAPI%29-16EFFD6E%5Bnet9.0%5D/T%3Aignivault.WebAPI.Services.IUserActivityLogger]]></data>
+      <data key="d16"><![CDATA[32faf320-1660-bc81-ba19-1642742b2d58%28ignivault.WebAPI%29-16EFFD6E%5Bnet9.0%5D/T%3Aignivault.WebAPI.Controllers.AuthController]]></data>
+      <data key="d17"><![CDATA[Usages]]></data>
+      <data key="d19">
+        <x:List>
+          <y:Bend Location="1111,1041" />
+          <y:Bend Location="1122.82833333333,1029.17166666667" />
+        </x:List>
+      </data>
+    </edge>
+    <edge id="e11" source="n6" target="n9" sourceport="p5" targetport="p0">
+      <data key="d15"><![CDATA[32faf320-1660-bc81-ba19-1642742b2d58%28ignivault.WebAPI%29-16EFFD6E%5Bnet9.0%5D/T%3Aignivault.WebAPI.Data.Enums.ActivityType]]></data>
+      <data key="d16"><![CDATA[32faf320-1660-bc81-ba19-1642742b2d58%28ignivault.WebAPI%29-16EFFD6E%5Bnet9.0%5D/T%3Aignivault.WebAPI.Controllers.AuthController]]></data>
+      <data key="d17"><![CDATA[Usages]]></data>
+      <data key="d19">
+        <x:List>
+          <y:Bend Location="486.756666666667,585.243333333333" />
+          <y:Bend Location="551,521" />
+        </x:List>
+      </data>
+    </edge>
+    <edge id="e12" source="n10" target="n11" sourceport="p0" targetport="p0">
+      <data key="d15"><![CDATA[32faf320-1660-bc81-ba19-1642742b2d58%28ignivault.WebAPI%29-16EFFD6E%5Bnet9.0%5D/T%3Aignivault.WebAPI.Services.IReportsService]]></data>
+      <data key="d16"><![CDATA[32faf320-1660-bc81-ba19-1642742b2d58%28ignivault.WebAPI%29-16EFFD6E%5Bnet9.0%5D/T%3Aignivault.WebAPI.Controllers.ReportsController]]></data>
+      <data key="d17"><![CDATA[Aggregation]]></data>
+      <data key="d18">
+        <x:List>
+          <y:Label LayoutParameter="{y:GraphMLReference 1}" PreferredSize="141,23">
+            <y:Label.Text>_reportsService</y:Label.Text>
+          </y:Label>
+        </x:List>
+      </data>
+      <data key="d19">
+        <x:List>
+          <y:Bend Location="4467.26916666667,2271.48083333333" />
+          <y:Bend Location="4462,2276.75" />
+        </x:List>
+      </data>
+    </edge>
+    <edge id="e13" source="n10" target="n11" sourceport="p1" targetport="p1">
+      <data key="d15"><![CDATA[32faf320-1660-bc81-ba19-1642742b2d58%28ignivault.WebAPI%29-16EFFD6E%5Bnet9.0%5D/T%3Aignivault.WebAPI.Services.IReportsService]]></data>
+      <data key="d16"><![CDATA[32faf320-1660-bc81-ba19-1642742b2d58%28ignivault.WebAPI%29-16EFFD6E%5Bnet9.0%5D/T%3Aignivault.WebAPI.Controllers.ReportsController]]></data>
+      <data key="d17"><![CDATA[Usages]]></data>
+      <data key="d19">
+        <x:List>
+          <y:Bend Location="4643.24416666667,2291.00583333333" />
+          <y:Bend Location="4634,2300.25" />
+        </x:List>
+      </data>
+    </edge>
+    <edge id="e14" source="n12" target="n13" sourceport="p0" targetport="p0">
+      <data key="d15"><![CDATA[32faf320-1660-bc81-ba19-1642742b2d58%28ignivault.WebAPI%29-16EFFD6E%5Bnet9.0%5D/T%3Aignivault.WebAPI.Services.IVaultService]]></data>
+      <data key="d16"><![CDATA[32faf320-1660-bc81-ba19-1642742b2d58%28ignivault.WebAPI%29-16EFFD6E%5Bnet9.0%5D/T%3AVaultController]]></data>
+      <data key="d17"><![CDATA[Aggregation]]></data>
+      <data key="d18">
+        <x:List>
+          <y:Label LayoutParameter="{y:GraphMLReference 1}" PreferredSize="121,23">
+            <y:Label.Text>_vaultService</y:Label.Text>
+          </y:Label>
+        </x:List>
+      </data>
+    </edge>
+    <edge id="e15" source="n12" target="n13" sourceport="p1" targetport="p1">
+      <data key="d15"><![CDATA[32faf320-1660-bc81-ba19-1642742b2d58%28ignivault.WebAPI%29-16EFFD6E%5Bnet9.0%5D/T%3Aignivault.WebAPI.Services.IVaultService]]></data>
+      <data key="d16"><![CDATA[32faf320-1660-bc81-ba19-1642742b2d58%28ignivault.WebAPI%29-16EFFD6E%5Bnet9.0%5D/T%3AVaultController]]></data>
+      <data key="d17"><![CDATA[Usages]]></data>
+      <data key="d19">
+        <x:List>
+          <y:Bend Location="225.413095238095,3120.5869047619" />
+          <y:Bend Location="237,3109" />
+        </x:List>
+      </data>
+    </edge>
+    <edge id="e16" source="n12" target="n14" sourceport="p2" targetport="p0">
+      <data key="d15"><![CDATA[32faf320-1660-bc81-ba19-1642742b2d58%28ignivault.WebAPI%29-16EFFD6E%5Bnet9.0%5D/T%3Aignivault.WebAPI.Services.IFileService]]></data>
+      <data key="d16"><![CDATA[32faf320-1660-bc81-ba19-1642742b2d58%28ignivault.WebAPI%29-16EFFD6E%5Bnet9.0%5D/T%3AVaultController]]></data>
+      <data key="d17"><![CDATA[Aggregation]]></data>
+      <data key="d18">
+        <x:List>
+          <y:Label LayoutParameter="{y:GraphMLReference 1}" PreferredSize="104,23">
+            <y:Label.Text>_fileService</y:Label.Text>
+          </y:Label>
+        </x:List>
+      </data>
+      <data key="d19">
+        <x:List>
+          <y:Bend Location="49.0826190476191,3782.41738095238" />
+          <y:Bend Location="93,3738.5" />
+        </x:List>
+      </data>
+    </edge>
+    <edge id="e17" source="n12" target="n14" sourceport="p3" targetport="p1">
+      <data key="d15"><![CDATA[32faf320-1660-bc81-ba19-1642742b2d58%28ignivault.WebAPI%29-16EFFD6E%5Bnet9.0%5D/T%3Aignivault.WebAPI.Services.IFileService]]></data>
+      <data key="d16"><![CDATA[32faf320-1660-bc81-ba19-1642742b2d58%28ignivault.WebAPI%29-16EFFD6E%5Bnet9.0%5D/T%3AVaultController]]></data>
+      <data key="d17"><![CDATA[Usages]]></data>
+      <data key="d19">
+        <x:List>
+          <y:Bend Location="137.247857142857,3749.25214285714" />
+          <y:Bend Location="187,3699.5" />
+        </x:List>
+      </data>
+    </edge>
+    <edge id="e18" source="n15" target="n16" sourceport="p0" targetport="p0">
+      <data key="d15"><![CDATA[32faf320-1660-bc81-ba19-1642742b2d58%28ignivault.WebAPI%29-16EFFD6E%5Bnet9.0%5D/T%3Aignivault.WebAPI.Data.Entities.VaultEntity]]></data>
+      <data key="d16"><![CDATA[32faf320-1660-bc81-ba19-1642742b2d58%28ignivault.WebAPI%29-16EFFD6E%5Bnet9.0%5D/T%3Aignivault.WebAPI.Data.Entities.StoredBlob]]></data>
+      <data key="d17"><![CDATA[Usages]]></data>
+      <data key="d19">
+        <x:List>
+          <y:Bend Location="2026,4374" />
+          <y:Bend Location="1961.74111111111,4309.74111111111" />
+        </x:List>
+      </data>
+    </edge>
+    <edge id="e19" source="n3" target="n5" sourceport="p1" targetport="p2">
+      <data key="d15"><![CDATA[32faf320-1660-bc81-ba19-1642742b2d58%28ignivault.WebAPI%29-16EFFD6E%5Bnet9.0%5D/T%3Aignivault.WebAPI.Data.Entities.LoginUser]]></data>
+      <data key="d16"><![CDATA[32faf320-1660-bc81-ba19-1642742b2d58%28ignivault.WebAPI%29-16EFFD6E%5Bnet9.0%5D/T%3Aignivault.WebAPI.Data.Entities.UserActivity]]></data>
+      <data key="d17"><![CDATA[Usages]]></data>
+      <data key="d19">
+        <x:List>
+          <y:Bend Location="1459,1294" />
+          <y:Bend Location="1394.25,1358.75" />
+        </x:List>
+      </data>
+    </edge>
+    <edge id="e20" source="n3" target="n9" sourceport="p2" targetport="p1">
+      <data key="d15"><![CDATA[32faf320-1660-bc81-ba19-1642742b2d58%28ignivault.WebAPI%29-16EFFD6E%5Bnet9.0%5D/T%3Aignivault.WebAPI.Data.Enums.ActivityType]]></data>
+      <data key="d16"><![CDATA[32faf320-1660-bc81-ba19-1642742b2d58%28ignivault.WebAPI%29-16EFFD6E%5Bnet9.0%5D/T%3Aignivault.WebAPI.Data.Entities.UserActivity]]></data>
+      <data key="d17"><![CDATA[Usages]]></data>
+      <data key="d19">
+        <x:List>
+          <y:Bend Location="2548.795,445.795" />
+          <y:Bend Location="2512,409" />
+          <y:Bend Location="1379,409" />
+          <y:Bend Location="1369.25666666667,418.743333333333" />
+        </x:List>
+      </data>
+    </edge>
+    <edge id="e21" source="n16" target="n15" sourceport="p1" targetport="p1">
+      <data key="d15"><![CDATA[32faf320-1660-bc81-ba19-1642742b2d58%28ignivault.WebAPI%29-16EFFD6E%5Bnet9.0%5D/T%3Aignivault.WebAPI.Data.Entities.StoredBlob]]></data>
+      <data key="d16"><![CDATA[32faf320-1660-bc81-ba19-1642742b2d58%28ignivault.WebAPI%29-16EFFD6E%5Bnet9.0%5D/T%3Aignivault.WebAPI.Data.Entities.VaultEntity]]></data>
+      <data key="d17"><![CDATA[Usages]]></data>
+      <data key="d19">
+        <x:List>
+          <y:Bend Location="2025.22333333333,4283.22333333333" />
+          <y:Bend Location="2090,4348" />
+        </x:List>
+      </data>
+    </edge>
+    <edge id="e22" source="n16" target="n5" sourceport="p2" targetport="p3">
+      <data key="d15"><![CDATA[32faf320-1660-bc81-ba19-1642742b2d58%28ignivault.WebAPI%29-16EFFD6E%5Bnet9.0%5D/T%3Aignivault.WebAPI.Data.Entities.LoginUser]]></data>
+      <data key="d16"><![CDATA[32faf320-1660-bc81-ba19-1642742b2d58%28ignivault.WebAPI%29-16EFFD6E%5Bnet9.0%5D/T%3Aignivault.WebAPI.Data.Entities.VaultEntity]]></data>
+      <data key="d17"><![CDATA[Usages]]></data>
+      <data key="d19">
+        <x:List>
+          <y:Bend Location="1962.52666666667,2366.52666666667" />
+          <y:Bend Location="1898,2302" />
+          <y:Bend Location="1506,2302" />
+          <y:Bend Location="1451.18166666667,2247.18166666667" />
+          <y:Bend Location="1451.18166666667,1942.93166666667" />
+          <y:Bend Location="1444,1935.75" />
+        </x:List>
+      </data>
+    </edge>
+    <edge id="e23" source="n17" target="n15" sourceport="p0" targetport="p2">
+      <data key="d15"><![CDATA[32faf320-1660-bc81-ba19-1642742b2d58%28ignivault.WebAPI%29-16EFFD6E%5Bnet9.0%5D/T%3Aignivault.WebAPI.Data.Entities.StoredBlob]]></data>
+      <data key="d16"><![CDATA[32faf320-1660-bc81-ba19-1642742b2d58%28ignivault.WebAPI%29-16EFFD6E%5Bnet9.0%5D/T%3Aignivault.WebAPI.Data.Repositories.IStoredBlobRepository]]></data>
+      <data key="d17"><![CDATA[Usages]]></data>
+    </edge>
+    <edge id="e24" source="n17" target="n18" sourceport="p1" targetport="p0">
+      <data key="d15"><![CDATA[32faf320-1660-bc81-ba19-1642742b2d58%28ignivault.WebAPI%29-16EFFD6E%5Bnet9.0%5D/T%3Aignivault.WebAPI.Data.Repositories.IRepository%601]]></data>
+      <data key="d16"><![CDATA[32faf320-1660-bc81-ba19-1642742b2d58%28ignivault.WebAPI%29-16EFFD6E%5Bnet9.0%5D/T%3Aignivault.WebAPI.Data.Repositories.IStoredBlobRepository]]></data>
+      <data key="d17"><![CDATA[Inheritance]]></data>
+    </edge>
+    <edge id="e25" source="n19" target="n21" sourceport="p0" targetport="p0">
+      <data key="d15"><![CDATA[32faf320-1660-bc81-ba19-1642742b2d58%28ignivault.WebAPI%29-16EFFD6E%5Bnet9.0%5D/T%3Aignivault.WebAPI.Data.Repositories.Repository%601]]></data>
+      <data key="d16"><![CDATA[32faf320-1660-bc81-ba19-1642742b2d58%28ignivault.WebAPI%29-16EFFD6E%5Bnet9.0%5D/T%3Aignivault.WebAPI.Data.Repositories.BlobRepository]]></data>
+      <data key="d17"><![CDATA[Usages]]></data>
+      <data key="d19">
+        <x:List>
+          <y:Bend Location="3469,3706.5" />
+          <y:Bend Location="3495.56833333333,3679.93166666667" />
+          <y:Bend Location="3495.56833333333,1802.06833333333" />
+          <y:Bend Location="3464,1770.5" />
+        </x:List>
+      </data>
+    </edge>
+    <edge id="e26" source="n19" target="n21" sourceport="p1" targetport="p1">
+      <data key="d15"><![CDATA[32faf320-1660-bc81-ba19-1642742b2d58%28ignivault.WebAPI%29-16EFFD6E%5Bnet9.0%5D/T%3Aignivault.WebAPI.Data.Repositories.Repository%601]]></data>
+      <data key="d16"><![CDATA[32faf320-1660-bc81-ba19-1642742b2d58%28ignivault.WebAPI%29-16EFFD6E%5Bnet9.0%5D/T%3Aignivault.WebAPI.Data.Repositories.BlobRepository]]></data>
+      <data key="d17"><![CDATA[Inheritance]]></data>
+      <data key="d19">
+        <x:List>
+          <y:Bend Location="3449,3667.5" />
+          <y:Bend Location="3475.56833333333,3640.93166666667" />
+          <y:Bend Location="3475.56833333333,1841.06833333333" />
+          <y:Bend Location="3444,1809.5" />
+        </x:List>
+      </data>
+    </edge>
+    <edge id="e27" source="n19" target="n15" sourceport="p2" targetport="p3">
+      <data key="d15"><![CDATA[32faf320-1660-bc81-ba19-1642742b2d58%28ignivault.WebAPI%29-16EFFD6E%5Bnet9.0%5D/T%3Aignivault.WebAPI.Data.Entities.StoredBlob]]></data>
+      <data key="d16"><![CDATA[32faf320-1660-bc81-ba19-1642742b2d58%28ignivault.WebAPI%29-16EFFD6E%5Bnet9.0%5D/T%3Aignivault.WebAPI.Data.Repositories.BlobRepository]]></data>
+      <data key="d17"><![CDATA[Usages]]></data>
+    </edge>
+    <edge id="e28" source="n19" target="n16" sourceport="p3" targetport="p3">
+      <data key="d15"><![CDATA[32faf320-1660-bc81-ba19-1642742b2d58%28ignivault.WebAPI%29-16EFFD6E%5Bnet9.0%5D/T%3Aignivault.WebAPI.Data.Entities.VaultEntity]]></data>
+      <data key="d16"><![CDATA[32faf320-1660-bc81-ba19-1642742b2d58%28ignivault.WebAPI%29-16EFFD6E%5Bnet9.0%5D/T%3Aignivault.WebAPI.Data.Repositories.BlobRepository]]></data>
+      <data key="d17"><![CDATA[Usages]]></data>
+      <data key="d19">
+        <x:List>
+          <y:Bend Location="2153,3703.4" />
+          <y:Bend Location="2088.70555555556,3639.10555555556" />
+        </x:List>
+      </data>
+    </edge>
+    <edge id="e29" source="n19" target="n17" sourceport="p4" targetport="p2">
+      <data key="d15"><![CDATA[32faf320-1660-bc81-ba19-1642742b2d58%28ignivault.WebAPI%29-16EFFD6E%5Bnet9.0%5D/T%3Aignivault.WebAPI.Data.Repositories.IStoredBlobRepository]]></data>
+      <data key="d16"><![CDATA[32faf320-1660-bc81-ba19-1642742b2d58%28ignivault.WebAPI%29-16EFFD6E%5Bnet9.0%5D/T%3Aignivault.WebAPI.Data.Repositories.BlobRepository]]></data>
+      <data key="d17"><![CDATA[Inheritance]]></data>
+      <data key="d19">
+        <x:List>
+          <y:Bend Location="2873.90333333333,4010.09666666667" />
+          <y:Bend Location="2854,4030" />
+        </x:List>
+      </data>
+    </edge>
+    <edge id="e30" source="n2" target="n3" sourceport="p2" targetport="p3">
+      <data key="d15"><![CDATA[32faf320-1660-bc81-ba19-1642742b2d58%28ignivault.WebAPI%29-16EFFD6E%5Bnet9.0%5D/T%3Aignivault.WebAPI.Data.Entities.UserActivity]]></data>
+      <data key="d16"><![CDATA[32faf320-1660-bc81-ba19-1642742b2d58%28ignivault.WebAPI%29-16EFFD6E%5Bnet9.0%5D/T%3Aignivault.WebAPI.Data.Repositories.IUserActivityRepository]]></data>
+      <data key="d17"><![CDATA[Usages]]></data>
+      <data key="d19">
+        <x:List>
+          <y:Bend Location="2730.36833333333,1244.38166666667" />
+          <y:Bend Location="2725,1249.75" />
+        </x:List>
+      </data>
+    </edge>
+    <edge id="e31" source="n2" target="n18" sourceport="p3" targetport="p1">
+      <data key="d15"><![CDATA[32faf320-1660-bc81-ba19-1642742b2d58%28ignivault.WebAPI%29-16EFFD6E%5Bnet9.0%5D/T%3Aignivault.WebAPI.Data.Repositories.IRepository%601]]></data>
+      <data key="d16"><![CDATA[32faf320-1660-bc81-ba19-1642742b2d58%28ignivault.WebAPI%29-16EFFD6E%5Bnet9.0%5D/T%3Aignivault.WebAPI.Data.Repositories.IUserActivityRepository]]></data>
+      <data key="d17"><![CDATA[Inheritance]]></data>
+      <data key="d19">
+        <x:List>
+          <y:Bend Location="2759.61333333333,1696.13666666667" />
+          <y:Bend Location="2716,1739.75" />
+        </x:List>
+      </data>
+    </edge>
+    <edge id="e32" source="n21" target="n20" sourceport="p2" targetport="p0">
+      <data key="d15"><![CDATA[32faf320-1660-bc81-ba19-1642742b2d58%28ignivault.WebAPI%29-16EFFD6E%5Bnet9.0%5D/T%3Aignivault.WebAPI.Data.AppDbContext]]></data>
+      <data key="d16"><![CDATA[32faf320-1660-bc81-ba19-1642742b2d58%28ignivault.WebAPI%29-16EFFD6E%5Bnet9.0%5D/T%3Aignivault.WebAPI.Data.Repositories.Repository%601]]></data>
+      <data key="d17"><![CDATA[Aggregation]]></data>
+      <data key="d18">
+        <x:List>
+          <y:Label LayoutParameter="{y:GraphMLReference 1}" PreferredSize="76,23">
+            <y:Label.Text>_context</y:Label.Text>
+          </y:Label>
+        </x:List>
+      </data>
+      <data key="d19">
+        <x:List>
+          <y:Bend Location="2863,1816.25" />
+          <y:Bend Location="2839.61333333333,1839.63666666667" />
+        </x:List>
+      </data>
+    </edge>
+    <edge id="e33" source="n21" target="n18" sourceport="p3" targetport="p2">
+      <data key="d15"><![CDATA[32faf320-1660-bc81-ba19-1642742b2d58%28ignivault.WebAPI%29-16EFFD6E%5Bnet9.0%5D/T%3Aignivault.WebAPI.Data.Repositories.IRepository%601]]></data>
+      <data key="d16"><![CDATA[32faf320-1660-bc81-ba19-1642742b2d58%28ignivault.WebAPI%29-16EFFD6E%5Bnet9.0%5D/T%3Aignivault.WebAPI.Data.Repositories.Repository%601]]></data>
+      <data key="d17"><![CDATA[Inheritance]]></data>
+    </edge>
+    <edge id="e34" source="n22" target="n21" sourceport="p0" targetport="p4">
+      <data key="d15"><![CDATA[32faf320-1660-bc81-ba19-1642742b2d58%28ignivault.WebAPI%29-16EFFD6E%5Bnet9.0%5D/T%3Aignivault.WebAPI.Data.Repositories.Repository%601]]></data>
+      <data key="d16"><![CDATA[32faf320-1660-bc81-ba19-1642742b2d58%28ignivault.WebAPI%29-16EFFD6E%5Bnet9.0%5D/T%3Aignivault.WebAPI.Data.Repositories.UserActivityRepository]]></data>
+      <data key="d17"><![CDATA[Usages]]></data>
+    </edge>
+    <edge id="e35" source="n22" target="n21" sourceport="p1" targetport="p5">
+      <data key="d15"><![CDATA[32faf320-1660-bc81-ba19-1642742b2d58%28ignivault.WebAPI%29-16EFFD6E%5Bnet9.0%5D/T%3Aignivault.WebAPI.Data.Repositories.Repository%601]]></data>
+      <data key="d16"><![CDATA[32faf320-1660-bc81-ba19-1642742b2d58%28ignivault.WebAPI%29-16EFFD6E%5Bnet9.0%5D/T%3Aignivault.WebAPI.Data.Repositories.UserActivityRepository]]></data>
+      <data key="d17"><![CDATA[Inheritance]]></data>
+    </edge>
+    <edge id="e36" source="n22" target="n3" sourceport="p2" targetport="p4">
+      <data key="d15"><![CDATA[32faf320-1660-bc81-ba19-1642742b2d58%28ignivault.WebAPI%29-16EFFD6E%5Bnet9.0%5D/T%3Aignivault.WebAPI.Data.Entities.UserActivity]]></data>
+      <data key="d16"><![CDATA[32faf320-1660-bc81-ba19-1642742b2d58%28ignivault.WebAPI%29-16EFFD6E%5Bnet9.0%5D/T%3Aignivault.WebAPI.Data.Repositories.UserActivityRepository]]></data>
+      <data key="d17"><![CDATA[Usages]]></data>
+    </edge>
+    <edge id="e37" source="n22" target="n2" sourceport="p3" targetport="p4">
+      <data key="d15"><![CDATA[32faf320-1660-bc81-ba19-1642742b2d58%28ignivault.WebAPI%29-16EFFD6E%5Bnet9.0%5D/T%3Aignivault.WebAPI.Data.Repositories.IUserActivityRepository]]></data>
+      <data key="d16"><![CDATA[32faf320-1660-bc81-ba19-1642742b2d58%28ignivault.WebAPI%29-16EFFD6E%5Bnet9.0%5D/T%3Aignivault.WebAPI.Data.Repositories.UserActivityRepository]]></data>
+      <data key="d17"><![CDATA[Inheritance]]></data>
+    </edge>
+    <edge id="e38" source="n23" target="n16" sourceport="p0" targetport="p4">
+      <data key="d15"><![CDATA[32faf320-1660-bc81-ba19-1642742b2d58%28ignivault.WebAPI%29-16EFFD6E%5Bnet9.0%5D/T%3Aignivault.WebAPI.Data.Entities.VaultEntity]]></data>
+      <data key="d16"><![CDATA[32faf320-1660-bc81-ba19-1642742b2d58%28ignivault.WebAPI%29-16EFFD6E%5Bnet9.0%5D/T%3Aignivault.WebAPI.Data.Repositories.IVaultItemRepository]]></data>
+      <data key="d17"><![CDATA[Usages]]></data>
+    </edge>
+    <edge id="e39" source="n23" target="n18" sourceport="p1" targetport="p3">
+      <data key="d15"><![CDATA[32faf320-1660-bc81-ba19-1642742b2d58%28ignivault.WebAPI%29-16EFFD6E%5Bnet9.0%5D/T%3Aignivault.WebAPI.Data.Repositories.IRepository%601]]></data>
+      <data key="d16"><![CDATA[32faf320-1660-bc81-ba19-1642742b2d58%28ignivault.WebAPI%29-16EFFD6E%5Bnet9.0%5D/T%3Aignivault.WebAPI.Data.Repositories.IVaultItemRepository]]></data>
+      <data key="d17"><![CDATA[Inheritance]]></data>
+      <data key="d19">
+        <x:List>
+          <y:Bend Location="1422.71583333333,2825.48416666667" />
+          <y:Bend Location="1436,2812.2" />
+          <y:Bend Location="2335,2812.2" />
+          <y:Bend Location="2399.9562345679,2747.2437654321" />
+        </x:List>
+      </data>
+    </edge>
+    <edge id="e40" source="n24" target="n21" sourceport="p0" targetport="p6">
+      <data key="d15"><![CDATA[32faf320-1660-bc81-ba19-1642742b2d58%28ignivault.WebAPI%29-16EFFD6E%5Bnet9.0%5D/T%3Aignivault.WebAPI.Data.Repositories.Repository%601]]></data>
+      <data key="d16"><![CDATA[32faf320-1660-bc81-ba19-1642742b2d58%28ignivault.WebAPI%29-16EFFD6E%5Bnet9.0%5D/T%3Aignivault.WebAPI.Data.Repositories.VaultItemRepository]]></data>
+      <data key="d17"><![CDATA[Usages]]></data>
+      <data key="d19">
+        <x:List>
+          <y:Bend Location="3209,2839.5" />
+          <y:Bend Location="3254.21333333333,2794.28666666667" />
+        </x:List>
+      </data>
+    </edge>
+    <edge id="e41" source="n24" target="n21" sourceport="p1" targetport="p7">
+      <data key="d15"><![CDATA[32faf320-1660-bc81-ba19-1642742b2d58%28ignivault.WebAPI%29-16EFFD6E%5Bnet9.0%5D/T%3Aignivault.WebAPI.Data.Repositories.Repository%601]]></data>
+      <data key="d16"><![CDATA[32faf320-1660-bc81-ba19-1642742b2d58%28ignivault.WebAPI%29-16EFFD6E%5Bnet9.0%5D/T%3Aignivault.WebAPI.Data.Repositories.VaultItemRepository]]></data>
+      <data key="d17"><![CDATA[Inheritance]]></data>
+      <data key="d19">
+        <x:List>
+          <y:Bend Location="3189,2800.5" />
+          <y:Bend Location="3234.21333333333,2755.28666666667" />
+        </x:List>
+      </data>
+    </edge>
+    <edge id="e42" source="n24" target="n16" sourceport="p2" targetport="p5">
+      <data key="d15"><![CDATA[32faf320-1660-bc81-ba19-1642742b2d58%28ignivault.WebAPI%29-16EFFD6E%5Bnet9.0%5D/T%3Aignivault.WebAPI.Data.Entities.VaultEntity]]></data>
+      <data key="d16"><![CDATA[32faf320-1660-bc81-ba19-1642742b2d58%28ignivault.WebAPI%29-16EFFD6E%5Bnet9.0%5D/T%3Aignivault.WebAPI.Data.Repositories.VaultItemRepository]]></data>
+      <data key="d17"><![CDATA[Usages]]></data>
+      <data key="d19">
+        <x:List>
+          <y:Bend Location="2726.75666666667,2928.74333333333" />
+          <y:Bend Location="2716,2939.5" />
+        </x:List>
+      </data>
+    </edge>
+    <edge id="e43" source="n24" target="n23" sourceport="p3" targetport="p2">
+      <data key="d15"><![CDATA[32faf320-1660-bc81-ba19-1642742b2d58%28ignivault.WebAPI%29-16EFFD6E%5Bnet9.0%5D/T%3Aignivault.WebAPI.Data.Repositories.IVaultItemRepository]]></data>
+      <data key="d16"><![CDATA[32faf320-1660-bc81-ba19-1642742b2d58%28ignivault.WebAPI%29-16EFFD6E%5Bnet9.0%5D/T%3Aignivault.WebAPI.Data.Repositories.VaultItemRepository]]></data>
+      <data key="d17"><![CDATA[Inheritance]]></data>
+      <data key="d19">
+        <x:List>
+          <y:Bend Location="1460,2843.4" />
+          <y:Bend Location="1451.18166666667,2852.21833333333" />
+        </x:List>
+      </data>
+    </edge>
+    <edge id="e44" source="n20" target="n16" sourceport="p1" targetport="p6">
+      <data key="d15"><![CDATA[32faf320-1660-bc81-ba19-1642742b2d58%28ignivault.WebAPI%29-16EFFD6E%5Bnet9.0%5D/T%3Aignivault.WebAPI.Data.Entities.VaultEntity]]></data>
+      <data key="d16"><![CDATA[32faf320-1660-bc81-ba19-1642742b2d58%28ignivault.WebAPI%29-16EFFD6E%5Bnet9.0%5D/T%3Aignivault.WebAPI.Data.AppDbContext]]></data>
+      <data key="d17"><![CDATA[Usages]]></data>
+      <data key="d19">
+        <x:List>
+          <y:Bend Location="2156,2477" />
+          <y:Bend Location="2091.14,2541.86" />
+        </x:List>
+      </data>
+    </edge>
+    <edge id="e45" source="n20" target="n15" sourceport="p2" targetport="p4">
+      <data key="d15"><![CDATA[32faf320-1660-bc81-ba19-1642742b2d58%28ignivault.WebAPI%29-16EFFD6E%5Bnet9.0%5D/T%3Aignivault.WebAPI.Data.Entities.StoredBlob]]></data>
+      <data key="d16"><![CDATA[32faf320-1660-bc81-ba19-1642742b2d58%28ignivault.WebAPI%29-16EFFD6E%5Bnet9.0%5D/T%3Aignivault.WebAPI.Data.AppDbContext]]></data>
+      <data key="d17"><![CDATA[Usages]]></data>
+      <data key="d19">
+        <x:List>
+          <y:Bend Location="3451,2451" />
+          <y:Bend Location="3515.56833333333,2515.56833333333" />
+          <y:Bend Location="3515.56833333333,4309.43166666667" />
+          <y:Bend Location="3451,4374" />
+        </x:List>
+      </data>
+    </edge>
+    <edge id="e46" source="n20" target="n3" sourceport="p3" targetport="p5">
+      <data key="d15"><![CDATA[32faf320-1660-bc81-ba19-1642742b2d58%28ignivault.WebAPI%29-16EFFD6E%5Bnet9.0%5D/T%3Aignivault.WebAPI.Data.Entities.UserActivity]]></data>
+      <data key="d16"><![CDATA[32faf320-1660-bc81-ba19-1642742b2d58%28ignivault.WebAPI%29-16EFFD6E%5Bnet9.0%5D/T%3Aignivault.WebAPI.Data.AppDbContext]]></data>
+      <data key="d17"><![CDATA[Usages]]></data>
+    </edge>
+    <edge id="e47" source="n20" target="n5" sourceport="p4" targetport="p4">
+      <data key="d15"><![CDATA[32faf320-1660-bc81-ba19-1642742b2d58%28ignivault.WebAPI%29-16EFFD6E%5Bnet9.0%5D/T%3Aignivault.WebAPI.Data.Entities.LoginUser]]></data>
+      <data key="d16"><![CDATA[32faf320-1660-bc81-ba19-1642742b2d58%28ignivault.WebAPI%29-16EFFD6E%5Bnet9.0%5D/T%3Aignivault.WebAPI.Data.AppDbContext]]></data>
+      <data key="d17"><![CDATA[Usages]]></data>
+      <data key="d19">
+        <x:List>
+          <y:Bend Location="2633.375,1960.125" />
+          <y:Bend Location="2569,1895.75" />
+        </x:List>
+      </data>
+    </edge>
+    <edge id="e48" source="n25" target="n20" sourceport="p0" targetport="p5">
+      <data key="d15"><![CDATA[32faf320-1660-bc81-ba19-1642742b2d58%28ignivault.WebAPI%29-16EFFD6E%5Bnet9.0%5D/T%3Aignivault.WebAPI.Data.AppDbContext]]></data>
+      <data key="d16"><![CDATA[32faf320-1660-bc81-ba19-1642742b2d58%28ignivault.WebAPI%29-16EFFD6E%5Bnet9.0%5D/T%3Aignivault.WebAPI.Extensions.ServiceCollectionExtensions]]></data>
+      <data key="d17"><![CDATA[Usages]]></data>
+      <data key="d19">
+        <x:List>
+          <y:Bend Location="2323.215,2415.215" />
+          <y:Bend Location="2359,2451" />
+        </x:List>
+      </data>
+    </edge>
+    <edge id="e49" source="n25" target="n5" sourceport="p1" targetport="p5">
+      <data key="d15"><![CDATA[32faf320-1660-bc81-ba19-1642742b2d58%28ignivault.WebAPI%29-16EFFD6E%5Bnet9.0%5D/T%3Aignivault.WebAPI.Data.Entities.LoginUser]]></data>
+      <data key="d16"><![CDATA[32faf320-1660-bc81-ba19-1642742b2d58%28ignivault.WebAPI%29-16EFFD6E%5Bnet9.0%5D/T%3Aignivault.WebAPI.Extensions.ServiceCollectionExtensions]]></data>
+      <data key="d17"><![CDATA[Usages]]></data>
+      <data key="d19">
+        <x:List>
+          <y:Bend Location="1858.49633333333,1946.24633333333" />
+          <y:Bend Location="1828,1915.75" />
+        </x:List>
+      </data>
+    </edge>
+    <edge id="e50" source="n25" target="n18" sourceport="p2" targetport="p4">
+      <data key="d15"><![CDATA[32faf320-1660-bc81-ba19-1642742b2d58%28ignivault.WebAPI%29-16EFFD6E%5Bnet9.0%5D/T%3Aignivault.WebAPI.Data.Repositories.IRepository%601]]></data>
+      <data key="d16"><![CDATA[32faf320-1660-bc81-ba19-1642742b2d58%28ignivault.WebAPI%29-16EFFD6E%5Bnet9.0%5D/T%3Aignivault.WebAPI.Extensions.ServiceCollectionExtensions]]></data>
+      <data key="d17"><![CDATA[Usages]]></data>
+    </edge>
+    <edge id="e51" source="n25" target="n21" sourceport="p3" targetport="p8">
+      <data key="d15"><![CDATA[32faf320-1660-bc81-ba19-1642742b2d58%28ignivault.WebAPI%29-16EFFD6E%5Bnet9.0%5D/T%3Aignivault.WebAPI.Data.Repositories.Repository%601]]></data>
+      <data key="d16"><![CDATA[32faf320-1660-bc81-ba19-1642742b2d58%28ignivault.WebAPI%29-16EFFD6E%5Bnet9.0%5D/T%3Aignivault.WebAPI.Extensions.ServiceCollectionExtensions]]></data>
+      <data key="d17"><![CDATA[Usages]]></data>
+      <data key="d19">
+        <x:List>
+          <y:Bend Location="2769,2132" />
+          <y:Bend Location="2819.61333333333,2081.38666666667" />
+          <y:Bend Location="2819.61333333333,1814.13666666667" />
+          <y:Bend Location="2843,1790.75" />
+        </x:List>
+      </data>
+    </edge>
+    <edge id="e52" source="n25" target="n23" sourceport="p4" targetport="p3">
+      <data key="d15"><![CDATA[32faf320-1660-bc81-ba19-1642742b2d58%28ignivault.WebAPI%29-16EFFD6E%5Bnet9.0%5D/T%3Aignivault.WebAPI.Data.Repositories.IVaultItemRepository]]></data>
+      <data key="d16"><![CDATA[32faf320-1660-bc81-ba19-1642742b2d58%28ignivault.WebAPI%29-16EFFD6E%5Bnet9.0%5D/T%3Aignivault.WebAPI.Extensions.ServiceCollectionExtensions]]></data>
+      <data key="d17"><![CDATA[Usages]]></data>
+      <data key="d19">
+        <x:List>
+          <y:Bend Location="1139,2194.75" />
+          <y:Bend Location="1107.33166666667,2226.41833333333" />
+        </x:List>
+      </data>
+    </edge>
+    <edge id="e53" source="n25" target="n24" sourceport="p5" targetport="p4">
+      <data key="d15"><![CDATA[32faf320-1660-bc81-ba19-1642742b2d58%28ignivault.WebAPI%29-16EFFD6E%5Bnet9.0%5D/T%3Aignivault.WebAPI.Data.Repositories.VaultItemRepository]]></data>
+      <data key="d16"><![CDATA[32faf320-1660-bc81-ba19-1642742b2d58%28ignivault.WebAPI%29-16EFFD6E%5Bnet9.0%5D/T%3Aignivault.WebAPI.Extensions.ServiceCollectionExtensions]]></data>
+      <data key="d17"><![CDATA[Usages]]></data>
+      <data key="d19">
+        <x:List>
+          <y:Bend Location="2300.77555555556,2747.77555555556" />
+          <y:Bend Location="2334,2781" />
+        </x:List>
+      </data>
+    </edge>
+    <edge id="e54" source="n25" target="n17" sourceport="p6" targetport="p3">
+      <data key="d15"><![CDATA[32faf320-1660-bc81-ba19-1642742b2d58%28ignivault.WebAPI%29-16EFFD6E%5Bnet9.0%5D/T%3Aignivault.WebAPI.Data.Repositories.IStoredBlobRepository]]></data>
+      <data key="d16"><![CDATA[32faf320-1660-bc81-ba19-1642742b2d58%28ignivault.WebAPI%29-16EFFD6E%5Bnet9.0%5D/T%3Aignivault.WebAPI.Extensions.ServiceCollectionExtensions]]></data>
+      <data key="d17"><![CDATA[Usages]]></data>
+      <data key="d19">
+        <x:List>
+          <y:Bend Location="2216.17333333333,3991.17333333333" />
+          <y:Bend Location="2229,4004" />
+        </x:List>
+      </data>
+    </edge>
+    <edge id="e55" source="n25" target="n19" sourceport="p7" targetport="p5">
+      <data key="d15"><![CDATA[32faf320-1660-bc81-ba19-1642742b2d58%28ignivault.WebAPI%29-16EFFD6E%5Bnet9.0%5D/T%3Aignivault.WebAPI.Data.Repositories.BlobRepository]]></data>
+      <data key="d16"><![CDATA[32faf320-1660-bc81-ba19-1642742b2d58%28ignivault.WebAPI%29-16EFFD6E%5Bnet9.0%5D/T%3Aignivault.WebAPI.Extensions.ServiceCollectionExtensions]]></data>
+      <data key="d17"><![CDATA[Usages]]></data>
+      <data key="d19">
+        <x:List>
+          <y:Bend Location="2276.9,3636.1" />
+          <y:Bend Location="2299,3658.2" />
+        </x:List>
+      </data>
+    </edge>
+    <edge id="e56" source="n25" target="n2" sourceport="p8" targetport="p5">
+      <data key="d15"><![CDATA[32faf320-1660-bc81-ba19-1642742b2d58%28ignivault.WebAPI%29-16EFFD6E%5Bnet9.0%5D/T%3Aignivault.WebAPI.Data.Repositories.IUserActivityRepository]]></data>
+      <data key="d16"><![CDATA[32faf320-1660-bc81-ba19-1642742b2d58%28ignivault.WebAPI%29-16EFFD6E%5Bnet9.0%5D/T%3Aignivault.WebAPI.Extensions.ServiceCollectionExtensions]]></data>
+      <data key="d17"><![CDATA[Usages]]></data>
+      <data key="d19">
+        <x:List>
+          <y:Bend Location="2779.61333333333,2192.66666666667" />
+        </x:List>
+      </data>
+    </edge>
+    <edge id="e57" source="n25" target="n22" sourceport="p9" targetport="p4">
+      <data key="d15"><![CDATA[32faf320-1660-bc81-ba19-1642742b2d58%28ignivault.WebAPI%29-16EFFD6E%5Bnet9.0%5D/T%3Aignivault.WebAPI.Data.Repositories.UserActivityRepository]]></data>
+      <data key="d16"><![CDATA[32faf320-1660-bc81-ba19-1642742b2d58%28ignivault.WebAPI%29-16EFFD6E%5Bnet9.0%5D/T%3Aignivault.WebAPI.Extensions.ServiceCollectionExtensions]]></data>
+      <data key="d17"><![CDATA[Usages]]></data>
+      <data key="d19">
+        <x:List>
+          <y:Bend Location="2735,2152" />
+          <y:Bend Location="2799.61333333333,2087.38666666667" />
+          <y:Bend Location="2799.61333333333,1354.13666666667" />
+          <y:Bend Location="2844,1309.75" />
+        </x:List>
+      </data>
+    </edge>
+    <edge id="e58" source="n25" target="n1" sourceport="p10" targetport="p2">
+      <data key="d15"><![CDATA[32faf320-1660-bc81-ba19-1642742b2d58%28ignivault.WebAPI%29-16EFFD6E%5Bnet9.0%5D/T%3Aignivault.WebAPI.Services.IAccountService]]></data>
+      <data key="d16"><![CDATA[32faf320-1660-bc81-ba19-1642742b2d58%28ignivault.WebAPI%29-16EFFD6E%5Bnet9.0%5D/T%3Aignivault.WebAPI.Extensions.ServiceCollectionExtensions]]></data>
+      <data key="d17"><![CDATA[Usages]]></data>
+      <data key="d19">
+        <x:List>
+          <y:Bend Location="2158.54666666667,1157.78666666667" />
+          <y:Bend Location="2194,1122.33333333333" />
+          <y:Bend Location="2361,1122.33333333333" />
+          <y:Bend Location="2395.92333333333,1087.41" />
+        </x:List>
+      </data>
+    </edge>
+    <edge id="e59" source="n25" target="n26" sourceport="p11" targetport="p0">
+      <data key="d15"><![CDATA[32faf320-1660-bc81-ba19-1642742b2d58%28ignivault.WebAPI%29-16EFFD6E%5Bnet9.0%5D/T%3Aignivault.WebAPI.Services.AccountService]]></data>
+      <data key="d16"><![CDATA[32faf320-1660-bc81-ba19-1642742b2d58%28ignivault.WebAPI%29-16EFFD6E%5Bnet9.0%5D/T%3Aignivault.WebAPI.Extensions.ServiceCollectionExtensions]]></data>
+      <data key="d17"><![CDATA[Usages]]></data>
+    </edge>
+    <edge id="e60" source="n25" target="n13" sourceport="p12" targetport="p2">
+      <data key="d15"><![CDATA[32faf320-1660-bc81-ba19-1642742b2d58%28ignivault.WebAPI%29-16EFFD6E%5Bnet9.0%5D/T%3Aignivault.WebAPI.Services.IVaultService]]></data>
+      <data key="d16"><![CDATA[32faf320-1660-bc81-ba19-1642742b2d58%28ignivault.WebAPI%29-16EFFD6E%5Bnet9.0%5D/T%3Aignivault.WebAPI.Extensions.ServiceCollectionExtensions]]></data>
+      <data key="d17"><![CDATA[Usages]]></data>
+      <data key="d19">
+        <x:List>
+          <y:Bend Location="821,2154.75" />
+          <y:Bend Location="769.301666666667,2206.44833333333" />
+          <y:Bend Location="769.301666666667,3065.19833333333" />
+          <y:Bend Location="745,3089.5" />
+        </x:List>
+      </data>
+    </edge>
+    <edge id="e61" source="n25" target="n27" sourceport="p13" targetport="p0">
+      <data key="d15"><![CDATA[32faf320-1660-bc81-ba19-1642742b2d58%28ignivault.WebAPI%29-16EFFD6E%5Bnet9.0%5D/T%3Aignivault.WebAPI.Services.VaultService]]></data>
+      <data key="d16"><![CDATA[32faf320-1660-bc81-ba19-1642742b2d58%28ignivault.WebAPI%29-16EFFD6E%5Bnet9.0%5D/T%3Aignivault.WebAPI.Extensions.ServiceCollectionExtensions]]></data>
+      <data key="d17"><![CDATA[Usages]]></data>
+      <data key="d19">
+        <x:List>
+          <y:Bend Location="2091.14,2305.86" />
+          <y:Bend Location="2075,2322" />
+        </x:List>
+      </data>
+    </edge>
+    <edge id="e62" source="n25" target="n14" sourceport="p14" targetport="p2">
+      <data key="d15"><![CDATA[32faf320-1660-bc81-ba19-1642742b2d58%28ignivault.WebAPI%29-16EFFD6E%5Bnet9.0%5D/T%3Aignivault.WebAPI.Services.IFileService]]></data>
+      <data key="d16"><![CDATA[32faf320-1660-bc81-ba19-1642742b2d58%28ignivault.WebAPI%29-16EFFD6E%5Bnet9.0%5D/T%3Aignivault.WebAPI.Extensions.ServiceCollectionExtensions]]></data>
+      <data key="d17"><![CDATA[Usages]]></data>
+      <data key="d19">
+        <x:List>
+          <y:Bend Location="1083,2174.75" />
+          <y:Bend Location="1018.98833333333,2238.76166666667" />
+        </x:List>
+      </data>
+    </edge>
+    <edge id="e63" source="n25" target="n28" sourceport="p15" targetport="p0">
+      <data key="d15"><![CDATA[32faf320-1660-bc81-ba19-1642742b2d58%28ignivault.WebAPI%29-16EFFD6E%5Bnet9.0%5D/T%3Aignivault.WebAPI.Services.FileService]]></data>
+      <data key="d16"><![CDATA[32faf320-1660-bc81-ba19-1642742b2d58%28ignivault.WebAPI%29-16EFFD6E%5Bnet9.0%5D/T%3Aignivault.WebAPI.Extensions.ServiceCollectionExtensions]]></data>
+      <data key="d17"><![CDATA[Usages]]></data>
+      <data key="d19">
+        <x:List>
+          <y:Bend Location="2155.44666666667,3555.55333333333" />
+          <y:Bend Location="2118,3593" />
+        </x:List>
+      </data>
+    </edge>
+    <edge id="e64" source="n25" target="n8" sourceport="p16" targetport="p2">
+      <data key="d15"><![CDATA[32faf320-1660-bc81-ba19-1642742b2d58%28ignivault.WebAPI%29-16EFFD6E%5Bnet9.0%5D/T%3Aignivault.WebAPI.Services.IUserActivityLogger]]></data>
+      <data key="d16"><![CDATA[32faf320-1660-bc81-ba19-1642742b2d58%28ignivault.WebAPI%29-16EFFD6E%5Bnet9.0%5D/T%3Aignivault.WebAPI.Extensions.ServiceCollectionExtensions]]></data>
+      <data key="d17"><![CDATA[Usages]]></data>
+      <data key="d19">
+        <x:List>
+          <y:Bend Location="2082.61551282051,1021.61551282051" />
+          <y:Bend Location="2018,957" />
+        </x:List>
+      </data>
+    </edge>
+    <edge id="e65" source="n25" target="n29" sourceport="p17" targetport="p0">
+      <data key="d15"><![CDATA[32faf320-1660-bc81-ba19-1642742b2d58%28ignivault.WebAPI%29-16EFFD6E%5Bnet9.0%5D/T%3Aignivault.WebAPI.Services.UserActivityLogger]]></data>
+      <data key="d16"><![CDATA[32faf320-1660-bc81-ba19-1642742b2d58%28ignivault.WebAPI%29-16EFFD6E%5Bnet9.0%5D/T%3Aignivault.WebAPI.Extensions.ServiceCollectionExtensions]]></data>
+      <data key="d17"><![CDATA[Usages]]></data>
+    </edge>
+    <edge id="e66" source="n25" target="n7" sourceport="p18" targetport="p2">
+      <data key="d15"><![CDATA[32faf320-1660-bc81-ba19-1642742b2d58%28ignivault.WebAPI%29-16EFFD6E%5Bnet9.0%5D/T%3Aignivault.WebAPI.Services.IEmailService]]></data>
+      <data key="d16"><![CDATA[32faf320-1660-bc81-ba19-1642742b2d58%28ignivault.WebAPI%29-16EFFD6E%5Bnet9.0%5D/T%3Aignivault.WebAPI.Extensions.ServiceCollectionExtensions]]></data>
+      <data key="d17"><![CDATA[Usages]]></data>
+      <data key="d19">
+        <x:List>
+          <y:Bend Location="1905.53766666667,1755.53766666667" />
+          <y:Bend Location="1842,1692" />
+        </x:List>
+      </data>
+    </edge>
+    <edge id="e67" source="n25" target="n30" sourceport="p19" targetport="p0">
+      <data key="d15"><![CDATA[32faf320-1660-bc81-ba19-1642742b2d58%28ignivault.WebAPI%29-16EFFD6E%5Bnet9.0%5D/T%3Aignivault.WebAPI.Services.SendGridEmailService]]></data>
+      <data key="d16"><![CDATA[32faf320-1660-bc81-ba19-1642742b2d58%28ignivault.WebAPI%29-16EFFD6E%5Bnet9.0%5D/T%3Aignivault.WebAPI.Extensions.ServiceCollectionExtensions]]></data>
+      <data key="d17"><![CDATA[Usages]]></data>
+      <data key="d19">
+        <x:List>
+          <y:Bend Location="655,2134.75" />
+          <y:Bend Location="610.075,2179.675" />
+        </x:List>
+      </data>
+    </edge>
+    <edge id="e68" source="n25" target="n11" sourceport="p20" targetport="p2">
+      <data key="d15"><![CDATA[32faf320-1660-bc81-ba19-1642742b2d58%28ignivault.WebAPI%29-16EFFD6E%5Bnet9.0%5D/T%3Aignivault.WebAPI.Services.IReportsService]]></data>
+      <data key="d16"><![CDATA[32faf320-1660-bc81-ba19-1642742b2d58%28ignivault.WebAPI%29-16EFFD6E%5Bnet9.0%5D/T%3Aignivault.WebAPI.Extensions.ServiceCollectionExtensions]]></data>
+      <data key="d17"><![CDATA[Usages]]></data>
+      <data key="d19">
+        <x:List>
+          <y:Bend Location="2343.215,2254.215" />
+          <y:Bend Location="2351,2262" />
+        </x:List>
+      </data>
+    </edge>
+    <edge id="e69" source="n25" target="n31" sourceport="p21" targetport="p0">
+      <data key="d15"><![CDATA[32faf320-1660-bc81-ba19-1642742b2d58%28ignivault.WebAPI%29-16EFFD6E%5Bnet9.0%5D/T%3Aignivault.WebAPI.Services.ReportsService]]></data>
+      <data key="d16"><![CDATA[32faf320-1660-bc81-ba19-1642742b2d58%28ignivault.WebAPI%29-16EFFD6E%5Bnet9.0%5D/T%3Aignivault.WebAPI.Extensions.ServiceCollectionExtensions]]></data>
+      <data key="d17"><![CDATA[Usages]]></data>
+    </edge>
+    <edge id="e70" source="n32" target="n32" sourceport="p0" targetport="p1">
+      <data key="d15"><![CDATA[32faf320-1660-bc81-ba19-1642742b2d58%28ignivault.WebAPI%29-16EFFD6E%5Bnet9.0%5D/T%3Aignivault.WebAPI.Middleware.ExceptionHandler]]></data>
+      <data key="d16"><![CDATA[32faf320-1660-bc81-ba19-1642742b2d58%28ignivault.WebAPI%29-16EFFD6E%5Bnet9.0%5D/T%3Aignivault.WebAPI.Middleware.ExceptionHandler]]></data>
+      <data key="d17"><![CDATA[Usages]]></data>
+      <data key="d19">
+        <x:List>
+          <y:Bend Location="180.245,4731.755" />
+          <y:Bend Location="176,4736" />
+          <y:Bend Location="-19,4736" />
+          <y:Bend Location="-30,4725" />
+          <y:Bend Location="-30,4666" />
+          <y:Bend Location="-26,4662" />
+        </x:List>
+      </data>
+    </edge>
+    <edge id="e71" source="n33" target="n20" sourceport="p0" targetport="p6">
+      <data key="d15"><![CDATA[32faf320-1660-bc81-ba19-1642742b2d58%28ignivault.WebAPI%29-16EFFD6E%5Bnet9.0%5D/T%3Aignivault.WebAPI.Data.AppDbContext]]></data>
+      <data key="d16"><![CDATA[32faf320-1660-bc81-ba19-1642742b2d58%28ignivault.WebAPI%29-16EFFD6E%5Bnet9.0%5D/T%3Aignivault.WebAPI.Migrations.ApiSchema]]></data>
+      <data key="d17"><![CDATA[Usages]]></data>
+      <data key="d19">
+        <x:List>
+          <y:Bend Location="2989,3109" />
+          <y:Bend Location="3002.352,3095.648" />
+          <y:Bend Location="3002.352,2514.352" />
+          <y:Bend Location="2991,2503" />
+        </x:List>
+      </data>
+    </edge>
+    <edge id="e72" source="n34" target="n20" sourceport="p0" targetport="p7">
+      <data key="d15"><![CDATA[32faf320-1660-bc81-ba19-1642742b2d58%28ignivault.WebAPI%29-16EFFD6E%5Bnet9.0%5D/T%3Aignivault.WebAPI.Data.AppDbContext]]></data>
+      <data key="d16"><![CDATA[32faf320-1660-bc81-ba19-1642742b2d58%28ignivault.WebAPI%29-16EFFD6E%5Bnet9.0%5D/T%3Aignivault.WebAPI.Migrations.AppDbContextModelSnapshot]]></data>
+      <data key="d17"><![CDATA[Usages]]></data>
+      <data key="d19">
+        <x:List>
+          <y:Bend Location="3371.09555555556,2541.09555555556" />
+          <y:Bend Location="3307,2477" />
+        </x:List>
+      </data>
+    </edge>
+    <edge id="e73" source="n26" target="n5" sourceport="p1" targetport="p6">
+      <data key="d15"><![CDATA[32faf320-1660-bc81-ba19-1642742b2d58%28ignivault.WebAPI%29-16EFFD6E%5Bnet9.0%5D/T%3Aignivault.WebAPI.Data.Entities.LoginUser]]></data>
+      <data key="d16"><![CDATA[32faf320-1660-bc81-ba19-1642742b2d58%28ignivault.WebAPI%29-16EFFD6E%5Bnet9.0%5D/T%3Aignivault.WebAPI.Services.AccountService]]></data>
+      <data key="d17"><![CDATA[Usages]]></data>
+      <data key="d19">
+        <x:List>
+          <y:Bend Location="1717.37233333333,1828.37766666667" />
+          <y:Bend Location="1670,1875.75" />
+        </x:List>
+      </data>
+    </edge>
+    <edge id="e74" source="n26" target="n23" sourceport="p2" targetport="p4">
+      <data key="d15"><![CDATA[32faf320-1660-bc81-ba19-1642742b2d58%28ignivault.WebAPI%29-16EFFD6E%5Bnet9.0%5D/T%3Aignivault.WebAPI.Data.Repositories.IVaultItemRepository]]></data>
+      <data key="d16"><![CDATA[32faf320-1660-bc81-ba19-1642742b2d58%28ignivault.WebAPI%29-16EFFD6E%5Bnet9.0%5D/T%3Aignivault.WebAPI.Services.AccountService]]></data>
+      <data key="d17"><![CDATA[Aggregation]]></data>
+      <data key="d18">
+        <x:List>
+          <y:Label LayoutParameter="{y:GraphMLReference 1}" PreferredSize="188,23">
+            <y:Label.Text>_vaultItemRepository</y:Label.Text>
+          </y:Label>
+        </x:List>
+      </data>
+      <data key="d19">
+        <x:List>
+          <y:Bend Location="1712.77466666667,1112.77466666667" />
+          <y:Bend Location="1676,1076" />
+          <y:Bend Location="1167,1076" />
+          <y:Bend Location="1102.82833333333,1140.17166666667" />
+        </x:List>
+      </data>
+    </edge>
+    <edge id="e75" source="n26" target="n23" sourceport="p3" targetport="p5">
+      <data key="d15"><![CDATA[32faf320-1660-bc81-ba19-1642742b2d58%28ignivault.WebAPI%29-16EFFD6E%5Bnet9.0%5D/T%3Aignivault.WebAPI.Data.Repositories.IVaultItemRepository]]></data>
+      <data key="d16"><![CDATA[32faf320-1660-bc81-ba19-1642742b2d58%28ignivault.WebAPI%29-16EFFD6E%5Bnet9.0%5D/T%3Aignivault.WebAPI.Services.AccountService]]></data>
+      <data key="d17"><![CDATA[Usages]]></data>
+      <data key="d19">
+        <x:List>
+          <y:Bend Location="1764.41366666667,2716.58633333333" />
+          <y:Bend Location="1700,2781" />
+          <y:Bend Location="1081,2781" />
+          <y:Bend Location="1062.82833333333,2799.17166666667" />
+        </x:List>
+      </data>
+    </edge>
+    <edge id="e76" source="n26" target="n20" sourceport="p4" targetport="p8">
+      <data key="d15"><![CDATA[32faf320-1660-bc81-ba19-1642742b2d58%28ignivault.WebAPI%29-16EFFD6E%5Bnet9.0%5D/T%3Aignivault.WebAPI.Data.AppDbContext]]></data>
+      <data key="d16"><![CDATA[32faf320-1660-bc81-ba19-1642742b2d58%28ignivault.WebAPI%29-16EFFD6E%5Bnet9.0%5D/T%3Aignivault.WebAPI.Services.AccountService]]></data>
+      <data key="d17"><![CDATA[Aggregation]]></data>
+      <data key="d18">
+        <x:List>
+          <y:Label LayoutParameter="{y:GraphMLReference 1}" PreferredSize="76,23">
+            <y:Label.Text>_context</y:Label.Text>
+          </y:Label>
+        </x:List>
+      </data>
+      <data key="d19">
+        <x:List>
+          <y:Bend Location="2600,1353" />
+          <y:Bend Location="2664.935,1417.935" />
+        </x:List>
+      </data>
+    </edge>
+    <edge id="e77" source="n26" target="n26" sourceport="p5" targetport="p6">
+      <data key="d15"><![CDATA[32faf320-1660-bc81-ba19-1642742b2d58%28ignivault.WebAPI%29-16EFFD6E%5Bnet9.0%5D/T%3Aignivault.WebAPI.Services.AccountService]]></data>
+      <data key="d16"><![CDATA[32faf320-1660-bc81-ba19-1642742b2d58%28ignivault.WebAPI%29-16EFFD6E%5Bnet9.0%5D/T%3Aignivault.WebAPI.Services.AccountService]]></data>
+      <data key="d17"><![CDATA[Usages]]></data>
+      <data key="d19">
+        <x:List>
+          <y:Bend Location="1999.62033333333,1437.62033333333" />
+          <y:Bend Location="2004,1442" />
+          <y:Bend Location="2040,1442" />
+          <y:Bend Location="2046.66166666667,1435.33833333333" />
+          <y:Bend Location="2046.66166666667,1389.78666666667" />
+          <y:Bend Location="2043,1386.125" />
+        </x:List>
+      </data>
+    </edge>
+    <edge id="e78" source="n26" target="n8" sourceport="p7" targetport="p3">
+      <data key="d15"><![CDATA[32faf320-1660-bc81-ba19-1642742b2d58%28ignivault.WebAPI%29-16EFFD6E%5Bnet9.0%5D/T%3Aignivault.WebAPI.Services.IUserActivityLogger]]></data>
+      <data key="d16"><![CDATA[32faf320-1660-bc81-ba19-1642742b2d58%28ignivault.WebAPI%29-16EFFD6E%5Bnet9.0%5D/T%3Aignivault.WebAPI.Services.AccountService]]></data>
+      <data key="d17"><![CDATA[Aggregation]]></data>
+      <data key="d18">
+        <x:List>
+          <y:Label LayoutParameter="{y:GraphMLReference 1}" PreferredSize="176,23">
+            <y:Label.Text>_userActivityLogger</y:Label.Text>
+          </y:Label>
+        </x:List>
+      </data>
+      <data key="d19">
+        <x:List>
+          <y:Bend Location="1788.46666666667,950.466666666667" />
+          <y:Bend Location="1738,900" />
+        </x:List>
+      </data>
+    </edge>
+    <edge id="e79" source="n26" target="n8" sourceport="p8" targetport="p4">
+      <data key="d15"><![CDATA[32faf320-1660-bc81-ba19-1642742b2d58%28ignivault.WebAPI%29-16EFFD6E%5Bnet9.0%5D/T%3Aignivault.WebAPI.Services.IUserActivityLogger]]></data>
+      <data key="d16"><![CDATA[32faf320-1660-bc81-ba19-1642742b2d58%28ignivault.WebAPI%29-16EFFD6E%5Bnet9.0%5D/T%3Aignivault.WebAPI.Services.AccountService]]></data>
+      <data key="d17"><![CDATA[Usages]]></data>
+      <data key="d19">
+        <x:List>
+          <y:Bend Location="1750.62066666667,924.620666666667" />
+          <y:Bend Location="1706,880" />
+        </x:List>
+      </data>
+    </edge>
+    <edge id="e80" source="n26" target="n9" sourceport="p9" targetport="p2">
+      <data key="d15"><![CDATA[32faf320-1660-bc81-ba19-1642742b2d58%28ignivault.WebAPI%29-16EFFD6E%5Bnet9.0%5D/T%3Aignivault.WebAPI.Data.Enums.ActivityType]]></data>
+      <data key="d16"><![CDATA[32faf320-1660-bc81-ba19-1642742b2d58%28ignivault.WebAPI%29-16EFFD6E%5Bnet9.0%5D/T%3Aignivault.WebAPI.Services.AccountService]]></data>
+      <data key="d17"><![CDATA[Usages]]></data>
+      <data key="d19">
+        <x:List>
+          <y:Bend Location="1826.31266666667,605.812666666667" />
+          <y:Bend Location="1780,559.5" />
+        </x:List>
+      </data>
+    </edge>
+    <edge id="e81" source="n26" target="n16" sourceport="p10" targetport="p7">
+      <data key="d15"><![CDATA[32faf320-1660-bc81-ba19-1642742b2d58%28ignivault.WebAPI%29-16EFFD6E%5Bnet9.0%5D/T%3Aignivault.WebAPI.Data.Entities.VaultEntity]]></data>
+      <data key="d16"><![CDATA[32faf320-1660-bc81-ba19-1642742b2d58%28ignivault.WebAPI%29-16EFFD6E%5Bnet9.0%5D/T%3Aignivault.WebAPI.Services.AccountService]]></data>
+      <data key="d17"><![CDATA[Usages]]></data>
+      <data key="d19">
+        <x:List>
+          <y:Bend Location="1811.455,2250.455" />
+          <y:Bend Location="1843,2282" />
+          <y:Bend Location="1995,2282" />
+          <y:Bend Location="2026.83333333333,2313.83333333333" />
+        </x:List>
+      </data>
+    </edge>
+    <edge id="e82" source="n26" target="n1" sourceport="p11" targetport="p3">
+      <data key="d15"><![CDATA[32faf320-1660-bc81-ba19-1642742b2d58%28ignivault.WebAPI%29-16EFFD6E%5Bnet9.0%5D/T%3Aignivault.WebAPI.Services.IAccountService]]></data>
+      <data key="d16"><![CDATA[32faf320-1660-bc81-ba19-1642742b2d58%28ignivault.WebAPI%29-16EFFD6E%5Bnet9.0%5D/T%3Aignivault.WebAPI.Services.AccountService]]></data>
+      <data key="d17"><![CDATA[Inheritance]]></data>
+      <data key="d19">
+        <x:List>
+          <y:Bend Location="1864.15866666667,522.841333333333" />
+          <y:Bend Location="1904,483" />
+        </x:List>
+      </data>
+    </edge>
+    <edge id="e83" source="n30" target="n30" sourceport="p1" targetport="p2">
+      <data key="d15"><![CDATA[32faf320-1660-bc81-ba19-1642742b2d58%28ignivault.WebAPI%29-16EFFD6E%5Bnet9.0%5D/T%3Aignivault.WebAPI.Services.SendGridEmailService]]></data>
+      <data key="d16"><![CDATA[32faf320-1660-bc81-ba19-1642742b2d58%28ignivault.WebAPI%29-16EFFD6E%5Bnet9.0%5D/T%3Aignivault.WebAPI.Services.SendGridEmailService]]></data>
+      <data key="d17"><![CDATA[Usages]]></data>
+      <data key="d19">
+        <x:List>
+          <y:Bend Location="519.256666666667,2550.25666666667" />
+          <y:Bend Location="523,2554" />
+          <y:Bend Location="799,2554" />
+          <y:Bend Location="809.301666666667,2543.69833333333" />
+          <y:Bend Location="809.301666666667,2490.30166666667" />
+          <y:Bend Location="799,2480" />
+        </x:List>
+      </data>
+    </edge>
+    <edge id="e84" source="n30" target="n7" sourceport="p3" targetport="p3">
+      <data key="d15"><![CDATA[32faf320-1660-bc81-ba19-1642742b2d58%28ignivault.WebAPI%29-16EFFD6E%5Bnet9.0%5D/T%3Aignivault.WebAPI.Services.IEmailService]]></data>
+      <data key="d16"><![CDATA[32faf320-1660-bc81-ba19-1642742b2d58%28ignivault.WebAPI%29-16EFFD6E%5Bnet9.0%5D/T%3Aignivault.WebAPI.Services.SendGridEmailService]]></data>
+      <data key="d17"><![CDATA[Inheritance]]></data>
+      <data key="d19">
+        <x:List>
+          <y:Bend Location="383.211666666667,1710.78833333333" />
+          <y:Bend Location="393,1701" />
+        </x:List>
+      </data>
+    </edge>
+    <edge id="e85" source="n28" target="n23" sourceport="p1" targetport="p6">
+      <data key="d15"><![CDATA[32faf320-1660-bc81-ba19-1642742b2d58%28ignivault.WebAPI%29-16EFFD6E%5Bnet9.0%5D/T%3Aignivault.WebAPI.Data.Repositories.IVaultItemRepository]]></data>
+      <data key="d16"><![CDATA[32faf320-1660-bc81-ba19-1642742b2d58%28ignivault.WebAPI%29-16EFFD6E%5Bnet9.0%5D/T%3Aignivault.WebAPI.Services.FileService]]></data>
+      <data key="d17"><![CDATA[Aggregation]]></data>
+      <data key="d18">
+        <x:List>
+          <y:Label LayoutParameter="{y:GraphMLReference 1}" PreferredSize="188,23">
+            <y:Label.Text>_vaultItemRepository</y:Label.Text>
+          </y:Label>
+        </x:List>
+      </data>
+      <data key="d19">
+        <x:List>
+          <y:Bend Location="1691.15166666667,3012.485" />
+          <y:Bend Location="1657,2978.33333333333" />
+        </x:List>
+      </data>
+    </edge>
+    <edge id="e86" source="n28" target="n23" sourceport="p2" targetport="p7">
+      <data key="d15"><![CDATA[32faf320-1660-bc81-ba19-1642742b2d58%28ignivault.WebAPI%29-16EFFD6E%5Bnet9.0%5D/T%3Aignivault.WebAPI.Data.Repositories.IVaultItemRepository]]></data>
+      <data key="d16"><![CDATA[32faf320-1660-bc81-ba19-1642742b2d58%28ignivault.WebAPI%29-16EFFD6E%5Bnet9.0%5D/T%3Aignivault.WebAPI.Services.FileService]]></data>
+      <data key="d17"><![CDATA[Usages]]></data>
+      <data key="d19">
+        <x:List>
+          <y:Bend Location="1784.42833333333,3003.42833333333" />
+          <y:Bend Location="1736,2955" />
+        </x:List>
+      </data>
+    </edge>
+    <edge id="e87" source="n28" target="n17" sourceport="p3" targetport="p4">
+      <data key="d15"><![CDATA[32faf320-1660-bc81-ba19-1642742b2d58%28ignivault.WebAPI%29-16EFFD6E%5Bnet9.0%5D/T%3Aignivault.WebAPI.Data.Repositories.IStoredBlobRepository]]></data>
+      <data key="d16"><![CDATA[32faf320-1660-bc81-ba19-1642742b2d58%28ignivault.WebAPI%29-16EFFD6E%5Bnet9.0%5D/T%3Aignivault.WebAPI.Services.FileService]]></data>
+      <data key="d17"><![CDATA[Aggregation]]></data>
+      <data key="d18">
+        <x:List>
+          <y:Label LayoutParameter="{y:GraphMLReference 1}" PreferredSize="145,23">
+            <y:Label.Text>_blobRepository</y:Label.Text>
+          </y:Label>
+        </x:List>
+      </data>
+      <data key="d19">
+        <x:List>
+          <y:Bend Location="1769.75666666667,3997.75666666667" />
+          <y:Bend Location="1828,4056" />
+        </x:List>
+      </data>
+    </edge>
+    <edge id="e88" source="n28" target="n17" sourceport="p4" targetport="p5">
+      <data key="d15"><![CDATA[32faf320-1660-bc81-ba19-1642742b2d58%28ignivault.WebAPI%29-16EFFD6E%5Bnet9.0%5D/T%3Aignivault.WebAPI.Data.Repositories.IStoredBlobRepository]]></data>
+      <data key="d16"><![CDATA[32faf320-1660-bc81-ba19-1642742b2d58%28ignivault.WebAPI%29-16EFFD6E%5Bnet9.0%5D/T%3Aignivault.WebAPI.Services.FileService]]></data>
+      <data key="d17"><![CDATA[Usages]]></data>
+      <data key="d19">
+        <x:List>
+          <y:Bend Location="1853.25222222222,3975.25222222222" />
+          <y:Bend Location="1908,4030" />
+        </x:List>
+      </data>
+    </edge>
+    <edge id="e89" source="n28" target="n20" sourceport="p5" targetport="p9">
+      <data key="d15"><![CDATA[32faf320-1660-bc81-ba19-1642742b2d58%28ignivault.WebAPI%29-16EFFD6E%5Bnet9.0%5D/T%3Aignivault.WebAPI.Data.AppDbContext]]></data>
+      <data key="d16"><![CDATA[32faf320-1660-bc81-ba19-1642742b2d58%28ignivault.WebAPI%29-16EFFD6E%5Bnet9.0%5D/T%3Aignivault.WebAPI.Services.FileService]]></data>
+      <data key="d17"><![CDATA[Aggregation]]></data>
+      <data key="d18">
+        <x:List>
+          <y:Label LayoutParameter="{y:GraphMLReference 1}" PreferredSize="76,23">
+            <y:Label.Text>_context</y:Label.Text>
+          </y:Label>
+        </x:List>
+      </data>
+      <data key="d19">
+        <x:List>
+          <y:Bend Location="2357,3613" />
+          <y:Bend Location="2421.6974691358,3548.3025308642" />
+          <y:Bend Location="2421.6974691358,2530.3025308642" />
+          <y:Bend Location="2449,2503" />
+        </x:List>
+      </data>
+    </edge>
+    <edge id="e90" source="n28" target="n15" sourceport="p6" targetport="p5">
+      <data key="d15"><![CDATA[32faf320-1660-bc81-ba19-1642742b2d58%28ignivault.WebAPI%29-16EFFD6E%5Bnet9.0%5D/T%3Aignivault.WebAPI.Data.Entities.StoredBlob]]></data>
+      <data key="d16"><![CDATA[32faf320-1660-bc81-ba19-1642742b2d58%28ignivault.WebAPI%29-16EFFD6E%5Bnet9.0%5D/T%3Aignivault.WebAPI.Services.FileService]]></data>
+      <data key="d17"><![CDATA[Usages]]></data>
+      <data key="d19">
+        <x:List>
+          <y:Bend Location="1686.26111111111,4335.26111111111" />
+          <y:Bend Location="1751,4400" />
+        </x:List>
+      </data>
+    </edge>
+    <edge id="e91" source="n28" target="n16" sourceport="p7" targetport="p8">
+      <data key="d15"><![CDATA[32faf320-1660-bc81-ba19-1642742b2d58%28ignivault.WebAPI%29-16EFFD6E%5Bnet9.0%5D/T%3Aignivault.WebAPI.Data.Entities.VaultEntity]]></data>
+      <data key="d16"><![CDATA[32faf320-1660-bc81-ba19-1642742b2d58%28ignivault.WebAPI%29-16EFFD6E%5Bnet9.0%5D/T%3Aignivault.WebAPI.Services.FileService]]></data>
+      <data key="d17"><![CDATA[Usages]]></data>
+    </edge>
+    <edge id="e92" source="n28" target="n14" sourceport="p8" targetport="p3">
+      <data key="d15"><![CDATA[32faf320-1660-bc81-ba19-1642742b2d58%28ignivault.WebAPI%29-16EFFD6E%5Bnet9.0%5D/T%3Aignivault.WebAPI.Services.IFileService]]></data>
+      <data key="d16"><![CDATA[32faf320-1660-bc81-ba19-1642742b2d58%28ignivault.WebAPI%29-16EFFD6E%5Bnet9.0%5D/T%3Aignivault.WebAPI.Services.FileService]]></data>
+      <data key="d17"><![CDATA[Inheritance]]></data>
+      <data key="d19">
+        <x:List>
+          <y:Bend Location="1143,3613.5" />
+          <y:Bend Location="1133.83166666667,3622.66833333333" />
+        </x:List>
+      </data>
+    </edge>
+    <edge id="e93" source="n31" target="n20" sourceport="p1" targetport="p10">
+      <data key="d15"><![CDATA[32faf320-1660-bc81-ba19-1642742b2d58%28ignivault.WebAPI%29-16EFFD6E%5Bnet9.0%5D/T%3Aignivault.WebAPI.Data.AppDbContext]]></data>
+      <data key="d16"><![CDATA[32faf320-1660-bc81-ba19-1642742b2d58%28ignivault.WebAPI%29-16EFFD6E%5Bnet9.0%5D/T%3Aignivault.WebAPI.Services.ReportsService]]></data>
+      <data key="d17"><![CDATA[Aggregation]]></data>
+      <data key="d18">
+        <x:List>
+          <y:Label LayoutParameter="{y:GraphMLReference 1}" PreferredSize="76,23">
+            <y:Label.Text>_context</y:Label.Text>
+          </y:Label>
+        </x:List>
+      </data>
+    </edge>
+    <edge id="e94" source="n31" target="n20" sourceport="p2" targetport="p11">
+      <data key="d15"><![CDATA[32faf320-1660-bc81-ba19-1642742b2d58%28ignivault.WebAPI%29-16EFFD6E%5Bnet9.0%5D/T%3Aignivault.WebAPI.Data.AppDbContext]]></data>
+      <data key="d16"><![CDATA[32faf320-1660-bc81-ba19-1642742b2d58%28ignivault.WebAPI%29-16EFFD6E%5Bnet9.0%5D/T%3Aignivault.WebAPI.Services.ReportsService]]></data>
+      <data key="d17"><![CDATA[Usages]]></data>
+    </edge>
+    <edge id="e95" source="n31" target="n16" sourceport="p3" targetport="p9">
+      <data key="d15"><![CDATA[32faf320-1660-bc81-ba19-1642742b2d58%28ignivault.WebAPI%29-16EFFD6E%5Bnet9.0%5D/T%3Aignivault.WebAPI.Data.Entities.VaultEntity]]></data>
+      <data key="d16"><![CDATA[32faf320-1660-bc81-ba19-1642742b2d58%28ignivault.WebAPI%29-16EFFD6E%5Bnet9.0%5D/T%3Aignivault.WebAPI.Services.ReportsService]]></data>
+      <data key="d17"><![CDATA[Usages]]></data>
+      <data key="d19">
+        <x:List>
+          <y:Bend Location="2982.352,2914.148" />
+          <y:Bend Location="2918,2978.5" />
+        </x:List>
+      </data>
+    </edge>
+    <edge id="e96" source="n31" target="n3" sourceport="p4" targetport="p6">
+      <data key="d15"><![CDATA[32faf320-1660-bc81-ba19-1642742b2d58%28ignivault.WebAPI%29-16EFFD6E%5Bnet9.0%5D/T%3Aignivault.WebAPI.Data.Entities.UserActivity]]></data>
+      <data key="d16"><![CDATA[32faf320-1660-bc81-ba19-1642742b2d58%28ignivault.WebAPI%29-16EFFD6E%5Bnet9.0%5D/T%3Aignivault.WebAPI.Services.ReportsService]]></data>
+      <data key="d17"><![CDATA[Usages]]></data>
+      <data key="d19">
+        <x:List>
+          <y:Bend Location="2924.07111111111,1324.82111111111" />
+          <y:Bend Location="2889,1289.75" />
+        </x:List>
+      </data>
+    </edge>
+    <edge id="e97" source="n31" target="n15" sourceport="p5" targetport="p6">
+      <data key="d15"><![CDATA[32faf320-1660-bc81-ba19-1642742b2d58%28ignivault.WebAPI%29-16EFFD6E%5Bnet9.0%5D/T%3Aignivault.WebAPI.Data.Entities.StoredBlob]]></data>
+      <data key="d16"><![CDATA[32faf320-1660-bc81-ba19-1642742b2d58%28ignivault.WebAPI%29-16EFFD6E%5Bnet9.0%5D/T%3Aignivault.WebAPI.Services.ReportsService]]></data>
+      <data key="d17"><![CDATA[Usages]]></data>
+      <data key="d19">
+        <x:List>
+          <y:Bend Location="3108.28266666667,3208.21733333333" />
+          <y:Bend Location="3063,3253.5" />
+          <y:Bend Location="2847,3253.5" />
+          <y:Bend Location="2801.03083333333,3299.46916666667" />
+        </x:List>
+      </data>
+    </edge>
+    <edge id="e98" source="n31" target="n11" sourceport="p6" targetport="p3">
+      <data key="d15"><![CDATA[32faf320-1660-bc81-ba19-1642742b2d58%28ignivault.WebAPI%29-16EFFD6E%5Bnet9.0%5D/T%3Aignivault.WebAPI.Services.IReportsService]]></data>
+      <data key="d16"><![CDATA[32faf320-1660-bc81-ba19-1642742b2d58%28ignivault.WebAPI%29-16EFFD6E%5Bnet9.0%5D/T%3Aignivault.WebAPI.Services.ReportsService]]></data>
+      <data key="d17"><![CDATA[Inheritance]]></data>
+      <data key="d19">
+        <x:List>
+          <y:Bend Location="3171.248,2233.248" />
+          <y:Bend Location="3180,2242" />
+        </x:List>
+      </data>
+    </edge>
+    <edge id="e99" source="n8" target="n9" sourceport="p5" targetport="p3">
+      <data key="d15"><![CDATA[32faf320-1660-bc81-ba19-1642742b2d58%28ignivault.WebAPI%29-16EFFD6E%5Bnet9.0%5D/T%3Aignivault.WebAPI.Data.Enums.ActivityType]]></data>
+      <data key="d16"><![CDATA[32faf320-1660-bc81-ba19-1642742b2d58%28ignivault.WebAPI%29-16EFFD6E%5Bnet9.0%5D/T%3Aignivault.WebAPI.Services.IUserActivityLogger]]></data>
+      <data key="d17"><![CDATA[Usages]]></data>
+    </edge>
+    <edge id="e100" source="n29" target="n2" sourceport="p1" targetport="p6">
+      <data key="d15"><![CDATA[32faf320-1660-bc81-ba19-1642742b2d58%28ignivault.WebAPI%29-16EFFD6E%5Bnet9.0%5D/T%3Aignivault.WebAPI.Data.Repositories.IUserActivityRepository]]></data>
+      <data key="d16"><![CDATA[32faf320-1660-bc81-ba19-1642742b2d58%28ignivault.WebAPI%29-16EFFD6E%5Bnet9.0%5D/T%3Aignivault.WebAPI.Services.UserActivityLogger]]></data>
+      <data key="d17"><![CDATA[Aggregation]]></data>
+      <data key="d18">
+        <x:List>
+          <y:Label LayoutParameter="{y:GraphMLReference 1}" PreferredSize="168,23">
+            <y:Label.Text>_activityRepository</y:Label.Text>
+          </y:Label>
+        </x:List>
+      </data>
+    </edge>
+    <edge id="e101" source="n29" target="n9" sourceport="p2" targetport="p4">
+      <data key="d15"><![CDATA[32faf320-1660-bc81-ba19-1642742b2d58%28ignivault.WebAPI%29-16EFFD6E%5Bnet9.0%5D/T%3Aignivault.WebAPI.Data.Enums.ActivityType]]></data>
+      <data key="d16"><![CDATA[32faf320-1660-bc81-ba19-1642742b2d58%28ignivault.WebAPI%29-16EFFD6E%5Bnet9.0%5D/T%3Aignivault.WebAPI.Services.UserActivityLogger]]></data>
+      <data key="d17"><![CDATA[Usages]]></data>
+      <data key="d19">
+        <x:List>
+          <y:Bend Location="2103.25666666667,599.09" />
+          <y:Bend Location="2062,557.833333333333" />
+        </x:List>
+      </data>
+    </edge>
+    <edge id="e102" source="n29" target="n3" sourceport="p3" targetport="p7">
+      <data key="d15"><![CDATA[32faf320-1660-bc81-ba19-1642742b2d58%28ignivault.WebAPI%29-16EFFD6E%5Bnet9.0%5D/T%3Aignivault.WebAPI.Data.Entities.UserActivity]]></data>
+      <data key="d16"><![CDATA[32faf320-1660-bc81-ba19-1642742b2d58%28ignivault.WebAPI%29-16EFFD6E%5Bnet9.0%5D/T%3Aignivault.WebAPI.Services.UserActivityLogger]]></data>
+      <data key="d17"><![CDATA[Usages]]></data>
+      <data key="d19">
+        <x:List>
+          <y:Bend Location="2262.45466666667,1239.32966666667" />
+          <y:Bend Location="2284,1260.875" />
+        </x:List>
+      </data>
+    </edge>
+    <edge id="e103" source="n29" target="n18" sourceport="p4" targetport="p5">
+      <data key="d15"><![CDATA[32faf320-1660-bc81-ba19-1642742b2d58%28ignivault.WebAPI%29-16EFFD6E%5Bnet9.0%5D/T%3Aignivault.WebAPI.Data.Repositories.IRepository%601]]></data>
+      <data key="d16"><![CDATA[32faf320-1660-bc81-ba19-1642742b2d58%28ignivault.WebAPI%29-16EFFD6E%5Bnet9.0%5D/T%3Aignivault.WebAPI.Services.UserActivityLogger]]></data>
+      <data key="d17"><![CDATA[Usages]]></data>
+    </edge>
+    <edge id="e104" source="n29" target="n8" sourceport="p5" targetport="p6">
+      <data key="d15"><![CDATA[32faf320-1660-bc81-ba19-1642742b2d58%28ignivault.WebAPI%29-16EFFD6E%5Bnet9.0%5D/T%3Aignivault.WebAPI.Services.IUserActivityLogger]]></data>
+      <data key="d16"><![CDATA[32faf320-1660-bc81-ba19-1642742b2d58%28ignivault.WebAPI%29-16EFFD6E%5Bnet9.0%5D/T%3Aignivault.WebAPI.Services.UserActivityLogger]]></data>
+      <data key="d17"><![CDATA[Inheritance]]></data>
+    </edge>
+    <edge id="e105" source="n27" target="n23" sourceport="p1" targetport="p8">
+      <data key="d15"><![CDATA[32faf320-1660-bc81-ba19-1642742b2d58%28ignivault.WebAPI%29-16EFFD6E%5Bnet9.0%5D/T%3Aignivault.WebAPI.Data.Repositories.IVaultItemRepository]]></data>
+      <data key="d16"><![CDATA[32faf320-1660-bc81-ba19-1642742b2d58%28ignivault.WebAPI%29-16EFFD6E%5Bnet9.0%5D/T%3Aignivault.WebAPI.Services.VaultService]]></data>
+      <data key="d17"><![CDATA[Aggregation]]></data>
+      <data key="d18">
+        <x:List>
+          <y:Label LayoutParameter="{y:GraphMLReference 1}" PreferredSize="188,23">
+            <y:Label.Text>_vaultItemRepository</y:Label.Text>
+          </y:Label>
+        </x:List>
+      </data>
+    </edge>
+    <edge id="e106" source="n27" target="n23" sourceport="p2" targetport="p9">
+      <data key="d15"><![CDATA[32faf320-1660-bc81-ba19-1642742b2d58%28ignivault.WebAPI%29-16EFFD6E%5Bnet9.0%5D/T%3Aignivault.WebAPI.Data.Repositories.IVaultItemRepository]]></data>
+      <data key="d16"><![CDATA[32faf320-1660-bc81-ba19-1642742b2d58%28ignivault.WebAPI%29-16EFFD6E%5Bnet9.0%5D/T%3Aignivault.WebAPI.Services.VaultService]]></data>
+      <data key="d17"><![CDATA[Usages]]></data>
+    </edge>
+    <edge id="e107" source="n27" target="n8" sourceport="p3" targetport="p7">
+      <data key="d15"><![CDATA[32faf320-1660-bc81-ba19-1642742b2d58%28ignivault.WebAPI%29-16EFFD6E%5Bnet9.0%5D/T%3Aignivault.WebAPI.Services.IUserActivityLogger]]></data>
+      <data key="d16"><![CDATA[32faf320-1660-bc81-ba19-1642742b2d58%28ignivault.WebAPI%29-16EFFD6E%5Bnet9.0%5D/T%3Aignivault.WebAPI.Services.VaultService]]></data>
+      <data key="d17"><![CDATA[Aggregation]]></data>
+      <data key="d18">
+        <x:List>
+          <y:Label LayoutParameter="{y:GraphMLReference 1}" PreferredSize="176,23">
+            <y:Label.Text>_userActivityLogger</y:Label.Text>
+          </y:Label>
+        </x:List>
+      </data>
+      <data key="d19">
+        <x:List>
+          <y:Bend Location="1074,2303" />
+          <y:Bend Location="1062.82833333333,2291.82833333333" />
+        </x:List>
+      </data>
+    </edge>
+    <edge id="e108" source="n27" target="n8" sourceport="p4" targetport="p8">
+      <data key="d15"><![CDATA[32faf320-1660-bc81-ba19-1642742b2d58%28ignivault.WebAPI%29-16EFFD6E%5Bnet9.0%5D/T%3Aignivault.WebAPI.Services.IUserActivityLogger]]></data>
+      <data key="d16"><![CDATA[32faf320-1660-bc81-ba19-1642742b2d58%28ignivault.WebAPI%29-16EFFD6E%5Bnet9.0%5D/T%3Aignivault.WebAPI.Services.VaultService]]></data>
+      <data key="d17"><![CDATA[Usages]]></data>
+      <data key="d19">
+        <x:List>
+          <y:Bend Location="1091,2277" />
+          <y:Bend Location="1082.82833333333,2268.82833333333" />
+        </x:List>
+      </data>
+    </edge>
+    <edge id="e109" source="n27" target="n9" sourceport="p5" targetport="p5">
+      <data key="d15"><![CDATA[32faf320-1660-bc81-ba19-1642742b2d58%28ignivault.WebAPI%29-16EFFD6E%5Bnet9.0%5D/T%3Aignivault.WebAPI.Data.Enums.ActivityType]]></data>
+      <data key="d16"><![CDATA[32faf320-1660-bc81-ba19-1642742b2d58%28ignivault.WebAPI%29-16EFFD6E%5Bnet9.0%5D/T%3Aignivault.WebAPI.Services.VaultService]]></data>
+      <data key="d17"><![CDATA[Usages]]></data>
+      <data key="d19">
+        <x:List>
+          <y:Bend Location="1470,2264" />
+          <y:Bend Location="1477.685,2256.315" />
+        </x:List>
+      </data>
+    </edge>
+    <edge id="e110" source="n27" target="n16" sourceport="p6" targetport="p10">
+      <data key="d15"><![CDATA[32faf320-1660-bc81-ba19-1642742b2d58%28ignivault.WebAPI%29-16EFFD6E%5Bnet9.0%5D/T%3Aignivault.WebAPI.Data.Entities.VaultEntity]]></data>
+      <data key="d16"><![CDATA[32faf320-1660-bc81-ba19-1642742b2d58%28ignivault.WebAPI%29-16EFFD6E%5Bnet9.0%5D/T%3Aignivault.WebAPI.Services.VaultService]]></data>
+      <data key="d17"><![CDATA[Usages]]></data>
+      <data key="d19">
+        <x:List>
+          <y:Bend Location="1863,2342" />
+          <y:Bend Location="1898.22,2377.22" />
+        </x:List>
+      </data>
+    </edge>
+    <edge id="e111" source="n27" target="n18" sourceport="p7" targetport="p6">
+      <data key="d15"><![CDATA[32faf320-1660-bc81-ba19-1642742b2d58%28ignivault.WebAPI%29-16EFFD6E%5Bnet9.0%5D/T%3Aignivault.WebAPI.Data.Repositories.IRepository%601]]></data>
+      <data key="d16"><![CDATA[32faf320-1660-bc81-ba19-1642742b2d58%28ignivault.WebAPI%29-16EFFD6E%5Bnet9.0%5D/T%3Aignivault.WebAPI.Services.VaultService]]></data>
+      <data key="d17"><![CDATA[Usages]]></data>
+      <data key="d19">
+        <x:List>
+          <y:Bend Location="2314,2342" />
+          <y:Bend Location="2378.215,2277.785" />
+        </x:List>
+      </data>
+    </edge>
+    <edge id="e112" source="n27" target="n13" sourceport="p8" targetport="p3">
+      <data key="d15"><![CDATA[32faf320-1660-bc81-ba19-1642742b2d58%28ignivault.WebAPI%29-16EFFD6E%5Bnet9.0%5D/T%3Aignivault.WebAPI.Services.IVaultService]]></data>
+      <data key="d16"><![CDATA[32faf320-1660-bc81-ba19-1642742b2d58%28ignivault.WebAPI%29-16EFFD6E%5Bnet9.0%5D/T%3Aignivault.WebAPI.Services.VaultService]]></data>
+      <data key="d17"><![CDATA[Inheritance]]></data>
+      <data key="d19">
+        <x:List>
+          <y:Bend Location="841,2329" />
+          <y:Bend Location="789.301666666667,2380.69833333333" />
+          <y:Bend Location="789.301666666667,3104.19833333333" />
+          <y:Bend Location="765,3128.5" />
+        </x:List>
+      </data>
+    </edge>
+  </graph>
+</graphml>

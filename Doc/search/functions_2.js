@@ -1,0 +1,19 @@
+var searchData=
+[
+  ['clearproviders_0',['ClearProviders',['../ignivault_8_web_a_p_i_2_program_8cs.html#aa2256806c40d867d0cbb82471791a4ff',1,'Program.cs']]],
+  ['cleartokenasync_1',['ClearTokenAsync',['../interfaceignivault_1_1_api_client_1_1_i_token_manager.html#af4f36af83b270a8476e6bea3cf8d5bf1',1,'ignivault.ApiClient.ITokenManager.ClearTokenAsync()'],['../classignivault_1_1_app_1_1_services_1_1_token_manager.html#add896a1323693d5ee52344544f9ff67c',1,'ignivault.App.Services.TokenManager.ClearTokenAsync()']]],
+  ['clearuserstate_2',['ClearUserState',['../classignivault_1_1_app_1_1_state_1_1_app_state.html#a3509546e0aaeec29974e22e83212d951',1,'ignivault::App::State::AppState']]],
+  ['compressionnative_5fcrc32_3',['CompressionNative_Crc32',['../pinvoke-table_8h.html#aef2b3d387871b66a10dccbe7902c8b58',1,'pinvoke-table.h']]],
+  ['compressionnative_5fdeflate_4',['CompressionNative_Deflate',['../pinvoke-table_8h.html#aa698ceac70ad05ae86fbe0a2bb3ce846',1,'pinvoke-table.h']]],
+  ['compressionnative_5fdeflateend_5',['CompressionNative_DeflateEnd',['../pinvoke-table_8h.html#adace269aa21162a1e1abd99f3b1fec38',1,'pinvoke-table.h']]],
+  ['compressionnative_5fdeflateinit2_5f_6',['CompressionNative_DeflateInit2_',['../pinvoke-table_8h.html#a587833df09afe063a3704957295021ad',1,'pinvoke-table.h']]],
+  ['compressionnative_5finflate_7',['CompressionNative_Inflate',['../pinvoke-table_8h.html#a92203e0d27d419587d7f2f99bf8fb7e9',1,'pinvoke-table.h']]],
+  ['compressionnative_5finflateend_8',['CompressionNative_InflateEnd',['../pinvoke-table_8h.html#a39923d699328437f082bfe7e4255fb7a',1,'pinvoke-table.h']]],
+  ['compressionnative_5finflateinit2_5f_9',['CompressionNative_InflateInit2_',['../pinvoke-table_8h.html#ae65824509cde1b64e75276e81e91f92d',1,'pinvoke-table.h']]],
+  ['configurekestrel_10',['ConfigureKestrel',['../ignivault_8_web_a_p_i_2_program_8cs.html#a65ad45ebee0be0e63ce9855fc7802b9c',1,'Program.cs']]],
+  ['createdefaultadminsasync_11',['CreateDefaultAdminsAsync',['../ignivault_8_web_a_p_i_2_program_8cs.html#a1dc8ac1f65b6598de1f434fd50d86013',1,'Program.cs']]],
+  ['createfileasync_12',['CreateFileAsync',['../interfaceignivault_1_1_web_a_p_i_1_1_services_1_1_i_file_service.html#ac2f9b0a044d69195a77be473ddb0cb1c',1,'ignivault.WebAPI.Services.IFileService.CreateFileAsync()'],['../classignivault_1_1_web_a_p_i_1_1_services_1_1_file_service.html#a9c8128a7f5feeef3ce4685a091cf5681',1,'ignivault.WebAPI.Services.FileService.CreateFileAsync()']]],
+  ['createitem_13',['CreateItem',['../class_vault_controller.html#a42d5746b84894043098cabc9bb2e6ee0',1,'VaultController']]],
+  ['createitemasync_14',['CreateItemAsync',['../interfaceignivault_1_1_api_client_1_1_vault_1_1_i_vault_api_client.html#af9f18522f5b3aa4359946b875e4b1cd0',1,'ignivault.ApiClient.Vault.IVaultApiClient.CreateItemAsync()'],['../classignivault_1_1_api_client_1_1_vault_1_1_vault_api_client.html#a44f8b729ce786ebe92c32e8ed1d1207d',1,'ignivault.ApiClient.Vault.VaultApiClient.CreateItemAsync()'],['../interfaceignivault_1_1_web_a_p_i_1_1_services_1_1_i_vault_service.html#aff416292d77d3d4c8bf46a6ff07f4bac',1,'ignivault.WebAPI.Services.IVaultService.CreateItemAsync()'],['../classignivault_1_1_web_a_p_i_1_1_services_1_1_vault_service.html#ae7bef5129f40ff818ca2d1f6e3f55987',1,'ignivault.WebAPI.Services.VaultService.CreateItemAsync()']]],
+  ['cryptoservice_15',['CryptoService',['../classignivault_1_1_app_1_1_services_1_1_crypto_service.html#a87e9b4784cf9639be4e3f667070f3fa9',1,'ignivault::App::Services::CryptoService']]]
+];

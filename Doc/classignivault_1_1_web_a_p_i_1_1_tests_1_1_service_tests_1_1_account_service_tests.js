@@ -1,0 +1,4 @@
+var classignivault_1_1_web_a_p_i_1_1_tests_1_1_service_tests_1_1_account_service_tests =
+[
+    [ "GetProfileAsync_ShouldReturnCorrectProfileDto", "classignivault_1_1_web_a_p_i_1_1_tests_1_1_service_tests_1_1_account_service_tests.html#a87c1dde8e896b76a8db1ba81d056dc9e", null ]
+];
